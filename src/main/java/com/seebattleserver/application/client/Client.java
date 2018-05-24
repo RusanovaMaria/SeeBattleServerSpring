@@ -1,9 +1,9 @@
 package com.seebattleserver.application.client;
 
-import domain.player.Player;
+import com.seebattleserver.domain.player.Player;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.socket.WebSocketSession;
-import service.websocket.ClientHandler;
+import com.seebattleserver.service.websocket.SocketHandler;
 
 import java.io.IOException;
 
@@ -15,7 +15,7 @@ public class Client {
     private Player player;
     private ClientStatus status;
     @Autowired
-    private ClientHandler clientHandler;
+    private SocketHandler socketHandler = new SocketHandler();
 
     public Client(WebSocketSession session) {
         this.session = session;
@@ -73,8 +73,6 @@ public class Client {
     }
 
     public void sendMessage(String message) throws IOException {
-        clientHandler.sendMessageInSession(session, message);
+        socketHandler.sendMessageInSession(session, message);
     }
-
-   // public String readMessage(TextMessage )
 }

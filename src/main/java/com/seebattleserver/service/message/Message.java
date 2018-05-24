@@ -1,4 +1,4 @@
-package service.message;
+package com.seebattleserver.service.message;
 
 public class Message {
 

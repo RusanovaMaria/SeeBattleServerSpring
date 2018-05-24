@@ -1,6 +1,6 @@
-package domain.rule;
+package com.seebattleserver.domain.rule;
 
-import domain.gameobject.Kind;
+import com.seebattleserver.domain.gameobject.Kind;
 
 public interface Rule {
 

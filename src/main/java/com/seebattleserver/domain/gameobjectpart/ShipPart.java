@@ -1,6 +1,6 @@
-package domain.gameobjectpart;
+package com.seebattleserver.domain.gameobjectpart;
 
-import domain.gameobject.GameObject;
+import com.seebattleserver.domain.gameobject.GameObject;
 
 public class ShipPart implements GameObjectPart {
 
@@ -8,7 +8,6 @@ public class ShipPart implements GameObjectPart {
     private boolean alive;
 
     public ShipPart(GameObject gameObject) {
-
         this.gameObject = gameObject;
         alive = true;
     }

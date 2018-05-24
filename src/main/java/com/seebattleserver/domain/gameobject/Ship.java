@@ -1,7 +1,7 @@
-package domain.gameobject;
+package com.seebattleserver.domain.gameobject;
 
-import domain.gameobjectpart.GameObjectPart;
-import domain.gameobjectpart.ShipPart;
+import com.seebattleserver.domain.gameobjectpart.GameObjectPart;
+import com.seebattleserver.domain.gameobjectpart.ShipPart;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,7 +15,6 @@ public class Ship implements GameObject {
     private int diedGameParts;
 
     public Ship(int size) {
-
         this.size = size;
         status = Status.ALIVE;
         build();
@@ -23,7 +22,6 @@ public class Ship implements GameObject {
     }
 
     private void build() {
-
         gameParts = new ArrayList();
 
         for (int i = 0; i < size; i++) {
@@ -32,25 +30,19 @@ public class Ship implements GameObject {
     }
 
     private void defineVariety() {
-
         switch (size) {
-
             case 1:
                 kind = Kind.SINGLE_DECKED;
                 break;
-
             case 2:
                 kind = Kind.DOUBLE_DECKED;
                 break;
-
             case 3:
                 kind = Kind.THREE_DECKED;
                 break;
-
             case 4:
                 kind = Kind.SINGLE_DECKED;
                 break;
-
             default:
                 throw new IllegalArgumentException("Размер корабля не может превышать 4");
         }
@@ -59,19 +51,16 @@ public class Ship implements GameObject {
 
     @Override
     public void shoot() {
-
         int next = diedGameParts + 1;
 
         GameObjectPart shipPart = gameParts.get(next);
         shipPart.kill();
 
         diedGameParts++;
-
         changeStatus();
     }
 
     private void changeStatus() {
-
         if (isDamaged()) {
             status = Status.DAMAGED;
         }
@@ -81,20 +70,16 @@ public class Ship implements GameObject {
     }
 
     private boolean isDamaged() {
-
         if ((diedGameParts != 0) && (diedGameParts < size)) {
             return true;
         }
-
         return false;
     }
 
     private boolean isKilled() {
-
         if (diedGameParts == size) {
             return true;
         }
-
         return false;
     }
 

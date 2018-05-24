@@ -1,6 +1,6 @@
-package domain.player;
+package com.seebattleserver.domain.player;
 
-import domain.playingfield.ClassicPlayingField;
+import com.seebattleserver.domain.playingfield.ClassicPlayingField;
 
 public class Player {
 
@@ -8,7 +8,6 @@ public class Player {
     private ClassicPlayingField playingField;
 
     public Player(String name) {
-
         this.name = name;
     }
 

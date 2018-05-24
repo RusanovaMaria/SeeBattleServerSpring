@@ -1,6 +1,6 @@
-package domain.gameobjectpart;
+package com.seebattleserver.domain.gameobjectpart;
 
-import domain.gameobject.GameObject;
+import com.seebattleserver.domain.gameobject.GameObject;
 
 public interface GameObjectPart {
 

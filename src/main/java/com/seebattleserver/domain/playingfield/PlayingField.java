@@ -1,6 +1,6 @@
-package domain.playingfield;
+package com.seebattleserver.domain.playingfield;
 
-import domain.cage.Cage;
+import com.seebattleserver.domain.cage.Cage;
 
 public interface PlayingField {
 

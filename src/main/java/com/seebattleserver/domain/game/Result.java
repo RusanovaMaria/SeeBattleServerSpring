@@ -1,4 +1,4 @@
-package domain.game;
+package com.seebattleserver.domain.game;
 
 public enum Result {
 

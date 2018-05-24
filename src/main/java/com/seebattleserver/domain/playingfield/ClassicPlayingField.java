@@ -1,11 +1,10 @@
-package domain.playingfield;
+package com.seebattleserver.domain.playingfield;
 
-import domain.cage.Cage;
-import domain.gameobject.GameObject;
-import domain.gameobject.Ship;
-import domain.rule.ClassicRule;
-import domain.rule.Rule;
-
+import com.seebattleserver.domain.cage.Cage;
+import com.seebattleserver.domain.gameobject.GameObject;
+import com.seebattleserver.domain.gameobject.Ship;
+import com.seebattleserver.domain.rule.ClassicRule;
+import com.seebattleserver.domain.rule.Rule;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,13 +18,11 @@ public class ClassicPlayingField implements PlayingField {
 
 
     public ClassicPlayingField() {
-
         generate();
         addGameObjects();
     }
 
     private void generate() {
-
         cages = new Cage[WIDTH][HEIGHT];
 
         for (int j = 0; j < HEIGHT; j++) {
@@ -36,7 +33,6 @@ public class ClassicPlayingField implements PlayingField {
     }
 
     private void addGameObjects() {
-
         Rule rule = new ClassicRule();
         int[] shipsSize = rule.getGameObjectsSize();
         ships = new ArrayList();
@@ -53,7 +49,6 @@ public class ClassicPlayingField implements PlayingField {
 
     @Override
     public Cage findCage(int x, char y) {
-
         for (int i = 0; i < WIDTH; i++) {
             for (int j = 0; j < HEIGHT; j++) {
                 if ((cages[i][j].getX() == x) && (cages[i][j].getY() == y)) {

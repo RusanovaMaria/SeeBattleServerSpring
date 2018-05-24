@@ -1,5 +1,6 @@
 package com.seebattleserver.application.client;
 
+import com.seebattleserver.domain.player.Player;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
@@ -13,37 +14,32 @@ import java.util.List;
 public class ClientSet {
 
     @Autowired
-    private ArrayList<Client> clients;
+    public ClientSet() {
 
+    }
+
+    private final static List<Client> clients = new ArrayList();
     public void add(Client client) {
-
         clients.add(client);
     }
 
-    public Client findClientByWebSockeSession(WebSocketSession session) {
-
+    public Client findClientByWebSocketSession(WebSocketSession session) {
         for (Client client : clients) {
-
             if (client.getWebSocketSession().equals(session)) {
                 return client;
             }
         }
-
         throw new IllegalArgumentException("Клиент с таким параметром не обнаружен");
     }
 
-    public Client findClientHandlerByPlayer(domain.player.Player player) {
-
+    public Client findClientHandlerByPlayer(Player player) {
         for (Client client : clients) {
-
             if (client.getPlayer().equals(player)) {
                 return client;
             }
         }
-
         throw new IllegalArgumentException("Клиент с таким параметром не обнаружен");
     }
-
     public List<Client> getClients() {
         return clients;
     }

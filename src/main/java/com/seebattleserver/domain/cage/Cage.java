@@ -1,6 +1,6 @@
-package domain.cage;
+package com.seebattleserver.domain.cage;
 
-import domain.gameobjectpart.GameObjectPart;
+import com.seebattleserver.domain.gameobjectpart.GameObjectPart;
 
 public class Cage {
 

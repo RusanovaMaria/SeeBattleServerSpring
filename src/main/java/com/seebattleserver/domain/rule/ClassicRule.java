@@ -1,6 +1,6 @@
-package domain.rule;
+package com.seebattleserver.domain.rule;
 
-import domain.gameobject.Kind;
+import com.seebattleserver.domain.gameobject.Kind;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -28,7 +28,6 @@ public class ClassicRule implements Rule {
     }
 
     private void initQuantityOfGameObjects() {
-
         quantityOfGameObjects = new HashMap();
 
         quantityOfGameObjects.put(Kind.SINGLE_DECKED, 4);

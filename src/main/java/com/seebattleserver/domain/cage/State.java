@@ -1,4 +1,4 @@
-package domain.cage;
+package com.seebattleserver.domain.cage;
 
 public enum State {
 

@@ -1,4 +1,4 @@
-package domain.gameobject;
+package com.seebattleserver.domain.gameobject;
 
 public enum Status {
 

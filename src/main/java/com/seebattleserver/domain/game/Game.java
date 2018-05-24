@@ -1,8 +1,7 @@
-package domain.game;
+package com.seebattleserver.domain.game;
 
-import domain.cage.Cage;
-import domain.player.Player;
-import domain.playingfield.ClassicPlayingField;
+import com.seebattleserver.domain.player.Player;
+import com.seebattleserver.domain.playingfield.ClassicPlayingField;
 
 import java.util.Map;
 
