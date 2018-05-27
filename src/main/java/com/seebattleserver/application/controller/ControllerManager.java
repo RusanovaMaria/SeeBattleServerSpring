@@ -2,29 +2,29 @@ package com.seebattleserver.application.controller;
 
 import com.seebattleserver.application.client.Client;
 import com.seebattleserver.application.client.ClientSet;
-import com.seebattleserver.application.client.ClientStatus;
+import com.seebattleserver.application.user.User;
+import com.seebattleserver.application.user.UserStatus;
 
 public class ControllerManager {
 
-    private Client client;
-    private ClientSet clientSet = new ClientSet();
+    private User user;
 
-    public ControllerManager(Client client) {
+    public ControllerManager(User user) {
         this.client = client;
     }
 
-        public void handle(String command) {
-        ClientStatus clientStatus = identifyClientStatus();
-        Controller controller = identifyControllerByClientStatus(clientStatus);
+    public void handle(String command) {
+        UserStatus userStatus = identifyClientStatus();
+        Controller controller = identifyControllerByClientStatus(userStatus);
         controller.handle(command);
+    }
+
+        private UserStatus identifyClientStatus() {
+            UserStatus userStatus = client.getStatus();
+            return userStatus;
         }
 
-        private ClientStatus identifyClientStatus() {
-            ClientStatus clientStatus = client.getStatus();
-            return clientStatus;
-        }
-
-        private Controller identifyControllerByClientStatus(ClientStatus status) {
+        private Controller identifyControllerByClientStatus(UserStatus status) {
             switch (status) {
                 case FREE:
                     return new CommandController(client);

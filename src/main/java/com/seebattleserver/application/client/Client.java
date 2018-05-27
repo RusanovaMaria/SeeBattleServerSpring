@@ -1,5 +1,6 @@
 package com.seebattleserver.application.client;
 
+import com.seebattleserver.application.user.UserStatus;
 import com.seebattleserver.domain.player.Player;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.socket.WebSocketSession;
@@ -13,14 +14,14 @@ public class Client {
     private Client opponent;
     private WebSocketSession session;
     private Player player;
-    private ClientStatus status;
+    private UserStatus status;
     @Autowired
     private SocketHandler socketHandler = new SocketHandler();
 
     public Client(WebSocketSession session) {
         this.session = session;
         opponent = null;
-        setStatus(ClientStatus.FREE);
+        setStatus(UserStatus.FREE);
         createPlayer();
     }
 
@@ -36,11 +37,11 @@ public class Client {
         return player;
     }
 
-    public ClientStatus getStatus() {
+    public UserStatus getStatus() {
         return status;
     }
 
-    public void setStatus(ClientStatus status) {
+    public void setStatus(UserStatus status) {
         this.status = status;
     }
 

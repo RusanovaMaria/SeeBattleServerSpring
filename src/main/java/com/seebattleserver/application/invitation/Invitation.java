@@ -2,7 +2,7 @@ package com.seebattleserver.application.invitation;
 
 import com.seebattleserver.application.client.Client;
 import com.seebattleserver.application.client.ClientSet;
-import com.seebattleserver.application.client.ClientStatus;
+import com.seebattleserver.application.user.UserStatus;
 
 import java.io.IOException;
 
@@ -12,7 +12,7 @@ public abstract class Invitation {
 
     public abstract void handleAnswer();
 
-    protected void changeStatus(Client client, ClientStatus status) {
+    protected void changeStatus(Client client, UserStatus status) {
         client.setStatus(status);
     }
 

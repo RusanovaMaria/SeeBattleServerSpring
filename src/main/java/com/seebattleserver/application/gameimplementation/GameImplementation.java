@@ -1,7 +1,7 @@
 package com.seebattleserver.application.gameimplementation;
 
 import com.seebattleserver.application.client.Client;
-import com.seebattleserver.application.client.ClientStatus;
+import com.seebattleserver.application.user.UserStatus;
 import com.seebattleserver.domain.game.ClassicGame;
 import com.seebattleserver.domain.game.Game;
 import com.seebattleserver.domain.player.Player;
@@ -69,8 +69,8 @@ public class GameImplementation implements Runnable{
         }
 
         gameImplementationSet.remove(this);
-        firstClient.setStatus(ClientStatus.FREE);
-        secondClient.setStatus(ClientStatus.FREE);
+        firstClient.setStatus(UserStatus.FREE);
+        secondClient.setStatus(UserStatus.FREE);
     }
 
     private void move(Client client) {

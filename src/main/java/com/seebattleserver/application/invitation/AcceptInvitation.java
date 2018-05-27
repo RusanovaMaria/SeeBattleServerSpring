@@ -1,7 +1,7 @@
 package com.seebattleserver.application.invitation;
 
 import com.seebattleserver.application.client.Client;
-import com.seebattleserver.application.client.ClientStatus;
+import com.seebattleserver.application.user.UserStatus;
 import com.seebattleserver.application.gameimplementation.GameImplementation;
 
 public class AcceptInvitation extends Invitation {
@@ -21,8 +21,8 @@ public class AcceptInvitation extends Invitation {
         Client opponent = getOpponent(client);
         String message = "Игрок "+client.getName()+" принял ваше предложение";
         notifyOpponent(opponent, message);
-        changeStatus(client, ClientStatus.IN_GAME);
-        changeStatus(opponent, ClientStatus.IN_GAME);
+        changeStatus(client, UserStatus.IN_GAME);
+        changeStatus(opponent, UserStatus.IN_GAME);
         startGame(client, opponent);
     }
 

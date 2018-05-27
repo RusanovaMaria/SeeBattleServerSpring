@@ -1,25 +1,17 @@
 package com.seebattleserver.application.command;
 
-import com.seebattleserver.application.client.Client;
-import com.seebattleserver.application.client.ClientStatus;
+import com.seebattleserver.application.user.User;
 
-import java.io.IOException;
+public class PlayerInvitationCommand implements Command {
 
-public class PlayerInvitationCommand extends Command {
+    private User user;
 
-    private Client client;
-
-    public PlayerInvitationCommand(Client client) {
-        this.client = client;
+    public PlayerInvitationCommand(User user) {
+        this.user = user;
     }
 
     @Override
-    public void execute() {
-        try {
-            client.sendMessage("Введите имя соперника");
-            client.setStatus(ClientStatus.REQUESTING_OPPONENT);
-        } catch (IOException ex) {
-            ex.printStackTrace();
-        }
+    public String execute() {
+        return "Введите имя соперника";
     }
 }

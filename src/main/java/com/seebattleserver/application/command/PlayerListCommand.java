@@ -1,36 +1,29 @@
 package com.seebattleserver.application.command;
 
-import com.seebattleserver.application.client.Client;
+import com.seebattleserver.application.user.User;
+import com.seebattleserver.application.user.UserRegistry;
 
-import java.io.IOException;
 import java.util.List;
 
-public class PlayerListCommand extends Command {
+public class PlayerListCommand implements Command {
 
-    private Client client;
+    private UserRegistry userRegistry;
 
-    public PlayerListCommand(Client client) {
-        this.client = client;
+    public PlayerListCommand(UserRegistry userRegistry) {
+        this.userRegistry = userRegistry;
     }
 
     @Override
-    public void execute() {
-        writeOpponentList();
+    public String execute() {
+        List<User> users = userRegistry.getUsers();
+        String line = "";
+        for (User user : users)
+            line += user.getUsername() + "\n";
+        return line;
     }
 
     private void writeOpponentList() {
-        List<Client> opponents = clientSet.getClients();
-        for (int i = 0; i < opponents.size(); i++) {
-                Client opponent = opponents.get(i);
-                writeOpponentName(opponent);
-        }
+
     }
 
-    private void writeOpponentName(Client opponent) {
-        try {
-            client.sendMessage(opponent.getName());
-        } catch (IOException ex) {
-            ex.printStackTrace();
-        }
-    }
 }

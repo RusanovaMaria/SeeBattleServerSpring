@@ -1,7 +1,7 @@
 package com.seebattleserver.application.invitation;
 
 import com.seebattleserver.application.client.Client;
-import com.seebattleserver.application.client.ClientStatus;
+import com.seebattleserver.application.user.UserStatus;
 
 public class NotAcceptInvitation extends Invitation {
 
@@ -21,7 +21,7 @@ public class NotAcceptInvitation extends Invitation {
         String message = "Игрок"+client.getName()+"отклонил ваше предложение";
         notifyOpponent(opponent, message);
         removeOpponent(client);
-        changeStatus(client, ClientStatus.FREE);
+        changeStatus(client, UserStatus.FREE);
     }
 
 

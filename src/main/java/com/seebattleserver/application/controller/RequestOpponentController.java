@@ -2,7 +2,7 @@ package com.seebattleserver.application.controller;
 
 import com.seebattleserver.application.client.Client;
 import com.seebattleserver.application.client.ClientSet;
-import com.seebattleserver.application.client.ClientStatus;
+import com.seebattleserver.application.user.UserStatus;
 
 import java.io.IOException;
 import java.util.List;
@@ -53,15 +53,15 @@ public class RequestOpponentController implements Controller {
     }
 
     private boolean isOpponentFree(Client opponent) {
-        if (opponent.getStatus().equals(ClientStatus.FREE)) {
+        if (opponent.getStatus().equals(UserStatus.FREE)) {
             return true;
         }
         return false;
     }
 
     private void invite (Client client, Client opponent) {
-        opponent.setStatus(ClientStatus.INVITED);
-        client.setStatus(ClientStatus.INVITING);
+        opponent.setStatus(UserStatus.INVITED);
+        client.setStatus(UserStatus.INVITING);
         sendInvitationToOpponent(opponent, client);
 
         createOpponents(client, opponent);
