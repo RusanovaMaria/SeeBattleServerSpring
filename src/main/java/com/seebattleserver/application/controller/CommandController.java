@@ -6,7 +6,7 @@ import com.seebattleserver.application.command.PlayerInvitationCommand;
 import com.seebattleserver.application.command.PlayerListCommand;
 import com.seebattleserver.application.user.User;
 import com.seebattleserver.application.user.UserRegistry;
-import com.seebattleserver.service.message.Message;
+import com.seebattleserver.application.message.Message;
 import com.seebattleserver.service.sender.UserSender;
 
 public class CommandController implements Controller {

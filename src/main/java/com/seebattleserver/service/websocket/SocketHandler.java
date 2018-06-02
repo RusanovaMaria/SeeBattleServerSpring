@@ -1,23 +1,16 @@
 package com.seebattleserver.service.websocket;
 
 import com.seebattleserver.application.client.Client;
-import com.seebattleserver.application.client.ClientSet;
 import com.google.gson.Gson;
 import com.seebattleserver.application.controller.ControllerManager;
 import com.seebattleserver.application.user.User;
 import com.seebattleserver.service.websocket.registry.SessionRegistry;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 import org.springframework.web.socket.TextMessage;
 import org.springframework.web.socket.WebSocketSession;
 import org.springframework.web.socket.handler.TextWebSocketHandler;
-import com.seebattleserver.service.message.Message;
+import com.seebattleserver.application.message.Message;
 
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.concurrent.CopyOnWriteArrayList;
 
 public class SocketHandler extends TextWebSocketHandler {
 
@@ -39,8 +32,8 @@ public class SocketHandler extends TextWebSocketHandler {
         } else {
             Message name = gson.fromJson(context.getPayload(), Message.class);
             Client client = new Client(session);
-            client.setName(name.getContext());
-            sessionRegistry.put(session, new User(name.getContext()));
+            client.setName(name.getMessage());
+            sessionRegistry.put(session, new User(name.getMessage()));
         }
     }
 

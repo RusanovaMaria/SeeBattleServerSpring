@@ -9,20 +9,12 @@ import org.springframework.web.socket.WebSocketSession;
 import java.util.ArrayList;
 import java.util.List;
 
-@Service
-@Scope("singleton")
 public class ClientSet {
-
-    @Autowired
-    public ClientSet() {
-
-    }
 
     private final static List<Client> clients = new ArrayList();
     public void add(Client client) {
         clients.add(client);
     }
-
     public Client findClientByWebSocketSession(WebSocketSession session) {
         for (Client client : clients) {
             if (client.getWebSocketSession().equals(session)) {
