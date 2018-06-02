@@ -1,12 +1,9 @@
 package com.seebattleserver.application.controller;
 
-import com.seebattleserver.application.command.Command;
-import com.seebattleserver.application.command.HelpCommand;
-import com.seebattleserver.application.command.PlayerInvitationCommand;
-import com.seebattleserver.application.command.PlayerListCommand;
+import com.seebattleserver.application.command.*;
 import com.seebattleserver.application.user.User;
-import com.seebattleserver.application.user.UserRegistry;
 import com.seebattleserver.application.message.Message;
+import com.seebattleserver.application.user.UserStatus;
 import com.seebattleserver.service.sender.UserSender;
 
 public class CommandController implements Controller {
@@ -15,21 +12,21 @@ public class CommandController implements Controller {
 
     private User user;
     private UserSender userSender;
-    private UserRegistry userRegistry;
+    private CommandFactory commandFactory;
 
-    public CommandController(User user, UserSender userSender, UserRegistry userRegistry) {
+    public CommandController(User user, UserSender userSender, CommandFactory commandFactory) {
        this.user = user;
        this.userSender = userSender;
-       this.userRegistry = userRegistry;
+       this.commandFactory = commandFactory;
     }
 
     @Override
-    public void handle(String command) {
-        if (isRightCommand(command)) {
-            handleCommand(command);
+    public void handle(String message) {
+        if (isRightCommand(message)) {
+            handleCommand(message);
         } else {
             Command helpCommand = new HelpCommand();
-            helpCommand.execute();
+            userSender.sendMessage(user, new Message (helpCommand.execute()));
         }
     }
 
@@ -45,16 +42,17 @@ public class CommandController implements Controller {
     private void handleCommand(String command) {
         switch (command) {
             case "help":
-                Command helpCommand = new HelpCommand();
+                Command helpCommand = commandFactory.createHelpCommand();
                 userSender.sendMessage(user, new Message(helpCommand.execute()));
                 break;
             case "list":
-                Command listCommand = new PlayerListCommand(userRegistry);
+                Command listCommand = commandFactory.createPlayerListCommand();
                 userSender.sendMessage(user, new Message(listCommand.execute()));
                 break;
             case "request":
-                Command requestCommand = new PlayerInvitationCommand(user);
+                Command requestCommand = commandFactory.createPlayerInvitationCommand();
                 userSender.sendMessage(user, new Message(requestCommand.execute()));
+                user.setUserStatus(UserStatus.REQUESTING_OPPONENT);
                 break;
             default:
                 throw new IllegalArgumentException("Данного запроса не существует");

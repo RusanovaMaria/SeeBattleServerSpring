@@ -1,14 +1,18 @@
 package com.seebattleserver.application.invitation;
 
-import com.seebattleserver.application.client.Client;
+import com.seebattleserver.application.message.Message;
+import com.seebattleserver.application.user.User;
 import com.seebattleserver.application.user.UserStatus;
+import com.seebattleserver.service.sender.UserSender;
 
-public class NotAcceptInvitation extends Invitation {
+public class NotAcceptInvitation implements Invitation {
 
-    private Client client;
+    private User user;
+    private UserSender userSender;
 
-    public NotAcceptInvitation(Client client) {
-        this.client = client;
+    public NotAcceptInvitation(User user, UserSender userSender) {
+        this.user = user;
+        this.userSender = userSender;
     }
 
     @Override
@@ -17,12 +21,13 @@ public class NotAcceptInvitation extends Invitation {
     }
 
     private void notAcceptInvitation() {
-        Client opponent = getOpponent(client);
-        String message = "Игрок"+client.getName()+"отклонил ваше предложение";
-        notifyOpponent(opponent, message);
-        removeOpponent(client);
-        changeStatus(client, UserStatus.FREE);
+        User userOpponent = user.getOpponent();
+        notifyOpponent(userOpponent);
+        user.setOpponent(null);
+        user.setUserStatus(UserStatus.FREE);
     }
 
-
+    private void notifyOpponent(User userOpponent) {
+        userSender.sendMessage(userOpponent, new Message("Игрок"+ user.getUsername()+"отклонил ваше предложение"));
+    }
 }

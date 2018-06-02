@@ -22,8 +22,4 @@ public class PlayerListCommand implements Command {
         return line;
     }
 
-    private void writeOpponentList() {
-
-    }
-
 }

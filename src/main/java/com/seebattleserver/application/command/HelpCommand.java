@@ -1,5 +1,8 @@
 package com.seebattleserver.application.command;
 
+import org.springframework.stereotype.Controller;
+
+@Controller
 public class HelpCommand implements Command {
 
     @Override

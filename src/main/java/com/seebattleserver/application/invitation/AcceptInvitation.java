@@ -1,15 +1,24 @@
 package com.seebattleserver.application.invitation;
 
-import com.seebattleserver.application.client.Client;
+import com.seebattleserver.application.gameset.GameRegistry;
+import com.seebattleserver.application.message.Message;
+import com.seebattleserver.application.user.User;
 import com.seebattleserver.application.user.UserStatus;
-import com.seebattleserver.application.gameimplementation.GameImplementation;
+import com.seebattleserver.domain.game.ClassicGame;
+import com.seebattleserver.domain.game.Game;
+import com.seebattleserver.domain.player.Player;
+import com.seebattleserver.service.sender.UserSender;
 
-public class AcceptInvitation extends Invitation {
+public class AcceptInvitation implements Invitation {
 
-    private Client client;
+    private User user;
+    private UserSender userSender;
+    private GameRegistry gameRegistry;
 
-    public AcceptInvitation(Client client) {
-        this.client = client;
+    public AcceptInvitation(User user, UserSender userSender, GameRegistry gameRegistry) {
+        this.user = user;
+        this.userSender = userSender;
+        this.gameRegistry = gameRegistry;
     }
 
     @Override
@@ -18,18 +27,38 @@ public class AcceptInvitation extends Invitation {
     }
 
     private void acceptInvitation() {
-        Client opponent = getOpponent(client);
-        String message = "Игрок "+client.getName()+" принял ваше предложение";
-        notifyOpponent(opponent, message);
-        changeStatus(client, UserStatus.IN_GAME);
-        changeStatus(opponent, UserStatus.IN_GAME);
-        startGame(client, opponent);
+        User userOpponent = user.getOpponent();
+        notifyOpponent(userOpponent);
+        changeUserStatuses(user, userOpponent);
+        startGame(user, userOpponent);
     }
 
-    private void startGame(Client client, Client opponent) {
-        GameImplementation gameImplementation = new GameImplementation(client, opponent);
+    private void notifyOpponent(User userOpponent) {
+        userSender.sendMessage(userOpponent, new Message("Игрок "+ user.getUsername()+" принял ваше предложение"));
+    }
 
-        Thread t = new Thread(gameImplementation);
-        t.start();
+    private void changeUserStatuses(User user, User userOpponent) {
+        user.setUserStatus(UserStatus.IN_GAME);
+        userOpponent.setUserStatus(UserStatus.IN_GAME_MOVE);
+    }
+
+    private void startGame(User user, User userOpponent) {
+        Player firstPlayer = new Player(userOpponent.getUsername());
+        Player secondPlayer = new Player(user.getUsername());
+        Game game = new ClassicGame(firstPlayer, secondPlayer);
+
+        associateUserWithPlayer(userOpponent, firstPlayer);
+        associateUserWithPlayer(user, firstPlayer);
+
+        putGameToGameRegistry(user, userOpponent, game);
+    }
+
+    private void associateUserWithPlayer(User user, Player player) {
+        user.setPlayer(player);
+    }
+
+    private void putGameToGameRegistry(User user, User userOpponent, Game game) {
+        gameRegistry.put(userOpponent, game);
+        gameRegistry.put(user, game);
     }
 }

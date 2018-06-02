@@ -1,32 +1,43 @@
 package com.seebattleserver.application.controller;
 
-import com.seebattleserver.application.client.Client;
-import com.seebattleserver.application.client.ClientSet;
-import com.seebattleserver.application.gameimplementation.GameImplementation;
-import com.seebattleserver.application.gameimplementation.GameImplementationSet;
+import com.seebattleserver.application.gameset.GameRegistry;
+import com.seebattleserver.application.message.Message;
+import com.seebattleserver.application.user.User;
+import com.seebattleserver.application.user.UserStatus;
 import com.seebattleserver.domain.game.Game;
 import com.seebattleserver.domain.game.Result;
-
-import java.io.IOException;
+import com.seebattleserver.service.sender.UserSender;
 
 public class GameController implements Controller {
-    private Client client;
-    private ClientSet clientSet = new ClientSet();
-    private GameImplementationSet gameImplementationSet = new GameImplementationSet();
+    private User user;
+    private GameRegistry gameRegistry;
+    private UserSender userSender;
 
-    public GameController(Client client) {
-        this.client = client;
+    public GameController(User user, UserSender userSender, GameRegistry gameRegistry) {
+        this.user = user;
+        this.userSender = userSender;
+        this.gameRegistry = gameRegistry;
     }
 
     @Override
     public void handle(String message) {
-        GameImplementation gameImplementation = gameImplementationSet.findGameImplementationByClient(client);
-        if (gameImplementation.isClientMove(client)) {
+        if (user.getUserStatus() == UserStatus.IN_GAME_MOVE) {
             String coordinates = message.trim();
-            makeMove(client, gameImplementation, coordinates);
+            makeMove(user, coordinates);
         } else {
-              notifyAboutMistake();
+            notifyAboutMistake();
         }
+    }
+
+    private void makeMove(User user, String coordinates) {
+        int x = getX(coordinates);
+        char y = getY(coordinates);
+
+        Game game = gameRegistry.getGameByUser(user);
+        Result result = game.fire(user.getPlayer(), x, y);
+        getAnswerByResult(result);
+        passMove();
+
     }
 
     private int getX(String coordinates) {
@@ -39,41 +50,29 @@ public class GameController implements Controller {
         return y;
     }
 
-    private void makeMove(Client client, GameImplementation gameImplementation, String coordinates) {
-        int x = getX(coordinates);
-        char y = getY(coordinates);
-
-        try {
-            Game game = gameImplementation.getGame();
-            Result result = game.fire(client.getPlayer(), x, y);
-            getAnswerByResult(result);
-            gameImplementation.passMove(client);
-        } catch (IOException ex) {
-            ex.printStackTrace();
-        }
+    private void passMove() {
+        User opponent = user.getOpponent();
+        user.setUserStatus(UserStatus.IN_GAME);
+        opponent.setUserStatus(UserStatus.IN_GAME_MOVE);
     }
 
-    private void getAnswerByResult (Result result) throws IOException {
+    private void getAnswerByResult(Result result) {
         switch (result) {
             case MISSED:
-                client.sendMessage("Мимо");
+                userSender.sendMessage(user, new Message("Мимо"));
                 break;
             case REPEATED:
-                client.sendMessage("Вы уже стреляли в эту клетку");
+                userSender.sendMessage(user, new Message("Вы уже стреляли в эту клетку"));
                 break;
             case GOT:
-                client.sendMessage("Попадание");
+                userSender.sendMessage(user, new Message("Попадание"));
                 break;
             case KILLED:
-                client.sendMessage("Убит");
+                userSender.sendMessage(user, new Message("Убит"));
         }
     }
 
     private void notifyAboutMistake() {
-        try {
-            client.sendMessage("Сейчас не ваш ход");
-        } catch (IOException ex) {
-            ex.printStackTrace();
-        }
+        userSender.sendMessage(user, new Message("Сейчас не ваш ход"));
     }
 }

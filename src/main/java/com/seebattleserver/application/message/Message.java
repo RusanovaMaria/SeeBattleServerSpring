@@ -10,15 +10,19 @@ public class Message {
     private String message;
     private MessageType type;
 
-    public Message(User to, String message, MessageType type) {
-        this(null, to, message, type);
+   /* public Message(User to, String message) {
+        this(null, to, message);
     }
 
-    public Message(User from, User to, String message, MessageType type) {
+    public Message(User from, User to, String message) {
         this.from = from;
         this.to = to;
         this.message = message;
         this.type = type;
+    } */
+
+    public Message(String message){
+        this.message = message;
     }
 
     public User getFrom() {

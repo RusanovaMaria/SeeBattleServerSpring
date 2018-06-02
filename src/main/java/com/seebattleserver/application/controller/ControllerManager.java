@@ -1,39 +1,42 @@
 package com.seebattleserver.application.controller;
 
-import com.seebattleserver.application.client.Client;
-import com.seebattleserver.application.client.ClientSet;
 import com.seebattleserver.application.user.User;
 import com.seebattleserver.application.user.UserStatus;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
+@Component
 public class ControllerManager {
 
-    private User user;
+   // private User user;
 
-    public ControllerManager(User user) {
-        this.client = client;
-    }
+    @Autowired
+    private ControllerFactory controllerFactory;
 
-    public void handle(String command) {
-        UserStatus userStatus = identifyClientStatus();
-        Controller controller = identifyControllerByClientStatus(userStatus);
+  /*  public ControllerManager(User user) {
+        this.user = user;
+    } */
+
+    public void handle(User user ,String command) {
+        UserStatus userStatus = user.getUserStatus();
+        Controller controller = identifyControllerByClientStatus(user, userStatus);
         controller.handle(command);
     }
 
-        private UserStatus identifyClientStatus() {
-            UserStatus userStatus = client.getStatus();
-            return userStatus;
-        }
-
-        private Controller identifyControllerByClientStatus(UserStatus status) {
+        private Controller identifyControllerByClientStatus(User user, UserStatus status) {
             switch (status) {
                 case FREE:
-                    return new CommandController(client);
+                    return controllerFactory.createCommandController(user);
                 case INVITED:
-                    return new InvitationController(client);
+                    return controllerFactory.createInvitationController(user);
+                case INVITING:
+                    return controllerFactory.createCommandController(user);
                 case IN_GAME:
-                    return new GameController(client);
+                    return controllerFactory.createGameController(user);
+                case IN_GAME_MOVE:
+                    return controllerFactory.createGameController(user);
                 case REQUESTING_OPPONENT:
-                    return new RequestOpponentController(client);
+                    return controllerFactory.createRequestOpponentController(user);
             }
             throw new IllegalArgumentException("Данный статус клиента не распознан");
         }
