@@ -57,9 +57,9 @@ public class SocketHandler extends TextWebSocketHandler {
     }
 
     private void sendMessageInSession(WebSocketSession session, String context) throws IOException {
-       // Message message = new Message(context);
-       // String messageJson = gson.toJson(message);
-        session.sendMessage(new TextMessage(context));
+        Message message = new Message(context);
+        String messageJson = gson.toJson(message);
+        session.sendMessage(new TextMessage(messageJson));
     }
 
     @Override

@@ -14,5 +14,7 @@ public interface GameObject {
 
     Status getStatus();
 
+    void setStatus(Status status);
+
     List<GameObjectPart> getObjectParts();
 }

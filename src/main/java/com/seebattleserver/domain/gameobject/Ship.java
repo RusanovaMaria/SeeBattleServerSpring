@@ -97,6 +97,11 @@ public class Ship implements GameObject {
     }
 
     @Override
+    public void setStatus(Status status) {
+        this.status = status;
+    }
+
+    @Override
     public List<GameObjectPart> getObjectParts() {
         return gameParts;
     }

@@ -9,14 +9,14 @@ import com.seebattleserver.domain.playingfield.PlayingField;
 import java.util.ArrayList;
 import java.util.List;
 
-public class StandartGameObjectPosition implements GameObjectPosition {
+public class StandardGameObjectPosition implements GameObjectPosition {
 
     private List<GameObject> oneDeckShips;
     private List<GameObject> twoDeckShips;
     private List<GameObject> threeDeckShips;
     private List<GameObject> fourDeckShips;
 
-    public StandartGameObjectPosition() {
+    public StandardGameObjectPosition() {
         oneDeckShips = new ArrayList<>();
         twoDeckShips = new ArrayList<>();
         threeDeckShips = new ArrayList<>();
@@ -114,7 +114,7 @@ public class StandartGameObjectPosition implements GameObjectPosition {
 
     private void positionFourDeckShips(PlayingField playingField) {
         int[] x = {2, 3, 4, 5};
-        char y = 0;
+        char y = 'a';
 
         GameObject gameObject = fourDeckShips.get(0);
         positionHorizontally(playingField, x, y, gameObject);

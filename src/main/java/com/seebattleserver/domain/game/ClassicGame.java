@@ -5,7 +5,7 @@ import com.seebattleserver.domain.cage.State;
 import com.seebattleserver.domain.gameobject.GameObject;
 import com.seebattleserver.domain.gameobject.Status;
 import com.seebattleserver.domain.gameobjectpart.GameObjectPart;
-import com.seebattleserver.domain.gameobjectposition.StandartGameObjectPosition;
+import com.seebattleserver.domain.gameobjectposition.StandardGameObjectPosition;
 import com.seebattleserver.domain.player.Player;
 import com.seebattleserver.domain.playingfield.ClassicPlayingField;
 import com.seebattleserver.domain.playingfield.PlayingField;
@@ -29,10 +29,10 @@ public class ClassicGame implements Game {
     private void initPlayers() {
         players = new HashMap();
 
-        firstPlayingField = new ClassicPlayingField(new StandartGameObjectPosition());
+        firstPlayingField = new ClassicPlayingField(new StandardGameObjectPosition());
         players.put(firstPlayer, firstPlayingField);
 
-        secondPlayingField = new ClassicPlayingField(new StandartGameObjectPosition());
+        secondPlayingField = new ClassicPlayingField(new StandardGameObjectPosition());
         players.put(secondPlayer, secondPlayingField);
     }
 
