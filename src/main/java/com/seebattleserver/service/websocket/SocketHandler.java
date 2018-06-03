@@ -4,9 +4,12 @@ import com.google.gson.Gson;
 import com.seebattleserver.application.controller.ControllerManager;
 import com.seebattleserver.application.user.User;
 import com.seebattleserver.application.user.UserRegistry;
+import com.seebattleserver.configuration.UtilConfiguration;
 import com.seebattleserver.service.sender.UserSender;
 import com.seebattleserver.service.websocket.registry.SessionRegistry;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.stereotype.Component;
 import org.springframework.web.socket.TextMessage;
 import org.springframework.web.socket.WebSocketSession;
@@ -32,7 +35,9 @@ public class SocketHandler extends TextWebSocketHandler {
         this.sessionRegistry = sessionRegistry;
         this.userRegistry = userRegistry;
         this.userSender = userSender;
-        this.gson = gson;
+
+        ApplicationContext context = new AnnotationConfigApplicationContext(UtilConfiguration.class);
+        this.gson = context.getBean(Gson.class);
     }
 
     @Override
@@ -52,14 +57,13 @@ public class SocketHandler extends TextWebSocketHandler {
     }
 
     private void sendMessageInSession(WebSocketSession session, String context) throws IOException {
-        Message message = new Message(context);
-        String messageJson = gson.toJson(message);
-        session.sendMessage(new TextMessage(messageJson));
+       // Message message = new Message(context);
+       // String messageJson = gson.toJson(message);
+        session.sendMessage(new TextMessage(context));
     }
 
     @Override
     public void afterConnectionEstablished(WebSocketSession session) throws Exception {
         sendMessageInSession(session, "Введите свое имя");
-        sendMessageInSession(session, "jghjg");
     }
 }

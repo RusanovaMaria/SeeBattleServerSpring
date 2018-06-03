@@ -6,17 +6,20 @@ import com.seebattleserver.application.user.User;
 import com.seebattleserver.application.user.UserStatus;
 import com.seebattleserver.domain.game.Game;
 import com.seebattleserver.domain.game.Result;
+import com.seebattleserver.domain.player.Player;
 import com.seebattleserver.service.sender.UserSender;
 
 public class GameController implements Controller {
     private User user;
     private GameRegistry gameRegistry;
+    private Game game;
     private UserSender userSender;
 
     public GameController(User user, UserSender userSender, GameRegistry gameRegistry) {
         this.user = user;
         this.userSender = userSender;
         this.gameRegistry = gameRegistry;
+        game = gameRegistry.getGameByUser(user);
     }
 
     @Override
@@ -24,6 +27,9 @@ public class GameController implements Controller {
         if (user.getUserStatus() == UserStatus.IN_GAME_MOVE) {
             String coordinates = message.trim();
             makeMove(user, coordinates);
+            if (game.isEnd()) {
+                endGame();
+            }
         } else {
             notifyAboutMistake();
         }
@@ -33,7 +39,6 @@ public class GameController implements Controller {
         int x = getX(coordinates);
         char y = getY(coordinates);
 
-        Game game = gameRegistry.getGameByUser(user);
         Result result = game.fire(user.getPlayer(), x, y);
         getAnswerByResult(result);
         passMove();
@@ -72,7 +77,49 @@ public class GameController implements Controller {
         }
     }
 
+    private void endGame() {
+        User userWinner = determineUserWinner();
+        notifyWinner(userWinner);
+        notifyLooser(userWinner.getOpponent());
+        User userOpponent = user.getOpponent();
+        removeOpponents(user, userOpponent);
+        changeStatuses(user, userOpponent);
+        removeGame(user, userOpponent);
+    }
+
+    private User determineUserWinner() {
+        Player winner = game.determineWinner();
+        if (user.getPlayer().equals(winner)) {
+            return user;
+        } else {
+            return user.getOpponent();
+        }
+    }
+
+    private void notifyWinner(User winnerUser) {
+        userSender.sendMessage(winnerUser, new Message("Вы победили, игра окончена"));
+    }
+
+    private void notifyLooser(User looserUser) {
+        userSender.sendMessage(looserUser, new Message("Вы проиграли, игра окончена"));
+    }
+
     private void notifyAboutMistake() {
         userSender.sendMessage(user, new Message("Сейчас не ваш ход"));
+    }
+
+    private void removeOpponents(User user, User userOpponent) {
+        user.setOpponent(null);
+        userOpponent.setOpponent(null);
+    }
+
+    private void changeStatuses(User user, User userOpponent) {
+        user.setUserStatus(UserStatus.FREE);
+        userOpponent.setUserStatus(UserStatus.FREE);
+    }
+
+    private void removeGame(User user, User userOpponent) {
+        gameRegistry.remove(user, game);
+        gameRegistry.remove(userOpponent, game);
     }
 }

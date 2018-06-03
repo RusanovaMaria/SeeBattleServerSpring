@@ -51,9 +51,7 @@ public class Ship implements GameObject {
 
     @Override
     public void shoot() {
-        int next = diedGameParts + 1;
-
-        GameObjectPart shipPart = gameParts.get(next);
+        GameObjectPart shipPart = gameParts.get(diedGameParts);
         shipPart.kill();
 
         diedGameParts++;
@@ -96,5 +94,10 @@ public class Ship implements GameObject {
     @Override
     public Status getStatus() {
         return status;
+    }
+
+    @Override
+    public List<GameObjectPart> getObjectParts() {
+        return gameParts;
     }
 }

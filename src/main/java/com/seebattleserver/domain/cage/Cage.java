@@ -4,32 +4,21 @@ import com.seebattleserver.domain.gameobjectpart.GameObjectPart;
 
 public class Cage {
 
-    private boolean wasUsed;
     private char y;
     private int x;
     private GameObjectPart gameObjectPart;
+    private State state;
 
     public Cage(int x, char y, GameObjectPart gameObjectPart) {
 
         this.y = y;
         this.x = x;
         this.gameObjectPart = gameObjectPart;
-        wasUsed = false;
+        this.state = State.FREE;
     }
 
     public void markAsUsed() {
-        wasUsed = true;
-    }
-
-    public State determineState() {
-
-        if (wasUsed) {
-            return State.USED;
-
-        } else if (gameObjectPart == null) {
-            return State.FREE;
-
-        } else return State.FULL;
+        this.state = State.USED;
     }
 
     public int getX() {
@@ -42,5 +31,14 @@ public class Cage {
 
     public GameObjectPart getGameObjectPart() {
         return gameObjectPart;
+    }
+
+    public void setGameObjectPart(GameObjectPart gameObjectPart) {
+        this.gameObjectPart = gameObjectPart;
+        this.state = State.FULL;
+    }
+
+    public State getState() {
+        return state;
     }
 }

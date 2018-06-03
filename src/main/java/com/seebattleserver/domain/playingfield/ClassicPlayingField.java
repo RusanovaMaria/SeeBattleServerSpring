@@ -3,6 +3,8 @@ package com.seebattleserver.domain.playingfield;
 import com.seebattleserver.domain.cage.Cage;
 import com.seebattleserver.domain.gameobject.GameObject;
 import com.seebattleserver.domain.gameobject.Ship;
+import com.seebattleserver.domain.gameobject.Status;
+import com.seebattleserver.domain.gameobjectposition.GameObjectPosition;
 import com.seebattleserver.domain.rule.ClassicRule;
 import com.seebattleserver.domain.rule.Rule;
 import java.util.ArrayList;
@@ -15,11 +17,14 @@ public class ClassicPlayingField implements PlayingField {
     private final int HEIGHT = 10;
     private List<GameObject> ships;
     private Cage[][] cages;
+    private GameObjectPosition gameObjectPosition;
 
 
-    public ClassicPlayingField() {
+    public ClassicPlayingField(GameObjectPosition gameObjectPosition) {
         generate();
         addGameObjects();
+        this.gameObjectPosition = gameObjectPosition;
+        gameObjectPosition.establish(this);
     }
 
     private void generate() {
@@ -72,5 +77,21 @@ public class ClassicPlayingField implements PlayingField {
     @Override
     public char[] getCharCoordinate() {
         return CHAR_COORDINATE;
+    }
+
+    @Override
+    public List<GameObject> getGameObjects() {
+        return ships;
+    }
+
+    @Override
+    public boolean isAllObjectsDied() {
+        for (int i = 0; i < ships.size(); i++) {
+            GameObject gameObject = ships.get(i);
+            if (gameObject.getStatus() != Status.KILLED) {
+                return false;
+            }
+        }
+        return true;
     }
 }
