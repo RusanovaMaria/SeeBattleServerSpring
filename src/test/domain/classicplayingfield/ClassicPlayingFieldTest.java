@@ -1,4 +1,4 @@
-package test.domain.classicplayingfield;
+package domain.classicplayingfield;
 
 import com.seebattleserver.domain.cage.Cage;
 import com.seebattleserver.domain.game.Result;

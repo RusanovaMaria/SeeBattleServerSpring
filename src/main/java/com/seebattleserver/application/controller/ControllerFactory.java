@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class ControllerFactory {
 
-    private User user;
+    @Autowired
     private UserSender userSender;
 
     @Autowired
