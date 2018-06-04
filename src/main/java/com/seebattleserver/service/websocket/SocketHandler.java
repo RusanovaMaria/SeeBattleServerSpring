@@ -21,13 +21,13 @@ import java.io.IOException;
 @Component
 public class SocketHandler extends TextWebSocketHandler {
 
-    private UserRegistry userRegistry;
+    protected UserRegistry userRegistry;
     private SessionRegistry sessionRegistry;
     private UserSender userSender;
     private Gson gson;
 
     @Autowired
-    ControllerManager controllerManager;
+    private ControllerManager controllerManager;
 
     @Autowired
     public SocketHandler(SessionRegistry sessionRegistry, UserRegistry userRegistry,

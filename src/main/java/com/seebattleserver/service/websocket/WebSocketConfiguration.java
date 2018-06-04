@@ -18,20 +18,17 @@ public class WebSocketConfiguration implements WebSocketConfigurer {
 
     private Gson gson;
     private SessionRegistry sessionRegistry;
-    private UserRegistry userRegistry;
-    private UserSender userSender;
+    private SocketHandler socketHandler;
 
     @Autowired
-    public WebSocketConfiguration(SessionRegistry sessionRegistry, UserRegistry userRegistry,
-                                  UserSender userSender, Gson gson) {
+    public WebSocketConfiguration(SessionRegistry sessionRegistry, Gson gson, SocketHandler socketHandler) {
         this.sessionRegistry = sessionRegistry;
-        this.userRegistry = userRegistry;
-        this.userSender = userSender;
         this.gson = gson;
+        this.socketHandler = socketHandler;
     }
 
     public void registerWebSocketHandlers(WebSocketHandlerRegistry registry) {
-        registry.addHandler(new SocketHandler(sessionRegistry, userRegistry, userSender, gson), "/game");
+        registry.addHandler(socketHandler, "/game");
     }
 
     @Bean

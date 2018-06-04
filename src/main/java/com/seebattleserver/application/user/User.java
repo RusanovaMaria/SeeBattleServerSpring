@@ -1,16 +1,19 @@
 package com.seebattleserver.application.user;
 
+import com.seebattleserver.application.controller.Controller;
 import com.seebattleserver.domain.player.Player;
 
 public class User {
 
     private String username;
     private Player player;
+    private Controller controller;
     private UserStatus userStatus;
     private User opponent;
 
-    public User(String username) {
+    public User(String username, Controller controller) {
         this.username = username;
+        this.controller = controller;
         this.userStatus = UserStatus.FREE;
     }
 

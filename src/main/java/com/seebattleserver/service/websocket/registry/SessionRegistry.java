@@ -38,7 +38,7 @@ public class SessionRegistry {
     }
 
     public boolean containsSession(WebSocketSession session) {
-        return userMap.containsValue(session);
+        return userMap.containsKey(session);
     }
 
 }
