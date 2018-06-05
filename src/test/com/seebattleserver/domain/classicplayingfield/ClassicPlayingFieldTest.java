@@ -1,7 +1,6 @@
-package domain.classicplayingfield;
+package com.seebattleserver.domain.classicplayingfield;
 
 import com.seebattleserver.domain.cage.Cage;
-import com.seebattleserver.domain.game.Result;
 import com.seebattleserver.domain.gameobject.GameObject;
 import com.seebattleserver.domain.gameobject.Status;
 import com.seebattleserver.domain.gameobjectposition.StandardGameObjectPosition;

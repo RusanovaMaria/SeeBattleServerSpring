@@ -1,6 +1,6 @@
 package com.seebattleserver.application.controller;
 
-import com.seebattleserver.application.gameset.GameRegistry;
+import com.seebattleserver.application.gameregistry.GameRegistry;
 import com.seebattleserver.application.invitation.AcceptInvitation;
 import com.seebattleserver.application.invitation.Invitation;
 import com.seebattleserver.application.invitation.NotAcceptInvitation;

@@ -30,10 +30,4 @@ public class WebSocketConfiguration implements WebSocketConfigurer {
     public void registerWebSocketHandlers(WebSocketHandlerRegistry registry) {
         registry.addHandler(socketHandler, "/game");
     }
-
-    @Bean
-    public UserSender userSender() {
-        return new WebSocketUserSender(sessionRegistry, gson);
-    }
-
 }

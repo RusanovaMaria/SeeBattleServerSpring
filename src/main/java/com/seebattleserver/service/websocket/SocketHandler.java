@@ -23,18 +23,15 @@ public class SocketHandler extends TextWebSocketHandler {
 
     protected UserRegistry userRegistry;
     private SessionRegistry sessionRegistry;
-    private UserSender userSender;
     private Gson gson;
-
-    @Autowired
     private ControllerManager controllerManager;
 
     @Autowired
-    public SocketHandler(SessionRegistry sessionRegistry, UserRegistry userRegistry,
-                         UserSender userSender, Gson gson) {
+    public SocketHandler(SessionRegistry sessionRegistry, UserRegistry userRegistry, Gson gson, ControllerManager controllerManager) {
         this.sessionRegistry = sessionRegistry;
         this.userRegistry = userRegistry;
-        this.userSender = userSender;
+        this.gson = gson;
+        this.controllerManager = controllerManager;
 
         ApplicationContext context = new AnnotationConfigApplicationContext(UtilConfiguration.class);
         this.gson = context.getBean(Gson.class);

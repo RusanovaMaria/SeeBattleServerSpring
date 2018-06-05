@@ -1,4 +1,4 @@
-package domain.classicrule;
+package com.seebattleserver.domain.classicrule;
 
 import com.seebattleserver.domain.gameobject.Kind;
 import com.seebattleserver.domain.rule.ClassicRule;

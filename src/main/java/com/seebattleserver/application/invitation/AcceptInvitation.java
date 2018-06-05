@@ -1,6 +1,6 @@
 package com.seebattleserver.application.invitation;
 
-import com.seebattleserver.application.gameset.GameRegistry;
+import com.seebattleserver.application.gameregistry.GameRegistry;
 import com.seebattleserver.application.message.Message;
 import com.seebattleserver.application.user.User;
 import com.seebattleserver.application.user.UserStatus;

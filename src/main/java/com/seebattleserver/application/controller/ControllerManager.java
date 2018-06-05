@@ -8,14 +8,12 @@ import org.springframework.stereotype.Component;
 @Component
 public class ControllerManager {
 
-   // private User user;
-
-    @Autowired
     private ControllerFactory controllerFactory;
 
-  /*  public ControllerManager(User user) {
-        this.user = user;
-    } */
+    @Autowired
+    public ControllerManager(ControllerFactory controllerFactory) {
+        this.controllerFactory = controllerFactory;
+    }
 
     public void handle(User user ,String command) {
         UserStatus userStatus = user.getUserStatus();

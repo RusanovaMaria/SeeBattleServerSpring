@@ -7,8 +7,12 @@ import org.springframework.stereotype.Component;
 @Component
 public class CommandFactory {
 
-    @Autowired
     private UserRegistry userRegistry;
+
+    @Autowired
+    public CommandFactory(UserRegistry userRegistry) {
+        this.userRegistry = userRegistry;
+    }
 
     public HelpCommand createHelpCommand() {
         return new HelpCommand();

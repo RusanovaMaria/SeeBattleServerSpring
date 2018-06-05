@@ -7,13 +7,11 @@ public class User {
 
     private String username;
     private Player player;
-    private Controller controller;
     private UserStatus userStatus;
     private User opponent;
 
-    public User(String username, Controller controller) {
+    public User(String username) {
         this.username = username;
-        this.controller = controller;
         this.userStatus = UserStatus.FREE;
     }
 

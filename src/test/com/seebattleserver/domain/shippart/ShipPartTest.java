@@ -1,4 +1,4 @@
-package domain.shippart;
+package com.seebattleserver.domain.shippart;
 
 import com.seebattleserver.domain.gameobject.Ship;
 import com.seebattleserver.domain.gameobjectpart.GameObjectPart;

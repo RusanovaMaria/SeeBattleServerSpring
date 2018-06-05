@@ -1,7 +1,7 @@
 package com.seebattleserver.application.controller;
 
 import com.seebattleserver.application.command.CommandFactory;
-import com.seebattleserver.application.gameset.GameRegistry;
+import com.seebattleserver.application.gameregistry.GameRegistry;
 import com.seebattleserver.application.user.User;
 import com.seebattleserver.application.user.UserRegistry;
 import com.seebattleserver.service.sender.UserSender;
@@ -11,18 +11,19 @@ import org.springframework.stereotype.Component;
 @Component
 public class ControllerFactory {
 
-    @Autowired
     private UserSender userSender;
+    private CommandFactory commandFactory;
+    private GameRegistry gameRegistry;
+    private UserRegistry userRegistry;
 
     @Autowired
-    CommandFactory commandFactory;
-
-    @Autowired
-    GameRegistry gameRegistry;
-
-    @Autowired
-    UserRegistry userRegistry;
-
+    public ControllerFactory(UserSender userSender, CommandFactory commandFactory, GameRegistry gameRegistry,
+                             UserRegistry userRegistry) {
+        this.userSender = userSender;
+        this.commandFactory = commandFactory;
+        this.gameRegistry = gameRegistry;
+        this.userRegistry = userRegistry;
+    }
 
     public CommandController createCommandController(User user) {
         return new CommandController(user, userSender, commandFactory);

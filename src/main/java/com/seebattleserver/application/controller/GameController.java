@@ -1,6 +1,6 @@
 package com.seebattleserver.application.controller;
 
-import com.seebattleserver.application.gameset.GameRegistry;
+import com.seebattleserver.application.gameregistry.GameRegistry;
 import com.seebattleserver.application.message.Message;
 import com.seebattleserver.application.user.User;
 import com.seebattleserver.application.user.UserStatus;
@@ -57,6 +57,7 @@ public class GameController implements Controller {
 
     private void passMove() {
         User opponent = user.getOpponent();
+        userSender.sendMessage(opponent, new Message("Введите координаты х и у"));
         user.setUserStatus(UserStatus.IN_GAME);
         opponent.setUserStatus(UserStatus.IN_GAME_MOVE);
     }

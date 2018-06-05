@@ -1,4 +1,4 @@
-package com.seebattleserver.application.gameset;
+package com.seebattleserver.application.gameregistry;
 
 import com.seebattleserver.application.user.User;
 import com.seebattleserver.domain.game.Game;

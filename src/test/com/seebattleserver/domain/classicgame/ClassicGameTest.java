@@ -1,4 +1,4 @@
-package domain.classicgame;
+package com.seebattleserver.domain.classicgame;
 
 import com.seebattleserver.domain.game.ClassicGame;
 import com.seebattleserver.domain.game.Game;
