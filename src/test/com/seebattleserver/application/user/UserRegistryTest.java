@@ -1,14 +1,9 @@
 package com.seebattleserver.application.user;
 
-import com.seebattleserver.application.gameregistry.GameRegistry;
-import com.seebattleserver.application.invitation.AcceptInvitation;
-import com.seebattleserver.application.invitation.Invitation;
-import com.seebattleserver.service.sender.UserSender;
 import junit.framework.TestCase;
 import org.mockito.Mockito;
 
 import static org.mockito.Mockito.doThrow;
-import static org.mockito.Mockito.mock;
 
 public class UserRegistryTest extends TestCase {
 

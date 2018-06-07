@@ -35,6 +35,7 @@ public class AcceptInvitation implements Invitation {
 
     private void notifyOpponent(User userOpponent) {
         userSender.sendMessage(userOpponent, new Message("Игрок "+ user.getUsername()+" принял ваше предложение"));
+        userSender.sendMessage(userOpponent, new Message("Введите координаты х и у"));
     }
 
     private void changeUserStatuses(User user, User userOpponent) {

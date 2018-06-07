@@ -17,5 +17,5 @@ public interface PlayingField {
 
     List<GameObject> getGameObjects();
 
-    boolean isAllObjectsDied();
+    boolean isNoObjects();
 }

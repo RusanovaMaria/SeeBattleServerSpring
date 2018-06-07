@@ -28,9 +28,9 @@ public class StandardGameObjectPosition implements GameObjectPosition {
     public void establish(PlayingField playingField) {
         distributeGameObjects(playingField);
         positionOneDeckShips(playingField);
-        positionTwoDeckShips(playingField);
-        positionThreeDeckShips(playingField);
-        positionFourDeckShips(playingField);
+      //  positionTwoDeckShips(playingField);
+       // positionThreeDeckShips(playingField);
+       // positionFourDeckShips(playingField);
     }
 
     private void distributeGameObjects(PlayingField playingField) {

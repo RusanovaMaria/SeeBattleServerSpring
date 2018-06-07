@@ -29,6 +29,8 @@ public class GameController implements Controller {
             makeMove(user, coordinates);
             if (game.isEnd()) {
                 endGame();
+            } else {
+                passMove();
             }
         } else {
             notifyAboutMistake();
@@ -41,8 +43,6 @@ public class GameController implements Controller {
 
         Result result = game.fire(user.getPlayer(), x, y);
         getAnswerByResult(result);
-        passMove();
-
     }
 
     private int getX(String coordinates) {

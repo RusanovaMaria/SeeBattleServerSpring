@@ -46,16 +46,17 @@ public class Ship implements GameObject {
             default:
                 throw new IllegalArgumentException("Размер корабля не может превышать 4");
         }
-
     }
 
     @Override
     public void shoot() {
-        GameObjectPart shipPart = gameParts.get(diedGameParts);
-        shipPart.kill();
+        if (diedGameParts < size) {
+            GameObjectPart shipPart = gameParts.get(diedGameParts);
+            shipPart.kill();
 
-        diedGameParts++;
-        changeStatus();
+            diedGameParts++;
+            changeStatus();
+        }
     }
 
     private void changeStatus() {

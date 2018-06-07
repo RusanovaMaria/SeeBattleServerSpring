@@ -33,7 +33,7 @@ public class RequestOpponentController implements Controller {
     }
 
     private boolean isOpponentFree(User userOpponent) {
-        if (userOpponent.getUsername().equals(UserStatus.FREE)) {
+        if (userOpponent.getUserStatus().equals(UserStatus.FREE)) {
             return true;
         }
         return false;
@@ -53,7 +53,7 @@ public class RequestOpponentController implements Controller {
     }
 
     private void sendInvitationToOpponent(User userOpponent, User user) {
-        userSender.sendMessage(userOpponent, new Message("С вами хочет играть" + user.getUsername() +
-                                                         "Введите команду 'yes' или 'no'"));
+        userSender.sendMessage(userOpponent, new Message("С вами хочет играть "+ user.getUsername() +
+                                                         ". Введите команду 'yes' или 'no'"));
     }
 }

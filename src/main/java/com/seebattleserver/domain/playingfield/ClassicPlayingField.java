@@ -1,6 +1,7 @@
 package com.seebattleserver.domain.playingfield;
 
 import com.seebattleserver.domain.cage.Cage;
+import com.seebattleserver.domain.cage.State;
 import com.seebattleserver.domain.gameobject.GameObject;
 import com.seebattleserver.domain.gameobject.Ship;
 import com.seebattleserver.domain.gameobject.Status;
@@ -42,7 +43,7 @@ public class ClassicPlayingField implements PlayingField {
         int[] shipsSize = rule.getGameObjectsSize();
         ships = new ArrayList();
 
-        for (int i = 0; i < shipsSize.length; i++) {
+        for (int i = 0; i < /*shipsSize.length*/1; i++) {
             int size = shipsSize[i];
             GameObject ship = new Ship(size);
             int number = rule.countQuantityOfObjects(ship.getKind());
@@ -85,11 +86,12 @@ public class ClassicPlayingField implements PlayingField {
     }
 
     @Override
-    public boolean isAllObjectsDied() {
-        for (int i = 0; i < ships.size(); i++) {
-            GameObject gameObject = ships.get(i);
-            if (gameObject.getStatus() != Status.KILLED) {
-                return false;
+    public boolean isNoObjects() {
+        for (int i = 0; i < WIDTH; i++) {
+            for (int j = 0; j < HEIGHT; j++) {
+                if (cages[i][j].getState() == State.FULL) {
+                    return false;
+                }
             }
         }
         return true;

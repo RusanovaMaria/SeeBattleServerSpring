@@ -34,7 +34,7 @@ public class ClassicPlayingFieldTest extends TestCase {
     @Test
     public void testIsAllObjectsDied_whenAllObjectsAlive_returnFalse() {
         PlayingField playingField = new ClassicPlayingField(new StandardGameObjectPosition());
-        boolean result = playingField.isAllObjectsDied();
+        boolean result = playingField.isNoObjects();
         assertFalse(result);
     }
 
@@ -44,7 +44,7 @@ public class ClassicPlayingFieldTest extends TestCase {
         List<GameObject> gameObjects = playingField.getGameObjects();
         GameObject gameObject = gameObjects.get(0);
         gameObject.setStatus(Status.KILLED);
-        boolean result = playingField.isAllObjectsDied();
+        boolean result = playingField.isNoObjects();
         assertFalse(result);
     }
 
@@ -58,7 +58,7 @@ public class ClassicPlayingFieldTest extends TestCase {
             gameObject.setStatus(Status.KILLED);
         }
 
-        boolean result = playingField.isAllObjectsDied();
+        boolean result = playingField.isNoObjects();
         assertTrue(result);
     }
 }

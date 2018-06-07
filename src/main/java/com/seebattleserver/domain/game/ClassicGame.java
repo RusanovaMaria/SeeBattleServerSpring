@@ -38,7 +38,7 @@ public class ClassicGame implements Game {
 
     @Override
     public boolean isEnd() {
-        if ((firstPlayingField.isAllObjectsDied()) || (secondPlayingField.isAllObjectsDied())) {
+        if ((firstPlayingField.isNoObjects()) || (secondPlayingField.isNoObjects())) {
             return true;
         }
         return false;
@@ -49,6 +49,7 @@ public class ClassicGame implements Game {
         PlayingField playingField = players.get(player);
         Cage affectedCage = playingField.findCage(x, y);
         Result result = makeShot(affectedCage);
+        affectedCage.markAsUsed();
         return result;
     }
 
@@ -63,8 +64,7 @@ public class ClassicGame implements Game {
                 GameObject gameObject = ejectGameObject(cage);
                 gameObject.shoot();
                 return determineDamage(gameObject);
-            default:
-                cage.markAsUsed();
+                default: new IllegalArgumentException("Неверный статус для клетки игрового поля");
         }
 
         throw new IllegalArgumentException("Неверное состояние компонента игрового поля");
@@ -89,9 +89,9 @@ public class ClassicGame implements Game {
 
     @Override
     public Player determineWinner() {
-        if (firstPlayingField.isAllObjectsDied()) {
+        if (firstPlayingField.isNoObjects()) {
             return firstPlayer;
-        } else if (secondPlayingField.isAllObjectsDied()) {
+        } else if (secondPlayingField.isNoObjects()) {
             return secondPlayer;
         } else {
             throw new IllegalArgumentException("Игра не окончена");
