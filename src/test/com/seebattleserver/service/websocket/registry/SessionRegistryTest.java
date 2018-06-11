@@ -2,42 +2,60 @@ package com.seebattleserver.service.websocket.registry;
 
 import com.seebattleserver.application.user.User;
 import junit.framework.TestCase;
-import org.junit.Test;
-import org.mockito.Mockito;
+import org.junit.Before;
+import org.mockito.Mock;
 import org.springframework.web.socket.WebSocketSession;
 
-import static org.mockito.Mockito.doThrow;
-import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.*;
+import static org.mockito.MockitoAnnotations.initMocks;
 
 public class SessionRegistryTest extends TestCase {
 
-    @Test
-    public void testGetSession_whenUserIsExists_returnSession() {
-        User user = new User(null);
-        WebSocketSession webSocketSession = mock(WebSocketSession.class);
-        SessionRegistry sessionRegistry = new SessionRegistry();
-        sessionRegistry.put(webSocketSession, user);
+    private SessionRegistry sessionRegistry;
+
+    @Mock
+    private User user;
+
+    @Mock
+    private WebSocketSession session;
+
+    @Before
+    public void setUp() {
+        initMocks(this);
+        sessionRegistry = new SessionRegistry();
+        sessionRegistry.put(session, user);
+    }
+
+    public void testGetUser_whenUserExists_returnUser() {
+        User result = sessionRegistry.getUser(session);
+        assertEquals(user, result);
+    }
+
+    public void testGetUser_whenUserDoNotExist_returnNull() {
+        WebSocketSession newSession = mock(WebSocketSession.class);
+        User result = sessionRegistry.getUser(newSession);
+        assertNull(result);
+    }
+
+    public void testGetSession_whenSessionExists_returnSession() {
         WebSocketSession result = sessionRegistry.getSession(user);
-        assertEquals(webSocketSession, result);
+        assertEquals(session, result);
     }
 
-    @Test (expected = IllegalArgumentException.class)
-    public void testGetSession_whenUserDoNotExist_returnException() {
-        User user1 = new User(null);
-        User user2 = new User(null);
-        SessionRegistry sessionRegistry = new SessionRegistry();
-        SessionRegistry spy = Mockito.spy(sessionRegistry);
-        WebSocketSession webSocketSession = mock(WebSocketSession.class);
-        spy.put(webSocketSession, user1);
-        doThrow(new IllegalArgumentException()).when(spy).getSession(user2);
+    public void testGetSession_whenSessionDoNotExist_returnIllegalArgumentException() {
+        User newUser = mock(User.class);
+        SessionRegistry spy = spy(sessionRegistry);
+        doThrow(new IllegalArgumentException()).when(spy).getSession(newUser);
     }
 
-    @Test
-    public void testGetSession_whenUserIsNull_returnSession() {
-        SessionRegistry sessionRegistry = new SessionRegistry();
-        SessionRegistry spy = Mockito.spy(sessionRegistry);
-        WebSocketSession webSocketSession = mock(WebSocketSession.class);
-        spy.put(webSocketSession, null);
-        doThrow(new IllegalArgumentException()).when(spy).getSession(null);
+    public void testContainsSession_whenSessionIsExists_returnTrue() {
+        boolean result = sessionRegistry.containsSession(session);
+        assertTrue(result);
+    }
+
+    public void testContainsSession_whenSessionDoNotExist_returnFalse() {
+        WebSocketSession newSession = mock(WebSocketSession.class);
+        boolean result = sessionRegistry.containsSession(newSession);
+        assertFalse(result);
     }
 }

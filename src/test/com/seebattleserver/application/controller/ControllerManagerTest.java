@@ -1,33 +1,77 @@
 package com.seebattleserver.application.controller;
 
-import com.google.gson.Gson;
-import com.seebattleserver.application.command.CommandFactory;
-import com.seebattleserver.application.gameregistry.GameRegistry;
 import com.seebattleserver.application.user.User;
-import com.seebattleserver.application.user.UserRegistry;
-import com.seebattleserver.service.sender.UserSender;
-import com.seebattleserver.service.sender.WebSocketUserSender;
-import com.seebattleserver.service.websocket.registry.SessionRegistry;
+import com.seebattleserver.application.user.UserStatus;
 import junit.framework.TestCase;
-import org.springframework.web.socket.WebSocketSession;
+import org.junit.Before;
+import org.mockito.Mock;
 
 import static org.mockito.Mockito.*;
+import static org.mockito.MockitoAnnotations.initMocks;
 
 public class ControllerManagerTest extends TestCase {
 
-    public void testHandle() {
-        User user = new User(null);
-        WebSocketSession webSocketSession = mock(WebSocketSession.class);
-        SessionRegistry sessionRegistry = new SessionRegistry();
-        sessionRegistry.put(webSocketSession, user);
-        Gson gson = new Gson();
-        UserSender userSender = new WebSocketUserSender(sessionRegistry, gson);
-        GameRegistry gameRegistry = mock(GameRegistry.class);
-        UserRegistry userRegistry = mock(UserRegistry.class);
-        CommandFactory commandFactory = new CommandFactory(userRegistry);
-        ControllerFactory controllerFactory = new ControllerFactory(userSender, commandFactory,gameRegistry,userRegistry);
-        ControllerManager controllerManager = new ControllerManager(controllerFactory);
+    private final String TEST = "test";
+
+    private ControllerManager controllerManager;
+
+    @Mock
+    private User user;
+
+    @Mock
+    private ControllerFactory controllerFactory;
+
+    @Before
+    public void setUp() {
+        initMocks(this);
+        controllerManager = new ControllerManager(controllerFactory);
+    }
+
+    public void testHandle_whenUserStatusIsFree_returnVerificationForControllerFactoryCreateCommandController() {
+        when(user.getUserStatus()).thenReturn(UserStatus.FREE);
+        when(controllerFactory.createCommandController(user)).thenReturn(mock(CommandController.class));
+        controllerManager.handle(user, TEST);
+        verify(controllerFactory).createCommandController(user);
+    }
+
+    public void testHandle_whenUserStatusIsInvited_returnVerificationForControllerFactoryCreateInvitationController() {
+        when(user.getUserStatus()).thenReturn(UserStatus.INVITED);
+        when(controllerFactory.createInvitationController(user)).thenReturn(mock(InvitationController.class));
+        controllerManager.handle(user, TEST);
+        verify(controllerFactory).createInvitationController(user);
+    }
+
+    public void testHandle_whenUserStatusIsInviting_returnVerificationForControllerFactoryCreateCommandController() {
+        when(user.getUserStatus()).thenReturn(UserStatus.INVITING);
+        when(controllerFactory.createCommandController(user)).thenReturn(mock(CommandController.class));
+        controllerManager.handle(user, TEST);
+        verify(controllerFactory).createCommandController(user);
+    }
+
+    public void testHandle_whenUserStatusIsInGame_returnVerificationForControllerFactoryCreateGameController() {
+        when(user.getUserStatus()).thenReturn(UserStatus.IN_GAME);
+        when(controllerFactory.createGameController(user)).thenReturn(mock(GameController.class));
+        controllerManager.handle(user, TEST);
+        verify(controllerFactory).createGameController(user);
+    }
+
+    public void testHandle_whenUserStatusIsInGameMove_returnVerificationForControllerFactoryCreateGameController() {
+        when(user.getUserStatus()).thenReturn(UserStatus.IN_GAME_MOVE);
+        when(controllerFactory.createGameController(user)).thenReturn(mock(GameController.class));
+        controllerManager.handle(user, TEST);
+        verify(controllerFactory).createGameController(user);
+    }
+
+    public void testHandle_whenUserStatusIsRequestingOpponent_returnVerificationForControllerFactoryCreateRequestOpponentController() {
+        when(user.getUserStatus()).thenReturn(UserStatus.REQUESTING_OPPONENT);
+        when(controllerFactory.createRequestOpponentController(user)).thenReturn(mock(RequestOpponentController.class));
+        controllerManager.handle(user, TEST);
+        verify(controllerFactory).createRequestOpponentController(user);
+    }
+
+    public void testHandle_whenUserStatusIsNull_returnIllegalStateException() {
+        when(user.getUserStatus()).thenReturn(null);
         ControllerManager spy = spy(controllerManager);
-        spy.handle(user, "help");
+        doThrow(new IllegalStateException()).when(spy).handle(eq(user), anyString());
     }
 }

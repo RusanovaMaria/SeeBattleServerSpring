@@ -28,7 +28,7 @@ public class RequestOpponentController implements Controller {
         if (isOpponentFree(opponent)) {
             invite(user, opponent);
         } else {
-            userSender.sendMessage(user, new Message("Соперник с таким именем не найден или не может принять приглашение"));
+            notifyAboutMistake();
         }
     }
 
@@ -42,18 +42,22 @@ public class RequestOpponentController implements Controller {
     private void invite(User user, User userOpponent) {
         userOpponent.setUserStatus(UserStatus.INVITED);
         user.setUserStatus(UserStatus.INVITING);
-        sendInvitationToOpponent(userOpponent, user);
 
-        createOpponents(user, userOpponent);
+        sendInvitationToOpponent(userOpponent, user);
+        unitOpponents(user, userOpponent);
     }
 
-    private void createOpponents(User user, User opponent) {
+    private void sendInvitationToOpponent(User userOpponent, User user) {
+        userSender.sendMessage(userOpponent, new Message("С вами хочет играть " + user.getUsername() +
+                ". Введите команду 'yes' или 'no'"));
+    }
+
+    private void unitOpponents(User user, User opponent) {
         user.setOpponent(opponent);
         opponent.setOpponent(user);
     }
 
-    private void sendInvitationToOpponent(User userOpponent, User user) {
-        userSender.sendMessage(userOpponent, new Message("С вами хочет играть "+ user.getUsername() +
-                                                         ". Введите команду 'yes' или 'no'"));
+    private void notifyAboutMistake() {
+        userSender.sendMessage(user, new Message("Соперник с таким именем не найден или не может принять приглашение"));
     }
 }

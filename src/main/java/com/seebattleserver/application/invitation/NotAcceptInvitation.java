@@ -30,6 +30,6 @@ public class NotAcceptInvitation implements Invitation {
     }
 
     private void notifyOpponent(User userOpponent) {
-        userSender.sendMessage(userOpponent, new Message("Игрок "+ user.getUsername()+" отклонил ваше предложение"));
+        userSender.sendMessage(userOpponent, new Message("Игрок " + user.getUsername() + " отклонил ваше предложение"));
     }
 }

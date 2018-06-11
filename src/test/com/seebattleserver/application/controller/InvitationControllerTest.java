@@ -1,69 +1,60 @@
 package com.seebattleserver.application.controller;
 
 import com.seebattleserver.application.gameregistry.GameRegistry;
+import com.seebattleserver.application.message.Message;
 import com.seebattleserver.application.user.User;
-import com.seebattleserver.domain.game.ClassicGame;
-import com.seebattleserver.domain.game.Game;
 import com.seebattleserver.service.sender.UserSender;
-import com.seebattleserver.service.websocket.registry.SessionRegistry;
 import junit.framework.TestCase;
-import org.mockito.Mockito;
-import org.springframework.web.socket.WebSocketSession;
+import org.junit.Before;
+import org.mockito.Mock;
 
+import static org.mockito.Matchers.any;
+import static org.mockito.Matchers.eq;
 import static org.mockito.Mockito.*;
+import static org.mockito.MockitoAnnotations.initMocks;
 
 public class InvitationControllerTest extends TestCase {
 
-    public void testHandle_withException() {
-        User user = new User(null);
-        User opponent = new User(null);
-        WebSocketSession webSocketSession = mock(WebSocketSession.class);
-        SessionRegistry sessionRegistry = new SessionRegistry();
-        sessionRegistry.put(webSocketSession, user);
-        sessionRegistry.put(webSocketSession, opponent);
-        GameRegistry gameRegistry = new GameRegistry();
-        Game game = new ClassicGame(user.getPlayer(), opponent.getPlayer());
-        gameRegistry.put(user, game);
-        gameRegistry.put(opponent, game);
-        UserSender userSender = mock(UserSender.class);
-        Controller invitationController = new InvitationController(user, userSender, gameRegistry);
-        Controller spy = Mockito.spy(invitationController);
-        doThrow(new IllegalArgumentException()).when(spy).handle("hgjhg");
+    private final String POSITIVE_ANSWER = "yes";
+
+    private final String NEGATIVE_ANSWER = "no";
+
+    private final String NOT_VALID_ANSWER = "sdffvf";
+
+    private Controller controller;
+
+    @Mock
+    private User user;
+
+    @Mock
+    private User opponent = new User(null);
+
+    @Mock
+    private UserSender userSender;
+
+    @Mock
+    private GameRegistry gameRegistry;
+
+    @Before
+    public void setUp() {
+        initMocks(this);
+        controller = new InvitationController(user, userSender, gameRegistry);
     }
 
-    public void testHandle_withPositiveResponse() {
-        User user = new User(null);
-        User opponent = new User(null);
-        user.setOpponent(opponent);
-        WebSocketSession webSocketSession = mock(WebSocketSession.class);
-        SessionRegistry sessionRegistry = new SessionRegistry();
-        sessionRegistry.put(webSocketSession, user);
-        sessionRegistry.put(webSocketSession, opponent);
-        GameRegistry gameRegistry = new GameRegistry();
-        Game game = new ClassicGame(user.getPlayer(), opponent.getPlayer());
-        gameRegistry.put(user, game);
-        gameRegistry.put(opponent, game);
-        UserSender userSender = mock(UserSender.class);
-        Controller invitationController = new InvitationController(user, userSender, gameRegistry);
-        Controller spy = Mockito.spy(invitationController);
-        spy.handle("yes");
+    public void testHandle_whenPositiveAnswer_returnVerificationForAcceptInvitationHandleAnswer() {
+        when(user.getOpponent()).thenReturn(opponent);
+        controller.handle(POSITIVE_ANSWER);
+        verify(userSender, times(2)).sendMessage(eq(opponent), any(Message.class));
     }
 
-    public void testHandle_withNegativeResponse() {
-        User user = new User(null);
-        User opponent = new User(null);
-        user.setOpponent(opponent);
-        WebSocketSession webSocketSession = mock(WebSocketSession.class);
-        SessionRegistry sessionRegistry = new SessionRegistry();
-        sessionRegistry.put(webSocketSession, user);
-        sessionRegistry.put(webSocketSession, opponent);
-        GameRegistry gameRegistry = new GameRegistry();
-        Game game = new ClassicGame(user.getPlayer(), opponent.getPlayer());
-        gameRegistry.put(user, game);
-        gameRegistry.put(opponent, game);
-        UserSender userSender = mock(UserSender.class);
-        Controller invitationController = new InvitationController(user, userSender, gameRegistry);
-        Controller spy = Mockito.spy(invitationController);
-        spy.handle("no");
+    public void testHandle_whenNegativeAnswer_returnVerificationForNotAcceptInvitationHandleAnswer() {
+        when(user.getOpponent()).thenReturn(opponent);
+        controller.handle(NEGATIVE_ANSWER);
+        verify(userSender, times(1)).sendMessage(eq(opponent), any(Message.class));
+    }
+
+    public void testHandle_whenNotValidAnswer_returnIllegalArgumentException() {
+        Controller spy = spy(controller);
+        doThrow(new IllegalArgumentException()).when (spy).handle(NOT_VALID_ANSWER);
     }
 }

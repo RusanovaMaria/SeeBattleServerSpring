@@ -8,6 +8,7 @@ import com.seebattleserver.domain.gameobject.Status;
 import com.seebattleserver.domain.gameobjectposition.GameObjectPosition;
 import com.seebattleserver.domain.rule.ClassicRule;
 import com.seebattleserver.domain.rule.Rule;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -32,7 +33,7 @@ public class ClassicPlayingField implements PlayingField {
         cages = new Cage[WIDTH][HEIGHT];
 
         for (int j = 0; j < HEIGHT; j++) {
-        for (int i = 0; i < WIDTH; i++) {
+            for (int i = 0; i < WIDTH; i++) {
                 cages[i][j] = new Cage(i, CHAR_COORDINATE[j], null);
             }
         }
@@ -43,7 +44,7 @@ public class ClassicPlayingField implements PlayingField {
         int[] shipsSize = rule.getGameObjectsSize();
         ships = new ArrayList();
 
-        for (int i = 0; i < /*shipsSize.length*/1; i++) {
+        for (int i = 0; i < shipsSize.length; i++) {
             int size = shipsSize[i];
             GameObject ship = new Ship(size);
             int number = rule.countQuantityOfObjects(ship.getKind());
@@ -86,13 +87,12 @@ public class ClassicPlayingField implements PlayingField {
     }
 
     @Override
-    public boolean isNoObjects() {
-        for (int i = 0; i < WIDTH; i++) {
-            for (int j = 0; j < HEIGHT; j++) {
-                if (cages[i][j].getState() == State.FULL) {
-                    return false;
-                }
-            }
+    public boolean isAllObjectsDied() {
+        for (int i = 0; i < ships.size(); i++) {
+           GameObject gameObject = ships.get(i);
+           if (gameObject.getStatus() != Status.KILLED) {
+               return false;
+           }
         }
         return true;
     }

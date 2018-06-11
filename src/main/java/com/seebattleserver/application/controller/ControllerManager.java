@@ -36,7 +36,7 @@ public class ControllerManager {
                 case REQUESTING_OPPONENT:
                     return controllerFactory.createRequestOpponentController(user);
             }
-            throw new IllegalArgumentException("Данный статус клиента не распознан");
+            throw new IllegalStateException("Данный статус клиента не распознан");
         }
     }
 

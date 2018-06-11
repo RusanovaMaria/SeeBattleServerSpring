@@ -27,13 +27,11 @@ public class GameController implements Controller {
         if (user.getUserStatus() == UserStatus.IN_GAME_MOVE) {
             String coordinates = message.trim();
             makeMove(user, coordinates);
-            if (game.isEnd()) {
-                endGame();
-            } else {
-                passMove();
-            }
-        } else {
+            endMove();
+        } else if (user.getUserStatus() == UserStatus.IN_GAME) {
             notifyAboutMistake();
+        } else {
+            throw new IllegalArgumentException("Не игровой статус пользователя");
         }
     }
 
@@ -42,7 +40,7 @@ public class GameController implements Controller {
         char y = getY(coordinates);
 
         Result result = game.fire(user.getPlayer(), x, y);
-        getAnswerByResult(result);
+        sendAnswerByResult(result);
     }
 
     private int getX(String coordinates) {
@@ -55,6 +53,14 @@ public class GameController implements Controller {
         return y;
     }
 
+    private void endMove() {
+        if (game.isEnd()) {
+            endGame();
+        } else {
+            passMove();
+        }
+    }
+
     private void passMove() {
         User opponent = user.getOpponent();
         userSender.sendMessage(opponent, new Message("Введите координаты х и у"));
@@ -62,7 +68,7 @@ public class GameController implements Controller {
         opponent.setUserStatus(UserStatus.IN_GAME_MOVE);
     }
 
-    private void getAnswerByResult(Result result) {
+    private void sendAnswerByResult(Result result) {
         switch (result) {
             case MISSED:
                 userSender.sendMessage(user, new Message("Мимо"));

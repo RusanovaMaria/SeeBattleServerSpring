@@ -21,17 +21,18 @@ public class InvitationController implements Controller {
 
     @Override
     public void handle(String answer) {
+        Invitation invitation = createInvitation(answer);
+        invitation.handleAnswer();
+    }
+
+    private Invitation createInvitation(String answer) {
         switch (answer) {
             case "yes":
-                Invitation acceptInvitation = new AcceptInvitation(user, userSender, gameRegistry);
-                acceptInvitation.handleAnswer();
-                break;
-                case "no":
-                    Invitation notAcceptInvitation = new NotAcceptInvitation(user, userSender);
-                    notAcceptInvitation.handleAnswer();
-                    break;
-                    default:
-                        throw new IllegalArgumentException("Введен неверный ответ");
+                return new AcceptInvitation(user, userSender, gameRegistry);
+            case "no":
+                return new NotAcceptInvitation(user, userSender);
+            default:
+                throw new IllegalArgumentException("Введен неверный ответ");
         }
     }
 }

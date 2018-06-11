@@ -1,45 +1,90 @@
 package com.seebattleserver.application.controller;
 
-import com.seebattleserver.application.command.CommandFactory;
-import com.seebattleserver.application.command.HelpCommand;
+import com.seebattleserver.application.command.*;
+import com.seebattleserver.application.message.Message;
 import com.seebattleserver.application.user.User;
 import com.seebattleserver.application.user.UserRegistry;
 import com.seebattleserver.service.sender.UserSender;
-import com.seebattleserver.service.websocket.registry.SessionRegistry;
 import junit.framework.TestCase;
+import org.junit.Before;
 import org.junit.Test;
-import org.mockito.Mockito;
-import org.springframework.web.socket.WebSocketSession;
+import org.mockito.Mock;
 
-import static org.mockito.Mockito.*;
+import static org.mockito.Matchers.any;
+import static org.mockito.Matchers.anyString;
+import static org.mockito.Matchers.eq;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
+import static org.mockito.MockitoAnnotations.initMocks;
 
 public class CommandControllerTest extends TestCase {
 
-    @Test (expected = IllegalArgumentException.class)
-    public void testHandle() {
-        User user = new User(null);
-        WebSocketSession webSocketSession = mock(WebSocketSession.class);
-        SessionRegistry sessionRegistry = new SessionRegistry();
-        sessionRegistry.put(webSocketSession, user);
-        UserSender userSender = mock(UserSender.class);
-        UserRegistry userRegistry = new UserRegistry();
-        userRegistry.add(user);
-        CommandFactory commandFactory = new CommandFactory(userRegistry);
-        CommandController commandController = new CommandController(user, userSender, commandFactory);
-        commandController.handle("help");
+    private Controller controller;
+
+    @Mock
+    private  User user;
+
+    @Mock
+    private UserSender userSender;
+
+    @Mock
+    private CommandFactory commandFactory;
+
+    @Before
+    public void setUp() {
+        initMocks(this);
+        controller = new CommandController(user, userSender, commandFactory);
     }
 
-    public void testHandle_WithException() {
-        User user = new User(null);
-        WebSocketSession webSocketSession = mock(WebSocketSession.class);
-        SessionRegistry sessionRegistry = new SessionRegistry();
-        sessionRegistry.put(webSocketSession, user);
-        UserSender userSender = mock(UserSender.class);
-        UserRegistry userRegistry = new UserRegistry();
-        userRegistry.add(user);
-        CommandFactory commandFactory = new CommandFactory(userRegistry);
-        CommandController commandController = new CommandController(user, userSender, commandFactory);
-        CommandController spy = Mockito.spy(commandController);
-        doThrow(new IllegalArgumentException()).when(spy).handle("fvdfv");
+    @Test
+    public void testHandle_whenHelpCommand_returnVerifyCommandFactoryCreateCommand() {
+        final String HELP_COMMAND = "help";
+        Command command = new HelpCommand();
+        when(commandFactory.createHelpCommand()).thenReturn(mock(HelpCommand.class));
+        controller.handle(HELP_COMMAND);
+        verify(commandFactory).createHelpCommand();
+        verify(userSender).sendMessage(eq(user), any(Message.class));
+    }
+
+    @Test
+    public void testHandle_whenPlayerListCommand_returnVerifyCommandFactoryCreatePlayerListCommand() {
+        final String LIST_COMMAND = "list";
+        UserRegistry userRegistry = mock(UserRegistry.class);
+        Command command = new PlayerListCommand(userRegistry);
+        when(commandFactory.createPlayerListCommand()).thenReturn(mock(PlayerListCommand.class));
+        controller.handle(LIST_COMMAND);
+        verify(commandFactory).createPlayerListCommand();
+        verify(userSender).sendMessage(eq(user), any(Message.class));
+    }
+
+    @Test
+    public void testHandle_whenPlayerInvitationCommand_returnVerificationForCommandFactoryCreatePlayerInvitationCommand() {
+        final String REQUEST_COMMAND = "request";
+        UserRegistry userRegistry = mock(UserRegistry.class);
+        Command command = new PlayerInvitationCommand();
+        when(commandFactory.createPlayerInvitationCommand()).thenReturn(mock(PlayerInvitationCommand.class));
+        controller.handle(REQUEST_COMMAND);
+        verify(commandFactory).createPlayerInvitationCommand();
+        verify(userSender).sendMessage(eq(user), any(Message.class));
+    }
+
+    @Test
+    public void testHandle_whenNotValidCommand_returnVerificationForCommandFactoryCreateDefaultCommand() {
+        final String WRONG_COMMAND = "hgjgg";
+        Command command = new HelpCommand();
+        when(commandFactory.createHelpCommand()).thenReturn(mock(HelpCommand.class));
+        controller.handle(WRONG_COMMAND);
+        verify(commandFactory).createHelpCommand();
+        verify(userSender).sendMessage(eq(user), any(Message.class));
+    }
+
+    @Test
+    public void testHandle_whenNullCommand_returnVerificationForCommandFactoryCreateHelpCommand() {
+        Command command = new HelpCommand();
+        when(commandFactory.createHelpCommand()).thenReturn(mock(HelpCommand.class));
+        controller.handle(null);
+        verify(commandFactory).createHelpCommand();
+        verify(userSender).sendMessage(eq(user), any(Message.class));
     }
 }

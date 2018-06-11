@@ -1,9 +1,12 @@
 package com.seebattleserver.domain.classicplayingfield;
 
 import com.seebattleserver.domain.cage.Cage;
+import com.seebattleserver.domain.game.ClassicGame;
+import com.seebattleserver.domain.game.Game;
 import com.seebattleserver.domain.gameobject.GameObject;
 import com.seebattleserver.domain.gameobject.Status;
 import com.seebattleserver.domain.gameobjectposition.StandardGameObjectPosition;
+import com.seebattleserver.domain.player.Player;
 import com.seebattleserver.domain.playingfield.ClassicPlayingField;
 import com.seebattleserver.domain.playingfield.PlayingField;
 import junit.framework.TestCase;
@@ -31,34 +34,24 @@ public class ClassicPlayingFieldTest extends TestCase {
         assertEquals(result, x);
     }
 
-    @Test
-    public void testIsAllObjectsDied_whenAllObjectsAlive_returnFalse() {
-        PlayingField playingField = new ClassicPlayingField(new StandardGameObjectPosition());
-        boolean result = playingField.isNoObjects();
-        assertFalse(result);
-    }
+   @Test
+    public void testIsAllObjectsDied_whenIsNotAllObjectsDied_returnFalse() {
+       PlayingField playingField = new ClassicPlayingField(new StandardGameObjectPosition());
+       boolean result = playingField.isAllObjectsDied();
+       assertFalse(result);
+   }
 
-    @Test
-    public void testIsAllObjectsDied_whenNotAllObjectsAlive_returnFalse() {
-        PlayingField playingField = new ClassicPlayingField(new StandardGameObjectPosition());
-        List<GameObject> gameObjects = playingField.getGameObjects();
-        GameObject gameObject = gameObjects.get(0);
-        gameObject.setStatus(Status.KILLED);
-        boolean result = playingField.isNoObjects();
-        assertFalse(result);
-    }
+   @Test
+   public void testIsAllObjectsDied_whenIsAllObjectsDied_returnTrue() {
+       PlayingField playingField = new ClassicPlayingField(new StandardGameObjectPosition());
+       List<GameObject> playingFieldGameObjects = playingField.getGameObjects();
 
-    @Test
-    public void testIsAllObjectsDied_whenAllObjectsDied_returnTrue() {
-        PlayingField playingField = new ClassicPlayingField(new StandardGameObjectPosition());
-        List<GameObject> gameObjects = playingField.getGameObjects();
+       for (int i = 0; i < playingFieldGameObjects.size(); i++) {
+           GameObject gameObject = playingFieldGameObjects.get(i);
+           gameObject.setStatus(Status.KILLED);
+       }
 
-        for (int i = 0; i < gameObjects.size(); i++) {
-            GameObject gameObject = gameObjects.get(i);
-            gameObject.setStatus(Status.KILLED);
-        }
-
-        boolean result = playingField.isNoObjects();
-        assertTrue(result);
-    }
+       boolean result = playingField.isAllObjectsDied();
+       assertTrue(result);
+   }
 }

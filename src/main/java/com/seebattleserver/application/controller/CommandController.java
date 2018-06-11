@@ -9,25 +9,28 @@ import com.seebattleserver.service.sender.UserSender;
 public class CommandController implements Controller {
 
     private final String[] commands = {"help", "list", "request"};
+    private final String DEFAULT_COMMAND = "help";
 
     private User user;
     private UserSender userSender;
     private CommandFactory commandFactory;
 
     public CommandController(User user, UserSender userSender, CommandFactory commandFactory) {
-       this.user = user;
-       this.userSender = userSender;
-       this.commandFactory = commandFactory;
+        this.user = user;
+        this.userSender = userSender;
+        this.commandFactory = commandFactory;
     }
 
     @Override
     public void handle(String message) {
+        Command command;
         if (isRightCommand(message)) {
-            handleCommand(message);
+            command = createCommand(message);
         } else {
-            Command helpCommand = new HelpCommand();
-            userSender.sendMessage(user, new Message (helpCommand.execute()));
+            command = createCommand(DEFAULT_COMMAND);
         }
+        String answer = command.execute();
+        userSender.sendMessage(user, new Message(answer));
     }
 
     private boolean isRightCommand(String command) {
@@ -39,21 +42,17 @@ public class CommandController implements Controller {
         return false;
     }
 
-    private void handleCommand(String command) {
+    private Command createCommand(String command) {
         switch (command) {
             case "help":
                 Command helpCommand = commandFactory.createHelpCommand();
-                userSender.sendMessage(user, new Message(helpCommand.execute()));
-                break;
+                return helpCommand;
             case "list":
                 Command listCommand = commandFactory.createPlayerListCommand();
-                userSender.sendMessage(user, new Message(listCommand.execute()));
-                break;
+                return listCommand;
             case "request":
                 Command requestCommand = commandFactory.createPlayerInvitationCommand();
-                userSender.sendMessage(user, new Message(requestCommand.execute()));
-                user.setUserStatus(UserStatus.REQUESTING_OPPONENT);
-                break;
+                return requestCommand;
             default:
                 throw new IllegalArgumentException("Данного запроса не существует");
         }

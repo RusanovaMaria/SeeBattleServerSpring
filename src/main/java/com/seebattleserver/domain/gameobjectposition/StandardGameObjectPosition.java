@@ -28,9 +28,9 @@ public class StandardGameObjectPosition implements GameObjectPosition {
     public void establish(PlayingField playingField) {
         distributeGameObjects(playingField);
         positionOneDeckShips(playingField);
-      //  positionTwoDeckShips(playingField);
-       // positionThreeDeckShips(playingField);
-       // positionFourDeckShips(playingField);
+        positionTwoDeckShips(playingField);
+        positionThreeDeckShips(playingField);
+        positionFourDeckShips(playingField);
     }
 
     private void distributeGameObjects(PlayingField playingField) {
@@ -63,8 +63,8 @@ public class StandardGameObjectPosition implements GameObjectPosition {
     }
 
     private void positionOneDeckShips(PlayingField playingField) {
-        int [] x0 = {0};
-        int [] x1 = {9};
+        int[] x0 = {0};
+        int[] x1 = {9};
         char y0 = 'a';
         char y1 = 'j';
         GameObject gameObject;
@@ -100,7 +100,7 @@ public class StandardGameObjectPosition implements GameObjectPosition {
     }
 
     private void positionThreeDeckShips(PlayingField playingField) {
-        int [] x = {4, 5, 6};
+        int[] x = {4, 5, 6};
         char y0 = 'e';
         char y1 = 'g';
         GameObject gameObject;
