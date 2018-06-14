@@ -55,6 +55,7 @@ public class InvitationControllerTest extends TestCase {
 
     public void testHandle_whenNotValidAnswer_returnIllegalArgumentException() {
         Controller spy = spy(controller);
-        doThrow(new IllegalArgumentException()).when (spy).handle(NOT_VALID_ANSWER);
+        controller.handle(NOT_VALID_ANSWER);
+        verify(userSender, times(1)).sendMessage(eq(user), any(Message.class));
     }
 }

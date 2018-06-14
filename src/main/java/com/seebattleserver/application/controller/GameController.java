@@ -8,8 +8,14 @@ import com.seebattleserver.domain.game.Game;
 import com.seebattleserver.domain.game.Result;
 import com.seebattleserver.domain.player.Player;
 import com.seebattleserver.service.sender.UserSender;
+import com.seebattleserver.service.websocket.SocketHandler;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class GameController implements Controller {
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(SocketHandler.class);
+
     private User user;
     private GameRegistry gameRegistry;
     private Game game;
@@ -36,14 +42,23 @@ public class GameController implements Controller {
     }
 
     private void makeMove(User user, String coordinates) {
-        int x = getX(coordinates);
-        char y = getY(coordinates);
-
-        Result result = game.fire(user.getPlayer(), x, y);
-        sendAnswerByResult(result);
+        try {
+            try {
+                int x = getX(coordinates);
+                char y = getY(coordinates);
+                Result result = game.fire(user.getPlayer(), x, y);
+                sendAnswerByResult(result);
+            } catch (IllegalArgumentException e) {
+                notifyAboutEnterMistake();
+                LOGGER.warn("Неправильно введены координаты пользователем "+ user);
+            }
+        } catch (NumberFormatException ex) {
+            notifyAboutEnterMistake();
+            LOGGER.warn("Неправильно введены координаты пользователем "+ user);
+        }
     }
 
-    private int getX(String coordinates) {
+    private int getX(String coordinates) throws NumberFormatException {
         int x = Integer.parseInt(coordinates.substring(0, 1));
         return x;
     }
@@ -51,6 +66,10 @@ public class GameController implements Controller {
     private char getY(String coordinates) {
         char y = coordinates.charAt(1);
         return y;
+    }
+
+    private void notifyAboutEnterMistake() {
+        userSender.sendMessage(user, new Message("Введены неверные координаты"));
     }
 
     private void endMove() {

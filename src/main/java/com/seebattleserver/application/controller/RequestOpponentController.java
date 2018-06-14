@@ -5,8 +5,13 @@ import com.seebattleserver.application.user.User;
 import com.seebattleserver.application.user.UserRegistry;
 import com.seebattleserver.application.user.UserStatus;
 import com.seebattleserver.service.sender.UserSender;
+import com.seebattleserver.service.websocket.SocketHandler;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class RequestOpponentController implements Controller {
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(SocketHandler.class);
 
     private User user;
     private UserRegistry userRegistry;
@@ -29,6 +34,7 @@ public class RequestOpponentController implements Controller {
             invite(user, opponent);
         } else {
             notifyAboutMistake();
+            LOGGER.info("Пользователь с имнем " +opponentName+ "не обнаружен");
         }
     }
 

@@ -5,8 +5,9 @@ import com.seebattleserver.application.controller.ControllerManager;
 import com.seebattleserver.application.user.User;
 import com.seebattleserver.application.user.UserRegistry;
 import com.seebattleserver.configuration.UtilConfiguration;
-import com.seebattleserver.service.sender.UserSender;
 import com.seebattleserver.service.websocket.registry.SessionRegistry;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
@@ -20,6 +21,8 @@ import java.io.IOException;
 
 @Component
 public class SocketHandler extends TextWebSocketHandler {
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(SocketHandler.class);
 
     protected UserRegistry userRegistry;
     private SessionRegistry sessionRegistry;
@@ -39,12 +42,10 @@ public class SocketHandler extends TextWebSocketHandler {
 
     @Override
     public void handleTextMessage(WebSocketSession session, TextMessage context) throws IOException {
-
         if (sessionRegistry.containsSession(session)) {
             User user = sessionRegistry.getUser(session);
             Message message = gson.fromJson(context.getPayload(), Message.class);
             controllerManager.handle(user, message.getMessage());
-
         } else {
             Message name = gson.fromJson(context.getPayload(), Message.class);
             User user = new User(name.getMessage());
@@ -61,6 +62,7 @@ public class SocketHandler extends TextWebSocketHandler {
 
     @Override
     public void afterConnectionEstablished(WebSocketSession session) throws Exception {
+        LOGGER.info("Подключение нового клиента");
         sendMessageInSession(session, "Введите свое имя");
     }
 }

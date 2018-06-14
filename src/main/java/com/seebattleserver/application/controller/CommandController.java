@@ -52,6 +52,7 @@ public class CommandController implements Controller {
                 return listCommand;
             case "request":
                 Command requestCommand = commandFactory.createPlayerInvitationCommand();
+                user.setUserStatus(UserStatus.REQUESTING_OPPONENT);
                 return requestCommand;
             default:
                 throw new IllegalArgumentException("Данного запроса не существует");
