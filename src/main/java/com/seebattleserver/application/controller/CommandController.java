@@ -1,28 +1,36 @@
 package com.seebattleserver.application.controller;
 
-import com.seebattleserver.application.client.Client;
-import com.seebattleserver.application.command.Command;
-import com.seebattleserver.application.command.HelpCommand;
-import com.seebattleserver.application.command.PlayerInvitationCommand;
-import com.seebattleserver.application.command.PlayerListCommand;
+import com.seebattleserver.application.command.*;
+import com.seebattleserver.application.user.User;
+import com.seebattleserver.application.message.Message;
+import com.seebattleserver.application.user.UserStatus;
+import com.seebattleserver.service.sender.UserSender;
 
 public class CommandController implements Controller {
 
     private final String[] commands = {"help", "list", "request"};
-    private Client client;
+    private final String DEFAULT_COMMAND = "help";
 
-    public CommandController(Client client) {
-       this.client = client;
+    private User user;
+    private UserSender userSender;
+    private CommandFactory commandFactory;
+
+    public CommandController(User user, UserSender userSender, CommandFactory commandFactory) {
+        this.user = user;
+        this.userSender = userSender;
+        this.commandFactory = commandFactory;
     }
 
     @Override
-    public void handle(String command) {
-        if (isRightCommand(command)) {
-            handleCommand(command);
+    public void handle(String message) {
+        Command command;
+        if (isRightCommand(message)) {
+            command = createCommand(message);
         } else {
-            Command helpCommand = new HelpCommand(client);
-            helpCommand.execute();
+            command = createCommand(DEFAULT_COMMAND);
         }
+        String answer = command.execute();
+        userSender.sendMessage(user, new Message(answer));
     }
 
     private boolean isRightCommand(String command) {
@@ -34,21 +42,18 @@ public class CommandController implements Controller {
         return false;
     }
 
-    private void handleCommand(String command) {
+    private Command createCommand(String command) {
         switch (command) {
             case "help":
-                Command helpCommand = new HelpCommand(client);
-                helpCommand.execute();
-                break;
+                Command helpCommand = commandFactory.createHelpCommand();
+                return helpCommand;
             case "list":
-                Command listCommand = new PlayerListCommand(client);
-                listCommand.execute();
-                break;
+                Command listCommand = commandFactory.createPlayerListCommand();
+                return listCommand;
             case "request":
-                Command requestCommand = new PlayerInvitationCommand(client);
-                requestCommand.execute();
-                break;
-
+                Command requestCommand = commandFactory.createPlayerInvitationCommand();
+                user.setUserStatus(UserStatus.REQUESTING_OPPONENT);
+                return requestCommand;
             default:
                 throw new IllegalArgumentException("Данного запроса не существует");
         }

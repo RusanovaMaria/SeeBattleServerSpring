@@ -46,18 +46,17 @@ public class Ship implements GameObject {
             default:
                 throw new IllegalArgumentException("Размер корабля не может превышать 4");
         }
-
     }
 
     @Override
     public void shoot() {
-        int next = diedGameParts + 1;
+        if (diedGameParts < size) {
+            GameObjectPart shipPart = gameParts.get(diedGameParts);
+            shipPart.kill();
 
-        GameObjectPart shipPart = gameParts.get(next);
-        shipPart.kill();
-
-        diedGameParts++;
-        changeStatus();
+            diedGameParts++;
+            changeStatus();
+        }
     }
 
     private void changeStatus() {
@@ -96,5 +95,15 @@ public class Ship implements GameObject {
     @Override
     public Status getStatus() {
         return status;
+    }
+
+    @Override
+    public void setStatus(Status status) {
+        this.status = status;
+    }
+
+    @Override
+    public List<GameObjectPart> getObjectParts() {
+        return gameParts;
     }
 }
