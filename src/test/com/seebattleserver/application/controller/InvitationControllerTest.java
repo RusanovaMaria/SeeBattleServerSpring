@@ -1,5 +1,6 @@
 package com.seebattleserver.application.controller;
 
+import com.google.gson.Gson;
 import com.seebattleserver.application.gameregistry.GameRegistry;
 import com.seebattleserver.application.message.Message;
 import com.seebattleserver.application.user.User;
@@ -7,6 +8,7 @@ import com.seebattleserver.service.sender.UserSender;
 import junit.framework.TestCase;
 import org.junit.Before;
 import org.mockito.Mock;
+import org.springframework.web.socket.TextMessage;
 
 import static org.mockito.Matchers.any;
 import static org.mockito.Matchers.eq;
@@ -24,6 +26,9 @@ public class InvitationControllerTest extends TestCase {
     private Controller controller;
 
     @Mock
+    private TextMessage text;
+
+    @Mock
     private User user;
 
     @Mock
@@ -35,27 +40,33 @@ public class InvitationControllerTest extends TestCase {
     @Mock
     private GameRegistry gameRegistry;
 
+    private Gson gson;
+
     @Before
     public void setUp() {
         initMocks(this);
-        controller = new InvitationController(user, userSender, gameRegistry);
+        gson = new Gson();
+        controller = new InvitationController(user, userSender, gameRegistry, gson);
     }
 
     public void testHandle_whenPositiveAnswer_returnVerificationForAcceptInvitationHandleAnswer() {
         when(user.getOpponent()).thenReturn(opponent);
-        controller.handle(POSITIVE_ANSWER);
+        when(text.getPayload()).thenReturn(POSITIVE_ANSWER);
+        controller.handle(text);
         verify(userSender, times(2)).sendMessage(eq(opponent), any(Message.class));
     }
 
     public void testHandle_whenNegativeAnswer_returnVerificationForNotAcceptInvitationHandleAnswer() {
         when(user.getOpponent()).thenReturn(opponent);
-        controller.handle(NEGATIVE_ANSWER);
+        when(text.getPayload()).thenReturn(NEGATIVE_ANSWER);
+        controller.handle(text);
         verify(userSender, times(1)).sendMessage(eq(opponent), any(Message.class));
     }
 
     public void testHandle_whenNotValidAnswer_returnIllegalArgumentException() {
         Controller spy = spy(controller);
-        controller.handle(NOT_VALID_ANSWER);
+        when(text.getPayload()).thenReturn(NOT_VALID_ANSWER);
+        controller.handle(text);
         verify(userSender, times(1)).sendMessage(eq(user), any(Message.class));
     }
 }

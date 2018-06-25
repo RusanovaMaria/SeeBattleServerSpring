@@ -1,5 +1,6 @@
 package com.seebattleserver.domain.playingfield;
 
+import com.seebattleserver.application.adding_game_objects.StandardCoordinate;
 import com.seebattleserver.domain.cage.Cage;
 import com.seebattleserver.domain.cage.State;
 import com.seebattleserver.domain.gameobject.GameObject;
@@ -14,7 +15,6 @@ import java.util.List;
 
 public class ClassicPlayingField implements PlayingField {
 
-    private final char[] CHAR_COORDINATE = {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j'};
     private final int WIDTH = 10;
     private final int HEIGHT = 10;
     private List<GameObject> ships;
@@ -34,7 +34,7 @@ public class ClassicPlayingField implements PlayingField {
 
         for (int j = 0; j < HEIGHT; j++) {
             for (int i = 0; i < WIDTH; i++) {
-                cages[i][j] = new Cage(i, CHAR_COORDINATE[j], null);
+                cages[i][j] = new Cage(i, StandardCoordinate.getAllowedCharCoordinates()[j], null);
             }
         }
     }
@@ -74,11 +74,6 @@ public class ClassicPlayingField implements PlayingField {
     @Override
     public int getHeight() {
         return HEIGHT;
-    }
-
-    @Override
-    public char[] getCharCoordinate() {
-        return CHAR_COORDINATE;
     }
 
     @Override

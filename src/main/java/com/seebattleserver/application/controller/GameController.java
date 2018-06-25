@@ -1,5 +1,8 @@
 package com.seebattleserver.application.controller;
 
+import com.google.gson.Gson;
+import com.seebattleserver.application.adding_game_objects.Coordinate;
+import com.seebattleserver.application.adding_game_objects.StandardCoordinate;
 import com.seebattleserver.application.gameregistry.GameRegistry;
 import com.seebattleserver.application.message.Message;
 import com.seebattleserver.application.user.User;
@@ -11,6 +14,7 @@ import com.seebattleserver.service.sender.UserSender;
 import com.seebattleserver.service.websocket.SocketHandler;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.web.socket.TextMessage;
 
 public class GameController implements Controller {
 
@@ -20,19 +24,23 @@ public class GameController implements Controller {
     private GameRegistry gameRegistry;
     private Game game;
     private UserSender userSender;
+    private Gson gson;
 
-    public GameController(User user, UserSender userSender, GameRegistry gameRegistry) {
+    public GameController(User user, UserSender userSender, GameRegistry gameRegistry, Gson gson) {
         this.user = user;
         this.userSender = userSender;
         this.gameRegistry = gameRegistry;
+        this.gson = gson;
         game = gameRegistry.getGameByUser(user);
     }
 
     @Override
-    public void handle(String message) {
+    public void handle(TextMessage text) {
         if (user.getUserStatus() == UserStatus.IN_GAME_MOVE) {
-            String coordinates = message.trim();
-            makeMove(user, coordinates);
+            Coordinate coordinate = gson.fromJson(text.getPayload(), StandardCoordinate.class);
+            int x = coordinate.getX();
+            char y = coordinate.getY();
+            makeMove(user, x, y);
             endMove();
         } else if (user.getUserStatus() == UserStatus.IN_GAME) {
             notifyAboutMistake();
@@ -41,36 +49,10 @@ public class GameController implements Controller {
         }
     }
 
-    private void makeMove(User user, String coordinates) {
-        try {
-            try {
-                int x = getX(coordinates);
-                char y = getY(coordinates);
+    private void makeMove(User user, int x, char y) {
                 Result result = game.fire(user.getPlayer(), x, y);
                 sendAnswerByResult(result);
-            } catch (IllegalArgumentException e) {
-                notifyAboutEnterMistake();
-                LOGGER.warn("Неправильно введены координаты пользователем "+ user);
             }
-        } catch (NumberFormatException ex) {
-            notifyAboutEnterMistake();
-            LOGGER.warn("Неправильно введены координаты пользователем "+ user);
-        }
-    }
-
-    private int getX(String coordinates) throws NumberFormatException {
-        int x = Integer.parseInt(coordinates.substring(0, 1));
-        return x;
-    }
-
-    private char getY(String coordinates) {
-        char y = coordinates.charAt(1);
-        return y;
-    }
-
-    private void notifyAboutEnterMistake() {
-        userSender.sendMessage(user, new Message("Введены неверные координаты"));
-    }
 
     private void endMove() {
         if (game.isEnd()) {

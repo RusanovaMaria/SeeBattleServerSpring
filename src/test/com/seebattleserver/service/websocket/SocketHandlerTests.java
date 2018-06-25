@@ -29,6 +29,9 @@ public class SocketHandlerTests {
     private Gson gson;
 
     @Mock
+    private TextMessage text;
+
+    @Mock
     private SessionRegistry sessionRegistry;
 
     @Mock
@@ -52,7 +55,7 @@ public class SocketHandlerTests {
         WebSocketSession session = mock(WebSocketSession.class);
         when(sessionRegistry.containsSession(session)).thenReturn(true);
         socketHandler.handleTextMessage(session, new TextMessage(json));
-        verify(controllerManager).handle(any(User.class), eq(TEST));
+        verify(controllerManager).handle(any(User.class), text);
     }
 
     @Test

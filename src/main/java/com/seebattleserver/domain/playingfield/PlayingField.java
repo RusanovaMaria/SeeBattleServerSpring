@@ -13,8 +13,6 @@ public interface PlayingField {
 
     int getHeight();
 
-    char[] getCharCoordinate();
-
     List<GameObject> getGameObjects();
 
     boolean isAllObjectsDied();

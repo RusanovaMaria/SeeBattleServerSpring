@@ -1,5 +1,6 @@
 package com.seebattleserver.application.controller;
 
+import com.google.gson.Gson;
 import com.seebattleserver.application.gameregistry.GameRegistry;
 import com.seebattleserver.application.invitation.AcceptInvitation;
 import com.seebattleserver.application.invitation.Invitation;
@@ -10,6 +11,7 @@ import com.seebattleserver.service.sender.UserSender;
 import com.seebattleserver.service.websocket.SocketHandler;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.web.socket.TextMessage;
 
 public class InvitationController implements Controller {
 
@@ -20,15 +22,20 @@ public class InvitationController implements Controller {
     private User user;
     private UserSender userSender;
     private GameRegistry gameRegistry;
+    private Gson gson;
 
-    public InvitationController(User user, UserSender userSender, GameRegistry gameRegistry) {
+    public InvitationController(User user, UserSender userSender, GameRegistry gameRegistry, Gson gson) {
         this.user = user;
         this.userSender = userSender;
         this.gameRegistry = gameRegistry;
+        this.gson = gson;
     }
 
     @Override
-    public void handle(String answer) {
+    public void handle(TextMessage text) {
+        Message message = gson.fromJson(text.getPayload(), Message.class);
+        String answer = message.getContent();
+
         if (isCorrectAnswer(answer)) {
             Invitation invitation = createInvitation(answer);
             invitation.handleAnswer();

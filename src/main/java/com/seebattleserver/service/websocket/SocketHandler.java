@@ -41,14 +41,13 @@ public class SocketHandler extends TextWebSocketHandler {
     }
 
     @Override
-    public void handleTextMessage(WebSocketSession session, TextMessage context) throws IOException {
+    public void handleTextMessage(WebSocketSession session, TextMessage text) throws IOException {
         if (sessionRegistry.containsSession(session)) {
             User user = sessionRegistry.getUser(session);
-            Message message = gson.fromJson(context.getPayload(), Message.class);
-            controllerManager.handle(user, message.getMessage());
+            controllerManager.handle(user, text);
         } else {
-            Message name = gson.fromJson(context.getPayload(), Message.class);
-            User user = new User(name.getMessage());
+            Message name = gson.fromJson(text.getPayload(), Message.class);
+            User user = new User(name.getContent());
             userRegistry.add(user);
             sessionRegistry.put(session, user);
         }

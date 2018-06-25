@@ -1,5 +1,6 @@
 package com.seebattleserver.application.controller;
 
+import com.google.gson.Gson;
 import com.seebattleserver.application.message.Message;
 import com.seebattleserver.application.user.User;
 import com.seebattleserver.application.user.UserRegistry;
@@ -8,6 +9,7 @@ import com.seebattleserver.service.sender.UserSender;
 import com.seebattleserver.service.websocket.SocketHandler;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.web.socket.TextMessage;
 
 public class RequestOpponentController implements Controller {
 
@@ -16,16 +18,20 @@ public class RequestOpponentController implements Controller {
     private User user;
     private UserRegistry userRegistry;
     private UserSender userSender;
+    private Gson gson;
 
-    public RequestOpponentController(User user, UserRegistry userRegistry, UserSender userSender) {
+    public RequestOpponentController(User user, UserRegistry userRegistry, UserSender userSender, Gson gson) {
         this.user = user;
         this.userRegistry = userRegistry;
         this.userSender = userSender;
+        this.gson = gson;
     }
 
     @Override
-    public void handle(String message) {
-        makeInvitation(message);
+    public void handle(TextMessage text) {
+        Message message = gson.fromJson(text.getPayload(), Message.class);
+        String opponentName = message.getContent();
+        makeInvitation(opponentName);
     }
 
     private void makeInvitation(String opponentName) {
