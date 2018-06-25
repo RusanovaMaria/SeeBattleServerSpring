@@ -26,9 +26,6 @@ public class InvitationControllerTest extends TestCase {
     private Controller controller;
 
     @Mock
-    private TextMessage text;
-
-    @Mock
     private User user;
 
     @Mock
@@ -51,21 +48,21 @@ public class InvitationControllerTest extends TestCase {
 
     public void testHandle_whenPositiveAnswer_returnVerificationForAcceptInvitationHandleAnswer() {
         when(user.getOpponent()).thenReturn(opponent);
-        when(text.getPayload()).thenReturn(POSITIVE_ANSWER);
+        TextMessage text = new TextMessage(POSITIVE_ANSWER);
         controller.handle(text);
         verify(userSender, times(2)).sendMessage(eq(opponent), any(Message.class));
     }
 
     public void testHandle_whenNegativeAnswer_returnVerificationForNotAcceptInvitationHandleAnswer() {
         when(user.getOpponent()).thenReturn(opponent);
-        when(text.getPayload()).thenReturn(NEGATIVE_ANSWER);
+        TextMessage text = new TextMessage(NEGATIVE_ANSWER);
         controller.handle(text);
         verify(userSender, times(1)).sendMessage(eq(opponent), any(Message.class));
     }
 
     public void testHandle_whenNotValidAnswer_returnIllegalArgumentException() {
         Controller spy = spy(controller);
-        when(text.getPayload()).thenReturn(NOT_VALID_ANSWER);
+        TextMessage text = new TextMessage(NOT_VALID_ANSWER);
         controller.handle(text);
         verify(userSender, times(1)).sendMessage(eq(user), any(Message.class));
     }

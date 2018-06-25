@@ -24,9 +24,6 @@ public class CommandControllerTest extends TestCase {
     private Controller controller;
 
     @Mock
-    private TextMessage text;
-
-    @Mock
     private  User user;
 
     @Mock
@@ -46,10 +43,10 @@ public class CommandControllerTest extends TestCase {
 
     @Test
     public void testHandle_whenHelpCommand_returnVerifyCommandFactoryCreateCommand() {
-        final String HELP_COMMAND = "help";
+        String HELP_COMMAND = "help";
+        TextMessage text = new TextMessage(HELP_COMMAND);
         Command command = new HelpCommand();
         when(commandFactory.createHelpCommand()).thenReturn(mock(HelpCommand.class));
-        when(text.getPayload()).thenReturn(HELP_COMMAND);
         controller.handle(text);
         verify(commandFactory).createHelpCommand();
         verify(userSender).sendMessage(eq(user), any(Message.class));
@@ -57,11 +54,11 @@ public class CommandControllerTest extends TestCase {
 
     @Test
     public void testHandle_whenPlayerListCommand_returnVerifyCommandFactoryCreatePlayerListCommand() {
-        final String LIST_COMMAND = "list";
+        String LIST_COMMAND = "list";
+        TextMessage text = new TextMessage(LIST_COMMAND);
         UserRegistry userRegistry = mock(UserRegistry.class);
         Command command = new PlayerListCommand(userRegistry);
         when(commandFactory.createPlayerListCommand()).thenReturn(mock(PlayerListCommand.class));
-        when(text.getPayload()).thenReturn(LIST_COMMAND);
         controller.handle(text);
         verify(commandFactory).createPlayerListCommand();
         verify(userSender).sendMessage(eq(user), any(Message.class));
@@ -69,11 +66,11 @@ public class CommandControllerTest extends TestCase {
 
     @Test
     public void testHandle_whenPlayerInvitationCommand_returnVerificationForCommandFactoryCreatePlayerInvitationCommand() {
-        final String REQUEST_COMMAND = "request";
+        String REQUEST_COMMAND = "request";
+        TextMessage text = new TextMessage(REQUEST_COMMAND);
         UserRegistry userRegistry = mock(UserRegistry.class);
         Command command = new PlayerInvitationCommand();
         when(commandFactory.createPlayerInvitationCommand()).thenReturn(mock(PlayerInvitationCommand.class));
-        when(text.getPayload()).thenReturn(REQUEST_COMMAND);
         controller.handle(text);
         verify(commandFactory).createPlayerInvitationCommand();
         verify(userSender).sendMessage(eq(user), any(Message.class));
@@ -81,10 +78,10 @@ public class CommandControllerTest extends TestCase {
 
     @Test
     public void testHandle_whenNotValidCommand_returnVerificationForCommandFactoryCreateDefaultCommand() {
-        final String WRONG_COMMAND = "hgjgg";
+        String WRONG_COMMAND = "hgjgg";
+        TextMessage text = new TextMessage(WRONG_COMMAND);
         Command command = new HelpCommand();
         when(commandFactory.createHelpCommand()).thenReturn(mock(HelpCommand.class));
-        when(text.getPayload()).thenReturn(WRONG_COMMAND);
         controller.handle(text);
         verify(commandFactory).createHelpCommand();
         verify(userSender).sendMessage(eq(user), any(Message.class));

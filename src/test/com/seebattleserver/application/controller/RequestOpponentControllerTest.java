@@ -1,6 +1,7 @@
 package com.seebattleserver.application.controller;
 
 import com.google.gson.Gson;
+import com.seebattleserver.application.message.Message;
 import com.seebattleserver.application.user.User;
 import com.seebattleserver.application.user.UserRegistry;
 import com.seebattleserver.application.user.UserStatus;
@@ -18,7 +19,6 @@ public class RequestOpponentControllerTest extends TestCase {
 
     private Controller controller;
 
-    @Mock
     private TextMessage text;
 
     @Mock
@@ -39,13 +39,14 @@ public class RequestOpponentControllerTest extends TestCase {
     public void setUp() {
         initMocks(this);
         gson = new Gson();
+        text = new TextMessage(gson.toJson("any string", Message.class));
         controller = new RequestOpponentController(user, userRegistry, userSender, gson);
     }
 
     public void testHandle_whenOpponentIsFree_returnVerificationForChangeUsersStatuses() {
+        System.out.print(text.getPayload());
         when(userRegistry.getUserByName(anyString())).thenReturn(opponent);
         when(opponent.getUserStatus()).thenReturn(UserStatus.FREE);
-        when(text.getPayload()).thenReturn(anyString());
         controller.handle(text);
         verify(user).setUserStatus(UserStatus.INVITING);
         verify(opponent).setUserStatus(UserStatus.INVITED);
@@ -54,7 +55,6 @@ public class RequestOpponentControllerTest extends TestCase {
     public void testHandle_whenOpponentIsNotFree_returnVerificationForChangeUsersStatuses() {
         when(userRegistry.getUserByName(anyString())).thenReturn(opponent);
         when(opponent.getUserStatus()).thenReturn(UserStatus.IN_GAME);
-        when(text.getPayload()).thenReturn(anyString());
         controller.handle(text);
         verify(user, never()).setUserStatus(UserStatus.INVITING);
         verify(opponent, never()).setUserStatus(UserStatus.INVITED);

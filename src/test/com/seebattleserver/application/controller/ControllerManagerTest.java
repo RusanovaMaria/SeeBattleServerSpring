@@ -6,6 +6,7 @@ import junit.framework.TestCase;
 import org.junit.Before;
 import org.mockito.Mock;
 import org.springframework.web.socket.TextMessage;
+import org.springframework.web.socket.WebSocketSession;
 
 import static org.mockito.Mockito.*;
 import static org.mockito.MockitoAnnotations.initMocks;
@@ -16,8 +17,7 @@ public class ControllerManagerTest extends TestCase {
 
     private ControllerManager controllerManager;
 
-    @Mock
-    private  TextMessage test;
+    private TextMessage test;
 
     @Mock
     private User user;
@@ -29,7 +29,7 @@ public class ControllerManagerTest extends TestCase {
     public void setUp() {
         initMocks(this);
         controllerManager = new ControllerManager(controllerFactory);
-        when(test.getPayload()).thenReturn(TEST);
+        test = new TextMessage(TEST);
     }
 
     public void testHandle_whenUserStatusIsFree_returnVerificationForControllerFactoryCreateCommandController() {

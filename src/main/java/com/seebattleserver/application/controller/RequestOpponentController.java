@@ -40,7 +40,7 @@ public class RequestOpponentController implements Controller {
             invite(user, opponent);
         } else {
             notifyAboutMistake();
-            LOGGER.info("Пользователь с имнем " +opponentName+ "не обнаружен");
+            LOGGER.info("Пользователь с именем " +opponentName+ "не обнаружен");
         }
     }
 

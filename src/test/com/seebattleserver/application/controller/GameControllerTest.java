@@ -25,8 +25,7 @@ public class GameControllerTest extends TestCase {
 
     private Controller controller;
 
-    @Mock
-    TextMessage text;
+    private TextMessage text;
 
     @Mock
     private User user;
@@ -51,7 +50,7 @@ public class GameControllerTest extends TestCase {
         game = mock(ClassicGame.class);
         when(gameRegistry.getGameByUser(user)).thenReturn(game);
         controller = new GameController(user, userSender, gameRegistry, gson);
-        when(text.getPayload()).thenReturn(TEST_COORDINATE);
+        text = new TextMessage(TEST_COORDINATE);
     }
 
     public void testHandle_whenUserStatusIsNotInGameMove_returnVerificationForGameNeverFire() {
