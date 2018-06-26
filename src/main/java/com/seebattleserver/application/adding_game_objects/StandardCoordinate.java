@@ -7,6 +7,10 @@ public class StandardCoordinate implements Coordinate{
     private int x;
     private char y;
 
+    StandardCoordinate() {
+
+    }
+
     StandardCoordinate(int x, char y) {
         this.x = x;
         this.y = y;

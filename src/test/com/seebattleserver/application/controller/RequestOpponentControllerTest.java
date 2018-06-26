@@ -39,12 +39,12 @@ public class RequestOpponentControllerTest extends TestCase {
     public void setUp() {
         initMocks(this);
         gson = new Gson();
-        text = new TextMessage(gson.toJson("any string", Message.class));
+        Message message = new Message("any string");
+        text = new TextMessage(gson.toJson(message));
         controller = new RequestOpponentController(user, userRegistry, userSender, gson);
     }
 
     public void testHandle_whenOpponentIsFree_returnVerificationForChangeUsersStatuses() {
-        System.out.print(text.getPayload());
         when(userRegistry.getUserByName(anyString())).thenReturn(opponent);
         when(opponent.getUserStatus()).thenReturn(UserStatus.FREE);
         controller.handle(text);
