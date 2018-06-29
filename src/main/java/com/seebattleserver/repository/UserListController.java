@@ -1,4 +1,4 @@
-package com.seebattleserver.repository.entity;
+package com.seebattleserver.repository;
 
 import com.seebattleserver.application.user.UserStatus;
 import org.springframework.beans.factory.annotation.Autowired;

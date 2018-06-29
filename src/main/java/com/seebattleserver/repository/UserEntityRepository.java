@@ -1,4 +1,4 @@
-package com.seebattleserver.repository.entity;
+package com.seebattleserver.repository;
 
 import org.springframework.data.repository.CrudRepository;
 
