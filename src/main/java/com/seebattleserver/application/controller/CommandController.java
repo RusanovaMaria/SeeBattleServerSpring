@@ -1,28 +1,48 @@
 package com.seebattleserver.application.controller;
 
-import com.seebattleserver.application.client.Client;
-import com.seebattleserver.application.command.Command;
-import com.seebattleserver.application.command.HelpCommand;
-import com.seebattleserver.application.command.PlayerInvitationCommand;
-import com.seebattleserver.application.command.PlayerListCommand;
+import com.google.gson.Gson;
+import com.seebattleserver.application.command.*;
+import com.seebattleserver.application.user.User;
+import com.seebattleserver.application.message.Message;
+import com.seebattleserver.application.user.UserStatus;
+import com.seebattleserver.service.sender.UserSender;
+import org.springframework.web.socket.TextMessage;
 
 public class CommandController implements Controller {
 
-    private final String[] commands = {"help", "list", "request"};
-    private Client client;
+    private static final String LIST_COMMAND = "list";
+    private static final String HELP_COMMAND = "help";
+    private static final String REQUEST_OPPONENT_COMMAND = "request";
+    private static final String[] commands = {HELP_COMMAND, LIST_COMMAND, REQUEST_OPPONENT_COMMAND};
+    private static final String DEFAULT_COMMAND = HELP_COMMAND;
 
-    public CommandController(Client client) {
-       this.client = client;
+    private User user;
+    private UserSender userSender;
+    private CommandFactory commandFactory;
+    private Gson gson;
+
+    public CommandController(User user, UserSender userSender, CommandFactory commandFactory, Gson gson) {
+        this.user = user;
+        this.userSender = userSender;
+        this.commandFactory = commandFactory;
+        this.gson = gson;
     }
 
     @Override
-    public void handle(String command) {
-        if (isRightCommand(command)) {
-            handleCommand(command);
+    public void handle(TextMessage text) {
+        Message message = gson.fromJson(text.getPayload() ,Message.class);
+        String content = message.getContent();
+        Command command;
+        if (isRightCommand(content)) {
+            command = createCommand(content);
+            if (content.equals(REQUEST_OPPONENT_COMMAND)) {
+                user.setUserStatus(UserStatus.REQUESTING_OPPONENT);
+            }
         } else {
-            Command helpCommand = new HelpCommand(client);
-            helpCommand.execute();
+            command = createCommand(DEFAULT_COMMAND);
         }
+        String answer = command.execute();
+        userSender.sendMessage(user, new Message(answer));
     }
 
     private boolean isRightCommand(String command) {
@@ -34,21 +54,17 @@ public class CommandController implements Controller {
         return false;
     }
 
-    private void handleCommand(String command) {
+    private Command createCommand(String command) {
         switch (command) {
-            case "help":
-                Command helpCommand = new HelpCommand(client);
-                helpCommand.execute();
-                break;
-            case "list":
-                Command listCommand = new PlayerListCommand(client);
-                listCommand.execute();
-                break;
-            case "request":
-                Command requestCommand = new PlayerInvitationCommand(client);
-                requestCommand.execute();
-                break;
-
+            case HELP_COMMAND:
+                Command helpCommand = commandFactory.createHelpCommand();
+                return helpCommand;
+            case LIST_COMMAND:
+                Command listCommand = commandFactory.createPlayerListCommand();
+                return listCommand;
+            case REQUEST_OPPONENT_COMMAND:
+                Command requestCommand = commandFactory.createPlayerInvitationCommand();
+                return requestCommand;
             default:
                 throw new IllegalArgumentException("Данного запроса не существует");
         }

@@ -1,79 +1,133 @@
 package com.seebattleserver.application.controller;
 
-import com.seebattleserver.application.client.Client;
-import com.seebattleserver.application.client.ClientSet;
-import com.seebattleserver.application.gameimplementation.GameImplementation;
-import com.seebattleserver.application.gameimplementation.GameImplementationSet;
+import com.google.gson.Gson;
+import com.seebattleserver.application.adding_game_objects.Coordinate;
+import com.seebattleserver.application.adding_game_objects.StandardCoordinate;
+import com.seebattleserver.application.gameregistry.GameRegistry;
+import com.seebattleserver.application.message.Message;
+import com.seebattleserver.application.user.User;
+import com.seebattleserver.application.user.UserStatus;
 import com.seebattleserver.domain.game.Game;
 import com.seebattleserver.domain.game.Result;
-
-import java.io.IOException;
+import com.seebattleserver.domain.player.Player;
+import com.seebattleserver.service.sender.UserSender;
+import com.seebattleserver.service.websocket.SocketHandler;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.web.socket.TextMessage;
 
 public class GameController implements Controller {
-    private Client client;
-    private ClientSet clientSet = new ClientSet();
-    private GameImplementationSet gameImplementationSet = new GameImplementationSet();
 
-    public GameController(Client client) {
-        this.client = client;
+    private static final Logger LOGGER = LoggerFactory.getLogger(SocketHandler.class);
+
+    private User user;
+    private GameRegistry gameRegistry;
+    private Game game;
+    private UserSender userSender;
+    private Gson gson;
+
+    public GameController(User user, UserSender userSender, GameRegistry gameRegistry, Gson gson) {
+        this.user = user;
+        this.userSender = userSender;
+        this.gameRegistry = gameRegistry;
+        this.gson = gson;
+        game = gameRegistry.getGameByUser(user);
     }
 
     @Override
-    public void handle(String message) {
-        GameImplementation gameImplementation = gameImplementationSet.findGameImplementationByClient(client);
-        if (gameImplementation.isClientMove(client)) {
-            String coordinates = message.trim();
-            makeMove(client, gameImplementation, coordinates);
+    public void handle(TextMessage text) {
+        if (user.getUserStatus() == UserStatus.IN_GAME_MOVE) {
+            Coordinate coordinate = gson.fromJson(text.getPayload(), StandardCoordinate.class);
+            int x = coordinate.getX();
+            char y = coordinate.getY();
+            makeMove(user, x, y);
+            endMove();
+        } else if (user.getUserStatus() == UserStatus.IN_GAME) {
+            notifyAboutMistake();
         } else {
-              notifyAboutMistake();
+            throw new IllegalArgumentException("Не игровой статус пользователя");
         }
     }
 
-    private int getX(String coordinates) {
-        int x = Integer.parseInt(coordinates.substring(0, 1));
-        return x;
-    }
+    private void makeMove(User user, int x, char y) {
+                Result result = game.fire(user.getPlayer(), x, y);
+                sendAnswerByResult(result);
+            }
 
-    private char getY(String coordinates) {
-        char y = coordinates.charAt(1);
-        return y;
-    }
-
-    private void makeMove(Client client, GameImplementation gameImplementation, String coordinates) {
-        int x = getX(coordinates);
-        char y = getY(coordinates);
-
-        try {
-            Game game = gameImplementation.getGame();
-            Result result = game.fire(client.getPlayer(), x, y);
-            getAnswerByResult(result);
-            gameImplementation.passMove(client);
-        } catch (IOException ex) {
-            ex.printStackTrace();
+    private void endMove() {
+        if (game.isEnd()) {
+            endGame();
+        } else {
+            passMove();
         }
     }
 
-    private void getAnswerByResult (Result result) throws IOException {
+    private void passMove() {
+        User opponent = user.getOpponent();
+        userSender.sendMessage(opponent, new Message("Введите координаты х и у"));
+        user.setUserStatus(UserStatus.IN_GAME);
+        opponent.setUserStatus(UserStatus.IN_GAME_MOVE);
+    }
+
+    private void sendAnswerByResult(Result result) {
         switch (result) {
             case MISSED:
-                client.sendMessage("Мимо");
+                userSender.sendMessage(user, new Message("Мимо"));
                 break;
             case REPEATED:
-                client.sendMessage("Вы уже стреляли в эту клетку");
+                userSender.sendMessage(user, new Message("Вы уже стреляли в эту клетку"));
                 break;
             case GOT:
-                client.sendMessage("Попадание");
+                userSender.sendMessage(user, new Message("Попадание"));
                 break;
             case KILLED:
-                client.sendMessage("Убит");
+                userSender.sendMessage(user, new Message("Убит"));
         }
+    }
+
+    private void endGame() {
+        User userWinner = determineUserWinner();
+        notifyWinner(userWinner);
+        notifyLooser(userWinner.getOpponent());
+        User userOpponent = user.getOpponent();
+        removeOpponents(user, userOpponent);
+        changeStatuses(user, userOpponent);
+        removeGame(user, userOpponent);
+    }
+
+    private User determineUserWinner() {
+        Player winner = game.determineWinner();
+        if (user.getPlayer().equals(winner)) {
+            return user;
+        } else {
+            return user.getOpponent();
+        }
+    }
+
+    private void notifyWinner(User winnerUser) {
+        userSender.sendMessage(winnerUser, new Message("Вы победили, игра окончена"));
+    }
+
+    private void notifyLooser(User looserUser) {
+        userSender.sendMessage(looserUser, new Message("Вы проиграли, игра окончена"));
     }
 
     private void notifyAboutMistake() {
-        try {
-            client.sendMessage("Сейчас не ваш ход");
-        } catch (IOException ex) {
-            ex.printStackTrace();
-        }
+        userSender.sendMessage(user, new Message("Сейчас не ваш ход"));
+    }
+
+    private void removeOpponents(User user, User userOpponent) {
+        user.setOpponent(null);
+        userOpponent.setOpponent(null);
+    }
+
+    private void changeStatuses(User user, User userOpponent) {
+        user.setUserStatus(UserStatus.FREE);
+        userOpponent.setUserStatus(UserStatus.FREE);
+    }
+
+    private void removeGame(User user, User userOpponent) {
+        gameRegistry.remove(user, game);
+        gameRegistry.remove(userOpponent, game);
     }
 }

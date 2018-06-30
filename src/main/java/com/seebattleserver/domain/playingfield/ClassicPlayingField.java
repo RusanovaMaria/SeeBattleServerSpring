@@ -1,33 +1,40 @@
 package com.seebattleserver.domain.playingfield;
 
+import com.seebattleserver.application.adding_game_objects.StandardCoordinate;
 import com.seebattleserver.domain.cage.Cage;
+import com.seebattleserver.domain.cage.State;
 import com.seebattleserver.domain.gameobject.GameObject;
 import com.seebattleserver.domain.gameobject.Ship;
+import com.seebattleserver.domain.gameobject.Status;
+import com.seebattleserver.domain.gameobjectposition.GameObjectPosition;
 import com.seebattleserver.domain.rule.ClassicRule;
 import com.seebattleserver.domain.rule.Rule;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class ClassicPlayingField implements PlayingField {
 
-    private final char[] CHAR_COORDINATE = {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j'};
     private final int WIDTH = 10;
     private final int HEIGHT = 10;
     private List<GameObject> ships;
     private Cage[][] cages;
+    private GameObjectPosition gameObjectPosition;
 
 
-    public ClassicPlayingField() {
+    public ClassicPlayingField(GameObjectPosition gameObjectPosition) {
         generate();
         addGameObjects();
+        this.gameObjectPosition = gameObjectPosition;
+        gameObjectPosition.establish(this);
     }
 
     private void generate() {
         cages = new Cage[WIDTH][HEIGHT];
 
         for (int j = 0; j < HEIGHT; j++) {
-        for (int i = 0; i < WIDTH; i++) {
-                cages[i][j] = new Cage(i, CHAR_COORDINATE[j], null);
+            for (int i = 0; i < WIDTH; i++) {
+                cages[i][j] = new Cage(i, StandardCoordinate.getAllowedCharCoordinates()[j], null);
             }
         }
     }
@@ -70,7 +77,18 @@ public class ClassicPlayingField implements PlayingField {
     }
 
     @Override
-    public char[] getCharCoordinate() {
-        return CHAR_COORDINATE;
+    public List<GameObject> getGameObjects() {
+        return ships;
+    }
+
+    @Override
+    public boolean isAllObjectsDied() {
+        for (int i = 0; i < ships.size(); i++) {
+           GameObject gameObject = ships.get(i);
+           if (gameObject.getStatus() != Status.KILLED) {
+               return false;
+           }
+        }
+        return true;
     }
 }

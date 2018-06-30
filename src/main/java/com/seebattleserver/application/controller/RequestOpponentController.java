@@ -1,82 +1,75 @@
 package com.seebattleserver.application.controller;
 
-import com.seebattleserver.application.client.Client;
-import com.seebattleserver.application.client.ClientSet;
-import com.seebattleserver.application.client.ClientStatus;
-
-import java.io.IOException;
-import java.util.List;
+import com.google.gson.Gson;
+import com.seebattleserver.application.message.Message;
+import com.seebattleserver.application.user.User;
+import com.seebattleserver.application.user.UserRegistry;
+import com.seebattleserver.application.user.UserStatus;
+import com.seebattleserver.service.sender.UserSender;
+import com.seebattleserver.service.websocket.SocketHandler;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.web.socket.TextMessage;
 
 public class RequestOpponentController implements Controller {
 
-    private Client client;
-    private ClientSet clientSet = new ClientSet();
+    private static final Logger LOGGER = LoggerFactory.getLogger(SocketHandler.class);
 
-    public RequestOpponentController(Client client) {
-        this.client = client;
+    private User user;
+    private UserRegistry userRegistry;
+    private UserSender userSender;
+    private Gson gson;
+
+    public RequestOpponentController(User user, UserRegistry userRegistry, UserSender userSender, Gson gson) {
+        this.user = user;
+        this.userRegistry = userRegistry;
+        this.userSender = userSender;
+        this.gson = gson;
     }
 
     @Override
-    public void handle(String message) {
-        makeInvitation(message);
+    public void handle(TextMessage text) {
+        Message message = gson.fromJson(text.getPayload(), Message.class);
+        String opponentName = message.getContent();
+        makeInvitation(opponentName);
     }
 
     private void makeInvitation(String opponentName) {
-        Client opponent = findOpponentByName(opponentName);
+        User opponent = userRegistry.getUserByName(opponentName);
         if (isOpponentFree(opponent)) {
-            invite(client, opponent);
+            invite(user, opponent);
         } else {
-            try {
-                client.sendMessage("Соперник с таким именем не найден или не может принять приглашение");
-            } catch (IOException ex) {
-                ex.printStackTrace();
-            }
+            notifyAboutMistake();
+            LOGGER.info("Пользователь с именем " +opponentName+ "не обнаружен");
         }
     }
 
-    private Client findOpponentByName(String name) {
-        List<Client> opponents = clientSet.getClients();
-        for (int i = 0; i< opponents.size(); i++) {
-            Client opponent = opponents.get(i);
-            if (isOpponentName(opponent, name)) {
-                return opponent;
-            }
-        }
-        throw new IllegalArgumentException("Игрока с таким именем не существует");
-    }
-
-    private boolean isOpponentName(Client opponent, String name) {
-        if (opponent.getName().equals(name)) {
+    private boolean isOpponentFree(User userOpponent) {
+        if (userOpponent.getUserStatus().equals(UserStatus.FREE)) {
             return true;
         }
         return false;
     }
 
-    private boolean isOpponentFree(Client opponent) {
-        if (opponent.getStatus().equals(ClientStatus.FREE)) {
-            return true;
-        }
-        return false;
+    private void invite(User user, User userOpponent) {
+        userOpponent.setUserStatus(UserStatus.INVITED);
+        user.setUserStatus(UserStatus.INVITING);
+
+        sendInvitationToOpponent(userOpponent, user);
+        unitOpponents(user, userOpponent);
     }
 
-    private void invite (Client client, Client opponent) {
-        opponent.setStatus(ClientStatus.INVITED);
-        client.setStatus(ClientStatus.INVITING);
-        sendInvitationToOpponent(opponent, client);
-
-        createOpponents(client, opponent);
+    private void sendInvitationToOpponent(User userOpponent, User user) {
+        userSender.sendMessage(userOpponent, new Message("С вами хочет играть " + user.getUsername() +
+                ". Введите команду 'yes' или 'no'"));
     }
 
-    private void createOpponents (Client client, Client opponent) {
-        client.setOpponent(opponent);
-        opponent.setOpponent(client);
+    private void unitOpponents(User user, User opponent) {
+        user.setOpponent(opponent);
+        opponent.setOpponent(user);
     }
 
-    private void sendInvitationToOpponent(Client opponent, Client client) {
-      try {
-          opponent.sendMessage("С вами хочет играть" + client.getName() + "Введите команду 'yes' или 'no'");
-      } catch (IOException ex) {
-          ex.printStackTrace();
+    private void notifyAboutMistake() {
+        userSender.sendMessage(user, new Message("Соперник с таким именем не найден или не может принять приглашение"));
     }
-}
 }
