@@ -62,7 +62,7 @@ public class ClassicGame implements Game {
                 return Result.MISSED;
             case FULL:
                 GameObject gameObject = ejectGameObject(cage);
-                gameObject.shoot();
+                gameObject.killPart();
                 return determineDamage(gameObject);
             default:
                 new IllegalArgumentException("Неверный статус для клетки игрового поля");

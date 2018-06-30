@@ -6,9 +6,9 @@ import java.util.List;
 
 public interface GameObject {
 
-    void shoot();
-
     Kind getKind();
+
+    void setKind(Kind kind);
 
     int getSize();
 
@@ -16,5 +16,12 @@ public interface GameObject {
 
     void setStatus(Status status);
 
-    List<GameObjectPart> getObjectParts();
+    List<GameObjectPart> getGameObjectParts();
+
+    void setGameObjectParts(List<GameObjectPart> gameObjectParts);
+
+    int getDiedGameObjectParts();
+
+    void setDiedGameObjectParts(int diedGameObjectParts);
+
 }

@@ -11,7 +11,7 @@ public class ShipTest extends TestCase {
     @Test
     public void testShoot_whenShipIsKilled_returnStatusKilled() {
         GameObject ship = new Ship(1);
-        ship.shoot();
+        ship.killPart();
         Status result = ship.getStatus();
         assertEquals(Status.KILLED, result);
     }
@@ -19,7 +19,7 @@ public class ShipTest extends TestCase {
     @Test
     public void testShoot_whenShipIsDamaged_returnStatusDamaged() {
         GameObject ship = new Ship(4);
-        ship.shoot();
+        ship.killPart();
         Status result = ship.getStatus();
         assertEquals(Status.DAMAGED, result);
     }
