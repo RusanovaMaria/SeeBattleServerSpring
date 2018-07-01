@@ -13,7 +13,7 @@ public interface PlayingField {
 
     int getHeight();
 
-    List<GameObject> getGameObjects();
+    void setGameObjectParts(List<GameObject> gameObjects);
 
     boolean isAllObjectsDied();
 }
