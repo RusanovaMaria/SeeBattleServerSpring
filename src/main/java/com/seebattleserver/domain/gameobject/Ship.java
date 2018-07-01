@@ -17,12 +17,6 @@ public class Ship implements GameObject {
         status = Status.ALIVE;
     }
 
-    @Override
-    public Kind getKind() {
-        return kind;
-    }
-
-    @Override
     public void setKind(Kind kind) {
         this.kind = kind;
     }

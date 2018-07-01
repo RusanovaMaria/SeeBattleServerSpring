@@ -1,6 +1,5 @@
 package com.seebattleserver.domain.classicrule;
 
-import com.seebattleserver.domain.gameobject.Kind;
 import com.seebattleserver.domain.rule.ClassicRule;
 import com.seebattleserver.domain.rule.Rule;
 import junit.framework.TestCase;

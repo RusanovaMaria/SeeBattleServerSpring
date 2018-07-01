@@ -2,13 +2,18 @@ package com.seebattleserver.domain.gameobjectposition;
 
 import com.seebattleserver.domain.cage.Cage;
 import com.seebattleserver.domain.gameobject.GameObject;
+import com.seebattleserver.domain.gameobjectaddition.GameObjectAddition;
+import com.seebattleserver.domain.gameobjectaddition.StandardGameObjectAddition;
 import com.seebattleserver.domain.gameobjectpart.GameObjectPart;
+import com.seebattleserver.domain.playingfield.ClassicPlayingField;
 import com.seebattleserver.domain.playingfield.PlayingField;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class StandardGameObjectPosition implements GameObjectPosition {
+
+    private PlayingField playingField;
 
     private List<GameObject> oneDeckShips;
     private List<GameObject> twoDeckShips;
@@ -20,44 +25,51 @@ public class StandardGameObjectPosition implements GameObjectPosition {
         twoDeckShips = new ArrayList<>();
         threeDeckShips = new ArrayList<>();
         fourDeckShips = new ArrayList<>();
+
+        playingField = new ClassicPlayingField();
+        addGameObjects();
+        sortGameObjects();
     }
 
 
     @Override
     public void establish(PlayingField playingField) {
-        distributeGameObjects(playingField);
         positionOneDeckShips(playingField);
         positionTwoDeckShips(playingField);
         positionThreeDeckShips(playingField);
         positionFourDeckShips(playingField);
     }
 
-    private void distributeGameObjects(PlayingField playingField) {
+    private void addGameObjects() {
+        GameObjectAddition gameObjectAddition = new StandardGameObjectAddition(playingField);
+        gameObjectAddition.add();
+    }
+
+    private void sortGameObjects() {
         List<GameObject> gameObjects = playingField.getGameObjects();
         for (int i = 0; i < gameObjects.size(); i++) {
             GameObject gameObject = gameObjects.get(i);
-            int size = gameObject.getSize();
-            sortGameObjectsBySize(gameObject, size);
-
+            sortObjectsBySize(gameObject);
         }
     }
 
-    private void sortGameObjectsBySize(GameObject gameObject, int size) {
+    private void sortObjectsBySize(GameObject gameObject) {
+        int size = gameObject.getSize();
         switch (size) {
             case 1:
                 oneDeckShips.add(gameObject);
                 break;
             case 2:
-                twoDeckShips.add(gameObject);
+                oneDeckShips.add(gameObject);
                 break;
             case 3:
-                threeDeckShips.add(gameObject);
+                oneDeckShips.add(gameObject);
                 break;
             case 4:
-                fourDeckShips.add(gameObject);
+                oneDeckShips.add(gameObject);
                 break;
             default:
-                throw new IllegalArgumentException("Игрового объекта данного размера не существует");
+                throw new IllegalArgumentException("Недопустимый размер игрового объекта");
         }
     }
 

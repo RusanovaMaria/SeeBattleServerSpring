@@ -6,10 +6,6 @@ import java.util.List;
 
 public interface GameObject {
 
-    Kind getKind();
-
-    void setKind(Kind kind);
-
     int getSize();
 
     Status getStatus();

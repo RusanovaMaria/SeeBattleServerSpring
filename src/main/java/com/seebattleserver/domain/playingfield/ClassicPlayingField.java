@@ -16,7 +16,7 @@ public class ClassicPlayingField implements PlayingField {
     private Cage[][] cages;
 
 
-    public ClassicPlayingField(GameObjectPosition gameObjectPosition) {
+    public ClassicPlayingField() {
         createEmptyField();
     }
 
@@ -54,7 +54,12 @@ public class ClassicPlayingField implements PlayingField {
     }
 
     @Override
-    public void setGameObjectParts(List<GameObject> ships) {
+    public List<GameObject> getGameObjects() {
+        return getGameObjects();
+    }
+
+    @Override
+    public void setGameObjects(List<GameObject> ships) {
         this.ships = ships;
     }
 
