@@ -4,5 +4,5 @@ import com.seebattleserver.domain.playingfield.PlayingField;
 
 public interface GameObjectPosition {
 
-    void establish(PlayingField playingField);
+    void establish();
 }

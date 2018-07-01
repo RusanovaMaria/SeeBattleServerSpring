@@ -4,20 +4,25 @@ import com.seebattleserver.application.adding_game_objects.StandardCoordinate;
 import com.seebattleserver.domain.cage.Cage;
 import com.seebattleserver.domain.gameobject.GameObject;
 import com.seebattleserver.domain.gameobject.Status;
-import com.seebattleserver.domain.gameobjectposition.GameObjectPosition;
+import com.seebattleserver.domain.gameobjectaddition.GameObjectAddition;
+import com.seebattleserver.domain.gameobjectaddition.StandardGameObjectAddition;
 
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 public class ClassicPlayingField implements PlayingField {
 
     private final int WIDTH = 10;
     private final int HEIGHT = 10;
-    private List<GameObject> ships;
+    private Map<Integer, List<GameObject>> gameObjects;
     private Cage[][] cages;
 
 
     public ClassicPlayingField() {
         createEmptyField();
+        GameObjectAddition gameObjectAddition = new StandardGameObjectAddition(this);
+        gameObjectAddition.add();
     }
 
     private void createEmptyField() {
@@ -44,23 +49,34 @@ public class ClassicPlayingField implements PlayingField {
 
     @Override
     public boolean isAllObjectsDied() {
-        for (int i = 0; i < ships.size(); i++) {
-            GameObject gameObject = ships.get(i);
-            if (gameObject.getStatus() != Status.KILLED) {
+        Set<Integer> gameObjectSize = gameObjects.keySet();
+        for (int size : gameObjectSize) {
+            if (isNotAllObjectsOfCurrentSizeDied(size)) {
                 return false;
             }
         }
         return true;
     }
 
-    @Override
-    public List<GameObject> getGameObjects() {
-        return getGameObjects();
+    private boolean isNotAllObjectsOfCurrentSizeDied(int size) {
+        List<GameObject> gameObjectOfCurrentSize = gameObjects.get(size);
+        for (int i = 0; i < gameObjectOfCurrentSize.size(); i++) {
+            GameObject gameObject = gameObjectOfCurrentSize.get(i);
+            if (gameObject.getStatus() != Status.KILLED) {
+                return true;
+            }
+        }
+        return false;
     }
 
     @Override
-    public void setGameObjects(List<GameObject> ships) {
-        this.ships = ships;
+    public List<GameObject> getGameObjects(int size) {
+        return gameObjects.get(size);
+    }
+
+    @Override
+    public void setGameObjects(Map<Integer, List<GameObject>> gameObjects) {
+        this.gameObjects = gameObjects;
     }
 
     @Override

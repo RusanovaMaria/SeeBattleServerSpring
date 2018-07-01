@@ -8,18 +8,20 @@ import com.seebattleserver.domain.rule.ClassicRule;
 import com.seebattleserver.domain.rule.Rule;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class StandardGameObjectAddition implements GameObjectAddition {
 
     private static final int[] ALLOWED_GAME_OBJECT_SIZES = {1, 2, 3, 4};
     private PlayingField playingField;
-    private List<GameObject> gameObjects;
+    private Map<Integer, List<GameObject>> gameObjects;
     private Rule rule;
 
     public StandardGameObjectAddition(PlayingField playingField) {
         this.playingField = playingField;
-        gameObjects = new ArrayList();
+        gameObjects = new HashMap<>();
         rule = new ClassicRule();
     }
 
@@ -33,12 +35,14 @@ public class StandardGameObjectAddition implements GameObjectAddition {
     }
 
     private void addGameObjectsBySize(int size) {
+        List<GameObject> gameObjectsOfCurrentSize = new ArrayList<>();
         int gameObjectQuantity = rule.countQuantityOfObjects(size);
         for (int j = 0; j < gameObjectQuantity; j++) {
             GameObject ship = new Ship(size);
             ShipBuild shipBuild = new ShipBuild(ship);
             shipBuild.build();
-            gameObjects.add(ship);
+            gameObjectsOfCurrentSize.add(ship);
         }
+        gameObjects.put(size, gameObjectsOfCurrentSize);
     }
 }

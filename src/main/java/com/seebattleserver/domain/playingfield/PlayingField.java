@@ -4,6 +4,7 @@ import com.seebattleserver.domain.cage.Cage;
 import com.seebattleserver.domain.gameobject.GameObject;
 
 import java.util.List;
+import java.util.Map;
 
 public interface PlayingField {
 
@@ -13,9 +14,9 @@ public interface PlayingField {
 
     int getHeight();
 
-    List<GameObject> getGameObjects();
+    List<GameObject> getGameObjects(int size);
 
-    void setGameObjects(List<GameObject> gameObjects);
+    void setGameObjects(Map<Integer, List<GameObject>> gameObjects);
 
     boolean isAllObjectsDied();
 }
