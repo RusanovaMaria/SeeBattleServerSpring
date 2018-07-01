@@ -55,7 +55,7 @@ public class ClassicPlayingField implements PlayingField {
     }
 
     @Override
-    public Cage findCage(int x, char y) {
+    public Cage identifyCage(int x, char y) {
         for (int i = 0; i < WIDTH; i++) {
             for (int j = 0; j < HEIGHT; j++) {
                 if ((cages[i][j].getX() == x) && (cages[i][j].getY() == y)) {

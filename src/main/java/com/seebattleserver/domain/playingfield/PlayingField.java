@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface PlayingField {
 
-    Cage findCage(int x, char y);
+    Cage identifyCage(int x, char y);
 
     int getWidth();
 

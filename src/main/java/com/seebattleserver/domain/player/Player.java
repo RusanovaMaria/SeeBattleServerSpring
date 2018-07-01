@@ -1,21 +1,16 @@
 package com.seebattleserver.domain.player;
 
-import com.seebattleserver.domain.playingfield.ClassicPlayingField;
+import com.seebattleserver.domain.playingfield.PlayingField;
 
 public class Player {
 
-    private String name;
-    private ClassicPlayingField playingField;
+    private PlayingField playingField;
 
-    public Player(String name) {
-        this.name = name;
+    public PlayingField getPlayingField() {
+        return playingField;
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
+    public void setPlayingField(PlayingField playingField) {
+        this.playingField = playingField;
     }
 }

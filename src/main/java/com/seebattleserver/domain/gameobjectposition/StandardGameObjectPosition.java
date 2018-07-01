@@ -122,7 +122,7 @@ public class StandardGameObjectPosition implements GameObjectPosition {
     private void positionHorizontally(PlayingField playingField, int[] x, char y, GameObject gameObject) {
         List<GameObjectPart> objectParts = gameObject.getGameObjectParts();
         for (int i = 0; i < x.length; i++) {
-            Cage cage = playingField.findCage(x[i], y);
+            Cage cage = playingField.identifyCage(x[i], y);
             cage.setGameObjectPart(objectParts.get(i));
         }
     }
@@ -130,7 +130,7 @@ public class StandardGameObjectPosition implements GameObjectPosition {
     private void positionVertically(PlayingField playingField, int x, char[] y, GameObject gameObject) {
         List<GameObjectPart> objectParts = gameObject.getGameObjectParts();
         for (int i = 0; i < y.length; i++) {
-            Cage cage = playingField.findCage(x, y[i]);
+            Cage cage = playingField.identifyCage(x, y[i]);
             cage.setGameObjectPart(objectParts.get(i));
         }
     }

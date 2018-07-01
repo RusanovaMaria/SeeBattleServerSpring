@@ -4,36 +4,27 @@ import com.seebattleserver.domain.cage.Cage;
 import com.seebattleserver.domain.cage.State;
 import com.seebattleserver.domain.gameobject.GameObject;
 import com.seebattleserver.domain.gameobject.Status;
+import com.seebattleserver.domain.gameobjectkiller.GameObjectKiller;
+import com.seebattleserver.domain.gameobjectkiller.ShipKiller;
 import com.seebattleserver.domain.gameobjectpart.GameObjectPart;
-import com.seebattleserver.domain.gameobjectposition.StandardGameObjectPosition;
 import com.seebattleserver.domain.player.Player;
-import com.seebattleserver.domain.playingfield.ClassicPlayingField;
 import com.seebattleserver.domain.playingfield.PlayingField;
-
-import java.util.HashMap;
-import java.util.Map;
 
 public class ClassicGame implements Game {
     private Player firstPlayer;
     private Player secondPlayer;
     private PlayingField firstPlayingField;
     private PlayingField secondPlayingField;
-    private Map<Player, PlayingField> players;
 
     public ClassicGame(Player firstPlayer, Player secondPlayer) {
         this.firstPlayer = firstPlayer;
         this.secondPlayer = secondPlayer;
-        initPlayers();
+        initPlayingFields();
     }
 
-    private void initPlayers() {
-        players = new HashMap();
-
-        firstPlayingField = new ClassicPlayingField(new StandardGameObjectPosition());
-        players.put(firstPlayer, firstPlayingField);
-
-        secondPlayingField = new ClassicPlayingField(new StandardGameObjectPosition());
-        players.put(secondPlayer, secondPlayingField);
+    private void initPlayingFields() {
+        firstPlayingField = firstPlayer.getPlayingField();
+        secondPlayingField = secondPlayer.getPlayingField();
     }
 
     @Override
@@ -46,14 +37,29 @@ public class ClassicGame implements Game {
 
     @Override
     public Result fire(Player player, int x, char y) {
-        PlayingField playingField = players.get(player);
-        Cage affectedCage = playingField.findCage(x, y);
-        Result result = makeShot(affectedCage);
+        PlayingField playingField = player.getPlayingField();
+        Cage affectedCage = playingField.identifyCage(x, y);
+        shoot(affectedCage);
+        Result result = getResult(affectedCage);
         affectedCage.markAsUsed();
         return result;
     }
 
-    private Result makeShot(Cage cage) {
+    private void shoot(Cage cage) {
+        State state = cage.getState();
+        if (state == State.FULL) {
+            GameObject gameObject = ejectGameObject(cage);
+            GameObjectKiller gameObjectKiller = new ShipKiller(gameObject);
+            gameObjectKiller.killPart();
+        }
+    }
+
+    private GameObject ejectGameObject(Cage cage) {
+        GameObjectPart gameObjectPart = cage.getGameObjectPart();
+        return gameObjectPart.getGameObject();
+    }
+
+    private Result getResult(Cage cage) {
         State state = cage.getState();
         switch (state) {
             case USED:
@@ -62,8 +68,7 @@ public class ClassicGame implements Game {
                 return Result.MISSED;
             case FULL:
                 GameObject gameObject = ejectGameObject(cage);
-                gameObject.killPart();
-                return determineDamage(gameObject);
+                return getResultOfDamage(gameObject);
             default:
                 new IllegalArgumentException("Неверный статус для клетки игрового поля");
         }
@@ -71,12 +76,7 @@ public class ClassicGame implements Game {
         throw new IllegalArgumentException("Неверное состояние компонента игрового поля");
     }
 
-    private GameObject ejectGameObject(Cage cage) {
-        GameObjectPart gameObjectPart = cage.getGameObjectPart();
-        return gameObjectPart.getGameObject();
-    }
-
-    private Result determineDamage(GameObject gameObject) {
+    private Result getResultOfDamage(GameObject gameObject) {
         Status status = gameObject.getStatus();
         switch (status) {
             case DAMAGED:

@@ -1,12 +1,9 @@
 package com.seebattleserver.domain.classicplayingfield;
 
 import com.seebattleserver.domain.cage.Cage;
-import com.seebattleserver.domain.game.ClassicGame;
-import com.seebattleserver.domain.game.Game;
 import com.seebattleserver.domain.gameobject.GameObject;
 import com.seebattleserver.domain.gameobject.Status;
 import com.seebattleserver.domain.gameobjectposition.StandardGameObjectPosition;
-import com.seebattleserver.domain.player.Player;
 import com.seebattleserver.domain.playingfield.ClassicPlayingField;
 import com.seebattleserver.domain.playingfield.PlayingField;
 import junit.framework.TestCase;
@@ -20,7 +17,7 @@ public class ClassicPlayingFieldTest extends TestCase {
     public void testFindCage_whenCageIsExists_returnCage() {
         PlayingField playingField = new ClassicPlayingField(new StandardGameObjectPosition());
         int x = 0;
-        Cage cage = playingField.findCage(x, 'a');
+        Cage cage = playingField.identifyCage(x, 'a');
         int result = cage.getX();
         assertEquals(result, x);
     }
@@ -29,7 +26,7 @@ public class ClassicPlayingFieldTest extends TestCase {
     public void testFindCage_whenCageIsNotExists_returnException() {
         PlayingField playingField = new ClassicPlayingField(new StandardGameObjectPosition());
         int x = 0;
-        Cage cage = playingField.findCage(x, 'a');
+        Cage cage = playingField.identifyCage(x, 'a');
         int result = cage.getX();
         assertEquals(result, x);
     }
