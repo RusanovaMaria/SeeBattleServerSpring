@@ -34,8 +34,10 @@ public class Cage {
     }
 
     public void setGameObjectPart(GameObjectPart gameObjectPart) {
-        this.gameObjectPart = gameObjectPart;
-        this.state = State.FULL;
+        if (gameObjectPart != null) {
+            this.gameObjectPart = gameObjectPart;
+            this.state = State.FULL;
+        }
     }
 
     public State getState() {

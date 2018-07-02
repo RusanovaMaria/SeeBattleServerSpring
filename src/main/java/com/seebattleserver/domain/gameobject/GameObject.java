@@ -6,15 +6,18 @@ import java.util.List;
 
 public interface GameObject {
 
-    void shoot();
-
-    Kind getKind();
-
     int getSize();
 
     Status getStatus();
 
     void setStatus(Status status);
 
-    List<GameObjectPart> getObjectParts();
+    List<GameObjectPart> getGameObjectParts();
+
+    void setGameObjectParts(List<GameObjectPart> gameObjectParts);
+
+    int getDiedGameObjectParts();
+
+    void setDiedGameObjectParts(int diedGameObjectParts);
+
 }

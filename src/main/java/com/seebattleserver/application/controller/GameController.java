@@ -1,8 +1,6 @@
 package com.seebattleserver.application.controller;
 
 import com.google.gson.Gson;
-import com.seebattleserver.application.adding_game_objects.Coordinate;
-import com.seebattleserver.application.adding_game_objects.StandardCoordinate;
 import com.seebattleserver.application.gameregistry.GameRegistry;
 import com.seebattleserver.application.message.Message;
 import com.seebattleserver.application.user.User;
@@ -37,11 +35,11 @@ public class GameController implements Controller {
     @Override
     public void handle(TextMessage text) {
         if (user.getUserStatus() == UserStatus.IN_GAME_MOVE) {
-            Coordinate coordinate = gson.fromJson(text.getPayload(), StandardCoordinate.class);
+           /* Coordinate coordinate = gson.fromJson(text.getPayload(), StandardCoordinate.class);
             int x = coordinate.getX();
             char y = coordinate.getY();
             makeMove(user, x, y);
-            endMove();
+            endMove(); */
         } else if (user.getUserStatus() == UserStatus.IN_GAME) {
             notifyAboutMistake();
         } else {
