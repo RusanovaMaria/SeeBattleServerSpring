@@ -9,16 +9,11 @@ public class Ship implements GameObject {
     private int size;
     private Status status;
     private List<GameObjectPart> gameObjectParts;
-    private Kind kind;
     private int diedGameObjectParts;
 
     public Ship(int size) {
         this.size = size;
         status = Status.ALIVE;
-    }
-
-    public void setKind(Kind kind) {
-        this.kind = kind;
     }
 
     @Override

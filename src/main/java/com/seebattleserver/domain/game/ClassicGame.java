@@ -91,11 +91,11 @@ public class ClassicGame implements Game {
     @Override
     public Player determineWinner() {
         if (firstPlayingField.isAllObjectsDied()) {
-            return firstPlayer;
-        } else if (secondPlayingField.isAllObjectsDied()) {
             return secondPlayer;
+        } else if (secondPlayingField.isAllObjectsDied()) {
+            return firstPlayer;
         } else {
-            throw new IllegalArgumentException("Игра не окончена");
+            throw new IllegalStateException("Игра не окончена");
         }
     }
 }

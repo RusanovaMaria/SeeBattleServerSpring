@@ -14,7 +14,7 @@ public interface PlayingField {
 
     int getHeight();
 
-    List<GameObject> getGameObjects(int size);
+    List<GameObject> getGameObjectsBySize(int size);
 
     void setGameObjects(Map<Integer, List<GameObject>> gameObjects);
 

@@ -44,8 +44,8 @@ public class AcceptInvitation implements Invitation {
     }
 
     private void startGame(User user, User userOpponent) {
-        Player firstPlayer = new Player(userOpponent.getUsername());
-        Player secondPlayer = new Player(user.getUsername());
+        Player firstPlayer = new Player();
+        Player secondPlayer = new Player();
         Game game = new ClassicGame(firstPlayer, secondPlayer);
 
         associateUserWithPlayer(userOpponent, firstPlayer);

@@ -25,7 +25,7 @@ public class UserGameObjectPosition implements GameObjectPosition {
     public void establish() {
         Set<Integer> gameObjectSizes = coordinates.keySet();
         for (int size : gameObjectSizes) {
-            List<GameObject> gameObjectsOfCurrentSize = playingField.getGameObjects(size);
+            List<GameObject> gameObjectsOfCurrentSize = playingField.getGameObjectsBySize(size);
             List<List<String>> coordinatesForGameObjectOfCurrentSize = coordinates.get(size);
             establishGameObjectsOfCurrentSize(gameObjectsOfCurrentSize, coordinatesForGameObjectOfCurrentSize);
         }

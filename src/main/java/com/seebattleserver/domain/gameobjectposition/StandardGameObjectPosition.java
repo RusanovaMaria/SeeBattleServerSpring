@@ -2,23 +2,18 @@ package com.seebattleserver.domain.gameobjectposition;
 
 import com.seebattleserver.domain.cage.Cage;
 import com.seebattleserver.domain.gameobject.GameObject;
-import com.seebattleserver.domain.gameobjectaddition.GameObjectAddition;
-import com.seebattleserver.domain.gameobjectaddition.StandardGameObjectAddition;
 import com.seebattleserver.domain.gameobjectpart.GameObjectPart;
-import com.seebattleserver.domain.playingfield.ClassicPlayingField;
 import com.seebattleserver.domain.playingfield.PlayingField;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class StandardGameObjectPosition implements GameObjectPosition {
 
     private PlayingField playingField;
 
-    public StandardGameObjectPosition() {
-        playingField = new ClassicPlayingField();
+    public StandardGameObjectPosition(PlayingField playingField) {
+        this.playingField = playingField;
     }
-
 
     @Override
     public void establish() {
@@ -29,7 +24,7 @@ public class StandardGameObjectPosition implements GameObjectPosition {
     }
 
     private void positionOneDeckShips() {
-        List<GameObject> oneDeckShips = playingField.getGameObjects(1);
+        List<GameObject> oneDeckShips = playingField.getGameObjectsBySize(1);
 
         int[] x0 = {0};
         int[] x1 = {9};
@@ -51,7 +46,7 @@ public class StandardGameObjectPosition implements GameObjectPosition {
     }
 
     private void positionTwoDeckShips() {
-        List<GameObject> twoDeckShips = playingField.getGameObjects(2);
+        List<GameObject> twoDeckShips = playingField.getGameObjectsBySize(2);
 
         int x0 = 0;
         int x1 = 2;
@@ -70,7 +65,7 @@ public class StandardGameObjectPosition implements GameObjectPosition {
     }
 
     private void positionThreeDeckShips() {
-        List<GameObject> threeDeckShips = playingField.getGameObjects(3);
+        List<GameObject> threeDeckShips = playingField.getGameObjectsBySize(3);
 
         int[] x = {4, 5, 6};
         char y0 = 'e';
@@ -85,7 +80,7 @@ public class StandardGameObjectPosition implements GameObjectPosition {
     }
 
     private void positionFourDeckShips() {
-        List<GameObject> fourDeckShips = playingField.getGameObjects(4);
+        List<GameObject> fourDeckShips = playingField.getGameObjectsBySize(4);
 
         int[] x = {2, 3, 4, 5};
         char y = 'a';

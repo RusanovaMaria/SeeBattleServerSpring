@@ -69,7 +69,7 @@ public class ClassicPlayingField implements PlayingField {
     }
 
     @Override
-    public List<GameObject> getGameObjects(int size) {
+    public List<GameObject> getGameObjectsBySize(int size) {
         return gameObjects.get(size);
     }
 
