@@ -13,8 +13,6 @@ import java.util.List;
 import java.util.Map;
 
 public class StandardGameObjectAddition implements GameObjectAddition {
-
-    private static final int[] ALLOWED_GAME_OBJECT_SIZES = {1, 2, 3, 4};
     private PlayingField playingField;
     private Map<Integer, List<GameObject>> gameObjects;
     private Rule rule;
@@ -27,8 +25,8 @@ public class StandardGameObjectAddition implements GameObjectAddition {
 
     @Override
     public void add() {
-        for (int i = 0; i < ALLOWED_GAME_OBJECT_SIZES.length; i++) {
-            int size = ALLOWED_GAME_OBJECT_SIZES[i];
+        for (int i = 0; i < rule.getMaxGameObjectSize(); i++) {
+            int size = rule.getAllowedGameObjectSizes()[i];
             addGameObjectsBySize(size);
         }
         playingField.setGameObjects(gameObjects);

@@ -3,13 +3,14 @@ package com.seebattleserver.domain.gameobjectbuild;
 import com.seebattleserver.domain.gameobject.GameObject;
 import com.seebattleserver.domain.gameobjectpart.GameObjectPart;
 import com.seebattleserver.domain.gameobjectpart.ShipPart;
+import com.seebattleserver.domain.rule.ClassicRule;
+import com.seebattleserver.domain.rule.Rule;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class ShipBuild implements GameObjectBuild {
-    private static final int MIN_SHIP_SIZE = 1;
-    private static final int MAX_SHIP_SIZE = 4;
+    private Rule rule;
     private GameObject ship;
     private List<GameObjectPart> gameObjectParts;
     private int size;
@@ -18,23 +19,17 @@ public class ShipBuild implements GameObjectBuild {
         this.ship = ship;
         gameObjectParts = new ArrayList<>();
         size = ship.getSize();
+        rule = new ClassicRule();
     }
 
     @Override
     public void build() {
-        if (isValidGameObjectSize()) {
+        if (rule.isValidGameObjectSize(size)) {
             generateGameObjectParts();
             ship.setGameObjectParts(gameObjectParts);
         } else {
             throw new IllegalArgumentException("Недопустимый размер корабля");
         }
-    }
-
-    private boolean isValidGameObjectSize() {
-        if ((size >= MIN_SHIP_SIZE) && (size <= MAX_SHIP_SIZE)) {
-            return true;
-        }
-        return false;
     }
 
     private void generateGameObjectParts() {
