@@ -7,43 +7,47 @@ import com.seebattleserver.application.user.UserStatus;
 import com.seebattleserver.domain.game.ClassicGame;
 import com.seebattleserver.domain.game.Game;
 import com.seebattleserver.domain.player.Player;
-import com.seebattleserver.service.sender.UserSender;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class AcceptInvitation implements Invitation {
-
     private User user;
-    private UserSender userSender;
+    private User userOpponent;
     private GameRegistry gameRegistry;
+    private List<Message> response;
 
-    public AcceptInvitation(User user, UserSender userSender, GameRegistry gameRegistry) {
+    public AcceptInvitation(User user, GameRegistry gameRegistry) {
         this.user = user;
-        this.userSender = userSender;
         this.gameRegistry = gameRegistry;
+        response = new ArrayList<>();
+        userOpponent = user.getOpponent();
     }
 
     @Override
-    public void handleAnswer() {
+    public List<Message> handleAnswer() {
         acceptInvitation();
+        return response;
     }
 
     private void acceptInvitation() {
-        User userOpponent = user.getOpponent();
-        notifyOpponent(userOpponent);
-        changeUserStatuses(user, userOpponent);
-        startGame(user, userOpponent);
+        changeUserStatuses();
+        makeResponse();
+        startGame();
     }
 
-    private void notifyOpponent(User userOpponent) {
-        userSender.sendMessage(userOpponent, new Message("Игрок " + user.getUsername() + " принял ваше предложение"));
-        userSender.sendMessage(userOpponent, new Message("Введите координаты х и у"));
-    }
-
-    private void changeUserStatuses(User user, User userOpponent) {
+    private void changeUserStatuses() {
         user.setUserStatus(UserStatus.IN_GAME);
         userOpponent.setUserStatus(UserStatus.IN_GAME_MOVE);
     }
 
-    private void startGame(User user, User userOpponent) {
+    private void makeResponse() {
+        response.add(new Message("Игрок " + user.getUsername() + " принял ваше предложение", userOpponent));
+        response.add(new Message("Введите координаты х и у", userOpponent));
+        response.add(new Message("Игра началась.", user));
+    }
+
+    private void startGame() {
         Player firstPlayer = new Player();
         Player secondPlayer = new Player();
         Game game = new ClassicGame(firstPlayer, secondPlayer);
@@ -51,14 +55,14 @@ public class AcceptInvitation implements Invitation {
         associateUserWithPlayer(userOpponent, firstPlayer);
         associateUserWithPlayer(user, firstPlayer);
 
-        putGameToGameRegistry(user, userOpponent, game);
+        putGameToGameRegistry(game);
     }
 
     private void associateUserWithPlayer(User user, Player player) {
         user.setPlayer(player);
     }
 
-    private void putGameToGameRegistry(User user, User userOpponent, Game game) {
+    private void putGameToGameRegistry(Game game) {
         gameRegistry.put(userOpponent, game);
         gameRegistry.put(user, game);
     }

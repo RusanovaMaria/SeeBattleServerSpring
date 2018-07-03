@@ -8,92 +8,120 @@ import com.seebattleserver.application.user.UserStatus;
 import com.seebattleserver.domain.game.Game;
 import com.seebattleserver.domain.game.Result;
 import com.seebattleserver.domain.player.Player;
-import com.seebattleserver.service.sender.UserSender;
 import com.seebattleserver.service.websocket.SocketHandler;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.socket.TextMessage;
 
-public class GameController implements Controller {
+import java.util.ArrayList;
+import java.util.List;
 
+public class GameController implements Controller {
     private static final Logger LOGGER = LoggerFactory.getLogger(SocketHandler.class);
 
     private User user;
     private GameRegistry gameRegistry;
     private Game game;
-    private UserSender userSender;
     private Gson gson;
+    private List<Message> response;
 
-    public GameController(User user, UserSender userSender, GameRegistry gameRegistry, Gson gson) {
+    int x;
+    char y;
+
+    public GameController(User user, GameRegistry gameRegistry, Gson gson) {
         this.user = user;
-        this.userSender = userSender;
         this.gameRegistry = gameRegistry;
         this.gson = gson;
+        response = new ArrayList<>();
         game = gameRegistry.getGameByUser(user);
     }
 
     @Override
-    public void handle(TextMessage text) {
-        if (user.getUserStatus() == UserStatus.IN_GAME_MOVE) {
-           /* Coordinate coordinate = gson.fromJson(text.getPayload(), StandardCoordinate.class);
-            int x = coordinate.getX();
-            char y = coordinate.getY();
-            makeMove(user, x, y);
-            endMove(); */
-        } else if (user.getUserStatus() == UserStatus.IN_GAME) {
-            notifyAboutMistake();
+    public List<Message> handle(TextMessage text) {
+        if (isUserMove()) {
+            String coordinates = getMessage(text);
+            makeMove(coordinates);
         } else {
-            throw new IllegalArgumentException("Не игровой статус пользователя");
+            makeUserMoveMistakeResponse();
+        }
+        return response;
+    }
+
+    private boolean isUserMove() {
+        if (user.getUserStatus() == UserStatus.IN_GAME_MOVE) {
+            return true;
+        }
+        return false;
+    }
+
+    private String getMessage(TextMessage text) {
+        Message message = gson.fromJson(text.getPayload(), Message.class);
+        String coordinates = message.getContent().trim();
+        return coordinates;
+    }
+
+    private void makeMove(String coordinates) {
+        try {
+            initCoordinates(coordinates);
+            move();
+        } catch (Exception ex) {
+            LOGGER.warn("Введены неверные координаты пользователем " + user.getUsername());
+            response.add(new Message("Введены неверные координаты, попробуйте еще раз", user));
         }
     }
 
-    private void makeMove(User user, int x, char y) {
-                Result result = game.fire(user.getPlayer(), x, y);
-                sendAnswerByResult(result);
-            }
+    private void initCoordinates(String coordinates) throws Exception {
+        x = coordinates.charAt(0);
+        y = coordinates.charAt(1);
+    }
 
-    private void endMove() {
-        if (game.isEnd()) {
-            endGame();
-        } else {
+    private void move() {
+        makeShot(x, y);
+        if (!game.isEnd()) {
             passMove();
+        } else {
+            endGame();
+        }
+    }
+
+    private void makeShot(int x, char y) {
+        Result result = game.fire(user.getPlayer(), x, y);
+        response.add(getResponseByResult(result));
+    }
+
+    private Message getResponseByResult(Result result) {
+        switch (result) {
+            case MISSED:
+                return new Message("Мимо", user);
+            case REPEATED:
+                return new Message("Вы уже стреляли в эту клетку", user);
+            case GOT:
+                return new Message("Попадание", user);
+            case KILLED:
+                return new Message("Убит", user);
+            default:
+                LOGGER.error("Недопустимое действие с игровым объектом");
+                throw new IllegalArgumentException("Недопустимое действие с игровым объектом");
         }
     }
 
     private void passMove() {
         User opponent = user.getOpponent();
-        userSender.sendMessage(opponent, new Message("Введите координаты х и у"));
         user.setUserStatus(UserStatus.IN_GAME);
         opponent.setUserStatus(UserStatus.IN_GAME_MOVE);
-    }
-
-    private void sendAnswerByResult(Result result) {
-        switch (result) {
-            case MISSED:
-                userSender.sendMessage(user, new Message("Мимо"));
-                break;
-            case REPEATED:
-                userSender.sendMessage(user, new Message("Вы уже стреляли в эту клетку"));
-                break;
-            case GOT:
-                userSender.sendMessage(user, new Message("Попадание"));
-                break;
-            case KILLED:
-                userSender.sendMessage(user, new Message("Убит"));
-        }
+        response.add(new Message("Введите х и у", opponent));
     }
 
     private void endGame() {
-        User userWinner = determineUserWinner();
-        notifyWinner(userWinner);
-        notifyLooser(userWinner.getOpponent());
-        User userOpponent = user.getOpponent();
-        removeOpponents(user, userOpponent);
-        changeStatuses(user, userOpponent);
-        removeGame(user, userOpponent);
+        User winner = determineWinner();
+        User looser = winner.getOpponent();
+        changeStatuses(winner, looser);
+        removeGame(winner, looser);
+        response.add(new Message("Игра окончена. Вы выиграли!", winner));
+        response.add(new Message("Игра окончена. Вы проиграли", looser));
     }
 
-    private User determineUserWinner() {
+    private User determineWinner() {
         Player winner = game.determineWinner();
         if (user.getPlayer().equals(winner)) {
             return user;
@@ -102,30 +130,19 @@ public class GameController implements Controller {
         }
     }
 
-    private void notifyWinner(User winnerUser) {
-        userSender.sendMessage(winnerUser, new Message("Вы победили, игра окончена"));
-    }
-
-    private void notifyLooser(User looserUser) {
-        userSender.sendMessage(looserUser, new Message("Вы проиграли, игра окончена"));
-    }
-
-    private void notifyAboutMistake() {
-        userSender.sendMessage(user, new Message("Сейчас не ваш ход"));
-    }
-
-    private void removeOpponents(User user, User userOpponent) {
-        user.setOpponent(null);
-        userOpponent.setOpponent(null);
-    }
-
     private void changeStatuses(User user, User userOpponent) {
         user.setUserStatus(UserStatus.FREE);
         userOpponent.setUserStatus(UserStatus.FREE);
+        user.setOpponent(null);
+        userOpponent.setOpponent(null);
     }
 
     private void removeGame(User user, User userOpponent) {
         gameRegistry.remove(user, game);
         gameRegistry.remove(userOpponent, game);
+    }
+
+    private void makeUserMoveMistakeResponse() {
+        response.add(new Message("Не ваш ход", user));
     }
 }

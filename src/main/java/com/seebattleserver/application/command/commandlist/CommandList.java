@@ -14,10 +14,12 @@ import java.util.Map;
 public class CommandList {
     private UserRegistry userRegistry;
     private Map<String, Command> commands;
+    private String defaultCommandWord;
 
     public CommandList(UserRegistry userRegistry) {
         commands = new HashMap();
         this.userRegistry = userRegistry;
+        defaultCommandWord = "help";
         iniCommands();
     }
 
@@ -37,5 +39,16 @@ public class CommandList {
 
     public Command getCommand(String commandWord) {
         return commands.get(commandWord);
+    }
+
+    public Command getDefaultCommand() {
+        return commands.get(defaultCommandWord);
+    }
+
+    public void setDefaultCommand(String defaultCommandWord, Command defaultCommand) {
+        this.defaultCommandWord = defaultCommandWord;
+        if (!commands.containsKey(defaultCommand)) {
+            commands.put(defaultCommandWord, defaultCommand);
+        }
     }
 }

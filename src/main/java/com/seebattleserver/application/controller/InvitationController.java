@@ -7,51 +7,57 @@ import com.seebattleserver.application.invitation.Invitation;
 import com.seebattleserver.application.invitation.NotAcceptInvitation;
 import com.seebattleserver.application.message.Message;
 import com.seebattleserver.application.user.User;
-import com.seebattleserver.service.sender.UserSender;
 import com.seebattleserver.service.websocket.SocketHandler;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.socket.TextMessage;
 
-public class InvitationController implements Controller {
+import java.util.ArrayList;
+import java.util.List;
 
+public class InvitationController implements Controller {
     private static final Logger LOGGER = LoggerFactory.getLogger(SocketHandler.class);
     private static final String YES = "yes";
     private static final String NO = "no";
 
     private User user;
-    private UserSender userSender;
     private GameRegistry gameRegistry;
     private Gson gson;
+    private List<Message> response;
 
-    public InvitationController(User user, UserSender userSender, GameRegistry gameRegistry, Gson gson) {
+    public InvitationController(User user, GameRegistry gameRegistry, Gson gson) {
         this.user = user;
-        this.userSender = userSender;
         this.gameRegistry = gameRegistry;
         this.gson = gson;
+        response = new ArrayList<>();
     }
 
     @Override
-    public void handle(TextMessage text) {
-        Message message = gson.fromJson(text.getPayload(), Message.class);
-        String answer = message.getContent();
-
+    public List<Message> handle(TextMessage text) {
+        String answer = getMessage(text);
         if (isCorrectAnswer(answer)) {
             Invitation invitation = createInvitation(answer);
-            invitation.handleAnswer();
+            response = invitation.handleAnswer();
         } else {
-            notifyAboutMistake();
-            LOGGER.warn("Ошибка ввода пользователя "+ user);
+           makeResponse();
         }
+        return response;
+    }
+
+    private String getMessage(TextMessage text) {
+        Message message = gson.fromJson(text.getPayload(), Message.class);
+        String answer = message.getContent().trim();
+        return answer;
     }
 
     private Invitation createInvitation(String answer) {
         switch (answer) {
             case YES:
-                return new AcceptInvitation(user, userSender, gameRegistry);
+                return new AcceptInvitation(user, gameRegistry);
             case NO:
-                return new NotAcceptInvitation(user, userSender);
+                return new NotAcceptInvitation(user);
             default:
+                LOGGER.error("Введен неверный ответ");
                 throw new IllegalArgumentException("Введен неверный ответ");
         }
     }
@@ -63,7 +69,7 @@ public class InvitationController implements Controller {
         return false;
     }
 
-    private void notifyAboutMistake() {
-        userSender.sendMessage(user, new Message("Введен неверный ответ. Попробуйте еще раз"));
+    private void makeResponse() {
+        response.add(new Message("Введен неверный ответ. Попробуйте еще раз", user));
     }
 }
