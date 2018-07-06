@@ -15,7 +15,7 @@ import static org.mockito.Matchers.anyString;
 import static org.mockito.Mockito.*;
 import static org.mockito.MockitoAnnotations.initMocks;
 
-public class RequestOpponentControllerTest extends TestCase {
+public class InvitationControllerTest extends TestCase {
 
     private Controller controller;
 
@@ -41,7 +41,7 @@ public class RequestOpponentControllerTest extends TestCase {
         gson = new Gson();
         Message message = new Message("any string");
         text = new TextMessage(gson.toJson(message));
-        controller = new RequestOpponentController(user, userRegistry, userSender, gson);
+        controller = new InvitationController(user, userRegistry, userSender, gson);
     }
 
     public void testHandle_whenOpponentIsFree_returnVerificationForChangeUsersStatuses() {

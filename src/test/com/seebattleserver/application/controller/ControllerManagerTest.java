@@ -42,7 +42,7 @@ public class ControllerManagerTest extends TestCase {
 
     public void testHandle_whenUserStatusIsInvited_returnVerificationForControllerFactoryCreateInvitationController() {
         when(user.getUserStatus()).thenReturn(UserStatus.INVITED);
-        when(controllerFactory.createInvitationController(user)).thenReturn(mock(InvitationController.class));
+        when(controllerFactory.createInvitationController(user)).thenReturn(mock(InvitationResponseController.class));
         controllerManager.handle(user, test);
         verify(controllerFactory).createInvitationController(user);
     }
@@ -70,7 +70,7 @@ public class ControllerManagerTest extends TestCase {
 
     public void testHandle_whenUserStatusIsRequestingOpponent_returnVerificationForControllerFactoryCreateRequestOpponentController() {
         when(user.getUserStatus()).thenReturn(UserStatus.REQUESTING_OPPONENT);
-        when(controllerFactory.createRequestOpponentController(user)).thenReturn(mock(RequestOpponentController.class));
+        when(controllerFactory.createRequestOpponentController(user)).thenReturn(mock(InvitationController.class));
         controllerManager.handle(user, test);
         verify(controllerFactory).createRequestOpponentController(user);
     }

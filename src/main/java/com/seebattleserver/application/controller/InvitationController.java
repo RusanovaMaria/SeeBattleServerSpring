@@ -13,7 +13,7 @@ import org.springframework.web.socket.TextMessage;
 import java.util.ArrayList;
 import java.util.List;
 
-public class RequestOpponentController implements Controller {
+public class InvitationController implements Controller {
     private static final Logger LOGGER = LoggerFactory.getLogger(SocketHandler.class);
 
     private User user;
@@ -21,7 +21,7 @@ public class RequestOpponentController implements Controller {
     private Gson gson;
     private List<Message> response;
 
-    public RequestOpponentController(User user, UserRegistry userRegistry, Gson gson) {
+    public InvitationController(User user, UserRegistry userRegistry, Gson gson) {
         this.user = user;
         this.userRegistry = userRegistry;
         this.gson = gson;
@@ -46,7 +46,7 @@ public class RequestOpponentController implements Controller {
         if (isInvitationPossible(opponent)) {
             invite(opponent);
         } else {
-            notifyAboutMistake();
+            makeUserMistakeResponse();
         }
     }
 
@@ -90,7 +90,7 @@ public class RequestOpponentController implements Controller {
         opponent.setOpponent(user);
     }
 
-    private void notifyAboutMistake() {
+    private void makeUserMistakeResponse() {
         response.add(new Message("Соперник с данным именем не найден или не может принять приглашение", user));
         LOGGER.warn("Пользователь " + user.getUsername() + "ввел не валидное имя соперника");
     }

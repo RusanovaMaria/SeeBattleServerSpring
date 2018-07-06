@@ -15,7 +15,7 @@ import static org.mockito.Matchers.eq;
 import static org.mockito.Mockito.*;
 import static org.mockito.MockitoAnnotations.initMocks;
 
-public class InvitationControllerTest extends TestCase {
+public class InvitationResponseControllerTest extends TestCase {
 
     private final String POSITIVE_ANSWER = "yes";
 
@@ -43,7 +43,7 @@ public class InvitationControllerTest extends TestCase {
     public void setUp() {
         initMocks(this);
         gson = new Gson();
-        controller = new InvitationController(user, userSender, gameRegistry, gson);
+        controller = new InvitationResponseController(user, userSender, gameRegistry, gson);
     }
 
     public void testHandle_whenPositiveAnswer_returnVerificationForAcceptInvitationHandleAnswer() {

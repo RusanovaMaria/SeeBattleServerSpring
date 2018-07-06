@@ -15,7 +15,7 @@ import org.springframework.web.socket.TextMessage;
 import java.util.ArrayList;
 import java.util.List;
 
-public class InvitationController implements Controller {
+public class InvitationResponseController implements Controller {
     private static final Logger LOGGER = LoggerFactory.getLogger(SocketHandler.class);
     private static final String YES = "yes";
     private static final String NO = "no";
@@ -25,7 +25,7 @@ public class InvitationController implements Controller {
     private Gson gson;
     private List<Message> response;
 
-    public InvitationController(User user, GameRegistry gameRegistry, Gson gson) {
+    public InvitationResponseController(User user, GameRegistry gameRegistry, Gson gson) {
         this.user = user;
         this.gameRegistry = gameRegistry;
         this.gson = gson;
@@ -39,7 +39,7 @@ public class InvitationController implements Controller {
             Invitation invitation = createInvitation(answer);
             response = invitation.handleAnswer();
         } else {
-           makeResponse();
+           makeUserMistakeResponse();
         }
         return response;
     }
@@ -69,7 +69,7 @@ public class InvitationController implements Controller {
         return false;
     }
 
-    private void makeResponse() {
+    private void makeUserMistakeResponse() {
         response.add(new Message("Введен неверный ответ. Попробуйте еще раз", user));
     }
 }
