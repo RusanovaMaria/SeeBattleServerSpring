@@ -1,12 +1,10 @@
 package com.seebattleserver.application.controller;
 
 import com.google.gson.Gson;
-import com.seebattleserver.application.gameregistry.GameRegistry;
-import com.seebattleserver.application.invitation.AcceptInvitation;
-import com.seebattleserver.application.invitation.Invitation;
-import com.seebattleserver.application.invitation.NotAcceptInvitation;
 import com.seebattleserver.application.message.Message;
 import com.seebattleserver.application.user.User;
+import com.seebattleserver.application.user.UserRegistry;
+import com.seebattleserver.application.user.UserStatus;
 import com.seebattleserver.service.websocket.SocketHandler;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -15,61 +13,85 @@ import org.springframework.web.socket.TextMessage;
 import java.util.ArrayList;
 import java.util.List;
 
-public class InvitationController implements Controller {
+public class RequestOpponentController implements Controller {
     private static final Logger LOGGER = LoggerFactory.getLogger(SocketHandler.class);
-    private static final String YES = "yes";
-    private static final String NO = "no";
 
     private User user;
-    private GameRegistry gameRegistry;
+    private UserRegistry userRegistry;
     private Gson gson;
     private List<Message> response;
 
-    public InvitationController(User user, GameRegistry gameRegistry, Gson gson) {
+    public RequestOpponentController(User user, UserRegistry userRegistry, Gson gson) {
         this.user = user;
-        this.gameRegistry = gameRegistry;
+        this.userRegistry = userRegistry;
         this.gson = gson;
         response = new ArrayList<>();
     }
 
     @Override
     public List<Message> handle(TextMessage text) {
-        String answer = getMessage(text);
-        if (isCorrectAnswer(answer)) {
-            Invitation invitation = createInvitation(answer);
-            response = invitation.handleAnswer();
-        } else {
-           makeResponse();
-        }
+        String opponentName = getMessage(text);
+        makeInvitation(opponentName);
         return response;
     }
 
     private String getMessage(TextMessage text) {
         Message message = gson.fromJson(text.getPayload(), Message.class);
-        String answer = message.getContent().trim();
-        return answer;
+        String opponentName = message.getContent().trim();
+        return opponentName;
     }
 
-    private Invitation createInvitation(String answer) {
-        switch (answer) {
-            case YES:
-                return new AcceptInvitation(user, gameRegistry);
-            case NO:
-                return new NotAcceptInvitation(user);
-            default:
-                LOGGER.error("Введен неверный ответ");
-                throw new IllegalArgumentException("Введен неверный ответ");
+    private void makeInvitation(String opponentName) {
+        User opponent = userRegistry.getUserByName(opponentName);
+        if (isInvitationPossible(opponent)) {
+            invite(opponent);
+        } else {
+            notifyAboutMistake();
         }
     }
 
-    private boolean isCorrectAnswer(String answer) {
-        if (answer.equals(YES) || answer.equals(NO)) {
+    private boolean isInvitationPossible(User userOpponent) {
+        if ((isFree(user)) && (isFree(userOpponent)) && (isNotNull(userOpponent))) {
             return true;
         }
         return false;
     }
 
-    private void makeResponse() {
-        response.add(new Message("Введен неверный ответ. Попробуйте еще раз", user));
+    private boolean isFree(User user) {
+        if (user.getUserStatus().equals(UserStatus.FREE)) {
+            return true;
+        }
+        return false;
+    }
+
+    private boolean isNotNull(User opponent) {
+        if (opponent != null) {
+            return true;
+        }
+        return false;
+    }
+
+    private void invite(User userOpponent) {
+        userOpponent.setUserStatus(UserStatus.INVITED);
+        user.setUserStatus(UserStatus.INVITING);
+        unitOpponents(user, userOpponent);
+        makeResponse(userOpponent);
+    }
+
+    private void makeResponse(User userOpponent) {
+        response.add(new Message("С вами хочет играть " + user.getUsername() +
+                ". Введите команду 'yes' или 'no'.", userOpponent));
+        response.add(new Message("Запрос отправлен игроку " + userOpponent.getUsername() +
+                " Дождитесь ответа.", user));
+    }
+
+    private void unitOpponents(User user, User opponent) {
+        user.setOpponent(opponent);
+        opponent.setOpponent(user);
+    }
+
+    private void notifyAboutMistake() {
+        response.add(new Message("Соперник с данным именем не найден или не может принять приглашение", user));
+        LOGGER.warn("Пользователь " + user.getUsername() + "ввел не валидное имя соперника");
     }
 }
