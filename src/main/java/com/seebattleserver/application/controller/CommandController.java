@@ -5,6 +5,7 @@ import com.seebattleserver.application.command.*;
 import com.seebattleserver.application.command.commandlist.CommandList;
 import com.seebattleserver.application.user.User;
 import com.seebattleserver.application.message.Message;
+import com.seebattleserver.application.user.UserStatus;
 import org.springframework.web.socket.TextMessage;
 
 import java.util.ArrayList;
@@ -27,6 +28,9 @@ public class CommandController implements Controller {
     public List<Message> handle(TextMessage text) {
         String commandWord = getMessage(text);
         Command command = commandList.getCommand(commandWord);
+        if (command instanceof PlayerInvitationCommand) {
+            user.setUserStatus(UserStatus.INVITING);
+        }
         if (isNull(command)) {
             command = commandList.getDefaultCommand();
         }

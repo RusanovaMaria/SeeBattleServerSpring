@@ -51,7 +51,7 @@ public class InvitationController implements Controller {
     }
 
     private boolean isInvitationPossible(User userOpponent) {
-        if ((isFree(user)) && (isFree(userOpponent)) && (isNotNull(userOpponent))) {
+        if (isFree(userOpponent) && (isNotNull(userOpponent))){
             return true;
         }
         return false;
@@ -73,7 +73,6 @@ public class InvitationController implements Controller {
 
     private void invite(User userOpponent) {
         userOpponent.setUserStatus(UserStatus.INVITED);
-        user.setUserStatus(UserStatus.INVITING);
         unitOpponents(user, userOpponent);
         makeResponse(userOpponent);
     }

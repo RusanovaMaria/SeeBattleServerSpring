@@ -35,15 +35,15 @@ public class ControllerManager {
                 case FREE:
                     return controllerFactory.createCommandController(user);
                 case INVITED:
-                    return controllerFactory.createInvitationController(user);
+                    return controllerFactory.createInvitationResponseController(user);
                 case INVITING:
-                    return  controllerFactory.createCommandController(user);
+                    return  controllerFactory.createInvitationController(user);
                 case IN_GAME:
                     return controllerFactory.createGameController(user);
                 case IN_GAME_MOVE:
                     return controllerFactory.createGameController(user);
-                case REQUESTING_OPPONENT:
-                    return controllerFactory.createRequestOpponentController(user);
+               // case REQUESTING_OPPONENT:
+                    //return controllerFactory.createInvitationController(user);
             }
             throw new IllegalStateException("Данный статус клиента не распознан");
         }

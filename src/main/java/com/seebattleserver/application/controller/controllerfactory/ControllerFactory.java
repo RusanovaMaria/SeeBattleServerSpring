@@ -36,11 +36,11 @@ public class ControllerFactory {
         return new GameController(user, gameRegistry, gson);
     }
 
-    public InvitationResponseController createInvitationController(User user) {
+    public InvitationResponseController createInvitationResponseController(User user) {
         return new InvitationResponseController(user, gameRegistry, gson);
     }
 
-    public InvitationController createRequestOpponentController(User user) {
+    public InvitationController createInvitationController(User user) {
         return new InvitationController(user, userRegistry, gson);
     }
 
