@@ -17,6 +17,7 @@ import org.springframework.web.socket.WebSocketSession;
 import org.springframework.web.socket.handler.TextWebSocketHandler;
 import com.seebattleserver.application.message.Message;
 
+
 import java.io.IOException;
 
 @Component
@@ -42,26 +43,42 @@ public class SocketHandler extends TextWebSocketHandler {
 
     @Override
     public void handleTextMessage(WebSocketSession session, TextMessage text) throws IOException {
-        if (sessionRegistry.containsSession(session)) {
-            User user = sessionRegistry.getUser(session);
-            controllerManager.handle(user, text);
+        if (isNotNewSession(session)) {
+            handleUserMessage(text, session);
         } else {
-            Message name = gson.fromJson(text.getPayload(), Message.class);
-            User user = new User(name.getContent());
-            userRegistry.add(user);
-            sessionRegistry.put(session, user);
+            registerUser(text, session);
+            sendMessageInSession(session, "Регистрация успешно завершена. Введите команду help.");
         }
-    }
-
-    private void sendMessageInSession(WebSocketSession session, String context) throws IOException {
-        Message message = new Message(context);
-        String messageJson = gson.toJson(message);
-        session.sendMessage(new TextMessage(messageJson));
     }
 
     @Override
     public void afterConnectionEstablished(WebSocketSession session) throws Exception {
         LOGGER.info("Подключение нового клиента");
         sendMessageInSession(session, "Введите свое имя");
+    }
+
+    private boolean isNotNewSession(WebSocketSession session) {
+        if (sessionRegistry.containsSession(session)) {
+            return true;
+        }
+        return false;
+    }
+
+    private void handleUserMessage(TextMessage text, WebSocketSession session) {
+        User user = sessionRegistry.getUser(session);
+        controllerManager.handle(user, text);
+    }
+
+    private void registerUser(TextMessage text, WebSocketSession session) {
+        Message name = gson.fromJson(text.getPayload(), Message.class);
+        User user = new User(name.getContent());
+        userRegistry.add(user);
+        sessionRegistry.put(session, user);
+    }
+
+    private void sendMessageInSession(WebSocketSession session, String context) throws IOException {
+        Message message = new Message(context);
+        String messageJson = gson.toJson(message);
+        session.sendMessage(new TextMessage(messageJson));
     }
 }
