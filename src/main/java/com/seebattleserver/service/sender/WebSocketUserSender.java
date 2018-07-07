@@ -33,5 +33,4 @@ public class WebSocketUserSender implements UserSender {
             e.printStackTrace();
         }
     }
-
 }

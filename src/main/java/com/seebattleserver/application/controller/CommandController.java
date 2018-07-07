@@ -6,36 +6,34 @@ import com.seebattleserver.application.command.commandlist.CommandList;
 import com.seebattleserver.application.user.User;
 import com.seebattleserver.application.message.Message;
 import com.seebattleserver.application.user.UserStatus;
+import com.seebattleserver.service.sender.UserSender;
 import org.springframework.web.socket.TextMessage;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class CommandController implements Controller {
     private User user;
     private CommandList commandList;
     private Gson gson;
-    private List<Message> response;
+    private UserSender userSender;
 
-    public CommandController(User user, CommandList commandList, Gson gson) {
+    public CommandController(User user, CommandList commandList, Gson gson,
+                             UserSender userSender) {
         this.user = user;
         this.commandList = commandList;
         this.gson = gson;
-        response = new ArrayList<>();
+        this.userSender = userSender;
     }
 
     @Override
-    public List<Message> handle(TextMessage text) {
+    public void handle(TextMessage text) {
         String commandWord = getMessage(text);
         Command command = commandList.getCommand(commandWord);
         if (command instanceof PlayerInvitationCommand) {
-            user.setUserStatus(UserStatus.INVITING);
+            user.setUserStatus(UserStatus.REQUESTING_OPPONENT);
         }
         if (isNull(command)) {
             command = commandList.getDefaultCommand();
         }
-        makeResponse(command);
-        return response;
+        sendCommandExecution(command);
     }
 
     private String getMessage(TextMessage text) {
@@ -51,7 +49,7 @@ public class CommandController implements Controller {
         return false;
     }
 
-    private void makeResponse(Command command) {
-        response.add(new Message(command.execute(), user));
+    private void sendCommandExecution(Command command) {
+        userSender.sendMessage(user, new Message(command.execute()));
     }
 }

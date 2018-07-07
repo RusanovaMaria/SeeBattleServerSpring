@@ -3,41 +3,34 @@ package com.seebattleserver.application.invitation;
 import com.seebattleserver.application.message.Message;
 import com.seebattleserver.application.user.User;
 import com.seebattleserver.application.user.UserStatus;
-
-import java.util.ArrayList;
-import java.util.List;
+import com.seebattleserver.service.sender.UserSender;
 
 public class NotAcceptInvitation implements Invitation {
 
     private User user;
-    private List<Message> response;
     private User userOpponent;
+    private UserSender userSender;
 
-    public NotAcceptInvitation(User user) {
+    public NotAcceptInvitation(User user, UserSender userSender) {
         this.user = user;
-        userOpponent = user.getOpponent();
-        response = new ArrayList<>();
+        this.userSender = userSender;
+        userOpponent = user.getUserOpponent();
     }
 
     @Override
-    public List<Message> handleAnswer() {
-        notAcceptInvitation();
-        return response;
-    }
-
-    private void notAcceptInvitation() { ;
-        makeResponse();
+    public void handleAnswer() {
+        sendAnswer();
         changeStatuses();
     }
 
-    private void makeResponse() {
-        response.add(new Message("Игрок " + user.getUsername() + " отклонил ваше предложение", userOpponent));
+    private void sendAnswer() {
+        userSender.sendMessage(userOpponent, new Message("Игрок " + user.getUsername() + " отклонил ваше предложение"));
     }
 
     private void changeStatuses() {
-        user.setOpponent(null);
+        user.setUserOpponent(null);
         user.setUserStatus(UserStatus.FREE);
-        userOpponent.setOpponent(null);
+        userOpponent.setUserOpponent(null);
         userOpponent.setUserStatus(UserStatus.FREE);
     }
 }

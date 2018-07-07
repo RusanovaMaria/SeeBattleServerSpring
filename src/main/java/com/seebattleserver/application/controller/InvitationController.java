@@ -5,13 +5,11 @@ import com.seebattleserver.application.message.Message;
 import com.seebattleserver.application.user.User;
 import com.seebattleserver.application.user.UserRegistry;
 import com.seebattleserver.application.user.UserStatus;
+import com.seebattleserver.service.sender.UserSender;
 import com.seebattleserver.service.websocket.SocketHandler;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.socket.TextMessage;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class InvitationController implements Controller {
     private static final Logger LOGGER = LoggerFactory.getLogger(SocketHandler.class);
@@ -19,20 +17,26 @@ public class InvitationController implements Controller {
     private User user;
     private UserRegistry userRegistry;
     private Gson gson;
-    private List<Message> response;
+    private UserSender userSender;
 
-    public InvitationController(User user, UserRegistry userRegistry, Gson gson) {
+    public InvitationController(User user, UserRegistry userRegistry, Gson gson,
+                                UserSender userSender) {
         this.user = user;
         this.userRegistry = userRegistry;
         this.gson = gson;
-        response = new ArrayList<>();
+        this.userSender = userSender;
     }
 
     @Override
-    public List<Message> handle(TextMessage text) {
-        String opponentName = getMessage(text);
-        makeInvitation(opponentName);
-        return response;
+    public void handle(TextMessage text) {
+        String userOpponentName = getMessage(text);
+        User userOpponent = userRegistry.getUserByName(userOpponentName);
+        if (isInvitationPossible(userOpponent)) {
+            invite(userOpponent);
+            notifyAboutSendInvitation();
+        } else {
+            notifyAboutMistake();
+        }
     }
 
     private String getMessage(TextMessage text) {
@@ -41,17 +45,8 @@ public class InvitationController implements Controller {
         return opponentName;
     }
 
-    private void makeInvitation(String opponentName) {
-        User opponent = userRegistry.getUserByName(opponentName);
-        if (isInvitationPossible(opponent)) {
-            invite(opponent);
-        } else {
-            makeUserMistakeResponse();
-        }
-    }
-
     private boolean isInvitationPossible(User userOpponent) {
-        if (isFree(userOpponent) && (isNotNull(userOpponent))){
+        if (isFree(userOpponent) && (isNotNull(userOpponent))) {
             return true;
         }
         return false;
@@ -72,25 +67,28 @@ public class InvitationController implements Controller {
     }
 
     private void invite(User userOpponent) {
+        user.setUserStatus(UserStatus.INVITING);
         userOpponent.setUserStatus(UserStatus.INVITED);
-        unitOpponents(user, userOpponent);
-        makeResponse(userOpponent);
+        rally(user, userOpponent);
+        sendInvitation(userOpponent);
     }
 
-    private void makeResponse(User userOpponent) {
-        response.add(new Message("С вами хочет играть " + user.getUsername() +
-                ". Введите команду 'yes' или 'no'.", userOpponent));
-        response.add(new Message("Запрос отправлен игроку " + userOpponent.getUsername() +
-                " Дождитесь ответа.", user));
+    private void rally(User user, User opponent) {
+        user.setUserOpponent(opponent);
+        opponent.setUserOpponent(user);
     }
 
-    private void unitOpponents(User user, User opponent) {
-        user.setOpponent(opponent);
-        opponent.setOpponent(user);
+    private void sendInvitation(User userOpponent) {
+        userSender.sendMessage(userOpponent, new Message("С вами хочет " +
+                "играть " + user.getUsername() + ". Введите команду 'yes' или 'no'."));
     }
 
-    private void makeUserMistakeResponse() {
-        response.add(new Message("Соперник с данным именем не найден или не может принять приглашение", user));
-        LOGGER.warn("Пользователь " + user.getUsername() + "ввел не валидное имя соперника");
+    private void notifyAboutSendInvitation() {
+        userSender.sendMessage(user, (new Message("Запрос отправлен. Дождитесь ответа.")));
+    }
+
+    private void notifyAboutMistake() {
+        userSender.sendMessage(user, new Message("Данный пользователь " +
+                "не обнаружен или не может принять приглашение"));
     }
 }

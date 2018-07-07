@@ -47,7 +47,8 @@ public class SocketHandler extends TextWebSocketHandler {
             handleUserMessage(text, session);
         } else {
             registerUser(text, session);
-            sendMessageInSession(session, "Регистрация успешно завершена. Введите команду help.");
+            sendMessageInSession(session, "Регистрация успешно завершена. " +
+                    "Введите команду help, чтобы посмотреть список возможных команд.");
         }
     }
 

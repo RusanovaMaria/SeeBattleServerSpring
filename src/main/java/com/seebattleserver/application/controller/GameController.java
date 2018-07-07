@@ -8,13 +8,11 @@ import com.seebattleserver.application.user.UserStatus;
 import com.seebattleserver.domain.game.Game;
 import com.seebattleserver.domain.game.Result;
 import com.seebattleserver.domain.player.Player;
+import com.seebattleserver.service.sender.UserSender;
 import com.seebattleserver.service.websocket.SocketHandler;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.socket.TextMessage;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class GameController implements Controller {
     private static final Logger LOGGER = LoggerFactory.getLogger(SocketHandler.class);
@@ -23,28 +21,30 @@ public class GameController implements Controller {
     private GameRegistry gameRegistry;
     private Game game;
     private Gson gson;
-    private List<Message> response;
+    private UserSender userSender;
+    private User userOpponent;
 
     int x;
     char y;
 
-    public GameController(User user, GameRegistry gameRegistry, Gson gson) {
+    public GameController(User user, GameRegistry gameRegistry, Gson gson,
+                          UserSender userSender) {
         this.user = user;
         this.gameRegistry = gameRegistry;
         this.gson = gson;
-        response = new ArrayList<>();
+        this.userSender = userSender;
         game = gameRegistry.getGameByUser(user);
+        userOpponent = user.getUserOpponent();
     }
 
     @Override
-    public List<Message> handle(TextMessage text) {
+    public void handle(TextMessage text) {
         if (isUserMove()) {
             String coordinates = getMessage(text);
             makeMove(coordinates);
         } else {
-            makeUserMoveMistakeResponse();
+            notifyAboutNotUserMove();
         }
-        return response;
     }
 
     private boolean isUserMove() {
@@ -65,12 +65,16 @@ public class GameController implements Controller {
             initCoordinates(coordinates);
             move();
         } catch (Exception ex) {
+            notifyAboutNotCorrectCoordinatesInput();
             LOGGER.warn("Введены неверные координаты пользователем " + user.getUsername());
-            response.add(new Message("Введены неверные координаты, попробуйте еще раз", user));
         }
     }
 
-    private void initCoordinates(String coordinates) throws Exception {
+    private void notifyAboutNotCorrectCoordinatesInput() {
+        userSender.sendMessage(user, new Message("Введены неверные координаты, попробуйте еще раз"));
+    }
+
+    private void initCoordinates(String coordinates)  {
         x = coordinates.charAt(0);
         y = coordinates.charAt(1);
     }
@@ -86,19 +90,23 @@ public class GameController implements Controller {
 
     private void makeShot(int x, char y) {
         Result result = game.fire(user.getPlayer(), x, y);
-        response.add(getResponseByResult(result));
+        sendResult(result);
+    }
+
+    private void sendResult(Result result) {
+        userSender.sendMessage(user, getResponseByResult(result));
     }
 
     private Message getResponseByResult(Result result) {
         switch (result) {
             case MISSED:
-                return new Message("Мимо", user);
+                return new Message("Мимо");
             case REPEATED:
-                return new Message("Вы уже стреляли в эту клетку", user);
+                return new Message("Вы уже стреляли в эту клетку");
             case GOT:
-                return new Message("Попадание", user);
+                return new Message("Попадание");
             case KILLED:
-                return new Message("Убит", user);
+                return new Message("Убит");
             default:
                 LOGGER.error("Недопустимое действие с игровым объектом");
                 throw new IllegalArgumentException("Недопустимое действие с игровым объектом");
@@ -106,19 +114,27 @@ public class GameController implements Controller {
     }
 
     private void passMove() {
-        User opponent = user.getOpponent();
+        User userOpponent = user.getUserOpponent();
         user.setUserStatus(UserStatus.IN_GAME);
-        opponent.setUserStatus(UserStatus.IN_GAME_MOVE);
-        response.add(new Message("Введите х и у", opponent));
+        userOpponent.setUserStatus(UserStatus.IN_GAME_MOVE);
+        notifyAboutPassMove(userOpponent);
+    }
+
+    private void notifyAboutPassMove(User userOpponent) {
+        userSender.sendMessage(userOpponent, new Message("Введите х и у"));
     }
 
     private void endGame() {
         User winner = determineWinner();
-        User looser = winner.getOpponent();
-        changeStatuses(winner, looser);
-        removeGame(winner, looser);
-        response.add(new Message("Игра окончена. Вы выиграли!", winner));
-        response.add(new Message("Игра окончена. Вы проиграли", looser));
+        User looser = winner.getUserOpponent();
+        notifyAboutGameEnd(winner, looser);
+        endGameProcessForUsers();
+        removeGame();
+    }
+
+    private void notifyAboutGameEnd(User winner, User looser) {
+        userSender.sendMessage(winner, new Message("Игра окончена. Вы выиграли!"));
+        userSender.sendMessage(looser, new Message("Игра окончена. Вы проиграли"));
     }
 
     private User determineWinner() {
@@ -126,23 +142,23 @@ public class GameController implements Controller {
         if (user.getPlayer().equals(winner)) {
             return user;
         } else {
-            return user.getOpponent();
+            return user.getUserOpponent();
         }
     }
 
-    private void changeStatuses(User user, User userOpponent) {
+    private void endGameProcessForUsers() {
         user.setUserStatus(UserStatus.FREE);
         userOpponent.setUserStatus(UserStatus.FREE);
-        user.setOpponent(null);
-        userOpponent.setOpponent(null);
+        user.setUserOpponent(null);
+        userOpponent.setUserOpponent(null);
     }
 
-    private void removeGame(User user, User userOpponent) {
+    private void removeGame() {
         gameRegistry.remove(user, game);
         gameRegistry.remove(userOpponent, game);
     }
 
-    private void makeUserMoveMistakeResponse() {
-        response.add(new Message("Не ваш ход", user));
+    private void notifyAboutNotUserMove() {
+        userSender.sendMessage(user, new Message("Сейчас не ваш ход"));
     }
 }

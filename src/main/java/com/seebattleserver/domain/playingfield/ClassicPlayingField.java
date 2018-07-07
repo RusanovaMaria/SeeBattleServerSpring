@@ -43,7 +43,7 @@ public class ClassicPlayingField implements PlayingField {
                 }
             }
         }
-        throw new IllegalArgumentException("Клетка с данными координаами не найдена");
+        throw new IllegalArgumentException("Клетка с данными координатами не найдена");
     }
 
     @Override

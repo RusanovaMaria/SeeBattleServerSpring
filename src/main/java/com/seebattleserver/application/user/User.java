@@ -6,7 +6,7 @@ public class User {
     private String username;
     private Player player;
     private UserStatus userStatus;
-    private User opponent;
+    private User userOpponent;
 
     public User(String username) {
         this.username = username;
@@ -29,12 +29,12 @@ public class User {
         this.userStatus = userStatus;
     }
 
-    public User getOpponent() {
-        return opponent;
+    public User getUserOpponent() {
+        return userOpponent;
     }
 
-    public void setOpponent(User opponent) {
-        this.opponent = opponent;
+    public void setUserOpponent(User userOpponent) {
+        this.userOpponent = userOpponent;
     }
 
     public Player getPlayer() {
