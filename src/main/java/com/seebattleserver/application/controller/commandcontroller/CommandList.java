@@ -1,4 +1,4 @@
-package com.seebattleserver.application.command.commandlist;
+package com.seebattleserver.application.controller.commandcontroller;
 
 import com.seebattleserver.application.command.Command;
 import com.seebattleserver.application.command.HelpCommand;

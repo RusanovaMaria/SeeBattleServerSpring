@@ -1,6 +1,6 @@
-package com.seebattleserver.application.controller;
+package com.seebattleserver.application.controller.invitationcontroller;
 
-import com.google.gson.Gson;
+import com.seebattleserver.application.controller.Controller;
 import com.seebattleserver.application.message.Message;
 import com.seebattleserver.application.user.User;
 import com.seebattleserver.application.user.UserRegistry;
@@ -9,21 +9,18 @@ import com.seebattleserver.service.sender.UserSender;
 import com.seebattleserver.service.websocket.SocketHandler;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.web.socket.TextMessage;
 
 public class InvitationController implements Controller {
     private static final Logger LOGGER = LoggerFactory.getLogger(SocketHandler.class);
 
     private User user;
     private UserRegistry userRegistry;
-    private Gson gson;
     private UserSender userSender;
 
-    public InvitationController(User user, UserRegistry userRegistry, Gson gson,
+    public InvitationController(User user, UserRegistry userRegistry,
                                 UserSender userSender) {
         this.user = user;
         this.userRegistry = userRegistry;
-        this.gson = gson;
         this.userSender = userSender;
     }
 

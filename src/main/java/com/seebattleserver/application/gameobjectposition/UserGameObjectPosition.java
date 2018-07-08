@@ -1,4 +1,4 @@
-package com.seebattleserver.domain.gameobjectposition;
+package com.seebattleserver.application.gameobjectposition;
 
 import com.seebattleserver.domain.cage.Cage;
 import com.seebattleserver.domain.gameobject.GameObject;
@@ -22,7 +22,7 @@ public class UserGameObjectPosition implements GameObjectPosition {
     }
 
     @Override
-    public void establish() {
+    public void arrange() {
         Set<Integer> gameObjectSizes = coordinates.keySet();
         for (int size : gameObjectSizes) {
             List<GameObject> gameObjectsOfCurrentSize = playingField.getGameObjectsBySize(size);

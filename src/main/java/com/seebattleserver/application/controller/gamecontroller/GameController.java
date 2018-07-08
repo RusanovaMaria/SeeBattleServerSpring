@@ -1,6 +1,7 @@
-package com.seebattleserver.application.controller;
+package com.seebattleserver.application.controller.gamecontroller;
 
 import com.google.gson.Gson;
+import com.seebattleserver.application.controller.Controller;
 import com.seebattleserver.application.gameregistry.GameRegistry;
 import com.seebattleserver.application.message.Message;
 import com.seebattleserver.application.user.User;
@@ -12,7 +13,6 @@ import com.seebattleserver.service.sender.UserSender;
 import com.seebattleserver.service.websocket.SocketHandler;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.web.socket.TextMessage;
 
 public class GameController implements Controller {
     private static final Logger LOGGER = LoggerFactory.getLogger(SocketHandler.class);

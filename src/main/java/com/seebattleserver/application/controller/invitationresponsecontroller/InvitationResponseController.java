@@ -1,20 +1,16 @@
-package com.seebattleserver.application.controller;
+package com.seebattleserver.application.controller.invitationresponsecontroller;
 
-import com.google.gson.Gson;
+import com.seebattleserver.application.controller.Controller;
+import com.seebattleserver.application.controller.invitationresponsecontroller.invitation.AcceptInvitation;
+import com.seebattleserver.application.controller.invitationresponsecontroller.invitation.Invitation;
+import com.seebattleserver.application.controller.invitationresponsecontroller.invitation.NotAcceptInvitation;
 import com.seebattleserver.application.gameregistry.GameRegistry;
-import com.seebattleserver.application.invitation.AcceptInvitation;
-import com.seebattleserver.application.invitation.Invitation;
-import com.seebattleserver.application.invitation.NotAcceptInvitation;
 import com.seebattleserver.application.message.Message;
 import com.seebattleserver.application.user.User;
 import com.seebattleserver.service.sender.UserSender;
 import com.seebattleserver.service.websocket.SocketHandler;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.web.socket.TextMessage;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class InvitationResponseController implements Controller {
     private static final Logger LOGGER = LoggerFactory.getLogger(SocketHandler.class);
@@ -23,14 +19,12 @@ public class InvitationResponseController implements Controller {
 
     private User user;
     private GameRegistry gameRegistry;
-    private Gson gson;
     private UserSender userSender;
 
     public InvitationResponseController(User user, GameRegistry gameRegistry,
-                                        Gson gson, UserSender userSender) {
+                                        UserSender userSender) {
         this.user = user;
         this.gameRegistry = gameRegistry;
-        this.gson = gson;
         this.userSender = userSender;
     }
 

@@ -1,13 +1,12 @@
-package com.seebattleserver.application.controller;
+package com.seebattleserver.application.controller.commandcontroller;
 
 import com.google.gson.Gson;
 import com.seebattleserver.application.command.*;
-import com.seebattleserver.application.command.commandlist.CommandList;
+import com.seebattleserver.application.controller.Controller;
 import com.seebattleserver.application.user.User;
 import com.seebattleserver.application.message.Message;
 import com.seebattleserver.application.user.UserStatus;
 import com.seebattleserver.service.sender.UserSender;
-import org.springframework.web.socket.TextMessage;
 
 public class CommandController implements Controller {
     private User user;

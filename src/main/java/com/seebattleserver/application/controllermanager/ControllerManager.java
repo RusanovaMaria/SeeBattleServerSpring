@@ -1,12 +1,11 @@
 package com.seebattleserver.application.controller.controllermanager;
 
 import com.seebattleserver.application.controller.Controller;
-import com.seebattleserver.application.controller.controllerfactory.ControllerFactory;
+import com.seebattleserver.application.controllerfactory.ControllerFactory;
 import com.seebattleserver.application.user.User;
 import com.seebattleserver.application.user.UserStatus;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import org.springframework.web.socket.TextMessage;
 
 @Component
 public class ControllerManager {

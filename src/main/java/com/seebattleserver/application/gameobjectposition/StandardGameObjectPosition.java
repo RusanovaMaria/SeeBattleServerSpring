@@ -1,4 +1,4 @@
-package com.seebattleserver.domain.gameobjectposition;
+package com.seebattleserver.application.gameobjectposition;
 
 import com.seebattleserver.domain.cage.Cage;
 import com.seebattleserver.domain.gameobject.GameObject;
@@ -16,7 +16,7 @@ public class StandardGameObjectPosition implements GameObjectPosition {
     }
 
     @Override
-    public void establish() {
+    public void arrange() {
         positionOneDeckShips();
         positionTwoDeckShips();
         positionThreeDeckShips();

@@ -1,4 +1,4 @@
-package com.seebattleserver.application.invitation;
+package com.seebattleserver.application.controller.invitationresponsecontroller.invitation;
 
 import com.seebattleserver.application.gameregistry.GameRegistry;
 import com.seebattleserver.application.message.Message;
@@ -6,8 +6,8 @@ import com.seebattleserver.application.user.User;
 import com.seebattleserver.application.user.UserStatus;
 import com.seebattleserver.domain.game.ClassicGame;
 import com.seebattleserver.domain.game.Game;
-import com.seebattleserver.domain.gameobjectposition.GameObjectPosition;
-import com.seebattleserver.domain.gameobjectposition.StandardGameObjectPosition;
+import com.seebattleserver.application.gameobjectposition.GameObjectPosition;
+import com.seebattleserver.application.gameobjectposition.StandardGameObjectPosition;
 import com.seebattleserver.domain.player.Player;
 import com.seebattleserver.domain.playingfield.ClassicPlayingField;
 import com.seebattleserver.domain.playingfield.PlayingField;
@@ -70,9 +70,9 @@ public class AcceptInvitation implements Invitation {
         PlayingField secondPlayingField = new ClassicPlayingField();
         GameObjectPosition position;
         position= new StandardGameObjectPosition(firstPlayingField);
-        position.establish();
+        position.arrange();
         position = new StandardGameObjectPosition(secondPlayingField);
-        position.establish();
+        position.arrange();
         firstPlayer.setPlayingField(firstPlayingField);
         secondPlayer.setPlayingField(secondPlayingField);
         Game game = new ClassicGame(firstPlayer, secondPlayer);
