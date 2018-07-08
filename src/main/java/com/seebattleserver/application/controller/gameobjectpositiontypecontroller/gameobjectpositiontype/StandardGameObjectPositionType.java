@@ -1,0 +1,4 @@
+package com.seebattleserver.application.controller.gameobjectpositiontypecontroller.gameobjectpositiontype;
+
+public class StandardGameObjectPositionType implements GameObjectPositionType {
+}

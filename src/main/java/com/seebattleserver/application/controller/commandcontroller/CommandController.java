@@ -1,6 +1,5 @@
 package com.seebattleserver.application.controller.commandcontroller;
 
-import com.google.gson.Gson;
 import com.seebattleserver.application.command.*;
 import com.seebattleserver.application.controller.Controller;
 import com.seebattleserver.application.user.User;
@@ -11,14 +10,12 @@ import com.seebattleserver.service.sender.UserSender;
 public class CommandController implements Controller {
     private User user;
     private CommandList commandList;
-    private Gson gson;
     private UserSender userSender;
 
-    public CommandController(User user, CommandList commandList, Gson gson,
+    public CommandController(User user, CommandList commandList,
                              UserSender userSender) {
         this.user = user;
         this.commandList = commandList;
-        this.gson = gson;
         this.userSender = userSender;
     }
 

@@ -10,7 +10,8 @@ public class User {
 
     public User(String username) {
         this.username = username;
-        this.userStatus = UserStatus.FREE;
+        userStatus = UserStatus.FREE;
+        player = new Player();
     }
 
     public String getUsername() {

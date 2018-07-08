@@ -1,6 +1,5 @@
 package com.seebattleserver.application.controller.gamecontroller;
 
-import com.google.gson.Gson;
 import com.seebattleserver.application.controller.Controller;
 import com.seebattleserver.application.gameregistry.GameRegistry;
 import com.seebattleserver.application.message.Message;
@@ -10,28 +9,25 @@ import com.seebattleserver.domain.game.Game;
 import com.seebattleserver.domain.game.Result;
 import com.seebattleserver.domain.player.Player;
 import com.seebattleserver.service.sender.UserSender;
-import com.seebattleserver.service.websocket.SocketHandler;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 public class GameController implements Controller {
-    private static final Logger LOGGER = LoggerFactory.getLogger(SocketHandler.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(GameController.class);
 
     private User user;
     private GameRegistry gameRegistry;
     private Game game;
-    private Gson gson;
     private UserSender userSender;
     private User userOpponent;
 
     int x;
     char y;
 
-    public GameController(User user, GameRegistry gameRegistry, Gson gson,
+    public GameController(User user, GameRegistry gameRegistry,
                           UserSender userSender) {
         this.user = user;
         this.gameRegistry = gameRegistry;
-        this.gson = gson;
         this.userSender = userSender;
         game = gameRegistry.getGameByUser(user);
         userOpponent = user.getUserOpponent();
