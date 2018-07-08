@@ -28,8 +28,7 @@ public class InvitationController implements Controller {
     }
 
     @Override
-    public void handle(TextMessage text) {
-        String userOpponentName = getMessage(text);
+    public void handle(String userOpponentName) {
         User userOpponent = userRegistry.getUserByName(userOpponentName);
         if (isInvitationPossible(userOpponent)) {
             invite(userOpponent);
@@ -37,12 +36,6 @@ public class InvitationController implements Controller {
         } else {
             notifyAboutMistake();
         }
-    }
-
-    private String getMessage(TextMessage text) {
-        Message message = gson.fromJson(text.getPayload(), Message.class);
-        String opponentName = message.getContent().trim();
-        return opponentName;
     }
 
     private boolean isInvitationPossible(User userOpponent) {
@@ -69,11 +62,11 @@ public class InvitationController implements Controller {
     private void invite(User userOpponent) {
         user.setUserStatus(UserStatus.INVITING);
         userOpponent.setUserStatus(UserStatus.INVITED);
-        rally(user, userOpponent);
+        uniteOpponents(user, userOpponent);
         sendInvitation(userOpponent);
     }
 
-    private void rally(User user, User opponent) {
+    private void uniteOpponents(User user, User opponent) {
         user.setUserOpponent(opponent);
         opponent.setUserOpponent(user);
     }

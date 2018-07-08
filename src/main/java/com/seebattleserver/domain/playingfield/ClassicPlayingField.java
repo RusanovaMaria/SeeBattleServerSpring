@@ -26,9 +26,8 @@ public class ClassicPlayingField implements PlayingField {
 
     private void createEmptyField() {
         cages = new Cage[WIDTH][HEIGHT];
-
-        for (int j = 0; j < HEIGHT; j++) {
             for (int i = 0; i < WIDTH; i++) {
+                for (int j = 0; j < HEIGHT; j++) {
                 cages[i][j] = new Cage(i, CHAR_COORDINATES[j], null);
             }
         }

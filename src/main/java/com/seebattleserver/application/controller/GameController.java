@@ -38,9 +38,8 @@ public class GameController implements Controller {
     }
 
     @Override
-    public void handle(TextMessage text) {
+    public void handle(String coordinates) {
         if (isUserMove()) {
-            String coordinates = getMessage(text);
             makeMove(coordinates);
         } else {
             notifyAboutNotUserMove();
@@ -52,12 +51,6 @@ public class GameController implements Controller {
             return true;
         }
         return false;
-    }
-
-    private String getMessage(TextMessage text) {
-        Message message = gson.fromJson(text.getPayload(), Message.class);
-        String coordinates = message.getContent().trim();
-        return coordinates;
     }
 
     private void makeMove(String coordinates) {
@@ -75,7 +68,8 @@ public class GameController implements Controller {
     }
 
     private void initCoordinates(String coordinates)  {
-        x = coordinates.charAt(0);
+        char c = coordinates.charAt(0);
+        x = Character.getNumericValue(c);
         y = coordinates.charAt(1);
     }
 

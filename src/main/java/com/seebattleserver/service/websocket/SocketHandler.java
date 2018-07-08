@@ -43,10 +43,12 @@ public class SocketHandler extends TextWebSocketHandler {
 
     @Override
     public void handleTextMessage(WebSocketSession session, TextMessage text) throws IOException {
+        Message message = gson.fromJson(text.getPayload(), Message.class);
+        String messageStr = message.getContent().trim();
         if (isNotNewSession(session)) {
-            handleUserMessage(text, session);
+            handleUserMessage(messageStr, session);
         } else {
-            registerUser(text, session);
+            registerUser(messageStr, session);
             sendMessageInSession(session, "Регистрация успешно завершена. " +
                     "Введите команду help, чтобы посмотреть список возможных команд.");
         }
@@ -65,14 +67,13 @@ public class SocketHandler extends TextWebSocketHandler {
         return false;
     }
 
-    private void handleUserMessage(TextMessage text, WebSocketSession session) {
+    private void handleUserMessage(String messageStr, WebSocketSession session) {
         User user = sessionRegistry.getUser(session);
-        controllerManager.handle(user, text);
+        controllerManager.handle(user, messageStr);
     }
 
-    private void registerUser(TextMessage text, WebSocketSession session) {
-        Message name = gson.fromJson(text.getPayload(), Message.class);
-        User user = new User(name.getContent());
+    private void registerUser(String name, WebSocketSession session) {
+        User user = new User(name);
         userRegistry.add(user);
         sessionRegistry.put(session, user);
     }

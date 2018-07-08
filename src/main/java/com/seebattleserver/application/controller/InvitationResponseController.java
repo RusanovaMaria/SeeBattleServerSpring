@@ -35,8 +35,7 @@ public class InvitationResponseController implements Controller {
     }
 
     @Override
-    public void handle(TextMessage text) {
-        String answer = getMessage(text);
+    public void handle(String answer) {
         if (isCorrectAnswer(answer)) {
             Invitation invitation = createInvitation(answer);
             invitation.handleAnswer();
@@ -50,12 +49,6 @@ public class InvitationResponseController implements Controller {
             return true;
         }
         return false;
-    }
-
-    private String getMessage(TextMessage text) {
-        Message message = gson.fromJson(text.getPayload(), Message.class);
-        String answer = message.getContent().trim();
-        return answer;
     }
 
     private Invitation createInvitation(String answer) {

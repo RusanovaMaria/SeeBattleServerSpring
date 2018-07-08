@@ -77,7 +77,7 @@ public class AcceptInvitation implements Invitation {
         secondPlayer.setPlayingField(secondPlayingField);
         Game game = new ClassicGame(firstPlayer, secondPlayer);
         associateUserWithPlayer(userOpponent, firstPlayer);
-        associateUserWithPlayer(user, firstPlayer);
+        associateUserWithPlayer(user, secondPlayer);
         putGameToGameRegistry(game);
     }
 

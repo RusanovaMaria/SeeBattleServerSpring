@@ -24,8 +24,7 @@ public class CommandController implements Controller {
     }
 
     @Override
-    public void handle(TextMessage text) {
-        String commandWord = getMessage(text);
+    public void handle(String commandWord) {
         Command command = commandList.getCommand(commandWord);
         if (command instanceof PlayerInvitationCommand) {
             user.setUserStatus(UserStatus.REQUESTING_OPPONENT);
@@ -34,12 +33,6 @@ public class CommandController implements Controller {
             command = commandList.getDefaultCommand();
         }
         sendCommandExecution(command);
-    }
-
-    private String getMessage(TextMessage text) {
-        Message message = gson.fromJson(text.getPayload(), Message.class);
-        String commandWord = message.getContent().trim();
-        return commandWord;
     }
 
     private boolean isNull(Command command) {

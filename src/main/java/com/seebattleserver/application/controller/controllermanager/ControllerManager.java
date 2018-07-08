@@ -17,10 +17,10 @@ public class ControllerManager {
         this.controllerFactory = controllerFactory;
     }
 
-    public void handle(User user, TextMessage text) {
+    public void handle(User user, String message) {
         UserStatus userStatus = user.getUserStatus();
         Controller controller = identifyControllerByClientStatus(user, userStatus);
-        controller.handle(text);
+        controller.handle(message);
     }
 
     private Controller identifyControllerByClientStatus(User user, UserStatus status) {

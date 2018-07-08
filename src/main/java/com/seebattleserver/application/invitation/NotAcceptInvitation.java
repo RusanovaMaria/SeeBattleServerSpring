@@ -21,6 +21,7 @@ public class NotAcceptInvitation implements Invitation {
     public void handleAnswer() {
         sendAnswer();
         changeStatuses();
+        severOpponents();
     }
 
     private void sendAnswer() {
@@ -28,9 +29,12 @@ public class NotAcceptInvitation implements Invitation {
     }
 
     private void changeStatuses() {
-        user.setUserOpponent(null);
         user.setUserStatus(UserStatus.FREE);
-        userOpponent.setUserOpponent(null);
         userOpponent.setUserStatus(UserStatus.FREE);
+    }
+
+    private void severOpponents() {
+        user.setUserOpponent(null);
+        userOpponent.setUserOpponent(null);
     }
 }

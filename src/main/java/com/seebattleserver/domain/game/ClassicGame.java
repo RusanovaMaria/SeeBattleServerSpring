@@ -38,6 +38,7 @@ public class ClassicGame implements Game {
     @Override
     public Result fire(Player player, int x, char y) {
         PlayingField playingField = player.getPlayingField();
+        System.out.println(playingField);
         Cage affectedCage = playingField.identifyCage(x, y);
         shoot(affectedCage);
         Result result = getResult(affectedCage);

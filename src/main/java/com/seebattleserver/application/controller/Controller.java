@@ -4,5 +4,5 @@ import org.springframework.web.socket.TextMessage;
 
 public interface Controller {
 
-    void handle(TextMessage text);
+    void handle(String message);
 }
