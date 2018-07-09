@@ -26,7 +26,7 @@ public class CommandList {
     private void iniCommands() {
         put("help", new HelpCommand());
         put("list", new PlayerListCommand(userRegistry));
-        put("request", new PlayerInvitationCommand());
+        put("invite", new PlayerInvitationCommand());
     }
 
     public void put(String commandWord, Command command) {

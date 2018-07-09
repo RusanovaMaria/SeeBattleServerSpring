@@ -1,4 +1,4 @@
-package com.seebattleserver.application.controller.controllermanager;
+package com.seebattleserver.application.controllermanager;
 
 import com.seebattleserver.application.controller.Controller;
 import com.seebattleserver.application.controllerfactory.ControllerFactory;
@@ -29,13 +29,13 @@ public class ControllerManager {
             case INVITED:
                 return controllerFactory.createInvitationResponseController(user);
             case INVITING:
-                return controllerFactory.createCommandController(user);
-            case REQUESTING_OPPONENT:
                 return controllerFactory.createInvitationController(user);
+            case READY_FOR_GAME:
+                return controllerFactory.createGameStartController(user);
             case IN_GAME:
-                return controllerFactory.createGameController(user);
+                return controllerFactory.createGameProcessController(user);
             case IN_GAME_MOVE:
-                return controllerFactory.createGameController(user);
+                return controllerFactory.createGameProcessController(user);
         }
         throw new IllegalStateException("Данный статус клиента не распознан");
     }

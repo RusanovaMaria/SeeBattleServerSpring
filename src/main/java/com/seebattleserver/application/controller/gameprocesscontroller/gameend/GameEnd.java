@@ -1,4 +1,4 @@
-package com.seebattleserver.application.controller.gamecontroller.gameend;
+package com.seebattleserver.application.controller.gameprocesscontroller.gameend;
 
 public class GameEnd {
 }

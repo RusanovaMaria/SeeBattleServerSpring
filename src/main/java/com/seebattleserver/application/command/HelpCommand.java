@@ -10,7 +10,7 @@ public class HelpCommand implements Command {
         return "Список команд\n"
                 + "help - помощь\n"
                 + "list - список игроков\n"
-                + "request - отправить запрос на вступление в игру";
+                + "invite - отправить приглашение другому игроку";
     }
 
 }

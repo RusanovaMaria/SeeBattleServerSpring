@@ -23,7 +23,7 @@ public class CommandController implements Controller {
     public void handle(String commandWord) {
         Command command = commandList.getCommand(commandWord);
         if (command instanceof PlayerInvitationCommand) {
-            user.setUserStatus(UserStatus.REQUESTING_OPPONENT);
+            user.setUserStatus(UserStatus.INVITING);
         }
         if (isNull(command)) {
             command = commandList.getDefaultCommand();

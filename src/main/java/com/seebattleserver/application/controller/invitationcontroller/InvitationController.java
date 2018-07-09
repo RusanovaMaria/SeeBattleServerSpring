@@ -57,7 +57,6 @@ public class InvitationController implements Controller {
     }
 
     private void invite(User userOpponent) {
-        user.setUserStatus(UserStatus.INVITING);
         userOpponent.setUserStatus(UserStatus.INVITED);
         uniteOpponents(user, userOpponent);
         sendInvitation(userOpponent);
