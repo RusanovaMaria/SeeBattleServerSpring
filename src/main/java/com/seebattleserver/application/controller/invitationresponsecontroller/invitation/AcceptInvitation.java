@@ -31,9 +31,8 @@ public class AcceptInvitation implements Invitation {
     public void handleAnswer() {
         if (userIsNotInGame(userOpponent)) {
             sendAnswer();
-            startGameProcessForUsers();
-            startGame();
-            notifyAboutGameStart();
+            makeUsersReadyForGame();
+            notifyUsersAboutGameObjectTypeChoice();
         } else {
             notifyAboutUserOpponentInGame();
             setUserFree();
@@ -52,42 +51,18 @@ public class AcceptInvitation implements Invitation {
         userSender.sendMessage(userOpponent, new Message("Игрок " + user.getUsername() + " принял ваше предложение"));
     }
 
-    private void startGameProcessForUsers() {
-        user.setUserStatus(UserStatus.IN_GAME);
-        userOpponent.setUserStatus(UserStatus.IN_GAME_MOVE);
+    private void makeUsersReadyForGame() {
+        user.setUserStatus(UserStatus.READY_FOR_GAME);
+        userOpponent.setUserStatus(UserStatus.READY_FOR_GAME);
     }
 
-    private void notifyAboutGameStart() {
-        userSender.sendMessage(userOpponent, new Message("Введите координаты х и у"));
-        userSender.sendMessage(user, new Message("Игра началась."));
-    }
-
-
-    private void startGame() {
-        Player firstPlayer = new Player();
-        Player secondPlayer = new Player();
-        PlayingField firstPlayingField = new ClassicPlayingField();
-        PlayingField secondPlayingField = new ClassicPlayingField();
-        GameObjectPosition position;
-        position= new StandardGameObjectPosition(firstPlayingField);
-        position.arrange();
-        position = new StandardGameObjectPosition(secondPlayingField);
-        position.arrange();
-        firstPlayer.setPlayingField(firstPlayingField);
-        secondPlayer.setPlayingField(secondPlayingField);
-        Game game = new ClassicGame(firstPlayer, secondPlayer);
-        associateUserWithPlayer(userOpponent, firstPlayer);
-        associateUserWithPlayer(user, secondPlayer);
-        putGameToGameRegistry(game);
-    }
-
-    private void associateUserWithPlayer(User user, Player player) {
-        user.setPlayer(player);
-    }
-
-    private void putGameToGameRegistry(Game game) {
-        gameRegistry.put(userOpponent, game);
-        gameRegistry.put(user, game);
+    private void notifyUsersAboutGameObjectTypeChoice() {
+        userSender.sendMessage(user, new Message("Выберите тип расстановки игровых объектов\n"+
+        "standard - стандартный тип расстановки\n"+
+        "user - пользовательский тип расстановки"));
+        userSender.sendMessage(userOpponent, new Message("Выберите тип расстановки игровых объектов\n"+
+                "standard - стандартный тип расстановки\n"+
+                "user - пользовательский тип расстановки"));
     }
 
     private void notifyAboutUserOpponentInGame() {
