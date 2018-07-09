@@ -1,6 +1,6 @@
 package com.seebattleserver.application.controller.gamestartcontroller.gameobjectpositioncontroller;
 
-public interface GameObjectPositionController {
+public interface GameObjectPositionType {
 
-    void handle();
+    void apply();
 }

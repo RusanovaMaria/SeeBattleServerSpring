@@ -1,9 +1,9 @@
 package com.seebattleserver.application.controller.gamestartcontroller.gameobjectpositioncontroller;
 
-public class UserGameObjectPositionController implements GameObjectPositionController {
+public class UserGameObjectPositionType implements GameObjectPositionType {
 
     @Override
-    public void handle() {
+    public void apply() {
 
     }
 }

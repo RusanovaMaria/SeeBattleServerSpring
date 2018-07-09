@@ -1,9 +1,9 @@
 package com.seebattleserver.application.controller.gamestartcontroller;
 
 import com.seebattleserver.application.controller.Controller;
-import com.seebattleserver.application.controller.gamestartcontroller.gameobjectpositioncontroller.GameObjectPositionController;
-import com.seebattleserver.application.controller.gamestartcontroller.gameobjectpositioncontroller.StandardGameObjectPositionController;
-import com.seebattleserver.application.controller.gamestartcontroller.gameobjectpositioncontroller.UserGameObjectPositionController;
+import com.seebattleserver.application.controller.gamestartcontroller.gameobjectpositioncontroller.GameObjectPositionType;
+import com.seebattleserver.application.controller.gamestartcontroller.gameobjectpositioncontroller.StandardGameObjectPositionType;
+import com.seebattleserver.application.controller.gamestartcontroller.gameobjectpositioncontroller.UserGameObjectPositionType;
 import com.seebattleserver.application.controller.gamestartcontroller.gamestart.ClassicGameStart;
 import com.seebattleserver.application.controller.gamestartcontroller.gamestart.GameStart;
 import com.seebattleserver.application.gameregistry.GameRegistry;
@@ -52,16 +52,16 @@ public class GameStartController implements Controller {
     }
 
     private void arrangeGameObjects(String positionType) {
-        GameObjectPositionController controller = determineGameObjectPositionController(positionType);
-        controller.handle();
+        GameObjectPositionType gameObjectPositionType = determineGameObjectPositionType(positionType);
+        gameObjectPositionType.apply();
     }
 
-    private GameObjectPositionController determineGameObjectPositionController(String positionType) {
+    private GameObjectPositionType determineGameObjectPositionType(String positionType) {
         switch (positionType) {
             case STANDARD_POSITION_TYPE:
-                return new StandardGameObjectPositionController();
+                return new StandardGameObjectPositionType(user);
             case USER_POSITION_TYPE:
-                return new UserGameObjectPositionController();
+                return new UserGameObjectPositionType();
                 default:
                     LOGGER.error("Неверный тип расположения игровых объектов");
                     throw new IllegalArgumentException("Неверный тип расположения игровых объектов");

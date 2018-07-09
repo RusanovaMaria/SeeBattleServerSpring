@@ -1,7 +1,7 @@
 package com.seebattleserver.service.websocket;
 
 import com.google.gson.Gson;
-import com.seebattleserver.application.controller.controllermanager.ControllerManager;
+import com.seebattleserver.application.controllermanager.ControllerManager;
 import com.seebattleserver.application.message.Message;
 import com.seebattleserver.application.user.User;
 import com.seebattleserver.application.user.UserRegistry;
@@ -54,7 +54,7 @@ public class SocketHandlerTests {
         WebSocketSession session = mock(WebSocketSession.class);
         when(sessionRegistry.containsSession(session)).thenReturn(true);
         socketHandler.handleTextMessage(session, new TextMessage(json));
-        verify(controllerManager).handle(any(User.class), text);
+        verify(controllerManager).handle(any(User.class), json);
     }
 
     @Test
