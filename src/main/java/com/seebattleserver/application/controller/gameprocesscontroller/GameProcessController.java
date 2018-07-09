@@ -1,4 +1,4 @@
-package com.seebattleserver.application.controller.gamecontroller;
+package com.seebattleserver.application.controller.gameprocesscontroller;
 
 import com.seebattleserver.application.controller.Controller;
 import com.seebattleserver.application.gameregistry.GameRegistry;
@@ -12,8 +12,8 @@ import com.seebattleserver.service.sender.UserSender;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class GameController implements Controller {
-    private static final Logger LOGGER = LoggerFactory.getLogger(GameController.class);
+public class GameProcessController implements Controller {
+    private static final Logger LOGGER = LoggerFactory.getLogger(GameProcessController.class);
 
     private User user;
     private GameRegistry gameRegistry;
@@ -24,8 +24,8 @@ public class GameController implements Controller {
     int x;
     char y;
 
-    public GameController(User user, GameRegistry gameRegistry,
-                          UserSender userSender) {
+    public GameProcessController(User user, GameRegistry gameRegistry,
+                                 UserSender userSender) {
         this.user = user;
         this.gameRegistry = gameRegistry;
         this.userSender = userSender;

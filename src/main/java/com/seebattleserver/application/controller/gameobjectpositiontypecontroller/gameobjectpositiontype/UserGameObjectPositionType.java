@@ -1,4 +1,0 @@
-package com.seebattleserver.application.controller.gameobjectpositiontypecontroller.gameobjectpositiontype;
-
-public class UserGameObjectPositionType implements GameObjectPositionType {
-}
