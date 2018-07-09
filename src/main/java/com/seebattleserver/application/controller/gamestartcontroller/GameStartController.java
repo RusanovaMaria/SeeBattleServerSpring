@@ -37,6 +37,7 @@ public class GameStartController implements Controller {
     public void handle(String positionType) {
         if (isCorrectPositionType(positionType)) {
            arrangeGameObjects(positionType);
+           notifyAboutGameObjectArrangement();
            startGameIfPossible();
         } else {
             notifyAboutNotCorrectPosition();
@@ -66,6 +67,11 @@ public class GameStartController implements Controller {
                     LOGGER.error("Неверный тип расположения игровых объектов");
                     throw new IllegalArgumentException("Неверный тип расположения игровых объектов");
         }
+    }
+
+    private void notifyAboutGameObjectArrangement() {
+        userSender.sendMessage(user, new Message("Игровые объекты установлены\n"+
+        "Игра начнется, когда ваш соперник установит игровые объекты."));
     }
 
     private void startGameIfPossible() {

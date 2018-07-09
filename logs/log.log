@@ -91,3 +91,8 @@
 09-07-2018 13:02:15.686 [main] INFO  o.s.c.s.DefaultLifecycleProcessor.start - Starting beans in phase 2147483647
 09-07-2018 13:02:15.726 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer.start - Tomcat started on port(s): 8080 (http) with context path ''
 09-07-2018 13:02:15.736 [main] INFO  com.seebattleserver.Application.logStarted - Started Application in 12.848 seconds (JVM running for 14.416)
+09-07-2018 13:03:06.090 [http-nio-8080-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/].log - Initializing Spring FrameworkServlet 'dispatcherServlet'
+09-07-2018 13:03:06.090 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet.initServletBean - FrameworkServlet 'dispatcherServlet': initialization started
+09-07-2018 13:03:06.341 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet.initServletBean - FrameworkServlet 'dispatcherServlet': initialization completed in 251 ms
+09-07-2018 13:03:06.553 [http-nio-8080-exec-1] INFO  c.s.service.websocket.SocketHandler.afterConnectionEstablished - Подключение нового клиента
+09-07-2018 13:03:35.942 [http-nio-8080-exec-3] INFO  c.s.service.websocket.SocketHandler.afterConnectionEstablished - Подключение нового клиента
