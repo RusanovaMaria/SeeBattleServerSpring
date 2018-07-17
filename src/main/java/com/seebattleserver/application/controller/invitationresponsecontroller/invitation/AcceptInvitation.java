@@ -4,13 +4,6 @@ import com.seebattleserver.application.gameregistry.GameRegistry;
 import com.seebattleserver.application.message.Message;
 import com.seebattleserver.application.user.User;
 import com.seebattleserver.application.user.UserStatus;
-import com.seebattleserver.domain.game.ClassicGame;
-import com.seebattleserver.domain.game.Game;
-import com.seebattleserver.application.gameobjectposition.GameObjectPosition;
-import com.seebattleserver.application.gameobjectposition.StandardGameObjectPosition;
-import com.seebattleserver.domain.player.Player;
-import com.seebattleserver.domain.playingfield.ClassicPlayingField;
-import com.seebattleserver.domain.playingfield.PlayingField;
 import com.seebattleserver.service.sender.UserSender;
 
 public class AcceptInvitation implements Invitation {

@@ -2,7 +2,7 @@ package com.seebattleserver.service.websocket;
 
 import com.google.gson.Gson;
 import com.seebattleserver.application.controllermanager.ControllerManager;
-import com.seebattleserver.application.message.Message;
+import com.seebattleserver.application.datahandler.message.Message;
 import com.seebattleserver.application.user.User;
 import com.seebattleserver.application.user.UserRegistry;
 import com.seebattleserver.service.websocket.registry.SessionRegistry;
