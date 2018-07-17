@@ -11,8 +11,8 @@ public class MessageHandler {
         gson = new Gson();
     }
 
-    public String handle(TextMessage text) {
-        Message message = gson.fromJson(text.getPayload(), Message.class);
+    public String handle(TextMessage textMessage) {
+        Message message = gson.fromJson(textMessage.getPayload(), Message.class);
         String messageStr = message.getContent().trim();
         return messageStr;
     }

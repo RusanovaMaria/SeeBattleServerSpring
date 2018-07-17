@@ -8,22 +8,23 @@ import com.seebattleserver.application.controller.gamestartcontroller.gamestart.
 import com.seebattleserver.application.controller.gamestartcontroller.gamestart.GameStart;
 import com.seebattleserver.application.gameregistry.GameRegistry;
 import com.seebattleserver.application.message.Message;
+import com.seebattleserver.application.message.messagehandler.MessageHandler;
 import com.seebattleserver.application.user.User;
 import com.seebattleserver.application.user.UserStatus;
 import com.seebattleserver.service.sender.UserSender;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.web.socket.TextMessage;
 
 public class GameStartController implements Controller {
     private static final Logger LOGGER = LoggerFactory.getLogger(GameStartController.class);
-
     public static final String STANDARD_POSITION_TYPE = "standard";
     public static final String USER_POSITION_TYPE = "user";
-
     private User user;
     private UserSender userSender;
     private GameRegistry gameRegistry;
     private User userOpponent;
+    private MessageHandler messageHandler;
 
     public GameStartController(User user, UserSender userSender,
                                GameRegistry gameRegistry) {
@@ -31,10 +32,12 @@ public class GameStartController implements Controller {
         this.userSender = userSender;
         this.gameRegistry = gameRegistry;
         userOpponent = user.getUserOpponent();
+        messageHandler = new MessageHandler();
     }
 
     @Override
-    public void handle(String positionType) {
+    public void handle(TextMessage textMessage) {
+        String positionType = messageHandler.handle(textMessage);
         if (isCorrectPositionType(positionType)) {
            arrangeGameObjects(positionType);
            notifyAboutGameObjectArrangement();

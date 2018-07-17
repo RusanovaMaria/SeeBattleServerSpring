@@ -3,6 +3,7 @@ package com.seebattleserver.application.controller.gameprocesscontroller;
 import com.seebattleserver.application.controller.Controller;
 import com.seebattleserver.application.gameregistry.GameRegistry;
 import com.seebattleserver.application.message.Message;
+import com.seebattleserver.application.message.messagehandler.MessageHandler;
 import com.seebattleserver.application.user.User;
 import com.seebattleserver.application.user.UserStatus;
 import com.seebattleserver.domain.game.Game;
@@ -11,16 +12,16 @@ import com.seebattleserver.domain.player.Player;
 import com.seebattleserver.service.sender.UserSender;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.web.socket.TextMessage;
 
 public class GameProcessController implements Controller {
     private static final Logger LOGGER = LoggerFactory.getLogger(GameProcessController.class);
-
     private User user;
     private GameRegistry gameRegistry;
     private Game game;
     private UserSender userSender;
     private User userOpponent;
-
+    private MessageHandler messageHandler;
     int x;
     char y;
 
@@ -31,10 +32,12 @@ public class GameProcessController implements Controller {
         this.userSender = userSender;
         game = gameRegistry.getGameByUser(user);
         userOpponent = user.getUserOpponent();
+        messageHandler = new MessageHandler();
     }
 
     @Override
-    public void handle(String coordinates) {
+    public void handle(TextMessage textMessage) {
+        String coordinates = messageHandler.handle(textMessage);
         if (isUserMove()) {
             makeMove(coordinates);
         } else {

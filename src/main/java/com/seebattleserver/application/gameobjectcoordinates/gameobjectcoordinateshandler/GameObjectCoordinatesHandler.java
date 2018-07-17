@@ -15,9 +15,9 @@ public class GameObjectCoordinatesHandler {
         gson = new Gson();
     }
 
-    public Map<Integer, List<List<String>>> handle(TextMessage text) {
+    public Map<Integer, List<List<String>>> handle(TextMessage textMessage) {
         Map<Integer, List<List<String>>> coordinates = new HashMap<>();
-        GameObjectCoordinates gameObjectCoordinates = gson.fromJson(text.getPayload(), GameObjectCoordinates.class);
+        GameObjectCoordinates gameObjectCoordinates = gson.fromJson(textMessage.getPayload(), GameObjectCoordinates.class);
         coordinates.put(gameObjectCoordinates.getGameObjectSize(), gameObjectCoordinates.getCoordinates());
         return coordinates;
     }

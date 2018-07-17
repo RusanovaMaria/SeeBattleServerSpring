@@ -6,30 +6,34 @@ import com.seebattleserver.application.controller.invitationresponsecontroller.i
 import com.seebattleserver.application.controller.invitationresponsecontroller.invitation.NotAcceptInvitation;
 import com.seebattleserver.application.gameregistry.GameRegistry;
 import com.seebattleserver.application.message.Message;
+import com.seebattleserver.application.message.messagehandler.MessageHandler;
 import com.seebattleserver.application.user.User;
 import com.seebattleserver.service.sender.UserSender;
 import com.seebattleserver.service.websocket.SocketHandler;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.web.socket.TextMessage;
 
 public class InvitationResponseController implements Controller {
     private static final Logger LOGGER = LoggerFactory.getLogger(SocketHandler.class);
     private static final String YES = "yes";
     private static final String NO = "no";
-
     private User user;
     private GameRegistry gameRegistry;
     private UserSender userSender;
+    private MessageHandler messageHandler;
 
     public InvitationResponseController(User user, GameRegistry gameRegistry,
                                         UserSender userSender) {
         this.user = user;
         this.gameRegistry = gameRegistry;
         this.userSender = userSender;
+        messageHandler = new MessageHandler();
     }
 
     @Override
-    public void handle(String answer) {
+    public void handle(TextMessage textMessage) {
+        String answer = messageHandler.handle(textMessage);
         if (isCorrectAnswer(answer)) {
             Invitation invitation = createInvitation(answer);
             invitation.handleAnswer();

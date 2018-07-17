@@ -6,6 +6,7 @@ import com.seebattleserver.application.user.User;
 import com.seebattleserver.application.user.UserStatus;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.web.socket.TextMessage;
 
 @Component
 public class ControllerManager {
@@ -16,10 +17,10 @@ public class ControllerManager {
         this.controllerFactory = controllerFactory;
     }
 
-    public void handle(User user, String message) {
+    public void handle(User user, TextMessage textMessage) {
         UserStatus userStatus = user.getUserStatus();
         Controller controller = identifyControllerByClientStatus(user, userStatus);
-        controller.handle(message);
+        controller.handle(textMessage);
     }
 
     private Controller identifyControllerByClientStatus(User user, UserStatus status) {

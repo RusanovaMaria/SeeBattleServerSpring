@@ -2,6 +2,7 @@ package com.seebattleserver.service.websocket;
 
 import com.google.gson.Gson;
 import com.seebattleserver.application.controllermanager.ControllerManager;
+import com.seebattleserver.application.message.messagehandler.MessageHandler;
 import com.seebattleserver.application.user.User;
 import com.seebattleserver.application.user.UserRegistry;
 import com.seebattleserver.configuration.UtilConfiguration;
@@ -22,13 +23,12 @@ import java.io.IOException;
 
 @Component
 public class SocketHandler extends TextWebSocketHandler {
-
     private static final Logger LOGGER = LoggerFactory.getLogger(SocketHandler.class);
-
     protected UserRegistry userRegistry;
     private SessionRegistry sessionRegistry;
     private Gson gson;
     private ControllerManager controllerManager;
+    private MessageHandler messageHandler;
 
     @Autowired
     public SocketHandler(SessionRegistry sessionRegistry, UserRegistry userRegistry, Gson gson, ControllerManager controllerManager) {
@@ -36,19 +36,16 @@ public class SocketHandler extends TextWebSocketHandler {
         this.userRegistry = userRegistry;
         this.gson = gson;
         this.controllerManager = controllerManager;
-
-        ApplicationContext context = new AnnotationConfigApplicationContext(UtilConfiguration.class);
-        this.gson = context.getBean(Gson.class);
+        messageHandler = new MessageHandler();
     }
 
     @Override
-    public void handleTextMessage(WebSocketSession session, TextMessage text) throws IOException {
-        Message message = gson.fromJson(text.getPayload(), Message.class);
-        String messageStr = message.getContent().trim();
+    public void handleTextMessage(WebSocketSession session, TextMessage textMessage) throws IOException {
         if (isNotNewSession(session)) {
-            handleUserMessage(messageStr, session);
+            handleUserMessage(textMessage, session);
         } else {
-            registerUser(messageStr, session);
+            String name = messageHandler.handle(textMessage);
+            registerUser(name, session);
             sendMessageInSession(session, "Регистрация успешно завершена. " +
                     "Введите команду help, чтобы посмотреть список возможных команд.");
         }
@@ -67,9 +64,9 @@ public class SocketHandler extends TextWebSocketHandler {
         return false;
     }
 
-    private void handleUserMessage(String messageStr, WebSocketSession session) {
+    private void handleUserMessage(TextMessage textMessage, WebSocketSession session) {
         User user = sessionRegistry.getUser(session);
-        controllerManager.handle(user, messageStr);
+        controllerManager.handle(user, textMessage);
     }
 
     private void registerUser(String name, WebSocketSession session) {
