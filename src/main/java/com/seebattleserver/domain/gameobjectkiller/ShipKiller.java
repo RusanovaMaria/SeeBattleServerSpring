@@ -6,7 +6,7 @@ import com.seebattleserver.domain.gameobjectpart.GameObjectPart;
 
 import java.util.List;
 
-public class ShipKiller implements GameObjectKiller{
+public class ShipKiller implements GameObjectKiller {
 
     private GameObject ship;
     private int size;
@@ -20,15 +20,22 @@ public class ShipKiller implements GameObjectKiller{
 
     @Override
     public void killPart() {
-        List<GameObjectPart> gameObjectParts = ship.getGameObjectParts();
-        if (diedGameObjectParts < size) {
-            GameObjectPart shipPart = gameObjectParts.get(diedGameObjectParts);
-            shipPart.kill();
-
-            diedGameObjectParts++;
-            ship.setDiedGameObjectParts(diedGameObjectParts);
-            changeStatus();
+        if (!isKilled()) {
+            killGameObjectPart();
+            iterateDiedGameObjectPartsAndChangeStatus();
         }
+    }
+
+    private void killGameObjectPart() {
+        List<GameObjectPart> gameObjectParts = ship.getGameObjectParts();
+        GameObjectPart shipPart = gameObjectParts.get(diedGameObjectParts);
+        shipPart.kill();
+    }
+
+    private void iterateDiedGameObjectPartsAndChangeStatus() {
+        diedGameObjectParts++;
+        ship.setDiedGameObjectParts(diedGameObjectParts);
+        changeStatus();
     }
 
     private void changeStatus() {

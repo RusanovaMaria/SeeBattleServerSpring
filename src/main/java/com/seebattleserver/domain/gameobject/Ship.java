@@ -11,14 +11,18 @@ public class Ship implements GameObject {
     private List<GameObjectPart> gameObjectParts;
     private int diedGameObjectParts;
 
-    public Ship(int size) {
-        this.size = size;
+    public Ship() {
         status = Status.ALIVE;
     }
 
     @Override
     public int getSize() {
         return size;
+    }
+
+    @Override
+    public void setSize(int size) {
+        this.size = size;
     }
 
     @Override

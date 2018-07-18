@@ -1,7 +1,9 @@
 package com.seebattleserver.domain.gameobjectbuild;
 
 
+import com.seebattleserver.domain.gameobject.Ship;
+
 public interface GameObjectBuild {
 
-    void build();
+    Ship build(int size);
 }

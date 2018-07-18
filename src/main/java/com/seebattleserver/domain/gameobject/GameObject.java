@@ -8,6 +8,8 @@ public interface GameObject {
 
     int getSize();
 
+    void setSize(int size);
+
     Status getStatus();
 
     void setStatus(Status status);
