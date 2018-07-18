@@ -4,62 +4,55 @@ import com.seebattleserver.domain.cage.Cage;
 import com.seebattleserver.domain.cage.State;
 import com.seebattleserver.domain.gameobject.GameObject;
 import com.seebattleserver.domain.gameobject.Status;
+import com.seebattleserver.domain.gameobjectkiller.GameObjectKiller;
+import com.seebattleserver.domain.gameobjectkiller.ShipKiller;
 import com.seebattleserver.domain.gameobjectpart.GameObjectPart;
 import com.seebattleserver.domain.player.Player;
-import com.seebattleserver.domain.playingfield.ClassicPlayingField;
 import com.seebattleserver.domain.playingfield.PlayingField;
-import java.util.HashMap;
-import java.util.Map;
 
 public class ClassicGame implements Game {
     private Player firstPlayer;
     private Player secondPlayer;
-    private Map<Player, ClassicPlayingField> players;
+    private PlayingField firstPlayingField;
+    private PlayingField secondPlayingField;
 
     public ClassicGame(Player firstPlayer, Player secondPlayer) {
         this.firstPlayer = firstPlayer;
         this.secondPlayer = secondPlayer;
-        initPlayers();
+        initPlayingFields();
     }
 
-    private void initPlayers() {
-        players = new HashMap();
-
-        players.put(firstPlayer, new ClassicPlayingField());
-        players.put(secondPlayer, new ClassicPlayingField());
+    private void initPlayingFields() {
+        firstPlayingField = firstPlayer.getPlayingField();
+        secondPlayingField = secondPlayer.getPlayingField();
     }
 
     @Override
     public boolean isEnd() {
+        if ((firstPlayingField.isAllObjectsDied()) || (secondPlayingField.isAllObjectsDied())) {
+            return true;
+        }
         return false;
     }
 
     @Override
-    public Map<Player, ClassicPlayingField> getPlayers() {
-        return players;
-    }
-
-
     public Result fire(Player player, int x, char y) {
-        PlayingField playingField = players.get(player);
-        Cage affectedCage = playingField.findCage(x, y);
-        return defineHit(affectedCage);
+        PlayingField playingField = player.getPlayingField();
+        System.out.println(playingField);
+        Cage affectedCage = playingField.identifyCage(x, y);
+        shoot(affectedCage);
+        Result result = getResult(affectedCage);
+        affectedCage.markAsUsed();
+        return result;
     }
 
-    private Result defineHit(Cage cage) {
-        State state = cage.determineState();
-        switch (state) {
-            case USED:
-                return Result.REPEATED;
-            case FREE:
-                return Result.MISSED;
-            case FULL:
-                GameObject gameObject = ejectGameObject(cage);
-                return determineDamage(gameObject);
+    private void shoot(Cage cage) {
+        State state = cage.getState();
+        if (state == State.FULL) {
+            GameObject gameObject = ejectGameObject(cage);
+            GameObjectKiller gameObjectKiller = new ShipKiller(gameObject);
+            gameObjectKiller.killPart();
         }
-        cage.markAsUsed();
-
-        throw new IllegalArgumentException("Неверное состояние компонента игрового поля");
     }
 
     private GameObject ejectGameObject(Cage cage) {
@@ -67,7 +60,24 @@ public class ClassicGame implements Game {
         return gameObjectPart.getGameObject();
     }
 
-    private Result determineDamage(GameObject gameObject) {
+    private Result getResult(Cage cage) {
+        State state = cage.getState();
+        switch (state) {
+            case USED:
+                return Result.REPEATED;
+            case FREE:
+                return Result.MISSED;
+            case FULL:
+                GameObject gameObject = ejectGameObject(cage);
+                return getResultOfDamage(gameObject);
+            default:
+                new IllegalArgumentException("Неверный статус для клетки игрового поля");
+        }
+
+        throw new IllegalArgumentException("Неверное состояние компонента игрового поля");
+    }
+
+    private Result getResultOfDamage(GameObject gameObject) {
         Status status = gameObject.getStatus();
         switch (status) {
             case DAMAGED:
@@ -76,6 +86,17 @@ public class ClassicGame implements Game {
                 return Result.KILLED;
             default:
                 throw new IllegalArgumentException("Объект не был поврежден");
+        }
+    }
+
+    @Override
+    public Player determineWinner() {
+        if (firstPlayingField.isAllObjectsDied()) {
+            return secondPlayer;
+        } else if (secondPlayingField.isAllObjectsDied()) {
+            return firstPlayer;
+        } else {
+            throw new IllegalStateException("Игра не окончена");
         }
     }
 }

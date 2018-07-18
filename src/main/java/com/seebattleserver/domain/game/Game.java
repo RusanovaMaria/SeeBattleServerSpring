@@ -9,8 +9,8 @@ public interface Game {
 
     boolean isEnd();
 
-    Map<Player, ClassicPlayingField> getPlayers();
-
     Result fire(Player player, int x, char y);
+
+    Player determineWinner();
 
 }

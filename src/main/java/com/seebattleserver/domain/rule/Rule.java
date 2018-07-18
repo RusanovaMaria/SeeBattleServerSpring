@@ -1,10 +1,14 @@
 package com.seebattleserver.domain.rule;
 
-import com.seebattleserver.domain.gameobject.Kind;
-
 public interface Rule {
 
-    int[] getGameObjectsSize();
+    int countQuantityOfObjects(int size);
 
-    int countQuantityOfObjects(Kind kind);
+    int getMinGameObjectSize();
+
+    boolean isValidGameObjectSize(int size);
+
+    int getMaxGameObjectSize();
+
+    int[] getAllowedGameObjectSizes();
 }

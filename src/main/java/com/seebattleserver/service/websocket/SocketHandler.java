@@ -1,62 +1,83 @@
 package com.seebattleserver.service.websocket;
 
-import com.seebattleserver.application.client.Client;
-import com.seebattleserver.application.client.ClientSet;
 import com.google.gson.Gson;
-import com.seebattleserver.application.controller.ControllerManager;
+import com.seebattleserver.application.controllermanager.ControllerManager;
+import com.seebattleserver.application.message.messagehandler.MessageHandler;
+import com.seebattleserver.application.user.User;
+import com.seebattleserver.application.user.UserRegistry;
+import com.seebattleserver.configuration.UtilConfiguration;
+import com.seebattleserver.service.websocket.registry.SessionRegistry;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.stereotype.Component;
 import org.springframework.web.socket.TextMessage;
 import org.springframework.web.socket.WebSocketSession;
 import org.springframework.web.socket.handler.TextWebSocketHandler;
-import com.seebattleserver.service.message.Message;
+import com.seebattleserver.application.message.Message;
+
 
 import java.io.IOException;
-import java.util.List;
-import java.util.concurrent.CopyOnWriteArrayList;
 
 @Component
 public class SocketHandler extends TextWebSocketHandler {
+    private static final Logger LOGGER = LoggerFactory.getLogger(SocketHandler.class);
+    protected UserRegistry userRegistry;
+    private SessionRegistry sessionRegistry;
+    private Gson gson;
+    private ControllerManager controllerManager;
+    private MessageHandler messageHandler;
 
     @Autowired
-    public SocketHandler() {
-
+    public SocketHandler(SessionRegistry sessionRegistry, UserRegistry userRegistry, Gson gson, ControllerManager controllerManager) {
+        this.sessionRegistry = sessionRegistry;
+        this.userRegistry = userRegistry;
+        this.gson = gson;
+        this.controllerManager = controllerManager;
+        messageHandler = new MessageHandler();
     }
-
-    private ClientSet clientSet = new ClientSet();
-    private Gson gson = new Gson();
-    private  List<WebSocketSession> sessions = new CopyOnWriteArrayList<WebSocketSession>();
 
     @Override
-    public void handleTextMessage(WebSocketSession session, TextMessage context) throws IOException {
-        if (sessions.contains(session)) {
-            Client client = clientSet.findClientByWebSocketSession(session);
-            String command = readMessageInSession(session, context);
-            ControllerManager commandController = new ControllerManager(client);
-            commandController.handle(command);
+    public void handleTextMessage(WebSocketSession session, TextMessage textMessage) throws IOException {
+        if (isNotNewSession(session)) {
+            handleUserMessage(textMessage, session);
         } else {
-          Message name = gson.fromJson(context.getPayload(), Message.class);
-            Client client = new Client(session);
-            client.setName(name.getContext());
-            clientSet.add(client);
-            sessions.add(session);
+            String name = messageHandler.handle(textMessage);
+            registerUser(name, session);
+            sendMessageInSession(session, "Регистрация успешно завершена. " +
+                    "Введите команду help, чтобы посмотреть список возможных команд.");
         }
-    }
-
-    public void sendMessageInSession(WebSocketSession session,String context) throws IOException {
-        Message message = new Message(context);
-        String messageJson = gson.toJson(message);
-        session.sendMessage(new TextMessage(messageJson));
-    }
-
-    public String readMessageInSession(WebSocketSession session, TextMessage context) {
-        Message message = gson.fromJson(context.getPayload(), Message.class);
-        return message.getContext();
     }
 
     @Override
     public void afterConnectionEstablished(WebSocketSession session) throws Exception {
-        //sessions.add(session);
+        LOGGER.info("Подключение нового клиента");
         sendMessageInSession(session, "Введите свое имя");
+    }
+
+    private boolean isNotNewSession(WebSocketSession session) {
+        if (sessionRegistry.containsSession(session)) {
+            return true;
+        }
+        return false;
+    }
+
+    private void handleUserMessage(TextMessage textMessage, WebSocketSession session) {
+        User user = sessionRegistry.getUser(session);
+        controllerManager.handle(user, textMessage);
+    }
+
+    private void registerUser(String name, WebSocketSession session) {
+        User user = new User(name);
+        userRegistry.add(user);
+        sessionRegistry.put(session, user);
+    }
+
+    private void sendMessageInSession(WebSocketSession session, String context) throws IOException {
+        Message message = new Message(context);
+        String messageJson = gson.toJson(message);
+        session.sendMessage(new TextMessage(messageJson));
     }
 }
