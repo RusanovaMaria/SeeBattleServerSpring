@@ -1,9 +1,6 @@
 package com.seebattleserver.application.controller.gamestartcontroller;
 
 import com.seebattleserver.application.controller.Controller;
-import com.seebattleserver.application.controller.gamestartcontroller.gameobjectpositioncontroller.GameObjectPositionType;
-import com.seebattleserver.application.controller.gamestartcontroller.gameobjectpositioncontroller.StandardGameObjectPositionType;
-import com.seebattleserver.application.controller.gamestartcontroller.gameobjectpositioncontroller.UserGameObjectPositionType;
 import com.seebattleserver.application.controller.gamestartcontroller.gamestart.ClassicGameStart;
 import com.seebattleserver.application.controller.gamestartcontroller.gamestart.GameStart;
 import com.seebattleserver.application.gameregistry.GameRegistry;
@@ -11,6 +8,10 @@ import com.seebattleserver.application.message.Message;
 import com.seebattleserver.application.message.messagehandler.MessageHandler;
 import com.seebattleserver.application.user.User;
 import com.seebattleserver.application.user.UserStatus;
+import com.seebattleserver.domain.gameobjectarrangement.DefaultGameObjectArrangement;
+import com.seebattleserver.domain.player.Player;
+import com.seebattleserver.domain.playingfield.ClassicPlayingField;
+import com.seebattleserver.domain.playingfield.PlayingField;
 import com.seebattleserver.service.sender.UserSender;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -18,13 +19,12 @@ import org.springframework.web.socket.TextMessage;
 
 public class GameStartController implements Controller {
     private static final Logger LOGGER = LoggerFactory.getLogger(GameStartController.class);
-    public static final String STANDARD_POSITION_TYPE = "standard";
-    public static final String USER_POSITION_TYPE = "user";
+    public static final String STANDARD_GAME_OBJECT_ARRANGEMENT_TYPE = "standard";
+    public static final String USER_GAME_OBJECT_ARRANGEMENT_TYPE = "user";
     private User user;
     private UserSender userSender;
     private GameRegistry gameRegistry;
     private User userOpponent;
-    private MessageHandler messageHandler;
 
     public GameStartController(User user, UserSender userSender,
                                GameRegistry gameRegistry) {
@@ -32,45 +32,48 @@ public class GameStartController implements Controller {
         this.userSender = userSender;
         this.gameRegistry = gameRegistry;
         userOpponent = user.getUserOpponent();
-        messageHandler = new MessageHandler();
     }
 
     @Override
     public void handle(TextMessage textMessage) {
-        String positionType = messageHandler.handle(textMessage);
-        if (isCorrectPositionType(positionType)) {
-           arrangeGameObjects(positionType);
-           notifyAboutGameObjectArrangement();
-           startGameIfPossible();
+        MessageHandler  messageHandler = new MessageHandler();
+        String gameObjectArrangementType = messageHandler.handle(textMessage);
+        if (isCorrectPositionType(gameObjectArrangementType)) {
+           handleGameObjectArrangementType(gameObjectArrangementType);
         } else {
-            notifyAboutNotCorrectPosition();
-            LOGGER.warn("Позьзователь" +user.getUsername()+ "ввел неверный тип расположения игровых объектов.");
+            notifyAboutNotCorrectArrangementType();
+            LOGGER.warn("Пользователь" +user.getUsername()+ "ввел неверный тип расположения игровых объектов.");
         }
     }
 
     private boolean isCorrectPositionType(String positionType) {
-        if ((positionType.equals(STANDARD_POSITION_TYPE)) || (positionType.equals(USER_POSITION_TYPE))) {
+        if ((positionType.equals(STANDARD_GAME_OBJECT_ARRANGEMENT_TYPE)) || (positionType.equals(USER_GAME_OBJECT_ARRANGEMENT_TYPE))) {
             return true;
         }
         return false;
     }
 
-    private void arrangeGameObjects(String positionType) {
-        GameObjectPositionType gameObjectPositionType = determineGameObjectPositionType(positionType);
-        gameObjectPositionType.apply();
-    }
-
-    private GameObjectPositionType determineGameObjectPositionType(String positionType) {
-        switch (positionType) {
-            case STANDARD_POSITION_TYPE:
-                return new StandardGameObjectPositionType(user);
-            case USER_POSITION_TYPE:
-                return new UserGameObjectPositionType();
+    private void handleGameObjectArrangementType(String gameObjectArrangementType) {
+        switch (gameObjectArrangementType) {
+            case STANDARD_GAME_OBJECT_ARRANGEMENT_TYPE:
+                PlayingField playingField = new ClassicPlayingField();
+                DefaultGameObjectArrangement arrangement = new DefaultGameObjectArrangement(playingField);
+                arrangement.arrange();
+                Player player = user.getPlayer();
+                player.setPlayingField(playingField);
+                startGameIfPossible();
+                break;
+            case USER_GAME_OBJECT_ARRANGEMENT_TYPE:
+                user.setUserStatus(UserStatus.SET_UP_GAME_OJECTS);
+                userSender.sendMessage(user, new Message("Начало расстановки игровых объектов"));
+                break;
                 default:
                     LOGGER.error("Неверный тип расположения игровых объектов");
                     throw new IllegalArgumentException("Неверный тип расположения игровых объектов");
         }
     }
+
+
 
     private void notifyAboutGameObjectArrangement() {
         userSender.sendMessage(user, new Message("Игровые объекты установлены\n"+
@@ -106,7 +109,7 @@ public class GameStartController implements Controller {
         user.setUserStatus(UserStatus.IN_GAME_MOVE);
     }
 
-    private void notifyAboutNotCorrectPosition() {
+    private void notifyAboutNotCorrectArrangementType() {
         userSender.sendMessage(user, new Message("Введен неверный тип расположения игровых объектов." +
                 "Попробуйте еще раз."));
     }

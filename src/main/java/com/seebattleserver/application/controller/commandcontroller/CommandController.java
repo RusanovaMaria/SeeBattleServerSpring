@@ -13,18 +13,17 @@ public class CommandController implements Controller {
     private User user;
     private CommandList commandList;
     private UserSender userSender;
-    private MessageHandler messageHandler;
 
     public CommandController(User user, CommandList commandList,
                              UserSender userSender) {
         this.user = user;
         this.commandList = commandList;
         this.userSender = userSender;
-        messageHandler = new MessageHandler();
     }
 
     @Override
     public void handle(TextMessage textMessage) {
+        MessageHandler messageHandler = new MessageHandler();
         String commandWord = messageHandler.handle(textMessage);
         Command command = commandList.getCommand(commandWord);
         if (command instanceof PlayerInvitationCommand) {

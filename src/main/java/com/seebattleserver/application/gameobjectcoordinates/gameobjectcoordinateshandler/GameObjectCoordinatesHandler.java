@@ -18,6 +18,10 @@ public class GameObjectCoordinatesHandler {
     public Map<Integer, List<List<String>>> handle(TextMessage textMessage) {
         Map<Integer, List<List<String>>> coordinates = new HashMap<>();
         GameObjectCoordinates gameObjectCoordinates = gson.fromJson(textMessage.getPayload(), GameObjectCoordinates.class);
+        System.out.println(gameObjectCoordinates);
+        System.out.println(gameObjectCoordinates.getGameObjectSize());
+        System.out.println(gameObjectCoordinates.getCoordinates());
+        System.out.println();
         coordinates.put(gameObjectCoordinates.getGameObjectSize(), gameObjectCoordinates.getCoordinates());
         return coordinates;
     }

@@ -21,18 +21,17 @@ public class InvitationResponseController implements Controller {
     private User user;
     private GameRegistry gameRegistry;
     private UserSender userSender;
-    private MessageHandler messageHandler;
 
     public InvitationResponseController(User user, GameRegistry gameRegistry,
                                         UserSender userSender) {
         this.user = user;
         this.gameRegistry = gameRegistry;
         this.userSender = userSender;
-        messageHandler = new MessageHandler();
     }
 
     @Override
     public void handle(TextMessage textMessage) {
+        MessageHandler messageHandler = new MessageHandler();
         String answer = messageHandler.handle(textMessage);
         if (isCorrectAnswer(answer)) {
             Invitation invitation = createInvitation(answer);

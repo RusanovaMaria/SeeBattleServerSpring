@@ -16,18 +16,17 @@ public class InvitationController implements Controller {
     private User user;
     private UserRegistry userRegistry;
     private UserSender userSender;
-    private MessageHandler messageHandler;
 
     public InvitationController(User user, UserRegistry userRegistry,
                                 UserSender userSender) {
         this.user = user;
         this.userRegistry = userRegistry;
         this.userSender = userSender;
-        messageHandler = new MessageHandler();
     }
 
     @Override
     public void handle(TextMessage textMessage) {
+        MessageHandler messageHandler = new MessageHandler();
         String userOpponentName = messageHandler.handle(textMessage);
         User userOpponent = userRegistry.getUserByName(userOpponentName);
         if (isInvitationPossible(userOpponent)) {
