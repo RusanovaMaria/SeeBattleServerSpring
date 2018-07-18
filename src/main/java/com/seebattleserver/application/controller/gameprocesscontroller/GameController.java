@@ -1,8 +1,10 @@
 package com.seebattleserver.application.controller.gameprocesscontroller;
 
 import com.seebattleserver.application.controller.Controller;
+import com.seebattleserver.application.controller.gameprocesscontroller.gameend.GameEnd;
 import com.seebattleserver.application.gameregistry.GameRegistry;
 import com.seebattleserver.application.message.Message;
+import com.seebattleserver.application.message.messagehandler.MessageHandler;
 import com.seebattleserver.application.user.User;
 import com.seebattleserver.application.user.UserStatus;
 import com.seebattleserver.domain.game.Game;
@@ -11,21 +13,20 @@ import com.seebattleserver.domain.player.Player;
 import com.seebattleserver.service.sender.UserSender;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.web.socket.TextMessage;
 
-public class GameProcessController implements Controller {
-    private static final Logger LOGGER = LoggerFactory.getLogger(GameProcessController.class);
-
+public class GameController implements Controller {
+    private static final Logger LOGGER = LoggerFactory.getLogger(GameController.class);
     private User user;
     private GameRegistry gameRegistry;
     private Game game;
     private UserSender userSender;
     private User userOpponent;
-
     int x;
     char y;
 
-    public GameProcessController(User user, GameRegistry gameRegistry,
-                                 UserSender userSender) {
+    public GameController(User user, GameRegistry gameRegistry,
+                          UserSender userSender) {
         this.user = user;
         this.gameRegistry = gameRegistry;
         this.userSender = userSender;
@@ -34,7 +35,9 @@ public class GameProcessController implements Controller {
     }
 
     @Override
-    public void handle(String coordinates) {
+    public void handle(TextMessage textMessage) {
+        MessageHandler messageHandler = new MessageHandler();
+        String coordinates = messageHandler.handle(textMessage);
         if (isUserMove()) {
             makeMove(coordinates);
         } else {
@@ -115,37 +118,8 @@ public class GameProcessController implements Controller {
     }
 
     private void endGame() {
-        User winner = determineWinner();
-        User looser = winner.getUserOpponent();
-        notifyAboutGameEnd(winner, looser);
-        endGameProcessForUsers();
-        removeGame();
-    }
-
-    private void notifyAboutGameEnd(User winner, User looser) {
-        userSender.sendMessage(winner, new Message("Игра окончена. Вы выиграли!"));
-        userSender.sendMessage(looser, new Message("Игра окончена. Вы проиграли"));
-    }
-
-    private User determineWinner() {
-        Player winner = game.determineWinner();
-        if (user.getPlayer().equals(winner)) {
-            return user;
-        } else {
-            return user.getUserOpponent();
-        }
-    }
-
-    private void endGameProcessForUsers() {
-        user.setUserStatus(UserStatus.FREE);
-        userOpponent.setUserStatus(UserStatus.FREE);
-        user.setUserOpponent(null);
-        userOpponent.setUserOpponent(null);
-    }
-
-    private void removeGame() {
-        gameRegistry.remove(user, game);
-        gameRegistry.remove(userOpponent, game);
+        GameEnd gameEnd = new GameEnd(user, userOpponent, game, gameRegistry, userSender);
+        gameEnd.end();
     }
 
     private void notifyAboutNotUserMove() {

@@ -1,4 +1,4 @@
-package com.seebattleserver.application.gameobjectposition;
+package com.seebattleserver.domain.gameobjectarrangement;
 
 import com.seebattleserver.domain.cage.Cage;
 import com.seebattleserver.domain.gameobject.GameObject;
@@ -9,13 +9,13 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-public class UserGameObjectPosition implements GameObjectPosition {
+public class UserGameObjectArrangement implements GameObjectArrangement {
 
     private PlayingField playingField;
     private Map<Integer, List<List<String>>> coordinates;
 
-    public UserGameObjectPosition(PlayingField playingField,
-                                  Map<Integer, List<List<String>>> coordinates) {
+    public UserGameObjectArrangement(PlayingField playingField,
+                                     Map<Integer, List<List<String>>> coordinates) {
 
         this.playingField = playingField;
         this.coordinates = coordinates;

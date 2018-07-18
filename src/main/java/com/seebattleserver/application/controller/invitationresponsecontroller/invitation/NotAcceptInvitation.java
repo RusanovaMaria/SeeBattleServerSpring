@@ -1,6 +1,5 @@
 package com.seebattleserver.application.controller.invitationresponsecontroller.invitation;
 
-import com.seebattleserver.application.controller.invitationresponsecontroller.invitation.Invitation;
 import com.seebattleserver.application.message.Message;
 import com.seebattleserver.application.user.User;
 import com.seebattleserver.application.user.UserStatus;

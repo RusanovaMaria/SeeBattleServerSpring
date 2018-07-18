@@ -1,4 +1,4 @@
-package com.seebattleserver.application.gameobjectposition;
+package com.seebattleserver.domain.gameobjectarrangement;
 
 import com.seebattleserver.domain.cage.Cage;
 import com.seebattleserver.domain.gameobject.GameObject;
@@ -7,11 +7,11 @@ import com.seebattleserver.domain.playingfield.PlayingField;
 
 import java.util.List;
 
-public class StandardGameObjectPosition implements GameObjectPosition {
+public class DefaultGameObjectArrangement implements GameObjectArrangement {
 
     private PlayingField playingField;
 
-    public StandardGameObjectPosition(PlayingField playingField) {
+    public DefaultGameObjectArrangement(PlayingField playingField) {
         this.playingField = playingField;
     }
 

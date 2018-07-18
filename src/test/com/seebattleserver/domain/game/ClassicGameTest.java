@@ -2,8 +2,8 @@ package com.seebattleserver.domain.game;
 
 import com.seebattleserver.domain.gameobject.GameObject;
 import com.seebattleserver.domain.gameobject.Status;
-import com.seebattleserver.application.gameobjectposition.GameObjectPosition;
-import com.seebattleserver.application.gameobjectposition.StandardGameObjectPosition;
+import com.seebattleserver.domain.gameobjectarrangement.GameObjectPosition;
+import com.seebattleserver.domain.gameobjectarrangement.StandardGameObjectPosition;
 import com.seebattleserver.domain.player.Player;
 import com.seebattleserver.domain.playingfield.ClassicPlayingField;
 import com.seebattleserver.domain.playingfield.PlayingField;
