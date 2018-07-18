@@ -11,7 +11,7 @@ import java.util.Map;
 import java.util.Set;
 
 public class UserGameObjectArrangement implements GameObjectArrangement {
-    private PlayingField playingField;
+    private PlayingField playingField = new ClassicPlayingField();
     private Map<Integer, List<List<String>>> coordinates;
 
     public UserGameObjectArrangement(Map<Integer, List<List<String>>> coordinates) {
@@ -20,7 +20,6 @@ public class UserGameObjectArrangement implements GameObjectArrangement {
 
     @Override
     public PlayingField arrange() {
-        playingField = new ClassicPlayingField();
         Set<Integer> gameObjectSizes = coordinates.keySet();
         for (int size : gameObjectSizes) {
             List<GameObject> gameObjectsOfCurrentSize = playingField.getGameObjectsBySize(size);
@@ -43,20 +42,23 @@ public class UserGameObjectArrangement implements GameObjectArrangement {
         int currentCoordinateIndex = 0;
         for (GameObjectPart gameObjectPart : gameObjectParts) {
             String coordinate = coordinatesForCurrentGameObject.get(currentCoordinateIndex);
-            arrangeGameObjectPart(coordinate, gameObjectPart);
+            Cage cage = identifyCage(coordinate);
+            cage.setGameObjectPart(gameObjectPart);
             currentCoordinateIndex++;
         }
     }
 
-    private void arrangeGameObjectPart(String coordinate, GameObjectPart gameObjectPart) {
+  /*  private void arrangeGameObjectPart(String coordinate, GameObjectPart gameObjectPart) {
         Cage cage = identifyCage(coordinate);
         cage.setGameObjectPart(gameObjectPart);
-    }
+    } */
 
     private Cage identifyCage(String coordinate) {
         coordinate = coordinate.trim();
-        int x = coordinate.charAt(0);
+        int x = Character.getNumericValue(coordinate.charAt(0));
+        System.out.println(x);
         char y = coordinate.charAt(1);
+        System.out.println(y);
         return playingField.identifyCage(x, y);
     }
 }

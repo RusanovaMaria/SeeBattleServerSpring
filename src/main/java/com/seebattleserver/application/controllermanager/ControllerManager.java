@@ -34,7 +34,7 @@ public class ControllerManager {
             case READY_FOR_GAME:
                 return controllerFactory.createGameStartController(user);
             case SET_UP_GAME_OJECTS:
-                return controllerFactory.createUserGameObjectArrangementController();
+                return controllerFactory.createUserGameObjectArrangementController(user);
             case IN_GAME:
                 return controllerFactory.createGameProcessController(user);
             case IN_GAME_MOVE:

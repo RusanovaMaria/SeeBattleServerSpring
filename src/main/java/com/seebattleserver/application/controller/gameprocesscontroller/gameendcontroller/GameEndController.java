@@ -1,4 +1,4 @@
-package com.seebattleserver.application.controller.gameprocesscontroller.gameend;
+package com.seebattleserver.application.controller.gameprocesscontroller.gameendcontroller;
 
 import com.seebattleserver.application.gameregistry.GameRegistry;
 import com.seebattleserver.application.message.Message;
@@ -8,14 +8,14 @@ import com.seebattleserver.domain.game.Game;
 import com.seebattleserver.domain.player.Player;
 import com.seebattleserver.service.sender.UserSender;
 
-public class GameEnd {
+public class GameEndController {
     private User firstUser;
     private User secondUser;
     private Game game;
     private GameRegistry gameRegistry;
     private UserSender userSender;
 
-    public GameEnd(User firstUser, User secondUser, Game game, GameRegistry gameRegistry, UserSender userSender) {
+    public GameEndController(User firstUser, User secondUser, Game game, GameRegistry gameRegistry, UserSender userSender) {
         this.firstUser = firstUser;
         this.secondUser = secondUser;
         this.game = game;
@@ -23,7 +23,7 @@ public class GameEnd {
         this.userSender = userSender;
     }
 
-    public void end() {
+    public void endGame() {
         User winner = determineWinner();
         User looser = winner.getUserOpponent();
         notifyAboutGameEnd(winner, looser);

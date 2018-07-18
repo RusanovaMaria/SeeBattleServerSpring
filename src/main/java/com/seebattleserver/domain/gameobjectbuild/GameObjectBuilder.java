@@ -3,7 +3,7 @@ package com.seebattleserver.domain.gameobjectbuild;
 
 import com.seebattleserver.domain.gameobject.Ship;
 
-public interface GameObjectBuild {
+public interface GameObjectBuilder {
 
     Ship build(int size);
 }

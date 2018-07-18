@@ -1,7 +1,7 @@
 package com.seebattleserver.application.controller.gameprocesscontroller;
 
 import com.seebattleserver.application.controller.Controller;
-import com.seebattleserver.application.controller.gameprocesscontroller.gameend.GameEnd;
+import com.seebattleserver.application.controller.gameprocesscontroller.gameendcontroller.GameEndController;
 import com.seebattleserver.application.gameregistry.GameRegistry;
 import com.seebattleserver.application.message.Message;
 import com.seebattleserver.application.message.messagehandler.MessageHandler;
@@ -9,7 +9,6 @@ import com.seebattleserver.application.user.User;
 import com.seebattleserver.application.user.UserStatus;
 import com.seebattleserver.domain.game.Game;
 import com.seebattleserver.domain.game.Result;
-import com.seebattleserver.domain.player.Player;
 import com.seebattleserver.service.sender.UserSender;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -118,8 +117,8 @@ public class GameController implements Controller {
     }
 
     private void endGame() {
-        GameEnd gameEnd = new GameEnd(user, userOpponent, game, gameRegistry, userSender);
-        gameEnd.end();
+        GameEndController gameEndController = new GameEndController(user, userOpponent, game, gameRegistry, userSender);
+        gameEndController.endGame();
     }
 
     private void notifyAboutNotUserMove() {

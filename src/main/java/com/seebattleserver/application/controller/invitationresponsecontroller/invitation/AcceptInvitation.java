@@ -50,17 +50,17 @@ public class AcceptInvitation implements Invitation {
     }
 
     private void notifyUsersAboutGameObjectTypeChoice() {
-        userSender.sendMessage(user, new Message("Выберите тип расстановки игровых объектов\n"+
-        "standard - стандартный тип расстановки\n"+
-        "user - пользовательский тип расстановки"));
-        userSender.sendMessage(userOpponent, new Message("Выберите тип расстановки игровых объектов\n"+
-                "standard - стандартный тип расстановки\n"+
+        userSender.sendMessage(user, new Message("Выберите тип расстановки игровых объектов\n" +
+                "default - стандартный тип расстановки\n" +
+                "user - пользовательский тип расстановки"));
+        userSender.sendMessage(userOpponent, new Message("Выберите тип расстановки игровых объектов\n" +
+                "default - стандартный тип расстановки\n" +
                 "user - пользовательский тип расстановки"));
     }
 
     private void notifyAboutUserOpponentInGame() {
         userSender.sendMessage(user, new Message("Пользователь"
-                +userOpponent.getUsername()+ "уже начал игру"));
+                + userOpponent.getUsername() + "уже начал игру"));
     }
 
     private void setUserFree() {

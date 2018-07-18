@@ -13,17 +13,15 @@ public class ShipBuildTest {
 
     @Test
     public void build_whenGameObjectSizeIsValid_returnGameObjectPArtsIsNotNull() {
-        GameObject ship = new Ship(3);
-        GameObjectBuild gameObjectBuild = new ShipBuild(ship);
-        gameObjectBuild.build();
+        GameObjectBuilder gameObjectBuilder = new ShipBuilder();
+        GameObject ship = gameObjectBuilder.build(3);
         List<GameObjectPart> gameObjectParts = ship.getGameObjectParts();
         assertNotNull(gameObjectParts);
     }
 
     @Test (expected = IllegalArgumentException.class)
     public void build_whenGameObjectSizeIsNotValid_returnException() {
-        GameObject ship = new Ship(5);
-        GameObjectBuild gameObjectBuild = new ShipBuild(ship);
-        gameObjectBuild.build();
+        GameObjectBuilder gameObjectBuilder = new ShipBuilder();
+        GameObject ship = gameObjectBuilder.build(5);
     }
 }

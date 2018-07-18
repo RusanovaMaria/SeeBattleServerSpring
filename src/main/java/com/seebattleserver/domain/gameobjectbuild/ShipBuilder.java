@@ -9,10 +9,10 @@ import com.seebattleserver.domain.rule.Rule;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ShipBuild implements GameObjectBuild {
+public class ShipBuilder implements GameObjectBuilder {
     private Rule rule;
 
-    public ShipBuild() {
+    public ShipBuilder() {
         rule = new ClassicRule();
     }
 
@@ -29,16 +29,11 @@ public class ShipBuild implements GameObjectBuild {
     private Ship buildShip(int size) {
         Ship ship = new Ship();
         ship.setSize(size);
-        List<GameObjectPart> gameObjectParts = generateGameObjectParts(size, ship);
-        ship.setGameObjectParts(gameObjectParts);
-        return ship;
-    }
-
-    private List<GameObjectPart> generateGameObjectParts(int size, Ship ship) {
         List<GameObjectPart> gameObjectParts = new ArrayList();
         for (int i = 0; i < size; i++) {
             gameObjectParts.add(new ShipPart(ship));
         }
-        return gameObjectParts;
+        ship.setGameObjectParts(gameObjectParts);
+        return ship;
     }
 }

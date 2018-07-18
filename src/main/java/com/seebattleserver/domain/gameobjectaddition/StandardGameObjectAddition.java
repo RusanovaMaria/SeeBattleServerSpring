@@ -1,8 +1,7 @@
 package com.seebattleserver.domain.gameobjectaddition;
 
 import com.seebattleserver.domain.gameobject.GameObject;
-import com.seebattleserver.domain.gameobject.Ship;
-import com.seebattleserver.domain.gameobjectbuild.ShipBuild;
+import com.seebattleserver.domain.gameobjectbuild.ShipBuilder;
 import com.seebattleserver.domain.playingfield.PlayingField;
 import com.seebattleserver.domain.rule.ClassicRule;
 import com.seebattleserver.domain.rule.Rule;
@@ -36,9 +35,8 @@ public class StandardGameObjectAddition implements GameObjectAddition {
         List<GameObject> gameObjectsOfCurrentSize = new ArrayList<>();
         int gameObjectQuantity = rule.countQuantityOfObjects(size);
         for (int j = 0; j < gameObjectQuantity; j++) {
-            GameObject ship = new Ship(size);
-            ShipBuild shipBuild = new ShipBuild(ship);
-            shipBuild.build();
+            ShipBuilder shipBuilder = new ShipBuilder();
+            GameObject ship = shipBuilder.build(size);
             gameObjectsOfCurrentSize.add(ship);
         }
         gameObjects.put(size, gameObjectsOfCurrentSize);

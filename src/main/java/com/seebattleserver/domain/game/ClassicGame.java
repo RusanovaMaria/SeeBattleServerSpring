@@ -10,21 +10,28 @@ import com.seebattleserver.domain.gameobjectpart.GameObjectPart;
 import com.seebattleserver.domain.player.Player;
 import com.seebattleserver.domain.playingfield.PlayingField;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class ClassicGame implements Game {
     private Player firstPlayer;
     private Player secondPlayer;
     private PlayingField firstPlayingField;
     private PlayingField secondPlayingField;
+    private Map<Player, PlayingField> playerPlayingFiels;
 
     public ClassicGame(Player firstPlayer, Player secondPlayer) {
         this.firstPlayer = firstPlayer;
         this.secondPlayer = secondPlayer;
+        firstPlayingField = firstPlayer.getPlayingField();
+        secondPlayingField = secondPlayer.getPlayingField();
         initPlayingFields();
     }
 
     private void initPlayingFields() {
-        firstPlayingField = firstPlayer.getPlayingField();
-        secondPlayingField = secondPlayer.getPlayingField();
+        playerPlayingFiels = new HashMap<>();
+        playerPlayingFiels.put(secondPlayer, firstPlayingField);
+        playerPlayingFiels.put(firstPlayer, secondPlayingField);
     }
 
     @Override
@@ -37,8 +44,7 @@ public class ClassicGame implements Game {
 
     @Override
     public Result fire(Player player, int x, char y) {
-        PlayingField playingField = player.getPlayingField();
-        System.out.println(playingField);
+        PlayingField playingField = playerPlayingFiels.get(player);
         Cage affectedCage = playingField.identifyCage(x, y);
         shoot(affectedCage);
         Result result = getResult(affectedCage);

@@ -45,3 +45,625 @@
 18-07-2018 11:50:30.328 [http-nio-8080-exec-10] INFO  o.s.web.servlet.DispatcherServlet.initServletBean - FrameworkServlet 'dispatcherServlet': initialization started
 18-07-2018 11:50:30.398 [http-nio-8080-exec-10] INFO  o.s.web.servlet.DispatcherServlet.initServletBean - FrameworkServlet 'dispatcherServlet': initialization completed in 68 ms
 18-07-2018 11:50:30.752 [http-nio-8080-exec-10] INFO  c.s.service.websocket.SocketHandler.afterConnectionEstablished - Подключение нового клиента
+18-07-2018 20:36:30.229 [main] INFO  com.seebattleserver.Application.logStarting - Starting Application on DESKTOP-CSIKHQM with PID 10632 (C:\Users\1111\IdeaProjects\SeeBattleServerSpring\target\classes started by 1111 in C:\Users\1111\IdeaProjects\SeeBattleServerSpring)
+18-07-2018 20:36:30.244 [main] INFO  com.seebattleserver.Application.logStartupProfileInfo - No active profile set, falling back to default profiles: default
+18-07-2018 20:36:30.541 [main] INFO  o.s.b.w.s.c.AnnotationConfigServletWebServerApplicationContext.prepareRefresh - Refreshing org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@69f1a286: startup date [Wed Jul 18 20:36:30 MSK 2018]; root of context hierarchy
+18-07-2018 20:36:36.278 [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker.postProcessAfterInitialization - Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$37dc5a25] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+18-07-2018 20:36:37.559 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer.initialize - Tomcat initialized with port(s): 8080 (http)
+18-07-2018 20:36:37.669 [main] INFO  o.a.catalina.core.StandardService.log - Starting service [Tomcat]
+18-07-2018 20:36:37.669 [main] INFO  o.a.catalina.core.StandardEngine.log - Starting Servlet Engine: Apache Tomcat/9.0.8
+18-07-2018 20:36:37.684 [main] INFO  o.a.c.core.AprLifecycleListener.log - The APR based Apache Tomcat Native library which allows optimal performance in production environments was not found on the java.library.path: [C:\Program Files\Java\jdk-10.0.1\bin;C:\Windows\Sun\Java\bin;C:\Windows\system32;C:\Windows;C:\Program Files\Microsoft MPI\Bin\;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;C:\Program Files\Git\cmd;C:\Program Files (x86)\Microsoft SQL Server\140\Tools\Binn\;C:\Program Files\Microsoft SQL Server\140\Tools\Binn\;C:\Program Files (x86)\Microsoft SQL Server\140\DTS\Binn\;C:\Program Files\Microsoft SQL Server\140\DTS\Binn\;C:\Program Files\Microsoft SQL Server\Client SDK\ODBC\130\Tools\Binn\;C:\Program Files (x86)\Microsoft SQL Server\Client SDK\ODBC\130\Tools\Binn\;C:\Program Files (x86)\Microsoft SQL Server\140\Tools\Binn\ManagementStudio\;C:\Users\1111\AppData\Local\Microsoft\WindowsApps;;.]
+18-07-2018 20:36:38.231 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/].log - Initializing Spring embedded WebApplicationContext
+18-07-2018 20:36:38.231 [main] INFO  o.s.web.context.ContextLoader.prepareWebApplicationContext - Root WebApplicationContext: initialization completed in 7690 ms
+18-07-2018 20:36:38.606 [main] INFO  o.s.b.w.s.ServletRegistrationBean.addRegistration - Servlet dispatcherServlet mapped to [/]
+18-07-2018 20:36:38.622 [main] INFO  o.s.b.w.s.FilterRegistrationBean.configure - Mapping filter: 'characterEncodingFilter' to: [/*]
+18-07-2018 20:36:38.622 [main] INFO  o.s.b.w.s.FilterRegistrationBean.configure - Mapping filter: 'hiddenHttpMethodFilter' to: [/*]
+18-07-2018 20:36:38.622 [main] INFO  o.s.b.w.s.FilterRegistrationBean.configure - Mapping filter: 'httpPutFormContentFilter' to: [/*]
+18-07-2018 20:36:38.637 [main] INFO  o.s.b.w.s.FilterRegistrationBean.configure - Mapping filter: 'requestContextFilter' to: [/*]
+18-07-2018 20:36:39.544 [main] INFO  com.zaxxer.hikari.HikariDataSource.getConnection - HikariPool-1 - Starting...
+18-07-2018 20:36:40.825 [main] INFO  com.zaxxer.hikari.HikariDataSource.getConnection - HikariPool-1 - Start completed.
+18-07-2018 20:36:41.075 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean.createNativeEntityManagerFactory - Building JPA container EntityManagerFactory for persistence unit 'default'
+18-07-2018 20:36:41.122 [main] INFO  o.h.jpa.internal.util.LogHelper.logPersistenceUnitInformation - HHH000204: Processing PersistenceUnitInfo [
+	name: default
+	...]
+18-07-2018 20:36:41.419 [main] INFO  org.hibernate.Version.logVersion - HHH000412: Hibernate Core {5.2.17.Final}
+18-07-2018 20:36:41.419 [main] INFO  org.hibernate.cfg.Environment.<clinit> - HHH000206: hibernate.properties not found
+18-07-2018 20:36:41.575 [main] INFO  o.h.annotations.common.Version.<clinit> - HCANN000001: Hibernate Commons Annotations {5.0.1.Final}
+18-07-2018 20:36:42.153 [main] INFO  org.hibernate.dialect.Dialect.<init> - HHH000400: Using dialect: org.hibernate.dialect.SQLServer2012Dialect
+18-07-2018 20:36:44.122 [main] INFO  o.h.t.s.internal.SchemaCreatorImpl.applyImportSources - HHH000476: Executing import script 'org.hibernate.tool.schema.internal.exec.ScriptSourceInputNonExistentImpl@57b130f6'
+18-07-2018 20:36:44.122 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean.buildNativeEntityManagerFactory - Initialized JPA EntityManagerFactory for persistence unit 'default'
+18-07-2018 20:36:45.606 [main] INFO  o.s.w.s.s.s.WebSocketHandlerMapping.registerHandler - Mapped URL path [/game] onto handler of type [class org.springframework.web.socket.server.support.WebSocketHttpRequestHandler]
+18-07-2018 20:36:45.903 [main] INFO  o.s.w.s.h.SimpleUrlHandlerMapping.registerHandler - Mapped URL path [/**/favicon.ico] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+18-07-2018 20:36:46.762 [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerAdapter.initControllerAdviceCache - Looking for @ControllerAdvice: org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@69f1a286: startup date [Wed Jul 18 20:36:30 MSK 2018]; root of context hierarchy
+18-07-2018 20:36:46.872 [main] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration$JpaWebMvcConfiguration.openEntityManagerInViewInterceptor - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+18-07-2018 20:36:47.012 [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping.register - Mapped "{[/controller/all],methods=[GET]}" onto public java.lang.Iterable<com.seebattleserver.repository.UserEntity> com.seebattleserver.repository.UserListController.getAllUserEntities()
+18-07-2018 20:36:47.012 [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping.register - Mapped "{[/controller/add],methods=[GET]}" onto public java.lang.String com.seebattleserver.repository.UserListController.addNewUserEntity(java.lang.String,com.seebattleserver.application.user.UserStatus)
+18-07-2018 20:36:47.028 [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping.register - Mapped "{[/error],produces=[text/html]}" onto public org.springframework.web.servlet.ModelAndView org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController.errorHtml(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+18-07-2018 20:36:47.028 [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping.register - Mapped "{[/error]}" onto public org.springframework.http.ResponseEntity<java.util.Map<java.lang.String, java.lang.Object>> org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController.error(javax.servlet.http.HttpServletRequest)
+18-07-2018 20:36:47.106 [main] INFO  o.s.w.s.h.SimpleUrlHandlerMapping.registerHandler - Mapped URL path [/webjars/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+18-07-2018 20:36:47.106 [main] INFO  o.s.w.s.h.SimpleUrlHandlerMapping.registerHandler - Mapped URL path [/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+18-07-2018 20:36:47.965 [main] INFO  o.s.j.e.a.AnnotationMBeanExporter.afterSingletonsInstantiated - Registering beans for JMX exposure on startup
+18-07-2018 20:36:47.965 [main] INFO  o.s.j.e.a.AnnotationMBeanExporter.autodetect - Bean with name 'dataSource' has been autodetected for JMX exposure
+18-07-2018 20:36:47.981 [main] INFO  o.s.j.e.a.AnnotationMBeanExporter.registerBeanInstance - Located MBean 'dataSource': registering with JMX server as MBean [com.zaxxer.hikari:name=dataSource,type=HikariDataSource]
+18-07-2018 20:36:47.997 [main] INFO  o.s.c.s.DefaultLifecycleProcessor.start - Starting beans in phase 2147483647
+18-07-2018 20:36:48.075 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer.start - Tomcat started on port(s): 8080 (http) with context path ''
+18-07-2018 20:36:48.075 [main] INFO  com.seebattleserver.Application.logStarted - Started Application in 19.909 seconds (JVM running for 23.316)
+18-07-2018 20:37:05.157 [http-nio-8080-exec-10] INFO  o.a.c.c.C.[Tomcat].[localhost].[/].log - Initializing Spring FrameworkServlet 'dispatcherServlet'
+18-07-2018 20:37:05.157 [http-nio-8080-exec-10] INFO  o.s.web.servlet.DispatcherServlet.initServletBean - FrameworkServlet 'dispatcherServlet': initialization started
+18-07-2018 20:37:05.220 [http-nio-8080-exec-10] INFO  o.s.web.servlet.DispatcherServlet.initServletBean - FrameworkServlet 'dispatcherServlet': initialization completed in 63 ms
+18-07-2018 20:37:05.626 [http-nio-8080-exec-10] INFO  c.s.service.websocket.SocketHandler.afterConnectionEstablished - Подключение нового клиента
+18-07-2018 20:37:29.142 [http-nio-8080-exec-8] INFO  c.s.service.websocket.SocketHandler.afterConnectionEstablished - Подключение нового клиента
+18-07-2018 20:38:20.015 [http-nio-8080-exec-2] ERROR o.s.w.s.h.ExceptionWebSocketHandlerDecorator.tryCloseWithError - Closing session due to exception for StandardWebSocketSession[id=1, uri=/game]
+java.lang.IllegalArgumentException: Клетка с данными координатами не найдена
+	at com.seebattleserver.domain.playingfield.ClassicPlayingField.identifyCage(ClassicPlayingField.java:45)
+	at com.seebattleserver.domain.gameobjectarrangement.UserGameObjectArrangement.identifyCage(UserGameObjectArrangement.java:60)
+	at com.seebattleserver.domain.gameobjectarrangement.UserGameObjectArrangement.arrangeGameObjectPart(UserGameObjectArrangement.java:52)
+	at com.seebattleserver.domain.gameobjectarrangement.UserGameObjectArrangement.arrangeGameObject(UserGameObjectArrangement.java:46)
+	at com.seebattleserver.domain.gameobjectarrangement.UserGameObjectArrangement.arrangeGameObjectsOfCurrentSize(UserGameObjectArrangement.java:37)
+	at com.seebattleserver.domain.gameobjectarrangement.UserGameObjectArrangement.arrange(UserGameObjectArrangement.java:28)
+	at com.seebattleserver.application.controller.usergameobjectarrangementcontroller.UserGameObjectArrangementController.handle(UserGameObjectArrangementController.java:34)
+	at com.seebattleserver.application.controllermanager.ControllerManager.handle(ControllerManager.java:23)
+	at com.seebattleserver.service.websocket.SocketHandler.handleUserMessage(SocketHandler.java:69)
+	at com.seebattleserver.service.websocket.SocketHandler.handleTextMessage(SocketHandler.java:45)
+	at org.springframework.web.socket.handler.AbstractWebSocketHandler.handleMessage(AbstractWebSocketHandler.java:43)
+	at org.springframework.web.socket.handler.WebSocketHandlerDecorator.handleMessage(WebSocketHandlerDecorator.java:75)
+	at org.springframework.web.socket.handler.LoggingWebSocketHandlerDecorator.handleMessage(LoggingWebSocketHandlerDecorator.java:56)
+	at org.springframework.web.socket.handler.ExceptionWebSocketHandlerDecorator.handleMessage(ExceptionWebSocketHandlerDecorator.java:58)
+	at org.springframework.web.socket.adapter.standard.StandardWebSocketHandlerAdapter.handleTextMessage(StandardWebSocketHandlerAdapter.java:113)
+	at org.springframework.web.socket.adapter.standard.StandardWebSocketHandlerAdapter.access$000(StandardWebSocketHandlerAdapter.java:42)
+	at org.springframework.web.socket.adapter.standard.StandardWebSocketHandlerAdapter$3.onMessage(StandardWebSocketHandlerAdapter.java:84)
+	at org.springframework.web.socket.adapter.standard.StandardWebSocketHandlerAdapter$3.onMessage(StandardWebSocketHandlerAdapter.java:81)
+	at org.apache.tomcat.websocket.WsFrameBase.sendMessageText(WsFrameBase.java:395)
+	at org.apache.tomcat.websocket.server.WsFrameServer.sendMessageText(WsFrameServer.java:119)
+	at org.apache.tomcat.websocket.WsFrameBase.processDataText(WsFrameBase.java:495)
+	at org.apache.tomcat.websocket.WsFrameBase.processData(WsFrameBase.java:294)
+	at org.apache.tomcat.websocket.WsFrameBase.processInputBuffer(WsFrameBase.java:133)
+	at org.apache.tomcat.websocket.server.WsFrameServer.onDataAvailable(WsFrameServer.java:82)
+	at org.apache.tomcat.websocket.server.WsFrameServer.doOnDataAvailable(WsFrameServer.java:171)
+	at org.apache.tomcat.websocket.server.WsFrameServer.notifyDataAvailable(WsFrameServer.java:151)
+	at org.apache.tomcat.websocket.server.WsHttpUpgradeHandler.upgradeDispatch(WsHttpUpgradeHandler.java:148)
+	at org.apache.coyote.http11.upgrade.UpgradeProcessorInternal.dispatch(UpgradeProcessorInternal.java:54)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:53)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:754)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1385)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1135)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.base/java.lang.Thread.run(Thread.java:844)
+18-07-2018 20:40:55.469 [main] INFO  com.seebattleserver.Application.logStarting - Starting Application on DESKTOP-CSIKHQM with PID 10904 (C:\Users\1111\IdeaProjects\SeeBattleServerSpring\target\classes started by 1111 in C:\Users\1111\IdeaProjects\SeeBattleServerSpring)
+18-07-2018 20:40:55.485 [main] INFO  com.seebattleserver.Application.logStartupProfileInfo - No active profile set, falling back to default profiles: default
+18-07-2018 20:40:55.813 [main] INFO  o.s.b.w.s.c.AnnotationConfigServletWebServerApplicationContext.prepareRefresh - Refreshing org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@1e44b638: startup date [Wed Jul 18 20:40:55 MSK 2018]; root of context hierarchy
+18-07-2018 20:41:01.766 [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker.postProcessAfterInitialization - Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$fb546289] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+18-07-2018 20:41:02.891 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer.initialize - Tomcat initialized with port(s): 8080 (http)
+18-07-2018 20:41:03.000 [main] INFO  o.a.catalina.core.StandardService.log - Starting service [Tomcat]
+18-07-2018 20:41:03.000 [main] INFO  o.a.catalina.core.StandardEngine.log - Starting Servlet Engine: Apache Tomcat/9.0.8
+18-07-2018 20:41:03.016 [main] INFO  o.a.c.core.AprLifecycleListener.log - The APR based Apache Tomcat Native library which allows optimal performance in production environments was not found on the java.library.path: [C:\Program Files\Java\jdk-10.0.1\bin;C:\Windows\Sun\Java\bin;C:\Windows\system32;C:\Windows;C:\Program Files\Microsoft MPI\Bin\;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;C:\Program Files\Git\cmd;C:\Program Files (x86)\Microsoft SQL Server\140\Tools\Binn\;C:\Program Files\Microsoft SQL Server\140\Tools\Binn\;C:\Program Files (x86)\Microsoft SQL Server\140\DTS\Binn\;C:\Program Files\Microsoft SQL Server\140\DTS\Binn\;C:\Program Files\Microsoft SQL Server\Client SDK\ODBC\130\Tools\Binn\;C:\Program Files (x86)\Microsoft SQL Server\Client SDK\ODBC\130\Tools\Binn\;C:\Program Files (x86)\Microsoft SQL Server\140\Tools\Binn\ManagementStudio\;C:\Users\1111\AppData\Local\Microsoft\WindowsApps;;.]
+18-07-2018 20:41:03.391 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/].log - Initializing Spring embedded WebApplicationContext
+18-07-2018 20:41:03.391 [main] INFO  o.s.web.context.ContextLoader.prepareWebApplicationContext - Root WebApplicationContext: initialization completed in 7578 ms
+18-07-2018 20:41:03.797 [main] INFO  o.s.b.w.s.ServletRegistrationBean.addRegistration - Servlet dispatcherServlet mapped to [/]
+18-07-2018 20:41:03.797 [main] INFO  o.s.b.w.s.FilterRegistrationBean.configure - Mapping filter: 'characterEncodingFilter' to: [/*]
+18-07-2018 20:41:03.813 [main] INFO  o.s.b.w.s.FilterRegistrationBean.configure - Mapping filter: 'hiddenHttpMethodFilter' to: [/*]
+18-07-2018 20:41:03.813 [main] INFO  o.s.b.w.s.FilterRegistrationBean.configure - Mapping filter: 'httpPutFormContentFilter' to: [/*]
+18-07-2018 20:41:03.813 [main] INFO  o.s.b.w.s.FilterRegistrationBean.configure - Mapping filter: 'requestContextFilter' to: [/*]
+18-07-2018 20:41:04.610 [main] INFO  com.zaxxer.hikari.HikariDataSource.getConnection - HikariPool-1 - Starting...
+18-07-2018 20:41:05.266 [main] INFO  com.zaxxer.hikari.HikariDataSource.getConnection - HikariPool-1 - Start completed.
+18-07-2018 20:41:05.531 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean.createNativeEntityManagerFactory - Building JPA container EntityManagerFactory for persistence unit 'default'
+18-07-2018 20:41:05.641 [main] INFO  o.h.jpa.internal.util.LogHelper.logPersistenceUnitInformation - HHH000204: Processing PersistenceUnitInfo [
+	name: default
+	...]
+18-07-2018 20:41:05.906 [main] INFO  org.hibernate.Version.logVersion - HHH000412: Hibernate Core {5.2.17.Final}
+18-07-2018 20:41:05.922 [main] INFO  org.hibernate.cfg.Environment.<clinit> - HHH000206: hibernate.properties not found
+18-07-2018 20:41:06.031 [main] INFO  o.h.annotations.common.Version.<clinit> - HCANN000001: Hibernate Commons Annotations {5.0.1.Final}
+18-07-2018 20:41:06.578 [main] INFO  org.hibernate.dialect.Dialect.<init> - HHH000400: Using dialect: org.hibernate.dialect.SQLServer2012Dialect
+18-07-2018 20:41:08.094 [main] INFO  o.h.t.s.internal.SchemaCreatorImpl.applyImportSources - HHH000476: Executing import script 'org.hibernate.tool.schema.internal.exec.ScriptSourceInputNonExistentImpl@65ef9a0a'
+18-07-2018 20:41:08.094 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean.buildNativeEntityManagerFactory - Initialized JPA EntityManagerFactory for persistence unit 'default'
+18-07-2018 20:41:09.328 [main] INFO  o.s.w.s.s.s.WebSocketHandlerMapping.registerHandler - Mapped URL path [/game] onto handler of type [class org.springframework.web.socket.server.support.WebSocketHttpRequestHandler]
+18-07-2018 20:41:09.594 [main] INFO  o.s.w.s.h.SimpleUrlHandlerMapping.registerHandler - Mapped URL path [/**/favicon.ico] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+18-07-2018 20:41:10.391 [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerAdapter.initControllerAdviceCache - Looking for @ControllerAdvice: org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@1e44b638: startup date [Wed Jul 18 20:40:55 MSK 2018]; root of context hierarchy
+18-07-2018 20:41:10.516 [main] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration$JpaWebMvcConfiguration.openEntityManagerInViewInterceptor - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+18-07-2018 20:41:10.641 [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping.register - Mapped "{[/controller/all],methods=[GET]}" onto public java.lang.Iterable<com.seebattleserver.repository.UserEntity> com.seebattleserver.repository.UserListController.getAllUserEntities()
+18-07-2018 20:41:10.656 [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping.register - Mapped "{[/controller/add],methods=[GET]}" onto public java.lang.String com.seebattleserver.repository.UserListController.addNewUserEntity(java.lang.String,com.seebattleserver.application.user.UserStatus)
+18-07-2018 20:41:10.656 [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping.register - Mapped "{[/error]}" onto public org.springframework.http.ResponseEntity<java.util.Map<java.lang.String, java.lang.Object>> org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController.error(javax.servlet.http.HttpServletRequest)
+18-07-2018 20:41:10.656 [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping.register - Mapped "{[/error],produces=[text/html]}" onto public org.springframework.web.servlet.ModelAndView org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController.errorHtml(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+18-07-2018 20:41:10.750 [main] INFO  o.s.w.s.h.SimpleUrlHandlerMapping.registerHandler - Mapped URL path [/webjars/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+18-07-2018 20:41:10.750 [main] INFO  o.s.w.s.h.SimpleUrlHandlerMapping.registerHandler - Mapped URL path [/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+18-07-2018 20:41:11.594 [main] INFO  o.s.j.e.a.AnnotationMBeanExporter.afterSingletonsInstantiated - Registering beans for JMX exposure on startup
+18-07-2018 20:41:11.609 [main] INFO  o.s.j.e.a.AnnotationMBeanExporter.autodetect - Bean with name 'dataSource' has been autodetected for JMX exposure
+18-07-2018 20:41:11.625 [main] INFO  o.s.j.e.a.AnnotationMBeanExporter.registerBeanInstance - Located MBean 'dataSource': registering with JMX server as MBean [com.zaxxer.hikari:name=dataSource,type=HikariDataSource]
+18-07-2018 20:41:11.625 [main] INFO  o.s.c.s.DefaultLifecycleProcessor.start - Starting beans in phase 2147483647
+18-07-2018 20:41:11.719 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer.start - Tomcat started on port(s): 8080 (http) with context path ''
+18-07-2018 20:41:11.734 [main] INFO  com.seebattleserver.Application.logStarted - Started Application in 18.077 seconds (JVM running for 19.964)
+18-07-2018 20:41:32.410 [http-nio-8080-exec-10] INFO  o.a.c.c.C.[Tomcat].[localhost].[/].log - Initializing Spring FrameworkServlet 'dispatcherServlet'
+18-07-2018 20:41:32.410 [http-nio-8080-exec-10] INFO  o.s.web.servlet.DispatcherServlet.initServletBean - FrameworkServlet 'dispatcherServlet': initialization started
+18-07-2018 20:41:32.488 [http-nio-8080-exec-10] INFO  o.s.web.servlet.DispatcherServlet.initServletBean - FrameworkServlet 'dispatcherServlet': initialization completed in 78 ms
+18-07-2018 20:41:32.863 [http-nio-8080-exec-10] INFO  c.s.service.websocket.SocketHandler.afterConnectionEstablished - Подключение нового клиента
+18-07-2018 20:41:40.095 [http-nio-8080-exec-8] INFO  c.s.service.websocket.SocketHandler.afterConnectionEstablished - Подключение нового клиента
+18-07-2018 20:42:20.230 [http-nio-8080-exec-1] WARN  c.s.a.g.GameObjectArrangementController.handle - Пользовательannввел неверный тип расположения игровых объектов.
+18-07-2018 20:45:49.653 [main] INFO  com.seebattleserver.Application.logStarting - Starting Application on DESKTOP-CSIKHQM with PID 12496 (C:\Users\1111\IdeaProjects\SeeBattleServerSpring\target\classes started by 1111 in C:\Users\1111\IdeaProjects\SeeBattleServerSpring)
+18-07-2018 20:45:49.653 [main] INFO  com.seebattleserver.Application.logStartupProfileInfo - No active profile set, falling back to default profiles: default
+18-07-2018 20:45:50.121 [main] INFO  o.s.b.w.s.c.AnnotationConfigServletWebServerApplicationContext.prepareRefresh - Refreshing org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@39655d3e: startup date [Wed Jul 18 20:45:50 MSK 2018]; root of context hierarchy
+18-07-2018 20:45:55.512 [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker.postProcessAfterInitialization - Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$94417c4f] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+18-07-2018 20:45:56.543 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer.initialize - Tomcat initialized with port(s): 8080 (http)
+18-07-2018 20:45:56.621 [main] INFO  o.a.catalina.core.StandardService.log - Starting service [Tomcat]
+18-07-2018 20:45:56.621 [main] INFO  o.a.catalina.core.StandardEngine.log - Starting Servlet Engine: Apache Tomcat/9.0.8
+18-07-2018 20:45:56.652 [main] INFO  o.a.c.core.AprLifecycleListener.log - The APR based Apache Tomcat Native library which allows optimal performance in production environments was not found on the java.library.path: [C:\Program Files\Java\jdk-10.0.1\bin;C:\Windows\Sun\Java\bin;C:\Windows\system32;C:\Windows;C:\Program Files\Microsoft MPI\Bin\;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;C:\Program Files\Git\cmd;C:\Program Files (x86)\Microsoft SQL Server\140\Tools\Binn\;C:\Program Files\Microsoft SQL Server\140\Tools\Binn\;C:\Program Files (x86)\Microsoft SQL Server\140\DTS\Binn\;C:\Program Files\Microsoft SQL Server\140\DTS\Binn\;C:\Program Files\Microsoft SQL Server\Client SDK\ODBC\130\Tools\Binn\;C:\Program Files (x86)\Microsoft SQL Server\Client SDK\ODBC\130\Tools\Binn\;C:\Program Files (x86)\Microsoft SQL Server\140\Tools\Binn\ManagementStudio\;C:\Users\1111\AppData\Local\Microsoft\WindowsApps;;.]
+18-07-2018 20:45:57.090 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/].log - Initializing Spring embedded WebApplicationContext
+18-07-2018 20:45:57.090 [main] INFO  o.s.web.context.ContextLoader.prepareWebApplicationContext - Root WebApplicationContext: initialization completed in 6969 ms
+18-07-2018 20:45:57.449 [main] INFO  o.s.b.w.s.ServletRegistrationBean.addRegistration - Servlet dispatcherServlet mapped to [/]
+18-07-2018 20:45:57.465 [main] INFO  o.s.b.w.s.FilterRegistrationBean.configure - Mapping filter: 'characterEncodingFilter' to: [/*]
+18-07-2018 20:45:57.465 [main] INFO  o.s.b.w.s.FilterRegistrationBean.configure - Mapping filter: 'hiddenHttpMethodFilter' to: [/*]
+18-07-2018 20:45:57.465 [main] INFO  o.s.b.w.s.FilterRegistrationBean.configure - Mapping filter: 'httpPutFormContentFilter' to: [/*]
+18-07-2018 20:45:57.465 [main] INFO  o.s.b.w.s.FilterRegistrationBean.configure - Mapping filter: 'requestContextFilter' to: [/*]
+18-07-2018 20:45:58.184 [main] INFO  com.zaxxer.hikari.HikariDataSource.getConnection - HikariPool-1 - Starting...
+18-07-2018 20:45:58.731 [main] INFO  com.zaxxer.hikari.HikariDataSource.getConnection - HikariPool-1 - Start completed.
+18-07-2018 20:45:58.996 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean.createNativeEntityManagerFactory - Building JPA container EntityManagerFactory for persistence unit 'default'
+18-07-2018 20:45:59.043 [main] INFO  o.h.jpa.internal.util.LogHelper.logPersistenceUnitInformation - HHH000204: Processing PersistenceUnitInfo [
+	name: default
+	...]
+18-07-2018 20:45:59.309 [main] INFO  org.hibernate.Version.logVersion - HHH000412: Hibernate Core {5.2.17.Final}
+18-07-2018 20:45:59.324 [main] INFO  org.hibernate.cfg.Environment.<clinit> - HHH000206: hibernate.properties not found
+18-07-2018 20:45:59.496 [main] INFO  o.h.annotations.common.Version.<clinit> - HCANN000001: Hibernate Commons Annotations {5.0.1.Final}
+18-07-2018 20:46:00.012 [main] INFO  org.hibernate.dialect.Dialect.<init> - HHH000400: Using dialect: org.hibernate.dialect.SQLServer2012Dialect
+18-07-2018 20:46:01.980 [main] INFO  o.h.t.s.internal.SchemaCreatorImpl.applyImportSources - HHH000476: Executing import script 'org.hibernate.tool.schema.internal.exec.ScriptSourceInputNonExistentImpl@27a90ce5'
+18-07-2018 20:46:01.980 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean.buildNativeEntityManagerFactory - Initialized JPA EntityManagerFactory for persistence unit 'default'
+18-07-2018 20:46:03.371 [main] INFO  o.s.w.s.s.s.WebSocketHandlerMapping.registerHandler - Mapped URL path [/game] onto handler of type [class org.springframework.web.socket.server.support.WebSocketHttpRequestHandler]
+18-07-2018 20:46:03.652 [main] INFO  o.s.w.s.h.SimpleUrlHandlerMapping.registerHandler - Mapped URL path [/**/favicon.ico] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+18-07-2018 20:46:04.402 [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerAdapter.initControllerAdviceCache - Looking for @ControllerAdvice: org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@39655d3e: startup date [Wed Jul 18 20:45:50 MSK 2018]; root of context hierarchy
+18-07-2018 20:46:04.527 [main] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration$JpaWebMvcConfiguration.openEntityManagerInViewInterceptor - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+18-07-2018 20:46:04.637 [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping.register - Mapped "{[/controller/add],methods=[GET]}" onto public java.lang.String com.seebattleserver.repository.UserListController.addNewUserEntity(java.lang.String,com.seebattleserver.application.user.UserStatus)
+18-07-2018 20:46:04.652 [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping.register - Mapped "{[/controller/all],methods=[GET]}" onto public java.lang.Iterable<com.seebattleserver.repository.UserEntity> com.seebattleserver.repository.UserListController.getAllUserEntities()
+18-07-2018 20:46:04.652 [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping.register - Mapped "{[/error],produces=[text/html]}" onto public org.springframework.web.servlet.ModelAndView org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController.errorHtml(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+18-07-2018 20:46:04.668 [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping.register - Mapped "{[/error]}" onto public org.springframework.http.ResponseEntity<java.util.Map<java.lang.String, java.lang.Object>> org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController.error(javax.servlet.http.HttpServletRequest)
+18-07-2018 20:46:04.746 [main] INFO  o.s.w.s.h.SimpleUrlHandlerMapping.registerHandler - Mapped URL path [/webjars/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+18-07-2018 20:46:04.746 [main] INFO  o.s.w.s.h.SimpleUrlHandlerMapping.registerHandler - Mapped URL path [/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+18-07-2018 20:46:05.558 [main] INFO  o.s.j.e.a.AnnotationMBeanExporter.afterSingletonsInstantiated - Registering beans for JMX exposure on startup
+18-07-2018 20:46:05.574 [main] INFO  o.s.j.e.a.AnnotationMBeanExporter.autodetect - Bean with name 'dataSource' has been autodetected for JMX exposure
+18-07-2018 20:46:05.574 [main] INFO  o.s.j.e.a.AnnotationMBeanExporter.registerBeanInstance - Located MBean 'dataSource': registering with JMX server as MBean [com.zaxxer.hikari:name=dataSource,type=HikariDataSource]
+18-07-2018 20:46:05.590 [main] INFO  o.s.c.s.DefaultLifecycleProcessor.start - Starting beans in phase 2147483647
+18-07-2018 20:46:05.715 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer.start - Tomcat started on port(s): 8080 (http) with context path ''
+18-07-2018 20:46:05.730 [main] INFO  com.seebattleserver.Application.logStarted - Started Application in 18.031 seconds (JVM running for 19.971)
+18-07-2018 20:46:12.692 [http-nio-8080-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/].log - Initializing Spring FrameworkServlet 'dispatcherServlet'
+18-07-2018 20:46:12.692 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet.initServletBean - FrameworkServlet 'dispatcherServlet': initialization started
+18-07-2018 20:46:12.880 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet.initServletBean - FrameworkServlet 'dispatcherServlet': initialization completed in 188 ms
+18-07-2018 20:46:13.317 [http-nio-8080-exec-1] INFO  c.s.service.websocket.SocketHandler.afterConnectionEstablished - Подключение нового клиента
+18-07-2018 20:46:19.696 [http-nio-8080-exec-9] INFO  c.s.service.websocket.SocketHandler.afterConnectionEstablished - Подключение нового клиента
+18-07-2018 21:06:08.299 [main] INFO  com.seebattleserver.Application.logStarting - Starting Application on DESKTOP-CSIKHQM with PID 7916 (C:\Users\1111\IdeaProjects\SeeBattleServerSpring\target\classes started by 1111 in C:\Users\1111\IdeaProjects\SeeBattleServerSpring)
+18-07-2018 21:06:08.315 [main] INFO  com.seebattleserver.Application.logStartupProfileInfo - No active profile set, falling back to default profiles: default
+18-07-2018 21:06:08.518 [main] INFO  o.s.b.w.s.c.AnnotationConfigServletWebServerApplicationContext.prepareRefresh - Refreshing org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@7393222f: startup date [Wed Jul 18 21:06:08 MSK 2018]; root of context hierarchy
+18-07-2018 21:06:14.674 [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker.postProcessAfterInitialization - Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$aaa2a3c] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+18-07-2018 21:06:15.924 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer.initialize - Tomcat initialized with port(s): 8080 (http)
+18-07-2018 21:06:16.018 [main] INFO  o.a.catalina.core.StandardService.log - Starting service [Tomcat]
+18-07-2018 21:06:16.018 [main] INFO  o.a.catalina.core.StandardEngine.log - Starting Servlet Engine: Apache Tomcat/9.0.8
+18-07-2018 21:06:16.033 [main] INFO  o.a.c.core.AprLifecycleListener.log - The APR based Apache Tomcat Native library which allows optimal performance in production environments was not found on the java.library.path: [C:\Program Files\Java\jdk-10.0.1\bin;C:\Windows\Sun\Java\bin;C:\Windows\system32;C:\Windows;C:\Program Files\Microsoft MPI\Bin\;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;C:\Program Files\Git\cmd;C:\Program Files (x86)\Microsoft SQL Server\140\Tools\Binn\;C:\Program Files\Microsoft SQL Server\140\Tools\Binn\;C:\Program Files (x86)\Microsoft SQL Server\140\DTS\Binn\;C:\Program Files\Microsoft SQL Server\140\DTS\Binn\;C:\Program Files\Microsoft SQL Server\Client SDK\ODBC\130\Tools\Binn\;C:\Program Files (x86)\Microsoft SQL Server\Client SDK\ODBC\130\Tools\Binn\;C:\Program Files (x86)\Microsoft SQL Server\140\Tools\Binn\ManagementStudio\;C:\Users\1111\AppData\Local\Microsoft\WindowsApps;;.]
+18-07-2018 21:06:16.408 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/].log - Initializing Spring embedded WebApplicationContext
+18-07-2018 21:06:16.408 [main] INFO  o.s.web.context.ContextLoader.prepareWebApplicationContext - Root WebApplicationContext: initialization completed in 7890 ms
+18-07-2018 21:06:16.861 [main] INFO  o.s.b.w.s.ServletRegistrationBean.addRegistration - Servlet dispatcherServlet mapped to [/]
+18-07-2018 21:06:16.861 [main] INFO  o.s.b.w.s.FilterRegistrationBean.configure - Mapping filter: 'characterEncodingFilter' to: [/*]
+18-07-2018 21:06:16.877 [main] INFO  o.s.b.w.s.FilterRegistrationBean.configure - Mapping filter: 'hiddenHttpMethodFilter' to: [/*]
+18-07-2018 21:06:16.877 [main] INFO  o.s.b.w.s.FilterRegistrationBean.configure - Mapping filter: 'httpPutFormContentFilter' to: [/*]
+18-07-2018 21:06:16.877 [main] INFO  o.s.b.w.s.FilterRegistrationBean.configure - Mapping filter: 'requestContextFilter' to: [/*]
+18-07-2018 21:06:17.643 [main] INFO  com.zaxxer.hikari.HikariDataSource.getConnection - HikariPool-1 - Starting...
+18-07-2018 21:06:18.268 [main] INFO  com.zaxxer.hikari.HikariDataSource.getConnection - HikariPool-1 - Start completed.
+18-07-2018 21:06:18.549 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean.createNativeEntityManagerFactory - Building JPA container EntityManagerFactory for persistence unit 'default'
+18-07-2018 21:06:18.596 [main] INFO  o.h.jpa.internal.util.LogHelper.logPersistenceUnitInformation - HHH000204: Processing PersistenceUnitInfo [
+	name: default
+	...]
+18-07-2018 21:06:18.861 [main] INFO  org.hibernate.Version.logVersion - HHH000412: Hibernate Core {5.2.17.Final}
+18-07-2018 21:06:18.877 [main] INFO  org.hibernate.cfg.Environment.<clinit> - HHH000206: hibernate.properties not found
+18-07-2018 21:06:19.002 [main] INFO  o.h.annotations.common.Version.<clinit> - HCANN000001: Hibernate Commons Annotations {5.0.1.Final}
+18-07-2018 21:06:19.518 [main] INFO  org.hibernate.dialect.Dialect.<init> - HHH000400: Using dialect: org.hibernate.dialect.SQLServer2012Dialect
+18-07-2018 21:06:21.361 [main] INFO  o.h.t.s.internal.SchemaCreatorImpl.applyImportSources - HHH000476: Executing import script 'org.hibernate.tool.schema.internal.exec.ScriptSourceInputNonExistentImpl@5ad0c70a'
+18-07-2018 21:06:21.361 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean.buildNativeEntityManagerFactory - Initialized JPA EntityManagerFactory for persistence unit 'default'
+18-07-2018 21:06:22.674 [main] INFO  o.s.w.s.s.s.WebSocketHandlerMapping.registerHandler - Mapped URL path [/game] onto handler of type [class org.springframework.web.socket.server.support.WebSocketHttpRequestHandler]
+18-07-2018 21:06:22.939 [main] INFO  o.s.w.s.h.SimpleUrlHandlerMapping.registerHandler - Mapped URL path [/**/favicon.ico] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+18-07-2018 21:06:23.721 [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerAdapter.initControllerAdviceCache - Looking for @ControllerAdvice: org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@7393222f: startup date [Wed Jul 18 21:06:08 MSK 2018]; root of context hierarchy
+18-07-2018 21:06:23.830 [main] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration$JpaWebMvcConfiguration.openEntityManagerInViewInterceptor - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+18-07-2018 21:06:23.955 [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping.register - Mapped "{[/controller/add],methods=[GET]}" onto public java.lang.String com.seebattleserver.repository.UserListController.addNewUserEntity(java.lang.String,com.seebattleserver.application.user.UserStatus)
+18-07-2018 21:06:23.955 [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping.register - Mapped "{[/controller/all],methods=[GET]}" onto public java.lang.Iterable<com.seebattleserver.repository.UserEntity> com.seebattleserver.repository.UserListController.getAllUserEntities()
+18-07-2018 21:06:23.971 [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping.register - Mapped "{[/error]}" onto public org.springframework.http.ResponseEntity<java.util.Map<java.lang.String, java.lang.Object>> org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController.error(javax.servlet.http.HttpServletRequest)
+18-07-2018 21:06:23.971 [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping.register - Mapped "{[/error],produces=[text/html]}" onto public org.springframework.web.servlet.ModelAndView org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController.errorHtml(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+18-07-2018 21:06:24.064 [main] INFO  o.s.w.s.h.SimpleUrlHandlerMapping.registerHandler - Mapped URL path [/webjars/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+18-07-2018 21:06:24.064 [main] INFO  o.s.w.s.h.SimpleUrlHandlerMapping.registerHandler - Mapped URL path [/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+18-07-2018 21:06:24.814 [main] INFO  o.s.j.e.a.AnnotationMBeanExporter.afterSingletonsInstantiated - Registering beans for JMX exposure on startup
+18-07-2018 21:06:24.814 [main] INFO  o.s.j.e.a.AnnotationMBeanExporter.autodetect - Bean with name 'dataSource' has been autodetected for JMX exposure
+18-07-2018 21:06:24.830 [main] INFO  o.s.j.e.a.AnnotationMBeanExporter.registerBeanInstance - Located MBean 'dataSource': registering with JMX server as MBean [com.zaxxer.hikari:name=dataSource,type=HikariDataSource]
+18-07-2018 21:06:24.845 [main] INFO  o.s.c.s.DefaultLifecycleProcessor.start - Starting beans in phase 2147483647
+18-07-2018 21:06:24.924 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer.start - Tomcat started on port(s): 8080 (http) with context path ''
+18-07-2018 21:06:24.939 [main] INFO  com.seebattleserver.Application.logStarted - Started Application in 18.452 seconds (JVM running for 20.352)
+18-07-2018 21:06:32.980 [http-nio-8080-exec-10] INFO  o.a.c.c.C.[Tomcat].[localhost].[/].log - Initializing Spring FrameworkServlet 'dispatcherServlet'
+18-07-2018 21:06:32.996 [http-nio-8080-exec-10] INFO  o.s.web.servlet.DispatcherServlet.initServletBean - FrameworkServlet 'dispatcherServlet': initialization started
+18-07-2018 21:06:33.058 [http-nio-8080-exec-10] INFO  o.s.web.servlet.DispatcherServlet.initServletBean - FrameworkServlet 'dispatcherServlet': initialization completed in 62 ms
+18-07-2018 21:06:33.324 [http-nio-8080-exec-10] INFO  c.s.service.websocket.SocketHandler.afterConnectionEstablished - Подключение нового клиента
+18-07-2018 21:06:48.979 [http-nio-8080-exec-8] INFO  c.s.service.websocket.SocketHandler.afterConnectionEstablished - Подключение нового клиента
+18-07-2018 21:12:46.741 [main] INFO  com.seebattleserver.Application.logStarting - Starting Application on DESKTOP-CSIKHQM with PID 11452 (C:\Users\1111\IdeaProjects\SeeBattleServerSpring\target\classes started by 1111 in C:\Users\1111\IdeaProjects\SeeBattleServerSpring)
+18-07-2018 21:12:46.834 [main] INFO  com.seebattleserver.Application.logStartupProfileInfo - No active profile set, falling back to default profiles: default
+18-07-2018 21:12:47.241 [main] INFO  o.s.b.w.s.c.AnnotationConfigServletWebServerApplicationContext.prepareRefresh - Refreshing org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@39655d3e: startup date [Wed Jul 18 21:12:47 MSK 2018]; root of context hierarchy
+18-07-2018 21:12:52.876 [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker.postProcessAfterInitialization - Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$589ee0c6] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+18-07-2018 21:12:53.922 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer.initialize - Tomcat initialized with port(s): 8080 (http)
+18-07-2018 21:12:54.032 [main] INFO  o.a.catalina.core.StandardService.log - Starting service [Tomcat]
+18-07-2018 21:12:54.047 [main] INFO  o.a.catalina.core.StandardEngine.log - Starting Servlet Engine: Apache Tomcat/9.0.8
+18-07-2018 21:12:54.063 [main] INFO  o.a.c.core.AprLifecycleListener.log - The APR based Apache Tomcat Native library which allows optimal performance in production environments was not found on the java.library.path: [C:\Program Files\Java\jdk-10.0.1\bin;C:\Windows\Sun\Java\bin;C:\Windows\system32;C:\Windows;C:\Program Files\Microsoft MPI\Bin\;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;C:\Program Files\Git\cmd;C:\Program Files (x86)\Microsoft SQL Server\140\Tools\Binn\;C:\Program Files\Microsoft SQL Server\140\Tools\Binn\;C:\Program Files (x86)\Microsoft SQL Server\140\DTS\Binn\;C:\Program Files\Microsoft SQL Server\140\DTS\Binn\;C:\Program Files\Microsoft SQL Server\Client SDK\ODBC\130\Tools\Binn\;C:\Program Files (x86)\Microsoft SQL Server\Client SDK\ODBC\130\Tools\Binn\;C:\Program Files (x86)\Microsoft SQL Server\140\Tools\Binn\ManagementStudio\;C:\Users\1111\AppData\Local\Microsoft\WindowsApps;;.]
+18-07-2018 21:12:54.485 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/].log - Initializing Spring embedded WebApplicationContext
+18-07-2018 21:12:54.485 [main] INFO  o.s.web.context.ContextLoader.prepareWebApplicationContext - Root WebApplicationContext: initialization completed in 7244 ms
+18-07-2018 21:12:54.860 [main] INFO  o.s.b.w.s.ServletRegistrationBean.addRegistration - Servlet dispatcherServlet mapped to [/]
+18-07-2018 21:12:54.875 [main] INFO  o.s.b.w.s.FilterRegistrationBean.configure - Mapping filter: 'characterEncodingFilter' to: [/*]
+18-07-2018 21:12:54.875 [main] INFO  o.s.b.w.s.FilterRegistrationBean.configure - Mapping filter: 'hiddenHttpMethodFilter' to: [/*]
+18-07-2018 21:12:54.875 [main] INFO  o.s.b.w.s.FilterRegistrationBean.configure - Mapping filter: 'httpPutFormContentFilter' to: [/*]
+18-07-2018 21:12:54.875 [main] INFO  o.s.b.w.s.FilterRegistrationBean.configure - Mapping filter: 'requestContextFilter' to: [/*]
+18-07-2018 21:12:55.579 [main] INFO  com.zaxxer.hikari.HikariDataSource.getConnection - HikariPool-1 - Starting...
+18-07-2018 21:12:56.110 [main] INFO  com.zaxxer.hikari.HikariDataSource.getConnection - HikariPool-1 - Start completed.
+18-07-2018 21:12:56.407 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean.createNativeEntityManagerFactory - Building JPA container EntityManagerFactory for persistence unit 'default'
+18-07-2018 21:12:56.469 [main] INFO  o.h.jpa.internal.util.LogHelper.logPersistenceUnitInformation - HHH000204: Processing PersistenceUnitInfo [
+	name: default
+	...]
+18-07-2018 21:12:56.750 [main] INFO  org.hibernate.Version.logVersion - HHH000412: Hibernate Core {5.2.17.Final}
+18-07-2018 21:12:56.766 [main] INFO  org.hibernate.cfg.Environment.<clinit> - HHH000206: hibernate.properties not found
+18-07-2018 21:12:56.875 [main] INFO  o.h.annotations.common.Version.<clinit> - HCANN000001: Hibernate Commons Annotations {5.0.1.Final}
+18-07-2018 21:12:57.375 [main] INFO  org.hibernate.dialect.Dialect.<init> - HHH000400: Using dialect: org.hibernate.dialect.SQLServer2012Dialect
+18-07-2018 21:12:58.922 [main] INFO  o.h.t.s.internal.SchemaCreatorImpl.applyImportSources - HHH000476: Executing import script 'org.hibernate.tool.schema.internal.exec.ScriptSourceInputNonExistentImpl@720c8f80'
+18-07-2018 21:12:58.922 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean.buildNativeEntityManagerFactory - Initialized JPA EntityManagerFactory for persistence unit 'default'
+18-07-2018 21:13:00.141 [main] INFO  o.s.w.s.s.s.WebSocketHandlerMapping.registerHandler - Mapped URL path [/game] onto handler of type [class org.springframework.web.socket.server.support.WebSocketHttpRequestHandler]
+18-07-2018 21:13:00.422 [main] INFO  o.s.w.s.h.SimpleUrlHandlerMapping.registerHandler - Mapped URL path [/**/favicon.ico] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+18-07-2018 21:13:01.188 [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerAdapter.initControllerAdviceCache - Looking for @ControllerAdvice: org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@39655d3e: startup date [Wed Jul 18 21:12:47 MSK 2018]; root of context hierarchy
+18-07-2018 21:13:01.328 [main] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration$JpaWebMvcConfiguration.openEntityManagerInViewInterceptor - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+18-07-2018 21:13:01.438 [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping.register - Mapped "{[/controller/all],methods=[GET]}" onto public java.lang.Iterable<com.seebattleserver.repository.UserEntity> com.seebattleserver.repository.UserListController.getAllUserEntities()
+18-07-2018 21:13:01.453 [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping.register - Mapped "{[/controller/add],methods=[GET]}" onto public java.lang.String com.seebattleserver.repository.UserListController.addNewUserEntity(java.lang.String,com.seebattleserver.application.user.UserStatus)
+18-07-2018 21:13:01.453 [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping.register - Mapped "{[/error]}" onto public org.springframework.http.ResponseEntity<java.util.Map<java.lang.String, java.lang.Object>> org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController.error(javax.servlet.http.HttpServletRequest)
+18-07-2018 21:13:01.453 [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping.register - Mapped "{[/error],produces=[text/html]}" onto public org.springframework.web.servlet.ModelAndView org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController.errorHtml(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+18-07-2018 21:13:01.547 [main] INFO  o.s.w.s.h.SimpleUrlHandlerMapping.registerHandler - Mapped URL path [/webjars/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+18-07-2018 21:13:01.547 [main] INFO  o.s.w.s.h.SimpleUrlHandlerMapping.registerHandler - Mapped URL path [/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+18-07-2018 21:13:02.391 [main] INFO  o.s.j.e.a.AnnotationMBeanExporter.afterSingletonsInstantiated - Registering beans for JMX exposure on startup
+18-07-2018 21:13:02.406 [main] INFO  o.s.j.e.a.AnnotationMBeanExporter.autodetect - Bean with name 'dataSource' has been autodetected for JMX exposure
+18-07-2018 21:13:02.422 [main] INFO  o.s.j.e.a.AnnotationMBeanExporter.registerBeanInstance - Located MBean 'dataSource': registering with JMX server as MBean [com.zaxxer.hikari:name=dataSource,type=HikariDataSource]
+18-07-2018 21:13:02.438 [main] INFO  o.s.c.s.DefaultLifecycleProcessor.start - Starting beans in phase 2147483647
+18-07-2018 21:13:02.516 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer.start - Tomcat started on port(s): 8080 (http) with context path ''
+18-07-2018 21:13:02.516 [main] INFO  com.seebattleserver.Application.logStarted - Started Application in 17.463 seconds (JVM running for 19.368)
+18-07-2018 21:13:10.005 [http-nio-8080-exec-10] INFO  o.a.c.c.C.[Tomcat].[localhost].[/].log - Initializing Spring FrameworkServlet 'dispatcherServlet'
+18-07-2018 21:13:10.005 [http-nio-8080-exec-10] INFO  o.s.web.servlet.DispatcherServlet.initServletBean - FrameworkServlet 'dispatcherServlet': initialization started
+18-07-2018 21:13:10.068 [http-nio-8080-exec-10] INFO  o.s.web.servlet.DispatcherServlet.initServletBean - FrameworkServlet 'dispatcherServlet': initialization completed in 63 ms
+18-07-2018 21:13:10.396 [http-nio-8080-exec-10] INFO  c.s.service.websocket.SocketHandler.afterConnectionEstablished - Подключение нового клиента
+18-07-2018 21:13:17.833 [http-nio-8080-exec-8] INFO  c.s.service.websocket.SocketHandler.afterConnectionEstablished - Подключение нового клиента
+18-07-2018 21:36:13.897 [main] INFO  com.seebattleserver.Application.logStarting - Starting Application on DESKTOP-CSIKHQM with PID 5480 (C:\Users\1111\IdeaProjects\SeeBattleServerSpring\target\classes started by 1111 in C:\Users\1111\IdeaProjects\SeeBattleServerSpring)
+18-07-2018 21:36:13.933 [main] INFO  com.seebattleserver.Application.logStartupProfileInfo - No active profile set, falling back to default profiles: default
+18-07-2018 21:36:14.386 [main] INFO  o.s.b.w.s.c.AnnotationConfigServletWebServerApplicationContext.prepareRefresh - Refreshing org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@53941c2f: startup date [Wed Jul 18 21:36:14 MSK 2018]; root of context hierarchy
+18-07-2018 21:36:19.956 [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker.postProcessAfterInitialization - Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$f7a744b7] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+18-07-2018 21:36:21.002 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer.initialize - Tomcat initialized with port(s): 8080 (http)
+18-07-2018 21:36:21.083 [main] INFO  o.a.catalina.core.StandardService.log - Starting service [Tomcat]
+18-07-2018 21:36:21.085 [main] INFO  o.a.catalina.core.StandardEngine.log - Starting Servlet Engine: Apache Tomcat/9.0.8
+18-07-2018 21:36:21.109 [main] INFO  o.a.c.core.AprLifecycleListener.log - The APR based Apache Tomcat Native library which allows optimal performance in production environments was not found on the java.library.path: [C:\Program Files\Java\jdk-10.0.1\bin;C:\Windows\Sun\Java\bin;C:\Windows\system32;C:\Windows;C:\Program Files\Microsoft MPI\Bin\;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;C:\Program Files\Git\cmd;C:\Program Files (x86)\Microsoft SQL Server\140\Tools\Binn\;C:\Program Files\Microsoft SQL Server\140\Tools\Binn\;C:\Program Files (x86)\Microsoft SQL Server\140\DTS\Binn\;C:\Program Files\Microsoft SQL Server\140\DTS\Binn\;C:\Program Files\Microsoft SQL Server\Client SDK\ODBC\130\Tools\Binn\;C:\Program Files (x86)\Microsoft SQL Server\Client SDK\ODBC\130\Tools\Binn\;C:\Program Files (x86)\Microsoft SQL Server\140\Tools\Binn\ManagementStudio\;C:\Users\1111\AppData\Local\Microsoft\WindowsApps;;.]
+18-07-2018 21:36:21.548 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/].log - Initializing Spring embedded WebApplicationContext
+18-07-2018 21:36:21.549 [main] INFO  o.s.web.context.ContextLoader.prepareWebApplicationContext - Root WebApplicationContext: initialization completed in 7163 ms
+18-07-2018 21:36:21.943 [main] INFO  o.s.b.w.s.ServletRegistrationBean.addRegistration - Servlet dispatcherServlet mapped to [/]
+18-07-2018 21:36:21.953 [main] INFO  o.s.b.w.s.FilterRegistrationBean.configure - Mapping filter: 'characterEncodingFilter' to: [/*]
+18-07-2018 21:36:21.958 [main] INFO  o.s.b.w.s.FilterRegistrationBean.configure - Mapping filter: 'hiddenHttpMethodFilter' to: [/*]
+18-07-2018 21:36:21.959 [main] INFO  o.s.b.w.s.FilterRegistrationBean.configure - Mapping filter: 'httpPutFormContentFilter' to: [/*]
+18-07-2018 21:36:21.975 [main] INFO  o.s.b.w.s.FilterRegistrationBean.configure - Mapping filter: 'requestContextFilter' to: [/*]
+18-07-2018 21:36:22.643 [main] INFO  com.zaxxer.hikari.HikariDataSource.getConnection - HikariPool-1 - Starting...
+18-07-2018 21:36:23.280 [main] INFO  com.zaxxer.hikari.HikariDataSource.getConnection - HikariPool-1 - Start completed.
+18-07-2018 21:36:23.568 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean.createNativeEntityManagerFactory - Building JPA container EntityManagerFactory for persistence unit 'default'
+18-07-2018 21:36:23.614 [main] INFO  o.h.jpa.internal.util.LogHelper.logPersistenceUnitInformation - HHH000204: Processing PersistenceUnitInfo [
+	name: default
+	...]
+18-07-2018 21:36:23.950 [main] INFO  org.hibernate.Version.logVersion - HHH000412: Hibernate Core {5.2.17.Final}
+18-07-2018 21:36:23.961 [main] INFO  org.hibernate.cfg.Environment.<clinit> - HHH000206: hibernate.properties not found
+18-07-2018 21:36:24.100 [main] INFO  o.h.annotations.common.Version.<clinit> - HCANN000001: Hibernate Commons Annotations {5.0.1.Final}
+18-07-2018 21:36:24.583 [main] INFO  org.hibernate.dialect.Dialect.<init> - HHH000400: Using dialect: org.hibernate.dialect.SQLServer2012Dialect
+18-07-2018 21:36:26.489 [main] INFO  o.h.t.s.internal.SchemaCreatorImpl.applyImportSources - HHH000476: Executing import script 'org.hibernate.tool.schema.internal.exec.ScriptSourceInputNonExistentImpl@6124dda2'
+18-07-2018 21:36:26.495 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean.buildNativeEntityManagerFactory - Initialized JPA EntityManagerFactory for persistence unit 'default'
+18-07-2018 21:36:28.271 [main] INFO  o.s.w.s.s.s.WebSocketHandlerMapping.registerHandler - Mapped URL path [/game] onto handler of type [class org.springframework.web.socket.server.support.WebSocketHttpRequestHandler]
+18-07-2018 21:36:28.552 [main] INFO  o.s.w.s.h.SimpleUrlHandlerMapping.registerHandler - Mapped URL path [/**/favicon.ico] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+18-07-2018 21:36:29.590 [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerAdapter.initControllerAdviceCache - Looking for @ControllerAdvice: org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@53941c2f: startup date [Wed Jul 18 21:36:14 MSK 2018]; root of context hierarchy
+18-07-2018 21:36:29.850 [main] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration$JpaWebMvcConfiguration.openEntityManagerInViewInterceptor - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+18-07-2018 21:36:29.975 [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping.register - Mapped "{[/controller/add],methods=[GET]}" onto public java.lang.String com.seebattleserver.repository.UserListController.addNewUserEntity(java.lang.String,com.seebattleserver.application.user.UserStatus)
+18-07-2018 21:36:29.983 [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping.register - Mapped "{[/controller/all],methods=[GET]}" onto public java.lang.Iterable<com.seebattleserver.repository.UserEntity> com.seebattleserver.repository.UserListController.getAllUserEntities()
+18-07-2018 21:36:29.990 [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping.register - Mapped "{[/error]}" onto public org.springframework.http.ResponseEntity<java.util.Map<java.lang.String, java.lang.Object>> org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController.error(javax.servlet.http.HttpServletRequest)
+18-07-2018 21:36:29.994 [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping.register - Mapped "{[/error],produces=[text/html]}" onto public org.springframework.web.servlet.ModelAndView org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController.errorHtml(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+18-07-2018 21:36:30.086 [main] INFO  o.s.w.s.h.SimpleUrlHandlerMapping.registerHandler - Mapped URL path [/webjars/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+18-07-2018 21:36:30.086 [main] INFO  o.s.w.s.h.SimpleUrlHandlerMapping.registerHandler - Mapped URL path [/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+18-07-2018 21:36:30.976 [main] INFO  o.s.j.e.a.AnnotationMBeanExporter.afterSingletonsInstantiated - Registering beans for JMX exposure on startup
+18-07-2018 21:36:30.984 [main] INFO  o.s.j.e.a.AnnotationMBeanExporter.autodetect - Bean with name 'dataSource' has been autodetected for JMX exposure
+18-07-2018 21:36:31.000 [main] INFO  o.s.j.e.a.AnnotationMBeanExporter.registerBeanInstance - Located MBean 'dataSource': registering with JMX server as MBean [com.zaxxer.hikari:name=dataSource,type=HikariDataSource]
+18-07-2018 21:36:31.013 [main] INFO  o.s.c.s.DefaultLifecycleProcessor.start - Starting beans in phase 2147483647
+18-07-2018 21:36:31.093 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer.start - Tomcat started on port(s): 8080 (http) with context path ''
+18-07-2018 21:36:31.108 [main] INFO  com.seebattleserver.Application.logStarted - Started Application in 18.827 seconds (JVM running for 20.725)
+18-07-2018 21:36:38.074 [http-nio-8080-exec-10] INFO  o.a.c.c.C.[Tomcat].[localhost].[/].log - Initializing Spring FrameworkServlet 'dispatcherServlet'
+18-07-2018 21:36:38.133 [http-nio-8080-exec-10] INFO  o.s.web.servlet.DispatcherServlet.initServletBean - FrameworkServlet 'dispatcherServlet': initialization started
+18-07-2018 21:36:38.294 [http-nio-8080-exec-10] INFO  o.s.web.servlet.DispatcherServlet.initServletBean - FrameworkServlet 'dispatcherServlet': initialization completed in 158 ms
+18-07-2018 21:36:38.860 [http-nio-8080-exec-10] INFO  c.s.service.websocket.SocketHandler.afterConnectionEstablished - Подключение нового клиента
+18-07-2018 21:36:45.776 [http-nio-8080-exec-8] INFO  c.s.service.websocket.SocketHandler.afterConnectionEstablished - Подключение нового клиента
+18-07-2018 21:42:41.894 [main] INFO  com.seebattleserver.Application.logStarting - Starting Application on DESKTOP-CSIKHQM with PID 11968 (C:\Users\1111\IdeaProjects\SeeBattleServerSpring\target\classes started by 1111 in C:\Users\1111\IdeaProjects\SeeBattleServerSpring)
+18-07-2018 21:42:41.910 [main] INFO  com.seebattleserver.Application.logStartupProfileInfo - No active profile set, falling back to default profiles: default
+18-07-2018 21:42:42.142 [main] INFO  o.s.b.w.s.c.AnnotationConfigServletWebServerApplicationContext.prepareRefresh - Refreshing org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@f627d13: startup date [Wed Jul 18 21:42:42 MSK 2018]; root of context hierarchy
+18-07-2018 21:42:47.129 [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker.postProcessAfterInitialization - Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$56721246] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+18-07-2018 21:42:48.140 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer.initialize - Tomcat initialized with port(s): 8080 (http)
+18-07-2018 21:42:48.189 [main] INFO  o.a.catalina.core.StandardService.log - Starting service [Tomcat]
+18-07-2018 21:42:48.191 [main] INFO  o.a.catalina.core.StandardEngine.log - Starting Servlet Engine: Apache Tomcat/9.0.8
+18-07-2018 21:42:48.207 [main] INFO  o.a.c.core.AprLifecycleListener.log - The APR based Apache Tomcat Native library which allows optimal performance in production environments was not found on the java.library.path: [C:\Program Files\Java\jdk-10.0.1\bin;C:\Windows\Sun\Java\bin;C:\Windows\system32;C:\Windows;C:\Program Files\Microsoft MPI\Bin\;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;C:\Program Files\Git\cmd;C:\Program Files (x86)\Microsoft SQL Server\140\Tools\Binn\;C:\Program Files\Microsoft SQL Server\140\Tools\Binn\;C:\Program Files (x86)\Microsoft SQL Server\140\DTS\Binn\;C:\Program Files\Microsoft SQL Server\140\DTS\Binn\;C:\Program Files\Microsoft SQL Server\Client SDK\ODBC\130\Tools\Binn\;C:\Program Files (x86)\Microsoft SQL Server\Client SDK\ODBC\130\Tools\Binn\;C:\Program Files (x86)\Microsoft SQL Server\140\Tools\Binn\ManagementStudio\;C:\Users\1111\AppData\Local\Microsoft\WindowsApps;;.]
+18-07-2018 21:42:48.570 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/].log - Initializing Spring embedded WebApplicationContext
+18-07-2018 21:42:48.571 [main] INFO  o.s.web.context.ContextLoader.prepareWebApplicationContext - Root WebApplicationContext: initialization completed in 6429 ms
+18-07-2018 21:42:48.909 [main] INFO  o.s.b.w.s.ServletRegistrationBean.addRegistration - Servlet dispatcherServlet mapped to [/]
+18-07-2018 21:42:48.917 [main] INFO  o.s.b.w.s.FilterRegistrationBean.configure - Mapping filter: 'characterEncodingFilter' to: [/*]
+18-07-2018 21:42:48.920 [main] INFO  o.s.b.w.s.FilterRegistrationBean.configure - Mapping filter: 'hiddenHttpMethodFilter' to: [/*]
+18-07-2018 21:42:48.920 [main] INFO  o.s.b.w.s.FilterRegistrationBean.configure - Mapping filter: 'httpPutFormContentFilter' to: [/*]
+18-07-2018 21:42:48.921 [main] INFO  o.s.b.w.s.FilterRegistrationBean.configure - Mapping filter: 'requestContextFilter' to: [/*]
+18-07-2018 21:42:49.482 [main] INFO  com.zaxxer.hikari.HikariDataSource.getConnection - HikariPool-1 - Starting...
+18-07-2018 21:42:50.019 [main] INFO  com.zaxxer.hikari.HikariDataSource.getConnection - HikariPool-1 - Start completed.
+18-07-2018 21:42:50.227 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean.createNativeEntityManagerFactory - Building JPA container EntityManagerFactory for persistence unit 'default'
+18-07-2018 21:42:50.287 [main] INFO  o.h.jpa.internal.util.LogHelper.logPersistenceUnitInformation - HHH000204: Processing PersistenceUnitInfo [
+	name: default
+	...]
+18-07-2018 21:42:50.570 [main] INFO  org.hibernate.Version.logVersion - HHH000412: Hibernate Core {5.2.17.Final}
+18-07-2018 21:42:50.575 [main] INFO  org.hibernate.cfg.Environment.<clinit> - HHH000206: hibernate.properties not found
+18-07-2018 21:42:50.706 [main] INFO  o.h.annotations.common.Version.<clinit> - HCANN000001: Hibernate Commons Annotations {5.0.1.Final}
+18-07-2018 21:42:51.112 [main] INFO  org.hibernate.dialect.Dialect.<init> - HHH000400: Using dialect: org.hibernate.dialect.SQLServer2012Dialect
+18-07-2018 21:42:52.325 [main] INFO  o.h.t.s.internal.SchemaCreatorImpl.applyImportSources - HHH000476: Executing import script 'org.hibernate.tool.schema.internal.exec.ScriptSourceInputNonExistentImpl@6df2af02'
+18-07-2018 21:42:52.332 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean.buildNativeEntityManagerFactory - Initialized JPA EntityManagerFactory for persistence unit 'default'
+18-07-2018 21:42:53.284 [main] INFO  o.s.w.s.s.s.WebSocketHandlerMapping.registerHandler - Mapped URL path [/game] onto handler of type [class org.springframework.web.socket.server.support.WebSocketHttpRequestHandler]
+18-07-2018 21:42:53.507 [main] INFO  o.s.w.s.h.SimpleUrlHandlerMapping.registerHandler - Mapped URL path [/**/favicon.ico] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+18-07-2018 21:42:54.152 [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerAdapter.initControllerAdviceCache - Looking for @ControllerAdvice: org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@f627d13: startup date [Wed Jul 18 21:42:42 MSK 2018]; root of context hierarchy
+18-07-2018 21:42:54.255 [main] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration$JpaWebMvcConfiguration.openEntityManagerInViewInterceptor - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+18-07-2018 21:42:54.365 [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping.register - Mapped "{[/controller/add],methods=[GET]}" onto public java.lang.String com.seebattleserver.repository.UserListController.addNewUserEntity(java.lang.String,com.seebattleserver.application.user.UserStatus)
+18-07-2018 21:42:54.373 [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping.register - Mapped "{[/controller/all],methods=[GET]}" onto public java.lang.Iterable<com.seebattleserver.repository.UserEntity> com.seebattleserver.repository.UserListController.getAllUserEntities()
+18-07-2018 21:42:54.380 [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping.register - Mapped "{[/error]}" onto public org.springframework.http.ResponseEntity<java.util.Map<java.lang.String, java.lang.Object>> org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController.error(javax.servlet.http.HttpServletRequest)
+18-07-2018 21:42:54.383 [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping.register - Mapped "{[/error],produces=[text/html]}" onto public org.springframework.web.servlet.ModelAndView org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController.errorHtml(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+18-07-2018 21:42:54.470 [main] INFO  o.s.w.s.h.SimpleUrlHandlerMapping.registerHandler - Mapped URL path [/webjars/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+18-07-2018 21:42:54.471 [main] INFO  o.s.w.s.h.SimpleUrlHandlerMapping.registerHandler - Mapped URL path [/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+18-07-2018 21:42:55.176 [main] INFO  o.s.j.e.a.AnnotationMBeanExporter.afterSingletonsInstantiated - Registering beans for JMX exposure on startup
+18-07-2018 21:42:55.182 [main] INFO  o.s.j.e.a.AnnotationMBeanExporter.autodetect - Bean with name 'dataSource' has been autodetected for JMX exposure
+18-07-2018 21:42:55.194 [main] INFO  o.s.j.e.a.AnnotationMBeanExporter.registerBeanInstance - Located MBean 'dataSource': registering with JMX server as MBean [com.zaxxer.hikari:name=dataSource,type=HikariDataSource]
+18-07-2018 21:42:55.205 [main] INFO  o.s.c.s.DefaultLifecycleProcessor.start - Starting beans in phase 2147483647
+18-07-2018 21:42:55.268 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer.start - Tomcat started on port(s): 8080 (http) with context path ''
+18-07-2018 21:42:55.277 [main] INFO  com.seebattleserver.Application.logStarted - Started Application in 14.906 seconds (JVM running for 16.589)
+18-07-2018 21:43:04.141 [http-nio-8080-exec-10] INFO  o.a.c.c.C.[Tomcat].[localhost].[/].log - Initializing Spring FrameworkServlet 'dispatcherServlet'
+18-07-2018 21:43:04.143 [http-nio-8080-exec-10] INFO  o.s.web.servlet.DispatcherServlet.initServletBean - FrameworkServlet 'dispatcherServlet': initialization started
+18-07-2018 21:43:04.289 [http-nio-8080-exec-10] INFO  o.s.web.servlet.DispatcherServlet.initServletBean - FrameworkServlet 'dispatcherServlet': initialization completed in 145 ms
+18-07-2018 21:43:04.918 [http-nio-8080-exec-10] INFO  c.s.service.websocket.SocketHandler.afterConnectionEstablished - Подключение нового клиента
+18-07-2018 21:43:11.940 [http-nio-8080-exec-8] INFO  c.s.service.websocket.SocketHandler.afterConnectionEstablished - Подключение нового клиента
+18-07-2018 21:44:46.520 [main] INFO  com.seebattleserver.Application.logStarting - Starting Application on DESKTOP-CSIKHQM with PID 12268 (C:\Users\1111\IdeaProjects\SeeBattleServerSpring\target\classes started by 1111 in C:\Users\1111\IdeaProjects\SeeBattleServerSpring)
+18-07-2018 21:44:46.537 [main] INFO  com.seebattleserver.Application.logStartupProfileInfo - No active profile set, falling back to default profiles: default
+18-07-2018 21:44:47.161 [main] INFO  o.s.b.w.s.c.AnnotationConfigServletWebServerApplicationContext.prepareRefresh - Refreshing org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@4416d64f: startup date [Wed Jul 18 21:44:47 MSK 2018]; root of context hierarchy
+18-07-2018 21:44:52.626 [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker.postProcessAfterInitialization - Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$d98c7922] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+18-07-2018 21:44:53.795 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer.initialize - Tomcat initialized with port(s): 8080 (http)
+18-07-2018 21:44:53.847 [main] INFO  o.a.catalina.core.StandardService.log - Starting service [Tomcat]
+18-07-2018 21:44:53.850 [main] INFO  o.a.catalina.core.StandardEngine.log - Starting Servlet Engine: Apache Tomcat/9.0.8
+18-07-2018 21:44:53.867 [main] INFO  o.a.c.core.AprLifecycleListener.log - The APR based Apache Tomcat Native library which allows optimal performance in production environments was not found on the java.library.path: [C:\Program Files\Java\jdk-10.0.1\bin;C:\Windows\Sun\Java\bin;C:\Windows\system32;C:\Windows;C:\Program Files\Microsoft MPI\Bin\;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;C:\Program Files\Git\cmd;C:\Program Files (x86)\Microsoft SQL Server\140\Tools\Binn\;C:\Program Files\Microsoft SQL Server\140\Tools\Binn\;C:\Program Files (x86)\Microsoft SQL Server\140\DTS\Binn\;C:\Program Files\Microsoft SQL Server\140\DTS\Binn\;C:\Program Files\Microsoft SQL Server\Client SDK\ODBC\130\Tools\Binn\;C:\Program Files (x86)\Microsoft SQL Server\Client SDK\ODBC\130\Tools\Binn\;C:\Program Files (x86)\Microsoft SQL Server\140\Tools\Binn\ManagementStudio\;C:\Users\1111\AppData\Local\Microsoft\WindowsApps;;.]
+18-07-2018 21:44:54.281 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/].log - Initializing Spring embedded WebApplicationContext
+18-07-2018 21:44:54.283 [main] INFO  o.s.web.context.ContextLoader.prepareWebApplicationContext - Root WebApplicationContext: initialization completed in 7121 ms
+18-07-2018 21:44:54.705 [main] INFO  o.s.b.w.s.ServletRegistrationBean.addRegistration - Servlet dispatcherServlet mapped to [/]
+18-07-2018 21:44:54.743 [main] INFO  o.s.b.w.s.FilterRegistrationBean.configure - Mapping filter: 'characterEncodingFilter' to: [/*]
+18-07-2018 21:44:54.746 [main] INFO  o.s.b.w.s.FilterRegistrationBean.configure - Mapping filter: 'hiddenHttpMethodFilter' to: [/*]
+18-07-2018 21:44:54.747 [main] INFO  o.s.b.w.s.FilterRegistrationBean.configure - Mapping filter: 'httpPutFormContentFilter' to: [/*]
+18-07-2018 21:44:54.762 [main] INFO  o.s.b.w.s.FilterRegistrationBean.configure - Mapping filter: 'requestContextFilter' to: [/*]
+18-07-2018 21:44:55.485 [main] INFO  com.zaxxer.hikari.HikariDataSource.getConnection - HikariPool-1 - Starting...
+18-07-2018 21:44:56.128 [main] INFO  com.zaxxer.hikari.HikariDataSource.getConnection - HikariPool-1 - Start completed.
+18-07-2018 21:44:56.396 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean.createNativeEntityManagerFactory - Building JPA container EntityManagerFactory for persistence unit 'default'
+18-07-2018 21:44:56.438 [main] INFO  o.h.jpa.internal.util.LogHelper.logPersistenceUnitInformation - HHH000204: Processing PersistenceUnitInfo [
+	name: default
+	...]
+18-07-2018 21:44:56.704 [main] INFO  org.hibernate.Version.logVersion - HHH000412: Hibernate Core {5.2.17.Final}
+18-07-2018 21:44:56.713 [main] INFO  org.hibernate.cfg.Environment.<clinit> - HHH000206: hibernate.properties not found
+18-07-2018 21:44:56.877 [main] INFO  o.h.annotations.common.Version.<clinit> - HCANN000001: Hibernate Commons Annotations {5.0.1.Final}
+18-07-2018 21:44:57.486 [main] INFO  org.hibernate.dialect.Dialect.<init> - HHH000400: Using dialect: org.hibernate.dialect.SQLServer2012Dialect
+18-07-2018 21:44:59.031 [main] INFO  o.h.t.s.internal.SchemaCreatorImpl.applyImportSources - HHH000476: Executing import script 'org.hibernate.tool.schema.internal.exec.ScriptSourceInputNonExistentImpl@1cdd31a4'
+18-07-2018 21:44:59.037 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean.buildNativeEntityManagerFactory - Initialized JPA EntityManagerFactory for persistence unit 'default'
+18-07-2018 21:45:00.336 [main] INFO  o.s.w.s.s.s.WebSocketHandlerMapping.registerHandler - Mapped URL path [/game] onto handler of type [class org.springframework.web.socket.server.support.WebSocketHttpRequestHandler]
+18-07-2018 21:45:00.619 [main] INFO  o.s.w.s.h.SimpleUrlHandlerMapping.registerHandler - Mapped URL path [/**/favicon.ico] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+18-07-2018 21:45:01.400 [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerAdapter.initControllerAdviceCache - Looking for @ControllerAdvice: org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@4416d64f: startup date [Wed Jul 18 21:44:47 MSK 2018]; root of context hierarchy
+18-07-2018 21:45:01.509 [main] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration$JpaWebMvcConfiguration.openEntityManagerInViewInterceptor - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+18-07-2018 21:45:01.646 [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping.register - Mapped "{[/controller/all],methods=[GET]}" onto public java.lang.Iterable<com.seebattleserver.repository.UserEntity> com.seebattleserver.repository.UserListController.getAllUserEntities()
+18-07-2018 21:45:01.656 [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping.register - Mapped "{[/controller/add],methods=[GET]}" onto public java.lang.String com.seebattleserver.repository.UserListController.addNewUserEntity(java.lang.String,com.seebattleserver.application.user.UserStatus)
+18-07-2018 21:45:01.662 [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping.register - Mapped "{[/error],produces=[text/html]}" onto public org.springframework.web.servlet.ModelAndView org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController.errorHtml(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+18-07-2018 21:45:01.665 [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping.register - Mapped "{[/error]}" onto public org.springframework.http.ResponseEntity<java.util.Map<java.lang.String, java.lang.Object>> org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController.error(javax.servlet.http.HttpServletRequest)
+18-07-2018 21:45:01.755 [main] INFO  o.s.w.s.h.SimpleUrlHandlerMapping.registerHandler - Mapped URL path [/webjars/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+18-07-2018 21:45:01.756 [main] INFO  o.s.w.s.h.SimpleUrlHandlerMapping.registerHandler - Mapped URL path [/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+18-07-2018 21:45:02.601 [main] INFO  o.s.j.e.a.AnnotationMBeanExporter.afterSingletonsInstantiated - Registering beans for JMX exposure on startup
+18-07-2018 21:45:02.618 [main] INFO  o.s.j.e.a.AnnotationMBeanExporter.autodetect - Bean with name 'dataSource' has been autodetected for JMX exposure
+18-07-2018 21:45:02.630 [main] INFO  o.s.j.e.a.AnnotationMBeanExporter.registerBeanInstance - Located MBean 'dataSource': registering with JMX server as MBean [com.zaxxer.hikari:name=dataSource,type=HikariDataSource]
+18-07-2018 21:45:02.651 [main] INFO  o.s.c.s.DefaultLifecycleProcessor.start - Starting beans in phase 2147483647
+18-07-2018 21:45:02.734 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer.start - Tomcat started on port(s): 8080 (http) with context path ''
+18-07-2018 21:45:02.741 [main] INFO  com.seebattleserver.Application.logStarted - Started Application in 18.183 seconds (JVM running for 20.117)
+18-07-2018 21:45:10.694 [http-nio-8080-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/].log - Initializing Spring FrameworkServlet 'dispatcherServlet'
+18-07-2018 21:45:10.695 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet.initServletBean - FrameworkServlet 'dispatcherServlet': initialization started
+18-07-2018 21:45:10.822 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet.initServletBean - FrameworkServlet 'dispatcherServlet': initialization completed in 125 ms
+18-07-2018 21:45:11.405 [http-nio-8080-exec-1] INFO  c.s.service.websocket.SocketHandler.afterConnectionEstablished - Подключение нового клиента
+18-07-2018 21:45:17.122 [http-nio-8080-exec-3] INFO  c.s.service.websocket.SocketHandler.afterConnectionEstablished - Подключение нового клиента
+18-07-2018 21:47:54.985 [http-nio-8080-exec-10] INFO  c.s.service.websocket.SocketHandler.afterConnectionEstablished - Подключение нового клиента
+18-07-2018 21:48:01.459 [http-nio-8080-exec-2] INFO  c.s.service.websocket.SocketHandler.afterConnectionEstablished - Подключение нового клиента
+18-07-2018 21:49:03.075 [http-nio-8080-exec-10] INFO  c.s.service.websocket.SocketHandler.afterConnectionEstablished - Подключение нового клиента
+18-07-2018 21:49:09.307 [http-nio-8080-exec-2] INFO  c.s.service.websocket.SocketHandler.afterConnectionEstablished - Подключение нового клиента
+18-07-2018 21:52:37.100 [main] INFO  com.seebattleserver.Application.logStarting - Starting Application on DESKTOP-CSIKHQM with PID 9720 (C:\Users\1111\IdeaProjects\SeeBattleServerSpring\target\classes started by 1111 in C:\Users\1111\IdeaProjects\SeeBattleServerSpring)
+18-07-2018 21:52:37.108 [main] INFO  com.seebattleserver.Application.logStartupProfileInfo - No active profile set, falling back to default profiles: default
+18-07-2018 21:52:37.516 [main] INFO  o.s.b.w.s.c.AnnotationConfigServletWebServerApplicationContext.prepareRefresh - Refreshing org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@41e68d87: startup date [Wed Jul 18 21:52:37 MSK 2018]; root of context hierarchy
+18-07-2018 21:52:43.422 [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker.postProcessAfterInitialization - Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$4c30298c] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+18-07-2018 21:52:44.583 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer.initialize - Tomcat initialized with port(s): 8080 (http)
+18-07-2018 21:52:44.685 [main] INFO  o.a.catalina.core.StandardService.log - Starting service [Tomcat]
+18-07-2018 21:52:44.689 [main] INFO  o.a.catalina.core.StandardEngine.log - Starting Servlet Engine: Apache Tomcat/9.0.8
+18-07-2018 21:52:44.710 [main] INFO  o.a.c.core.AprLifecycleListener.log - The APR based Apache Tomcat Native library which allows optimal performance in production environments was not found on the java.library.path: [C:\Program Files\Java\jdk-10.0.1\bin;C:\Windows\Sun\Java\bin;C:\Windows\system32;C:\Windows;C:\Program Files\Microsoft MPI\Bin\;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;C:\Program Files\Git\cmd;C:\Program Files (x86)\Microsoft SQL Server\140\Tools\Binn\;C:\Program Files\Microsoft SQL Server\140\Tools\Binn\;C:\Program Files (x86)\Microsoft SQL Server\140\DTS\Binn\;C:\Program Files\Microsoft SQL Server\140\DTS\Binn\;C:\Program Files\Microsoft SQL Server\Client SDK\ODBC\130\Tools\Binn\;C:\Program Files (x86)\Microsoft SQL Server\Client SDK\ODBC\130\Tools\Binn\;C:\Program Files (x86)\Microsoft SQL Server\140\Tools\Binn\ManagementStudio\;C:\Users\1111\AppData\Local\Microsoft\WindowsApps;;.]
+18-07-2018 21:52:45.133 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/].log - Initializing Spring embedded WebApplicationContext
+18-07-2018 21:52:45.134 [main] INFO  o.s.web.context.ContextLoader.prepareWebApplicationContext - Root WebApplicationContext: initialization completed in 7618 ms
+18-07-2018 21:52:45.514 [main] INFO  o.s.b.w.s.ServletRegistrationBean.addRegistration - Servlet dispatcherServlet mapped to [/]
+18-07-2018 21:52:45.525 [main] INFO  o.s.b.w.s.FilterRegistrationBean.configure - Mapping filter: 'characterEncodingFilter' to: [/*]
+18-07-2018 21:52:45.527 [main] INFO  o.s.b.w.s.FilterRegistrationBean.configure - Mapping filter: 'hiddenHttpMethodFilter' to: [/*]
+18-07-2018 21:52:45.528 [main] INFO  o.s.b.w.s.FilterRegistrationBean.configure - Mapping filter: 'httpPutFormContentFilter' to: [/*]
+18-07-2018 21:52:45.531 [main] INFO  o.s.b.w.s.FilterRegistrationBean.configure - Mapping filter: 'requestContextFilter' to: [/*]
+18-07-2018 21:52:46.269 [main] INFO  com.zaxxer.hikari.HikariDataSource.getConnection - HikariPool-1 - Starting...
+18-07-2018 21:52:46.827 [main] INFO  com.zaxxer.hikari.HikariDataSource.getConnection - HikariPool-1 - Start completed.
+18-07-2018 21:52:47.090 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean.createNativeEntityManagerFactory - Building JPA container EntityManagerFactory for persistence unit 'default'
+18-07-2018 21:52:47.142 [main] INFO  o.h.jpa.internal.util.LogHelper.logPersistenceUnitInformation - HHH000204: Processing PersistenceUnitInfo [
+	name: default
+	...]
+18-07-2018 21:52:47.473 [main] INFO  org.hibernate.Version.logVersion - HHH000412: Hibernate Core {5.2.17.Final}
+18-07-2018 21:52:47.481 [main] INFO  org.hibernate.cfg.Environment.<clinit> - HHH000206: hibernate.properties not found
+18-07-2018 21:52:47.609 [main] INFO  o.h.annotations.common.Version.<clinit> - HCANN000001: Hibernate Commons Annotations {5.0.1.Final}
+18-07-2018 21:52:48.158 [main] INFO  org.hibernate.dialect.Dialect.<init> - HHH000400: Using dialect: org.hibernate.dialect.SQLServer2012Dialect
+18-07-2018 21:52:49.715 [main] INFO  o.h.t.s.internal.SchemaCreatorImpl.applyImportSources - HHH000476: Executing import script 'org.hibernate.tool.schema.internal.exec.ScriptSourceInputNonExistentImpl@702b656a'
+18-07-2018 21:52:49.722 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean.buildNativeEntityManagerFactory - Initialized JPA EntityManagerFactory for persistence unit 'default'
+18-07-2018 21:52:51.006 [main] INFO  o.s.w.s.s.s.WebSocketHandlerMapping.registerHandler - Mapped URL path [/game] onto handler of type [class org.springframework.web.socket.server.support.WebSocketHttpRequestHandler]
+18-07-2018 21:52:51.326 [main] INFO  o.s.w.s.h.SimpleUrlHandlerMapping.registerHandler - Mapped URL path [/**/favicon.ico] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+18-07-2018 21:52:52.098 [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerAdapter.initControllerAdviceCache - Looking for @ControllerAdvice: org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@41e68d87: startup date [Wed Jul 18 21:52:37 MSK 2018]; root of context hierarchy
+18-07-2018 21:52:52.211 [main] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration$JpaWebMvcConfiguration.openEntityManagerInViewInterceptor - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+18-07-2018 21:52:52.336 [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping.register - Mapped "{[/controller/all],methods=[GET]}" onto public java.lang.Iterable<com.seebattleserver.repository.UserEntity> com.seebattleserver.repository.UserListController.getAllUserEntities()
+18-07-2018 21:52:52.341 [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping.register - Mapped "{[/controller/add],methods=[GET]}" onto public java.lang.String com.seebattleserver.repository.UserListController.addNewUserEntity(java.lang.String,com.seebattleserver.application.user.UserStatus)
+18-07-2018 21:52:52.347 [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping.register - Mapped "{[/error]}" onto public org.springframework.http.ResponseEntity<java.util.Map<java.lang.String, java.lang.Object>> org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController.error(javax.servlet.http.HttpServletRequest)
+18-07-2018 21:52:52.352 [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping.register - Mapped "{[/error],produces=[text/html]}" onto public org.springframework.web.servlet.ModelAndView org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController.errorHtml(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+18-07-2018 21:52:52.429 [main] INFO  o.s.w.s.h.SimpleUrlHandlerMapping.registerHandler - Mapped URL path [/webjars/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+18-07-2018 21:52:52.430 [main] INFO  o.s.w.s.h.SimpleUrlHandlerMapping.registerHandler - Mapped URL path [/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+18-07-2018 21:52:53.292 [main] INFO  o.s.j.e.a.AnnotationMBeanExporter.afterSingletonsInstantiated - Registering beans for JMX exposure on startup
+18-07-2018 21:52:53.298 [main] INFO  o.s.j.e.a.AnnotationMBeanExporter.autodetect - Bean with name 'dataSource' has been autodetected for JMX exposure
+18-07-2018 21:52:53.311 [main] INFO  o.s.j.e.a.AnnotationMBeanExporter.registerBeanInstance - Located MBean 'dataSource': registering with JMX server as MBean [com.zaxxer.hikari:name=dataSource,type=HikariDataSource]
+18-07-2018 21:52:53.325 [main] INFO  o.s.c.s.DefaultLifecycleProcessor.start - Starting beans in phase 2147483647
+18-07-2018 21:52:53.420 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer.start - Tomcat started on port(s): 8080 (http) with context path ''
+18-07-2018 21:52:53.427 [main] INFO  com.seebattleserver.Application.logStarted - Started Application in 18.166 seconds (JVM running for 20.218)
+18-07-2018 21:53:06.585 [http-nio-8080-exec-10] INFO  o.a.c.c.C.[Tomcat].[localhost].[/].log - Initializing Spring FrameworkServlet 'dispatcherServlet'
+18-07-2018 21:53:06.587 [http-nio-8080-exec-10] INFO  o.s.web.servlet.DispatcherServlet.initServletBean - FrameworkServlet 'dispatcherServlet': initialization started
+18-07-2018 21:53:06.643 [http-nio-8080-exec-10] INFO  o.s.web.servlet.DispatcherServlet.initServletBean - FrameworkServlet 'dispatcherServlet': initialization completed in 54 ms
+18-07-2018 21:53:06.918 [http-nio-8080-exec-10] INFO  c.s.service.websocket.SocketHandler.afterConnectionEstablished - Подключение нового клиента
+18-07-2018 21:53:22.882 [http-nio-8080-exec-8] INFO  c.s.service.websocket.SocketHandler.afterConnectionEstablished - Подключение нового клиента
+18-07-2018 21:53:42.584 [http-nio-8080-exec-6] INFO  c.s.service.websocket.SocketHandler.afterConnectionEstablished - Подключение нового клиента
+18-07-2018 21:55:47.900 [http-nio-8080-exec-6] INFO  c.s.service.websocket.SocketHandler.afterConnectionEstablished - Подключение нового клиента
+18-07-2018 21:55:55.563 [http-nio-8080-exec-4] INFO  c.s.service.websocket.SocketHandler.afterConnectionEstablished - Подключение нового клиента
+18-07-2018 22:06:57.236 [main] INFO  com.seebattleserver.Application.logStarting - Starting Application on DESKTOP-CSIKHQM with PID 10692 (C:\Users\1111\IdeaProjects\SeeBattleServerSpring\target\classes started by 1111 in C:\Users\1111\IdeaProjects\SeeBattleServerSpring)
+18-07-2018 22:06:57.282 [main] INFO  com.seebattleserver.Application.logStartupProfileInfo - No active profile set, falling back to default profiles: default
+18-07-2018 22:06:57.749 [main] INFO  o.s.b.w.s.c.AnnotationConfigServletWebServerApplicationContext.prepareRefresh - Refreshing org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@5a3bc7ed: startup date [Wed Jul 18 22:06:57 MSK 2018]; root of context hierarchy
+18-07-2018 22:07:03.382 [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker.postProcessAfterInitialization - Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$6f4d0541] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+18-07-2018 22:07:04.642 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer.initialize - Tomcat initialized with port(s): 8080 (http)
+18-07-2018 22:07:04.725 [main] INFO  o.a.catalina.core.StandardService.log - Starting service [Tomcat]
+18-07-2018 22:07:04.730 [main] INFO  o.a.catalina.core.StandardEngine.log - Starting Servlet Engine: Apache Tomcat/9.0.8
+18-07-2018 22:07:04.752 [main] INFO  o.a.c.core.AprLifecycleListener.log - The APR based Apache Tomcat Native library which allows optimal performance in production environments was not found on the java.library.path: [C:\Program Files\Java\jdk-10.0.1\bin;C:\Windows\Sun\Java\bin;C:\Windows\system32;C:\Windows;C:\Program Files\Microsoft MPI\Bin\;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;C:\Program Files\Git\cmd;C:\Program Files (x86)\Microsoft SQL Server\140\Tools\Binn\;C:\Program Files\Microsoft SQL Server\140\Tools\Binn\;C:\Program Files (x86)\Microsoft SQL Server\140\DTS\Binn\;C:\Program Files\Microsoft SQL Server\140\DTS\Binn\;C:\Program Files\Microsoft SQL Server\Client SDK\ODBC\130\Tools\Binn\;C:\Program Files (x86)\Microsoft SQL Server\Client SDK\ODBC\130\Tools\Binn\;C:\Program Files (x86)\Microsoft SQL Server\140\Tools\Binn\ManagementStudio\;C:\Users\1111\AppData\Local\Microsoft\WindowsApps;;.]
+18-07-2018 22:07:05.176 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/].log - Initializing Spring embedded WebApplicationContext
+18-07-2018 22:07:05.177 [main] INFO  o.s.web.context.ContextLoader.prepareWebApplicationContext - Root WebApplicationContext: initialization completed in 7429 ms
+18-07-2018 22:07:05.613 [main] INFO  o.s.b.w.s.ServletRegistrationBean.addRegistration - Servlet dispatcherServlet mapped to [/]
+18-07-2018 22:07:05.629 [main] INFO  o.s.b.w.s.FilterRegistrationBean.configure - Mapping filter: 'characterEncodingFilter' to: [/*]
+18-07-2018 22:07:05.633 [main] INFO  o.s.b.w.s.FilterRegistrationBean.configure - Mapping filter: 'hiddenHttpMethodFilter' to: [/*]
+18-07-2018 22:07:05.634 [main] INFO  o.s.b.w.s.FilterRegistrationBean.configure - Mapping filter: 'httpPutFormContentFilter' to: [/*]
+18-07-2018 22:07:05.649 [main] INFO  o.s.b.w.s.FilterRegistrationBean.configure - Mapping filter: 'requestContextFilter' to: [/*]
+18-07-2018 22:07:06.381 [main] INFO  com.zaxxer.hikari.HikariDataSource.getConnection - HikariPool-1 - Starting...
+18-07-2018 22:07:07.019 [main] INFO  com.zaxxer.hikari.HikariDataSource.getConnection - HikariPool-1 - Start completed.
+18-07-2018 22:07:07.318 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean.createNativeEntityManagerFactory - Building JPA container EntityManagerFactory for persistence unit 'default'
+18-07-2018 22:07:07.395 [main] INFO  o.h.jpa.internal.util.LogHelper.logPersistenceUnitInformation - HHH000204: Processing PersistenceUnitInfo [
+	name: default
+	...]
+18-07-2018 22:07:07.660 [main] INFO  org.hibernate.Version.logVersion - HHH000412: Hibernate Core {5.2.17.Final}
+18-07-2018 22:07:07.668 [main] INFO  org.hibernate.cfg.Environment.<clinit> - HHH000206: hibernate.properties not found
+18-07-2018 22:07:07.796 [main] INFO  o.h.annotations.common.Version.<clinit> - HCANN000001: Hibernate Commons Annotations {5.0.1.Final}
+18-07-2018 22:07:08.312 [main] INFO  org.hibernate.dialect.Dialect.<init> - HHH000400: Using dialect: org.hibernate.dialect.SQLServer2012Dialect
+18-07-2018 22:07:09.842 [main] INFO  o.h.t.s.internal.SchemaCreatorImpl.applyImportSources - HHH000476: Executing import script 'org.hibernate.tool.schema.internal.exec.ScriptSourceInputNonExistentImpl@492c9892'
+18-07-2018 22:07:09.849 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean.buildNativeEntityManagerFactory - Initialized JPA EntityManagerFactory for persistence unit 'default'
+18-07-2018 22:07:11.102 [main] INFO  o.s.w.s.s.s.WebSocketHandlerMapping.registerHandler - Mapped URL path [/game] onto handler of type [class org.springframework.web.socket.server.support.WebSocketHttpRequestHandler]
+18-07-2018 22:07:11.374 [main] INFO  o.s.w.s.h.SimpleUrlHandlerMapping.registerHandler - Mapped URL path [/**/favicon.ico] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+18-07-2018 22:07:12.165 [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerAdapter.initControllerAdviceCache - Looking for @ControllerAdvice: org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@5a3bc7ed: startup date [Wed Jul 18 22:06:57 MSK 2018]; root of context hierarchy
+18-07-2018 22:07:12.322 [main] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration$JpaWebMvcConfiguration.openEntityManagerInViewInterceptor - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+18-07-2018 22:07:12.466 [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping.register - Mapped "{[/controller/add],methods=[GET]}" onto public java.lang.String com.seebattleserver.repository.UserListController.addNewUserEntity(java.lang.String,com.seebattleserver.application.user.UserStatus)
+18-07-2018 22:07:12.474 [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping.register - Mapped "{[/controller/all],methods=[GET]}" onto public java.lang.Iterable<com.seebattleserver.repository.UserEntity> com.seebattleserver.repository.UserListController.getAllUserEntities()
+18-07-2018 22:07:12.480 [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping.register - Mapped "{[/error]}" onto public org.springframework.http.ResponseEntity<java.util.Map<java.lang.String, java.lang.Object>> org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController.error(javax.servlet.http.HttpServletRequest)
+18-07-2018 22:07:12.485 [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping.register - Mapped "{[/error],produces=[text/html]}" onto public org.springframework.web.servlet.ModelAndView org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController.errorHtml(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+18-07-2018 22:07:12.573 [main] INFO  o.s.w.s.h.SimpleUrlHandlerMapping.registerHandler - Mapped URL path [/webjars/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+18-07-2018 22:07:12.574 [main] INFO  o.s.w.s.h.SimpleUrlHandlerMapping.registerHandler - Mapped URL path [/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+18-07-2018 22:07:13.565 [main] INFO  o.s.j.e.a.AnnotationMBeanExporter.afterSingletonsInstantiated - Registering beans for JMX exposure on startup
+18-07-2018 22:07:13.577 [main] INFO  o.s.j.e.a.AnnotationMBeanExporter.autodetect - Bean with name 'dataSource' has been autodetected for JMX exposure
+18-07-2018 22:07:13.591 [main] INFO  o.s.j.e.a.AnnotationMBeanExporter.registerBeanInstance - Located MBean 'dataSource': registering with JMX server as MBean [com.zaxxer.hikari:name=dataSource,type=HikariDataSource]
+18-07-2018 22:07:13.604 [main] INFO  o.s.c.s.DefaultLifecycleProcessor.start - Starting beans in phase 2147483647
+18-07-2018 22:07:13.682 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer.start - Tomcat started on port(s): 8080 (http) with context path ''
+18-07-2018 22:07:13.690 [main] INFO  com.seebattleserver.Application.logStarted - Started Application in 18.293 seconds (JVM running for 20.57)
+18-07-2018 22:07:20.117 [http-nio-8080-exec-10] INFO  o.a.c.c.C.[Tomcat].[localhost].[/].log - Initializing Spring FrameworkServlet 'dispatcherServlet'
+18-07-2018 22:07:20.119 [http-nio-8080-exec-10] INFO  o.s.web.servlet.DispatcherServlet.initServletBean - FrameworkServlet 'dispatcherServlet': initialization started
+18-07-2018 22:07:20.254 [http-nio-8080-exec-10] INFO  o.s.web.servlet.DispatcherServlet.initServletBean - FrameworkServlet 'dispatcherServlet': initialization completed in 96 ms
+18-07-2018 22:07:20.774 [http-nio-8080-exec-10] INFO  c.s.service.websocket.SocketHandler.afterConnectionEstablished - Подключение нового клиента
+18-07-2018 22:07:26.774 [http-nio-8080-exec-8] INFO  c.s.service.websocket.SocketHandler.afterConnectionEstablished - Подключение нового клиента
+18-07-2018 22:16:05.210 [main] INFO  com.seebattleserver.Application.logStarting - Starting Application on DESKTOP-CSIKHQM with PID 6884 (C:\Users\1111\IdeaProjects\SeeBattleServerSpring\target\classes started by 1111 in C:\Users\1111\IdeaProjects\SeeBattleServerSpring)
+18-07-2018 22:16:05.220 [main] INFO  com.seebattleserver.Application.logStartupProfileInfo - No active profile set, falling back to default profiles: default
+18-07-2018 22:16:05.584 [main] INFO  o.s.b.w.s.c.AnnotationConfigServletWebServerApplicationContext.prepareRefresh - Refreshing org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@5443d039: startup date [Wed Jul 18 22:16:05 MSK 2018]; root of context hierarchy
+18-07-2018 22:16:10.751 [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker.postProcessAfterInitialization - Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$4d4522e] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+18-07-2018 22:16:12.007 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer.initialize - Tomcat initialized with port(s): 8080 (http)
+18-07-2018 22:16:12.077 [main] INFO  o.a.catalina.core.StandardService.log - Starting service [Tomcat]
+18-07-2018 22:16:12.080 [main] INFO  o.a.catalina.core.StandardEngine.log - Starting Servlet Engine: Apache Tomcat/9.0.8
+18-07-2018 22:16:12.100 [main] INFO  o.a.c.core.AprLifecycleListener.log - The APR based Apache Tomcat Native library which allows optimal performance in production environments was not found on the java.library.path: [C:\Program Files\Java\jdk-10.0.1\bin;C:\Windows\Sun\Java\bin;C:\Windows\system32;C:\Windows;C:\Program Files\Microsoft MPI\Bin\;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;C:\Program Files\Git\cmd;C:\Program Files (x86)\Microsoft SQL Server\140\Tools\Binn\;C:\Program Files\Microsoft SQL Server\140\Tools\Binn\;C:\Program Files (x86)\Microsoft SQL Server\140\DTS\Binn\;C:\Program Files\Microsoft SQL Server\140\DTS\Binn\;C:\Program Files\Microsoft SQL Server\Client SDK\ODBC\130\Tools\Binn\;C:\Program Files (x86)\Microsoft SQL Server\Client SDK\ODBC\130\Tools\Binn\;C:\Program Files (x86)\Microsoft SQL Server\140\Tools\Binn\ManagementStudio\;C:\Users\1111\AppData\Local\Microsoft\WindowsApps;;.]
+18-07-2018 22:16:12.540 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/].log - Initializing Spring embedded WebApplicationContext
+18-07-2018 22:16:12.541 [main] INFO  o.s.web.context.ContextLoader.prepareWebApplicationContext - Root WebApplicationContext: initialization completed in 6957 ms
+18-07-2018 22:16:12.919 [main] INFO  o.s.b.w.s.ServletRegistrationBean.addRegistration - Servlet dispatcherServlet mapped to [/]
+18-07-2018 22:16:12.931 [main] INFO  o.s.b.w.s.FilterRegistrationBean.configure - Mapping filter: 'characterEncodingFilter' to: [/*]
+18-07-2018 22:16:12.933 [main] INFO  o.s.b.w.s.FilterRegistrationBean.configure - Mapping filter: 'hiddenHttpMethodFilter' to: [/*]
+18-07-2018 22:16:12.934 [main] INFO  o.s.b.w.s.FilterRegistrationBean.configure - Mapping filter: 'httpPutFormContentFilter' to: [/*]
+18-07-2018 22:16:12.937 [main] INFO  o.s.b.w.s.FilterRegistrationBean.configure - Mapping filter: 'requestContextFilter' to: [/*]
+18-07-2018 22:16:13.669 [main] INFO  com.zaxxer.hikari.HikariDataSource.getConnection - HikariPool-1 - Starting...
+18-07-2018 22:16:14.350 [main] INFO  com.zaxxer.hikari.HikariDataSource.getConnection - HikariPool-1 - Start completed.
+18-07-2018 22:16:14.660 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean.createNativeEntityManagerFactory - Building JPA container EntityManagerFactory for persistence unit 'default'
+18-07-2018 22:16:14.734 [main] INFO  o.h.jpa.internal.util.LogHelper.logPersistenceUnitInformation - HHH000204: Processing PersistenceUnitInfo [
+	name: default
+	...]
+18-07-2018 22:16:15.060 [main] INFO  org.hibernate.Version.logVersion - HHH000412: Hibernate Core {5.2.17.Final}
+18-07-2018 22:16:15.073 [main] INFO  org.hibernate.cfg.Environment.<clinit> - HHH000206: hibernate.properties not found
+18-07-2018 22:16:15.529 [main] INFO  o.h.annotations.common.Version.<clinit> - HCANN000001: Hibernate Commons Annotations {5.0.1.Final}
+18-07-2018 22:16:16.087 [main] INFO  org.hibernate.dialect.Dialect.<init> - HHH000400: Using dialect: org.hibernate.dialect.SQLServer2012Dialect
+18-07-2018 22:16:17.717 [main] INFO  o.h.t.s.internal.SchemaCreatorImpl.applyImportSources - HHH000476: Executing import script 'org.hibernate.tool.schema.internal.exec.ScriptSourceInputNonExistentImpl@22604c7e'
+18-07-2018 22:16:17.724 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean.buildNativeEntityManagerFactory - Initialized JPA EntityManagerFactory for persistence unit 'default'
+18-07-2018 22:16:18.986 [main] INFO  o.s.w.s.s.s.WebSocketHandlerMapping.registerHandler - Mapped URL path [/game] onto handler of type [class org.springframework.web.socket.server.support.WebSocketHttpRequestHandler]
+18-07-2018 22:16:19.256 [main] INFO  o.s.w.s.h.SimpleUrlHandlerMapping.registerHandler - Mapped URL path [/**/favicon.ico] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+18-07-2018 22:16:20.041 [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerAdapter.initControllerAdviceCache - Looking for @ControllerAdvice: org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@5443d039: startup date [Wed Jul 18 22:16:05 MSK 2018]; root of context hierarchy
+18-07-2018 22:16:20.164 [main] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration$JpaWebMvcConfiguration.openEntityManagerInViewInterceptor - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+18-07-2018 22:16:20.296 [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping.register - Mapped "{[/controller/add],methods=[GET]}" onto public java.lang.String com.seebattleserver.repository.UserListController.addNewUserEntity(java.lang.String,com.seebattleserver.application.user.UserStatus)
+18-07-2018 22:16:20.301 [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping.register - Mapped "{[/controller/all],methods=[GET]}" onto public java.lang.Iterable<com.seebattleserver.repository.UserEntity> com.seebattleserver.repository.UserListController.getAllUserEntities()
+18-07-2018 22:16:20.306 [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping.register - Mapped "{[/error]}" onto public org.springframework.http.ResponseEntity<java.util.Map<java.lang.String, java.lang.Object>> org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController.error(javax.servlet.http.HttpServletRequest)
+18-07-2018 22:16:20.310 [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping.register - Mapped "{[/error],produces=[text/html]}" onto public org.springframework.web.servlet.ModelAndView org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController.errorHtml(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+18-07-2018 22:16:20.400 [main] INFO  o.s.w.s.h.SimpleUrlHandlerMapping.registerHandler - Mapped URL path [/webjars/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+18-07-2018 22:16:20.400 [main] INFO  o.s.w.s.h.SimpleUrlHandlerMapping.registerHandler - Mapped URL path [/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+18-07-2018 22:16:21.285 [main] INFO  o.s.j.e.a.AnnotationMBeanExporter.afterSingletonsInstantiated - Registering beans for JMX exposure on startup
+18-07-2018 22:16:21.294 [main] INFO  o.s.j.e.a.AnnotationMBeanExporter.autodetect - Bean with name 'dataSource' has been autodetected for JMX exposure
+18-07-2018 22:16:21.308 [main] INFO  o.s.j.e.a.AnnotationMBeanExporter.registerBeanInstance - Located MBean 'dataSource': registering with JMX server as MBean [com.zaxxer.hikari:name=dataSource,type=HikariDataSource]
+18-07-2018 22:16:21.322 [main] INFO  o.s.c.s.DefaultLifecycleProcessor.start - Starting beans in phase 2147483647
+18-07-2018 22:16:21.416 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer.start - Tomcat started on port(s): 8080 (http) with context path ''
+18-07-2018 22:16:21.439 [main] INFO  com.seebattleserver.Application.logStarted - Started Application in 18.774 seconds (JVM running for 20.764)
+18-07-2018 22:16:46.875 [http-nio-8080-exec-10] INFO  o.a.c.c.C.[Tomcat].[localhost].[/].log - Initializing Spring FrameworkServlet 'dispatcherServlet'
+18-07-2018 22:16:46.877 [http-nio-8080-exec-10] INFO  o.s.web.servlet.DispatcherServlet.initServletBean - FrameworkServlet 'dispatcherServlet': initialization started
+18-07-2018 22:16:46.945 [http-nio-8080-exec-10] INFO  o.s.web.servlet.DispatcherServlet.initServletBean - FrameworkServlet 'dispatcherServlet': initialization completed in 65 ms
+18-07-2018 22:16:47.259 [http-nio-8080-exec-10] INFO  c.s.service.websocket.SocketHandler.afterConnectionEstablished - Подключение нового клиента
+18-07-2018 22:17:05.082 [http-nio-8080-exec-8] INFO  c.s.service.websocket.SocketHandler.afterConnectionEstablished - Подключение нового клиента
+18-07-2018 22:18:48.237 [main] INFO  com.seebattleserver.Application.logStarting - Starting Application on DESKTOP-CSIKHQM with PID 11820 (C:\Users\1111\IdeaProjects\SeeBattleServerSpring\target\classes started by 1111 in C:\Users\1111\IdeaProjects\SeeBattleServerSpring)
+18-07-2018 22:18:48.258 [main] INFO  com.seebattleserver.Application.logStartupProfileInfo - No active profile set, falling back to default profiles: default
+18-07-2018 22:18:48.653 [main] INFO  o.s.b.w.s.c.AnnotationConfigServletWebServerApplicationContext.prepareRefresh - Refreshing org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@44d52de2: startup date [Wed Jul 18 22:18:48 MSK 2018]; root of context hierarchy
+18-07-2018 22:18:54.578 [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker.postProcessAfterInitialization - Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$c8c844bc] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+18-07-2018 22:18:55.809 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer.initialize - Tomcat initialized with port(s): 8080 (http)
+18-07-2018 22:18:55.878 [main] INFO  o.a.catalina.core.StandardService.log - Starting service [Tomcat]
+18-07-2018 22:18:55.884 [main] INFO  o.a.catalina.core.StandardEngine.log - Starting Servlet Engine: Apache Tomcat/9.0.8
+18-07-2018 22:18:55.906 [main] INFO  o.a.c.core.AprLifecycleListener.log - The APR based Apache Tomcat Native library which allows optimal performance in production environments was not found on the java.library.path: [C:\Program Files\Java\jdk-10.0.1\bin;C:\Windows\Sun\Java\bin;C:\Windows\system32;C:\Windows;C:\Program Files\Microsoft MPI\Bin\;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;C:\Program Files\Git\cmd;C:\Program Files (x86)\Microsoft SQL Server\140\Tools\Binn\;C:\Program Files\Microsoft SQL Server\140\Tools\Binn\;C:\Program Files (x86)\Microsoft SQL Server\140\DTS\Binn\;C:\Program Files\Microsoft SQL Server\140\DTS\Binn\;C:\Program Files\Microsoft SQL Server\Client SDK\ODBC\130\Tools\Binn\;C:\Program Files (x86)\Microsoft SQL Server\Client SDK\ODBC\130\Tools\Binn\;C:\Program Files (x86)\Microsoft SQL Server\140\Tools\Binn\ManagementStudio\;C:\Users\1111\AppData\Local\Microsoft\WindowsApps;;.]
+18-07-2018 22:18:56.365 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/].log - Initializing Spring embedded WebApplicationContext
+18-07-2018 22:18:56.367 [main] INFO  o.s.web.context.ContextLoader.prepareWebApplicationContext - Root WebApplicationContext: initialization completed in 7715 ms
+18-07-2018 22:18:56.828 [main] INFO  o.s.b.w.s.ServletRegistrationBean.addRegistration - Servlet dispatcherServlet mapped to [/]
+18-07-2018 22:18:56.842 [main] INFO  o.s.b.w.s.FilterRegistrationBean.configure - Mapping filter: 'characterEncodingFilter' to: [/*]
+18-07-2018 22:18:56.846 [main] INFO  o.s.b.w.s.FilterRegistrationBean.configure - Mapping filter: 'hiddenHttpMethodFilter' to: [/*]
+18-07-2018 22:18:56.846 [main] INFO  o.s.b.w.s.FilterRegistrationBean.configure - Mapping filter: 'httpPutFormContentFilter' to: [/*]
+18-07-2018 22:18:56.849 [main] INFO  o.s.b.w.s.FilterRegistrationBean.configure - Mapping filter: 'requestContextFilter' to: [/*]
+18-07-2018 22:18:57.590 [main] INFO  com.zaxxer.hikari.HikariDataSource.getConnection - HikariPool-1 - Starting...
+18-07-2018 22:18:58.283 [main] INFO  com.zaxxer.hikari.HikariDataSource.getConnection - HikariPool-1 - Start completed.
+18-07-2018 22:18:58.543 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean.createNativeEntityManagerFactory - Building JPA container EntityManagerFactory for persistence unit 'default'
+18-07-2018 22:18:58.614 [main] INFO  o.h.jpa.internal.util.LogHelper.logPersistenceUnitInformation - HHH000204: Processing PersistenceUnitInfo [
+	name: default
+	...]
+18-07-2018 22:18:58.927 [main] INFO  org.hibernate.Version.logVersion - HHH000412: Hibernate Core {5.2.17.Final}
+18-07-2018 22:18:58.937 [main] INFO  org.hibernate.cfg.Environment.<clinit> - HHH000206: hibernate.properties not found
+18-07-2018 22:18:59.074 [main] INFO  o.h.annotations.common.Version.<clinit> - HCANN000001: Hibernate Commons Annotations {5.0.1.Final}
+18-07-2018 22:18:59.539 [main] INFO  org.hibernate.dialect.Dialect.<init> - HHH000400: Using dialect: org.hibernate.dialect.SQLServer2012Dialect
+18-07-2018 22:19:01.012 [main] INFO  o.h.t.s.internal.SchemaCreatorImpl.applyImportSources - HHH000476: Executing import script 'org.hibernate.tool.schema.internal.exec.ScriptSourceInputNonExistentImpl@3bcc8f13'
+18-07-2018 22:19:01.023 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean.buildNativeEntityManagerFactory - Initialized JPA EntityManagerFactory for persistence unit 'default'
+18-07-2018 22:19:02.404 [main] INFO  o.s.w.s.s.s.WebSocketHandlerMapping.registerHandler - Mapped URL path [/game] onto handler of type [class org.springframework.web.socket.server.support.WebSocketHttpRequestHandler]
+18-07-2018 22:19:02.710 [main] INFO  o.s.w.s.h.SimpleUrlHandlerMapping.registerHandler - Mapped URL path [/**/favicon.ico] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+18-07-2018 22:19:03.487 [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerAdapter.initControllerAdviceCache - Looking for @ControllerAdvice: org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@44d52de2: startup date [Wed Jul 18 22:18:48 MSK 2018]; root of context hierarchy
+18-07-2018 22:19:03.607 [main] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration$JpaWebMvcConfiguration.openEntityManagerInViewInterceptor - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+18-07-2018 22:19:03.745 [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping.register - Mapped "{[/controller/add],methods=[GET]}" onto public java.lang.String com.seebattleserver.repository.UserListController.addNewUserEntity(java.lang.String,com.seebattleserver.application.user.UserStatus)
+18-07-2018 22:19:03.750 [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping.register - Mapped "{[/controller/all],methods=[GET]}" onto public java.lang.Iterable<com.seebattleserver.repository.UserEntity> com.seebattleserver.repository.UserListController.getAllUserEntities()
+18-07-2018 22:19:03.759 [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping.register - Mapped "{[/error]}" onto public org.springframework.http.ResponseEntity<java.util.Map<java.lang.String, java.lang.Object>> org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController.error(javax.servlet.http.HttpServletRequest)
+18-07-2018 22:19:03.763 [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping.register - Mapped "{[/error],produces=[text/html]}" onto public org.springframework.web.servlet.ModelAndView org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController.errorHtml(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+18-07-2018 22:19:03.840 [main] INFO  o.s.w.s.h.SimpleUrlHandlerMapping.registerHandler - Mapped URL path [/webjars/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+18-07-2018 22:19:03.840 [main] INFO  o.s.w.s.h.SimpleUrlHandlerMapping.registerHandler - Mapped URL path [/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+18-07-2018 22:19:04.725 [main] INFO  o.s.j.e.a.AnnotationMBeanExporter.afterSingletonsInstantiated - Registering beans for JMX exposure on startup
+18-07-2018 22:19:04.730 [main] INFO  o.s.j.e.a.AnnotationMBeanExporter.autodetect - Bean with name 'dataSource' has been autodetected for JMX exposure
+18-07-2018 22:19:04.743 [main] INFO  o.s.j.e.a.AnnotationMBeanExporter.registerBeanInstance - Located MBean 'dataSource': registering with JMX server as MBean [com.zaxxer.hikari:name=dataSource,type=HikariDataSource]
+18-07-2018 22:19:04.760 [main] INFO  o.s.c.s.DefaultLifecycleProcessor.start - Starting beans in phase 2147483647
+18-07-2018 22:19:04.840 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer.start - Tomcat started on port(s): 8080 (http) with context path ''
+18-07-2018 22:19:04.850 [main] INFO  com.seebattleserver.Application.logStarted - Started Application in 18.399 seconds (JVM running for 20.301)
+18-07-2018 22:19:22.453 [http-nio-8080-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/].log - Initializing Spring FrameworkServlet 'dispatcherServlet'
+18-07-2018 22:19:22.455 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet.initServletBean - FrameworkServlet 'dispatcherServlet': initialization started
+18-07-2018 22:19:22.526 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet.initServletBean - FrameworkServlet 'dispatcherServlet': initialization completed in 69 ms
+18-07-2018 22:19:22.899 [http-nio-8080-exec-1] INFO  c.s.service.websocket.SocketHandler.afterConnectionEstablished - Подключение нового клиента
+18-07-2018 22:19:30.648 [http-nio-8080-exec-4] INFO  c.s.service.websocket.SocketHandler.afterConnectionEstablished - Подключение нового клиента
