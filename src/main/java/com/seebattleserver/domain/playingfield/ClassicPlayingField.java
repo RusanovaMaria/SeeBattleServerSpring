@@ -16,12 +16,14 @@ public class ClassicPlayingField implements PlayingField {
     private final int HEIGHT = 10;
     private Map<Integer, List<GameObject>> gameObjects;
     private Cage[][] cages;
+    private GameObjectAddition gameObjectAddition;
+    private Map<Integer, Map<Boolean, GameObject>> g;
 
 
     public ClassicPlayingField() {
         createEmptyField();
-        GameObjectAddition gameObjectAddition = new StandardGameObjectAddition(this);
-        gameObjectAddition.add();
+        gameObjectAddition = new StandardGameObjectAddition();
+        gameObjects = gameObjectAddition.add(this);
     }
 
     private void createEmptyField() {

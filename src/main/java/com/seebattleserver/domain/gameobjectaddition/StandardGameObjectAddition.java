@@ -12,26 +12,24 @@ import java.util.List;
 import java.util.Map;
 
 public class StandardGameObjectAddition implements GameObjectAddition {
-    private PlayingField playingField;
-    private Map<Integer, List<GameObject>> gameObjects;
     private Rule rule;
 
-    public StandardGameObjectAddition(PlayingField playingField) {
-        this.playingField = playingField;
-        gameObjects = new HashMap<>();
+    public StandardGameObjectAddition() {
         rule = new ClassicRule();
     }
 
     @Override
-    public void add() {
+    public Map<Integer, List<GameObject>> add(PlayingField playingField) {
+        Map<Integer, List<GameObject>> gameObjects = new HashMap<>();
         for (int i = 0; i < rule.getMaxGameObjectSize(); i++) {
             int size = rule.getAllowedGameObjectSizes()[i];
-            addGameObjectsBySize(size);
+            List<GameObject> gameObjectsOfCurrentSize = addGameObjectsBySize(size);
+            gameObjects.put(size, gameObjectsOfCurrentSize);
         }
-        playingField.setGameObjects(gameObjects);
+        return gameObjects;
     }
 
-    private void addGameObjectsBySize(int size) {
+    private List<GameObject> addGameObjectsBySize(int size) {
         List<GameObject> gameObjectsOfCurrentSize = new ArrayList<>();
         int gameObjectQuantity = rule.countQuantityOfObjects(size);
         for (int j = 0; j < gameObjectQuantity; j++) {
@@ -39,6 +37,6 @@ public class StandardGameObjectAddition implements GameObjectAddition {
             GameObject ship = shipBuilder.build(size);
             gameObjectsOfCurrentSize.add(ship);
         }
-        gameObjects.put(size, gameObjectsOfCurrentSize);
+        return gameObjectsOfCurrentSize;
     }
 }
