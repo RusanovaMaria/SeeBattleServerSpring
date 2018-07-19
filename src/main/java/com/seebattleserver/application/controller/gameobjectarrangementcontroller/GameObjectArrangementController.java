@@ -4,8 +4,8 @@ import com.seebattleserver.application.controller.Controller;
 import com.seebattleserver.application.controller.gameobjectarrangementcontroller.gamestarthandler.ClassicGameStartHandler;
 import com.seebattleserver.application.controller.gameobjectarrangementcontroller.gamestarthandler.GameStartHandler;
 import com.seebattleserver.application.gameregistry.GameRegistry;
-import com.seebattleserver.application.message.Message;
-import com.seebattleserver.application.message.messagehandler.MessageHandler;
+import com.seebattleserver.application.json.jsonmessage.JsonMessage;
+import com.seebattleserver.application.json.jsonmessage.jsonmessagehandler.DefaultJsonMessageHandler;
 import com.seebattleserver.application.user.User;
 import com.seebattleserver.application.user.UserStatus;
 import com.seebattleserver.domain.gameobjectarrangement.DefaultGameObjectArrangement;
@@ -35,8 +35,8 @@ public class GameObjectArrangementController implements Controller {
 
     @Override
     public void handle(TextMessage textMessage) {
-        MessageHandler messageHandler = new MessageHandler();
-        String gameObjectArrangementType = messageHandler.handle(textMessage);
+        DefaultJsonMessageHandler defaultJsonMessageHandler = new DefaultJsonMessageHandler();
+        String gameObjectArrangementType = defaultJsonMessageHandler.handle(textMessage);
         if (isCorrectPositionType(gameObjectArrangementType)) {
             handleGameObjectArrangementType(gameObjectArrangementType);
         } else {
@@ -93,11 +93,11 @@ public class GameObjectArrangementController implements Controller {
     }
 
     private void notifyAboutUserGameArrangementStart() {
-        userSender.sendMessage(user, new Message("Начало расстановки игровых объектов"));
+        userSender.sendMessage(user, new JsonMessage("Начало расстановки игровых объектов"));
     }
 
     private void notifyAboutNotCorrectArrangementType() {
-        userSender.sendMessage(user, new Message("Тип расположения игровых объектов введен неверно." +
+        userSender.sendMessage(user, new JsonMessage("Тип расположения игровых объектов введен неверно." +
                 "Попробуйте еще раз"));
     }
 }

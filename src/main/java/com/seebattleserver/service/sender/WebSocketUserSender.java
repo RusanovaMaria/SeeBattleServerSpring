@@ -2,7 +2,7 @@ package com.seebattleserver.service.sender;
 
 import com.google.gson.Gson;
 import com.seebattleserver.application.user.User;
-import com.seebattleserver.application.message.Message;
+import com.seebattleserver.application.json.jsonmessage.JsonMessage;
 import com.seebattleserver.service.websocket.registry.SessionRegistry;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -24,9 +24,9 @@ public class WebSocketUserSender implements UserSender {
     }
 
     @Override
-    public void sendMessage(User user, Message message) {
+    public void sendMessage(User user, JsonMessage jsonMessage) {
         try {
-            String messageStr = gson.toJson(message);
+            String messageStr = gson.toJson(jsonMessage);
             WebSocketSession session = sessionRegistry.getSession(user);
             session.sendMessage(new TextMessage(messageStr));
         } catch (IOException e) {

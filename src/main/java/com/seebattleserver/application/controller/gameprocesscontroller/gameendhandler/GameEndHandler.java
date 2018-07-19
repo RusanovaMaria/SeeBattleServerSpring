@@ -1,7 +1,7 @@
 package com.seebattleserver.application.controller.gameprocesscontroller.gameendhandler;
 
 import com.seebattleserver.application.gameregistry.GameRegistry;
-import com.seebattleserver.application.message.Message;
+import com.seebattleserver.application.json.jsonmessage.JsonMessage;
 import com.seebattleserver.application.user.User;
 import com.seebattleserver.application.user.UserStatus;
 import com.seebattleserver.domain.game.Game;
@@ -32,8 +32,8 @@ public class GameEndHandler {
     }
 
     private void notifyAboutGameEnd(User winner, User looser) {
-        userSender.sendMessage(winner, new Message("Игра окончена. Вы выиграли!"));
-        userSender.sendMessage(looser, new Message("Игра окончена. Вы проиграли"));
+        userSender.sendMessage(winner, new JsonMessage("Игра окончена. Вы выиграли!"));
+        userSender.sendMessage(looser, new JsonMessage("Игра окончена. Вы проиграли"));
     }
 
     private User determineWinner() {

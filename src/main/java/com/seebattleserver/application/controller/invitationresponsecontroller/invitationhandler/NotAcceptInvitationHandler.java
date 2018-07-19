@@ -1,17 +1,17 @@
-package com.seebattleserver.application.controller.invitationresponsecontroller.invitation;
+package com.seebattleserver.application.controller.invitationresponsecontroller.invitationhandler;
 
-import com.seebattleserver.application.message.Message;
+import com.seebattleserver.application.json.jsonmessage.JsonMessage;
 import com.seebattleserver.application.user.User;
 import com.seebattleserver.application.user.UserStatus;
 import com.seebattleserver.service.sender.UserSender;
 
-public class NotAcceptInvitation implements Invitation {
+public class NotAcceptInvitationHandler implements InvitationHandler {
 
     private User user;
     private User userOpponent;
     private UserSender userSender;
 
-    public NotAcceptInvitation(User user, UserSender userSender) {
+    public NotAcceptInvitationHandler(User user, UserSender userSender) {
         this.user = user;
         this.userSender = userSender;
         userOpponent = user.getUserOpponent();
@@ -26,11 +26,11 @@ public class NotAcceptInvitation implements Invitation {
     }
 
     private void notifyAboutSuccessfulNay() {
-        userSender.sendMessage(user, new Message("Вы отклонили приглашение игрока " +userOpponent.getUsername()+ "."));
+        userSender.sendMessage(user, new JsonMessage("Вы отклонили приглашение игрока " +userOpponent.getUsername()+ "."));
     }
 
     private void sensAnswerToOpponent() {
-        userSender.sendMessage(userOpponent, new Message("Игрок " + user.getUsername() + " отклонил ваше приглашение"));
+        userSender.sendMessage(userOpponent, new JsonMessage("Игрок " + user.getUsername() + " отклонил ваше приглашение"));
     }
 
     private void changeStatuses() {

@@ -3,8 +3,9 @@ package com.seebattleserver.application.controller.gameprocesscontroller;
 import com.seebattleserver.application.controller.Controller;
 import com.seebattleserver.application.controller.gameprocesscontroller.gameendhandler.GameEndHandler;
 import com.seebattleserver.application.gameregistry.GameRegistry;
-import com.seebattleserver.application.message.Message;
-import com.seebattleserver.application.message.messagehandler.MessageHandler;
+import com.seebattleserver.application.json.jsonmessage.JsonMessage;
+import com.seebattleserver.application.json.jsonmessage.jsonmessagehandler.DefaultJsonMessageHandler;
+import com.seebattleserver.application.json.jsonmessage.jsonmessagehandler.JsonMessageHandler;
 import com.seebattleserver.application.user.User;
 import com.seebattleserver.application.user.UserStatus;
 import com.seebattleserver.domain.game.Game;
@@ -35,8 +36,8 @@ public class GameController implements Controller {
 
     @Override
     public void handle(TextMessage textMessage) {
-        MessageHandler messageHandler = new MessageHandler();
-        String coordinates = messageHandler.handle(textMessage);
+        JsonMessageHandler defaultJsonMessageHandler = new DefaultJsonMessageHandler();
+        String coordinates = defaultJsonMessageHandler.handle(textMessage);
         if (isUserMove()) {
             makeMove(coordinates);
         } else {
@@ -62,7 +63,7 @@ public class GameController implements Controller {
     }
 
     private void notifyAboutNotCorrectCoordinatesInput() {
-        userSender.sendMessage(user, new Message("Введены неверные координаты, попробуйте еще раз"));
+        userSender.sendMessage(user, new JsonMessage("Введены неверные координаты, попробуйте еще раз"));
     }
 
     private void initCoordinates(String coordinates)  {
@@ -89,16 +90,16 @@ public class GameController implements Controller {
         userSender.sendMessage(user, getResponseByResult(result));
     }
 
-    private Message getResponseByResult(Result result) {
+    private JsonMessage getResponseByResult(Result result) {
         switch (result) {
             case MISSED:
-                return new Message("Мимо");
+                return new JsonMessage("Мимо");
             case REPEATED:
-                return new Message("Вы уже стреляли в эту клетку");
+                return new JsonMessage("Вы уже стреляли в эту клетку");
             case GOT:
-                return new Message("Попадание");
+                return new JsonMessage("Попадание");
             case KILLED:
-                return new Message("Убит");
+                return new JsonMessage("Убит");
             default:
                 LOGGER.error("Недопустимое действие с игровым объектом");
                 throw new IllegalArgumentException("Недопустимое действие с игровым объектом");
@@ -113,7 +114,7 @@ public class GameController implements Controller {
     }
 
     private void notifyAboutPassMove(User userOpponent) {
-        userSender.sendMessage(userOpponent, new Message("Введите х и у"));
+        userSender.sendMessage(userOpponent, new JsonMessage("Введите х и у"));
     }
 
     private void endGame() {
@@ -122,6 +123,6 @@ public class GameController implements Controller {
     }
 
     private void notifyAboutNotUserMove() {
-        userSender.sendMessage(user, new Message("Сейчас не ваш ход"));
+        userSender.sendMessage(user, new JsonMessage("Сейчас не ваш ход"));
     }
 }

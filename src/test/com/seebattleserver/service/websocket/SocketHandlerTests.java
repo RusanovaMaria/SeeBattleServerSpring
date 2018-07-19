@@ -47,8 +47,8 @@ public class SocketHandlerTests {
    /* @Test
     public void testHandleMessage_whenSessionContainsSessionRegistry_returnVerificationForHandleByControllerManager() throws IOException {
         final String TEST = "test";
-        Message message = new Message(TEST);
-        String json = gson.toJson(message);
+        JsonMessage jsonmessage = new JsonMessage(TEST);
+        String json = gson.toJson(jsonmessage);
         WebSocketSession session = mock(WebSocketSession.class);
         when(sessionRegistry.containsSession(session)).thenReturn(true);
         socketHandler.handleTextMessage(session, new TextMessage(json));
@@ -58,8 +58,8 @@ public class SocketHandlerTests {
     @Test
     public void testHandleMessage_whenSessionDoNotContainSessionRegistry_returnUser() throws IOException {
         final String TEST = "test";
-        Message message = new Message(TEST);
-        String json = gson.toJson(message);
+        JsonMessage jsonmessage = new JsonMessage(TEST);
+        String json = gson.toJson(jsonmessage);
         WebSocketSession session = mock(WebSocketSession.class);
         socketHandler.handleTextMessage(session, new TextMessage(json));
         verify(userRegistry).add(any(User.class));

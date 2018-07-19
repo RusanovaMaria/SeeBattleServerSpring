@@ -30,35 +30,33 @@ public class UserGameObjectArrangement implements GameObjectArrangement {
     }
 
     private void arrangeGameObjectsOfCurrentSize(List<GameObject> gameObjectsOfCurrentSize, List<List<String>> coordinatesForGameObjectOfCurrentSize) {
-        int coordinatesForCurrentGameObjectIndex = 0;
+        int singleGameObjectCoordinatesIndex = 0;
         for (GameObject gameObject : gameObjectsOfCurrentSize) {
-            List<String> coordinatesForCurrentGameObject = coordinatesForGameObjectOfCurrentSize.get(coordinatesForCurrentGameObjectIndex);
-            arrangeGameObject(gameObject, coordinatesForCurrentGameObject);
+            List<String> coordinatesForSingleGameObject = coordinatesForGameObjectOfCurrentSize.get(singleGameObjectCoordinatesIndex);
+            arrangeGameObject(gameObject, coordinatesForSingleGameObject);
+            singleGameObjectCoordinatesIndex++;
         }
     }
 
     private void arrangeGameObject(GameObject gameObject, List<String> coordinatesForCurrentGameObject) {
         List<GameObjectPart> gameObjectParts = gameObject.getGameObjectParts();
-        int currentCoordinateIndex = 0;
+        int coordinatesCoupleIndex = 0;
         for (GameObjectPart gameObjectPart : gameObjectParts) {
-            String coordinate = coordinatesForCurrentGameObject.get(currentCoordinateIndex);
-            Cage cage = identifyCage(coordinate);
-            cage.setGameObjectPart(gameObjectPart);
-            currentCoordinateIndex++;
+            String coordinatesCouple = coordinatesForCurrentGameObject.get(coordinatesCoupleIndex);
+            arrangeGameObjectPart(coordinatesCouple, gameObjectPart);
+            coordinatesCoupleIndex++;
         }
     }
 
-  /*  private void arrangeGameObjectPart(String coordinate, GameObjectPart gameObjectPart) {
+    private void arrangeGameObjectPart(String coordinate, GameObjectPart gameObjectPart) {
         Cage cage = identifyCage(coordinate);
         cage.setGameObjectPart(gameObjectPart);
-    } */
+    }
 
-    private Cage identifyCage(String coordinate) {
-        coordinate = coordinate.trim();
-        int x = Character.getNumericValue(coordinate.charAt(0));
-        System.out.println(x);
-        char y = coordinate.charAt(1);
-        System.out.println(y);
+    private Cage identifyCage(String coordinatesCouple) {
+        coordinatesCouple = coordinatesCouple.trim();
+        int x = Character.getNumericValue(coordinatesCouple.charAt(0));
+        char y = coordinatesCouple.charAt(1);
         return playingField.identifyCage(x, y);
     }
 }

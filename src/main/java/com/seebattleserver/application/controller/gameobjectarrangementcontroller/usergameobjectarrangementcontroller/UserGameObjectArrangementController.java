@@ -3,9 +3,9 @@ package com.seebattleserver.application.controller.gameobjectarrangementcontroll
 import com.seebattleserver.application.controller.Controller;
 import com.seebattleserver.application.controller.gameobjectarrangementcontroller.gamestarthandler.ClassicGameStartHandler;
 import com.seebattleserver.application.controller.gameobjectarrangementcontroller.gamestarthandler.GameStartHandler;
-import com.seebattleserver.application.gameobjectcoordinates.gameobjectcoordinateshandler.GameObjectCoordinatesHandler;
+import com.seebattleserver.application.json.jsongameobjectcoordinates.jsongameobjectcoordinateshandler.JsonGameObjectCoordinatesHandler;
 import com.seebattleserver.application.gameregistry.GameRegistry;
-import com.seebattleserver.application.message.Message;
+import com.seebattleserver.application.json.jsonmessage.JsonMessage;
 import com.seebattleserver.application.user.User;
 import com.seebattleserver.domain.gameobjectarrangement.UserGameObjectArrangement;
 import com.seebattleserver.domain.player.Player;
@@ -29,13 +29,13 @@ public class UserGameObjectArrangementController implements Controller {
 
     @Override
     public void handle(TextMessage textMessage) {
-        GameObjectCoordinatesHandler gameObjectCoordinatesHandler = new GameObjectCoordinatesHandler();
-        Map<Integer, List<List<String>>> coordinates = gameObjectCoordinatesHandler.handle(textMessage);
+        JsonGameObjectCoordinatesHandler jsonGameObjectCoordinatesHandler = new JsonGameObjectCoordinatesHandler();
+        Map<Integer, List<List<String>>> coordinates = jsonGameObjectCoordinatesHandler.handle(textMessage);
         UserGameObjectArrangement userGameObjectArrangement = new UserGameObjectArrangement(coordinates);
         PlayingField playingField = userGameObjectArrangement.arrange();
         Player player = user.getPlayer();
         player.setPlayingField(playingField);
-        userSender.sendMessage(user, new Message("Игровые объекты успешно установлены"));
+        userSender.sendMessage(user, new JsonMessage("Игровые объекты успешно установлены"));
         GameStartHandler gameStartHandler = new ClassicGameStartHandler(user, gameRegistry, userSender);
         gameStartHandler.startGameIfPossible();
     }

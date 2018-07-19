@@ -1,7 +1,7 @@
 package com.seebattleserver.application.controller.gameobjectarrangementcontroller.gamestarthandler;
 
 import com.seebattleserver.application.gameregistry.GameRegistry;
-import com.seebattleserver.application.message.Message;
+import com.seebattleserver.application.json.jsonmessage.JsonMessage;
 import com.seebattleserver.application.user.User;
 import com.seebattleserver.application.user.UserStatus;
 import com.seebattleserver.domain.game.ClassicGame;
@@ -55,17 +55,17 @@ public class ClassicGameStartHandler implements GameStartHandler {
 
     private void notifyAboutGameStart() {
         if (user.getUserStatus() == UserStatus.IN_GAME_MOVE) {
-            userSender.sendMessage(user, new Message("Игра началась. Введите х и у"));
-            userSender.sendMessage(userOpponent, new Message("Игра началась. Дождитесь хода соперника"));
+            userSender.sendMessage(user, new JsonMessage("Игра началась. Введите х и у"));
+            userSender.sendMessage(userOpponent, new JsonMessage("Игра началась. Дождитесь хода соперника"));
         } else {
-            userSender.sendMessage(userOpponent, new Message("Игра началась. Введите х и у"));
-            userSender.sendMessage(user, new Message("Игра началась. Дождитесь хода соперника"));
+            userSender.sendMessage(userOpponent, new JsonMessage("Игра началась. Введите х и у"));
+            userSender.sendMessage(user, new JsonMessage("Игра началась. Дождитесь хода соперника"));
         }
     }
 
     private void notifyAboutGameObjectArrangementEnd() {
-        userSender.sendMessage(user, new Message("Игровые объекты успешно установлены"));
-        userSender.sendMessage(user, new Message(
+        userSender.sendMessage(user, new JsonMessage("Игровые объекты успешно установлены"));
+        userSender.sendMessage(user, new JsonMessage(
                 "Игра начнется, когда ваш соперник установит игровые объекты."));
     }
 }

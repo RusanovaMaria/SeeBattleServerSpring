@@ -9,10 +9,11 @@ import com.seebattleserver.domain.playingfield.PlayingField;
 import java.util.List;
 
 public class DefaultGameObjectArrangement implements GameObjectArrangement {
-    private PlayingField playingField = new ClassicPlayingField();
+    private PlayingField playingField;
 
     @Override
     public PlayingField arrange() {
+        playingField = new ClassicPlayingField();
         arrangeAllGameObjects();
         return playingField;
     }

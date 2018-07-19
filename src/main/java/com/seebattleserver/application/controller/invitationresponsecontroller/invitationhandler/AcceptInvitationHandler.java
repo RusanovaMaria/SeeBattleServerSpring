@@ -1,19 +1,19 @@
-package com.seebattleserver.application.controller.invitationresponsecontroller.invitation;
+package com.seebattleserver.application.controller.invitationresponsecontroller.invitationhandler;
 
 import com.seebattleserver.application.gameregistry.GameRegistry;
-import com.seebattleserver.application.message.Message;
+import com.seebattleserver.application.json.jsonmessage.JsonMessage;
 import com.seebattleserver.application.user.User;
 import com.seebattleserver.application.user.UserStatus;
 import com.seebattleserver.service.sender.UserSender;
 
-public class AcceptInvitation implements Invitation {
+public class AcceptInvitationHandler implements InvitationHandler {
     private User user;
     private GameRegistry gameRegistry;
     private UserSender userSender;
     private User userOpponent;
 
-    public AcceptInvitation(User user, GameRegistry gameRegistry,
-                            UserSender userSender) {
+    public AcceptInvitationHandler(User user, GameRegistry gameRegistry,
+                                   UserSender userSender) {
         this.user = user;
         this.gameRegistry = gameRegistry;
         this.userSender = userSender;
@@ -41,7 +41,7 @@ public class AcceptInvitation implements Invitation {
     }
 
     private void sendAnswer() {
-        userSender.sendMessage(userOpponent, new Message("Игрок " + user.getUsername() + " принял ваше предложение"));
+        userSender.sendMessage(userOpponent, new JsonMessage("Игрок " + user.getUsername() + " принял ваше предложение"));
     }
 
     private void makeUsersReadyForGame() {
@@ -50,16 +50,16 @@ public class AcceptInvitation implements Invitation {
     }
 
     private void notifyUsersAboutGameObjectTypeChoice() {
-        userSender.sendMessage(user, new Message("Выберите тип расстановки игровых объектов\n" +
+        userSender.sendMessage(user, new JsonMessage("Выберите тип расстановки игровых объектов\n" +
                 "default - стандартный тип расстановки\n" +
                 "user - пользовательский тип расстановки"));
-        userSender.sendMessage(userOpponent, new Message("Выберите тип расстановки игровых объектов\n" +
+        userSender.sendMessage(userOpponent, new JsonMessage("Выберите тип расстановки игровых объектов\n" +
                 "default - стандартный тип расстановки\n" +
                 "user - пользовательский тип расстановки"));
     }
 
     private void notifyAboutUserOpponentInGame() {
-        userSender.sendMessage(user, new Message("Пользователь"
+        userSender.sendMessage(user, new JsonMessage("Пользователь"
                 + userOpponent.getUsername() + "уже начал игру"));
     }
 

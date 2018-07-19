@@ -1,12 +1,13 @@
 package com.seebattleserver.application.controller.invitationresponsecontroller;
 
 import com.seebattleserver.application.controller.Controller;
-import com.seebattleserver.application.controller.invitationresponsecontroller.invitation.AcceptInvitation;
-import com.seebattleserver.application.controller.invitationresponsecontroller.invitation.Invitation;
-import com.seebattleserver.application.controller.invitationresponsecontroller.invitation.NotAcceptInvitation;
+import com.seebattleserver.application.controller.invitationresponsecontroller.invitationhandler.AcceptInvitationHandler;
+import com.seebattleserver.application.controller.invitationresponsecontroller.invitationhandler.InvitationHandler;
+import com.seebattleserver.application.controller.invitationresponsecontroller.invitationhandler.NotAcceptInvitationHandler;
 import com.seebattleserver.application.gameregistry.GameRegistry;
-import com.seebattleserver.application.message.Message;
-import com.seebattleserver.application.message.messagehandler.MessageHandler;
+import com.seebattleserver.application.json.jsonmessage.JsonMessage;
+import com.seebattleserver.application.json.jsonmessage.jsonmessagehandler.DefaultJsonMessageHandler;
+import com.seebattleserver.application.json.jsonmessage.jsonmessagehandler.JsonMessageHandler;
 import com.seebattleserver.application.user.User;
 import com.seebattleserver.service.sender.UserSender;
 import com.seebattleserver.service.websocket.SocketHandler;
@@ -31,11 +32,11 @@ public class InvitationResponseController implements Controller {
 
     @Override
     public void handle(TextMessage textMessage) {
-        MessageHandler messageHandler = new MessageHandler();
-        String answer = messageHandler.handle(textMessage);
+        JsonMessageHandler defaultJsonMessageHandler = new DefaultJsonMessageHandler();
+        String answer = defaultJsonMessageHandler.handle(textMessage);
         if (isCorrectAnswer(answer)) {
-            Invitation invitation = createInvitation(answer);
-            invitation.handleAnswer();
+            InvitationHandler invitationHandler = createInvitation(answer);
+            invitationHandler.handleAnswer();
         } else {
             makeUserMistakeResponse();
         }
@@ -48,12 +49,12 @@ public class InvitationResponseController implements Controller {
         return false;
     }
 
-    private Invitation createInvitation(String answer) {
+    private InvitationHandler createInvitation(String answer) {
         switch (answer) {
             case YES:
-                return new AcceptInvitation(user, gameRegistry, userSender);
+                return new AcceptInvitationHandler(user, gameRegistry, userSender);
             case NO:
-                return new NotAcceptInvitation(user, userSender);
+                return new NotAcceptInvitationHandler(user, userSender);
             default:
                 LOGGER.error("Введен неверный ответ");
                 throw new IllegalArgumentException("Введен неверный ответ");
@@ -61,6 +62,6 @@ public class InvitationResponseController implements Controller {
     }
 
     private void makeUserMistakeResponse() {
-        userSender.sendMessage(user, new Message("Введен неверный ответ. Попробуйте еще раз"));
+        userSender.sendMessage(user, new JsonMessage("Введен неверный ответ. Попробуйте еще раз"));
     }
 }

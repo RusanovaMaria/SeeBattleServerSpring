@@ -1,16 +1,16 @@
-package com.seebattleserver.application.gameobjectcoordinates;
+package com.seebattleserver.application.json.jsongameobjectcoordinates;
 
 import java.util.List;
 
-public class GameObjectCoordinates {
+public class JsonGameObjectCoordinates {
     private int gameObjectSize;
     private List<List<String>> coordinates;
 
-    public GameObjectCoordinates() {
+    public JsonGameObjectCoordinates() {
 
     }
 
-    public GameObjectCoordinates(int gameObjectSize, List<List<String>> coordinates) {
+    public JsonGameObjectCoordinates(int gameObjectSize, List<List<String>> coordinates) {
         this.gameObjectSize = gameObjectSize;
         this.coordinates = coordinates;
     }
