@@ -7,6 +7,7 @@ import com.seebattleserver.application.controller.gameobjectarrangementcontrolle
 import com.seebattleserver.application.controller.invitationresponsecontroller.InvitationResponseController;
 import com.seebattleserver.application.controller.invitationcontroller.InvitationController;
 import com.seebattleserver.application.controller.gameobjectarrangementcontroller.usergameobjectarrangementcontroller.UserGameObjectArrangementController;
+import com.seebattleserver.application.controller.userregistrationcontroller.UserRegistrationController;
 import com.seebattleserver.application.gameregistry.GameRegistry;
 import com.seebattleserver.application.user.User;
 import com.seebattleserver.application.user.UserRegistry;
@@ -30,6 +31,10 @@ public class ControllerFactory {
         this.userRegistry = userRegistry;
         this.commandList = commandList;
         this.userSender = userSender;
+    }
+
+    public UserRegistrationController createUserRegistrationController(User user) {
+        return new UserRegistrationController(user, userRegistry, userSender);
     }
 
     public CommandController createCommandController(User user) {

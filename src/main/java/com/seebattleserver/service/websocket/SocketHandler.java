@@ -41,19 +41,17 @@ public class SocketHandler extends TextWebSocketHandler {
 
     @Override
     public void handleTextMessage(WebSocketSession session, TextMessage textMessage) throws IOException {
-        if (isNotNewSession(session)) {
+        //if (isNotNewSession(session)) {
             handleUserMessage(textMessage, session);
-        } else {
-            String name = messageHandler.handle(textMessage);
-            registerUser(name, session);
-            sendMessageInSession(session, "Регистрация успешно завершена. " +
-                    "Введите команду help, чтобы посмотреть список возможных команд.");
-        }
+       // } else {
+            //createUserAndRedisterSession(session);
+       // }
     }
 
     @Override
     public void afterConnectionEstablished(WebSocketSession session) throws Exception {
         LOGGER.info("Подключение нового клиента");
+        createUserAndRedisterSession(session);
         sendMessageInSession(session, "Введите свое имя");
     }
 
@@ -69,9 +67,8 @@ public class SocketHandler extends TextWebSocketHandler {
         controllerManager.handle(user, textMessage);
     }
 
-    private void registerUser(String name, WebSocketSession session) {
-        User user = new User(name);
-        userRegistry.add(user);
+    private void createUserAndRedisterSession(WebSocketSession session) {
+        User user = new User();
         sessionRegistry.put(session, user);
     }
 

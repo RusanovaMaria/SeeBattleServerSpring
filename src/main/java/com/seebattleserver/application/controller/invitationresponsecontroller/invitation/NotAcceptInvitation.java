@@ -19,13 +19,18 @@ public class NotAcceptInvitation implements Invitation {
 
     @Override
     public void handleAnswer() {
-        sendAnswer();
+        sensAnswerToOpponent();
         changeStatuses();
         severOpponents();
+        notifyAboutSuccessfulNay();
     }
 
-    private void sendAnswer() {
-        userSender.sendMessage(userOpponent, new Message("Игрок " + user.getUsername() + " отклонил ваше предложение"));
+    private void notifyAboutSuccessfulNay() {
+        userSender.sendMessage(user, new Message("Вы отклонили приглашение игрока " +userOpponent.getUsername()+ "."));
+    }
+
+    private void sensAnswerToOpponent() {
+        userSender.sendMessage(userOpponent, new Message("Игрок " + user.getUsername() + " отклонил ваше приглашение"));
     }
 
     private void changeStatuses() {

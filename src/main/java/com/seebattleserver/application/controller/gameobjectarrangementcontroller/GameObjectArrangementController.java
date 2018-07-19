@@ -89,7 +89,7 @@ public class GameObjectArrangementController implements Controller {
     }
 
     private void startUserGameObjectArrangementForUser() {
-        user.setUserStatus(UserStatus.SET_UP_GAME_OJECTS);
+        user.setUserStatus(UserStatus.SET_UP_GAME_OBJECTS);
     }
 
     private void notifyAboutUserGameArrangementStart() {

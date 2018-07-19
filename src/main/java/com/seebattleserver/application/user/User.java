@@ -8,9 +8,8 @@ public class User {
     private UserStatus userStatus;
     private User userOpponent;
 
-    public User(String username) {
-        this.username = username;
-        userStatus = UserStatus.FREE;
+    public User() {
+        userStatus = UserStatus.REGISTERING;
         player = new Player();
     }
 

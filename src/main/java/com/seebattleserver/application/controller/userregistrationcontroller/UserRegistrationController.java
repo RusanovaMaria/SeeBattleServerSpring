@@ -1,4 +1,4 @@
-package com.seebattleserver.application.controller.nameentercontroller;
+package com.seebattleserver.application.controller.userregistrationcontroller;
 
 import com.seebattleserver.application.controller.Controller;
 import com.seebattleserver.application.message.Message;
@@ -9,12 +9,12 @@ import com.seebattleserver.application.user.UserStatus;
 import com.seebattleserver.service.sender.UserSender;
 import org.springframework.web.socket.TextMessage;
 
-public class NameEnterController implements Controller {
+public class UserRegistrationController implements Controller {
     private User user;
     private UserRegistry userRegistry;
     private UserSender userSender;
 
-    public NameEnterController(User user, UserRegistry userRegistry, UserSender userSender) {
+    public UserRegistrationController(User user, UserRegistry userRegistry, UserSender userSender) {
         this.user = user;
         this.userRegistry = userRegistry;
         this.userSender = userSender;
@@ -24,9 +24,14 @@ public class NameEnterController implements Controller {
     public void handle(TextMessage textMessage) {
         MessageHandler messageHandler = new MessageHandler();
         String name = messageHandler.handle(textMessage);
+        registerUserIfPossible(name);
+    }
+
+    private void registerUserIfPossible(String name) {
         User testUser = userRegistry.getUserByName(name);
-        if(userDoesNotExist(testUser)) {
-           setNameForUserAndChangeStatus(name);
+        if (userDoesNotExist(testUser)) {
+            registerUser(name);
+            notifyAboutSuccessfulRegistration();
         } else {
             notifyAboutNameRepeat();
         }
@@ -39,9 +44,15 @@ public class NameEnterController implements Controller {
         return false;
     }
 
-    private void setNameForUserAndChangeStatus(String name) {
+    private void registerUser(String name) {
         user.setUsername(name);
+        userRegistry.add(user);
         user.setUserStatus(UserStatus.FREE);
+    }
+
+    private void notifyAboutSuccessfulRegistration() {
+        userSender.sendMessage(user, new Message("Регистрация успешно завршена." +
+                "Для просмотра списка возможных действий введите команду help."));
     }
 
     private void notifyAboutNameRepeat() {

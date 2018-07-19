@@ -31,13 +31,13 @@ public class UserRegistry {
     }
 
     public User getUserByName(String name) {
-        User user = null;
+        User user;
         for (int i = 0; i < users.size(); i++) {
             user = users.get(i);
             if (user.getUsername().equals(name)) {
                 return user;
             }
         }
-        return user;
+        return null;
     }
 }

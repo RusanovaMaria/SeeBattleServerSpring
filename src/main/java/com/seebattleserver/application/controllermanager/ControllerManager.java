@@ -25,6 +25,8 @@ public class ControllerManager {
 
     private Controller identifyControllerByClientStatus(User user, UserStatus status) {
         switch (status) {
+            case REGISTERING:
+                return controllerFactory.createUserRegistrationController(user);
             case FREE:
                 return controllerFactory.createCommandController(user);
             case INVITED:
@@ -33,7 +35,7 @@ public class ControllerManager {
                 return controllerFactory.createInvitationController(user);
             case READY_FOR_GAME:
                 return controllerFactory.createGameStartController(user);
-            case SET_UP_GAME_OJECTS:
+            case SET_UP_GAME_OBJECTS:
                 return controllerFactory.createUserGameObjectArrangementController(user);
             case IN_GAME:
                 return controllerFactory.createGameProcessController(user);
