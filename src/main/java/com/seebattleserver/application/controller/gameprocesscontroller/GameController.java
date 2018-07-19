@@ -1,7 +1,7 @@
 package com.seebattleserver.application.controller.gameprocesscontroller;
 
 import com.seebattleserver.application.controller.Controller;
-import com.seebattleserver.application.controller.gameprocesscontroller.gameendcontroller.GameEndController;
+import com.seebattleserver.application.controller.gameprocesscontroller.gameendhandler.GameEndHandler;
 import com.seebattleserver.application.gameregistry.GameRegistry;
 import com.seebattleserver.application.message.Message;
 import com.seebattleserver.application.message.messagehandler.MessageHandler;
@@ -117,8 +117,8 @@ public class GameController implements Controller {
     }
 
     private void endGame() {
-        GameEndController gameEndController = new GameEndController(user, userOpponent, game, gameRegistry, userSender);
-        gameEndController.endGame();
+        GameEndHandler gameEndHandler = new GameEndHandler(user, userOpponent, game, gameRegistry, userSender);
+        gameEndHandler.endGame();
     }
 
     private void notifyAboutNotUserMove() {

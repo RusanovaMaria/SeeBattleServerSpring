@@ -101,7 +101,7 @@ java.lang.IllegalArgumentException: Клетка с данными коорди�
 	at com.seebattleserver.domain.gameobjectarrangement.UserGameObjectArrangement.arrangeGameObject(UserGameObjectArrangement.java:46)
 	at com.seebattleserver.domain.gameobjectarrangement.UserGameObjectArrangement.arrangeGameObjectsOfCurrentSize(UserGameObjectArrangement.java:37)
 	at com.seebattleserver.domain.gameobjectarrangement.UserGameObjectArrangement.arrange(UserGameObjectArrangement.java:28)
-	at com.seebattleserver.application.controller.usergameobjectarrangementcontroller.UserGameObjectArrangementController.handle(UserGameObjectArrangementController.java:34)
+	at com.seebattleserver.application.controller.gameobjectarrangementcontroller.usergameobjectarrangementcontroller.UserGameObjectArrangementController.handle(UserGameObjectArrangementController.java:34)
 	at com.seebattleserver.application.controllermanager.ControllerManager.handle(ControllerManager.java:23)
 	at com.seebattleserver.service.websocket.SocketHandler.handleUserMessage(SocketHandler.java:69)
 	at com.seebattleserver.service.websocket.SocketHandler.handleTextMessage(SocketHandler.java:45)

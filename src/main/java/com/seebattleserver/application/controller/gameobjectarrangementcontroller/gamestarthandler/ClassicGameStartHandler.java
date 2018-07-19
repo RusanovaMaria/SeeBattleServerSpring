@@ -1,4 +1,4 @@
-package com.seebattleserver.application.controller.gamestartcontroller;
+package com.seebattleserver.application.controller.gameobjectarrangementcontroller.gamestarthandler;
 
 import com.seebattleserver.application.gameregistry.GameRegistry;
 import com.seebattleserver.application.message.Message;
@@ -8,13 +8,13 @@ import com.seebattleserver.domain.game.ClassicGame;
 import com.seebattleserver.domain.game.Game;
 import com.seebattleserver.service.sender.UserSender;
 
-public class ClassicGameStartController implements GameStartController {
+public class ClassicGameStartHandler implements GameStartHandler {
     private User user;
     private User userOpponent;
     private GameRegistry gameRegistry;
     private UserSender userSender;
 
-    public ClassicGameStartController(User user, GameRegistry gameRegistry, UserSender userSender) {
+    public ClassicGameStartHandler(User user, GameRegistry gameRegistry, UserSender userSender) {
         this.user = user;
         userOpponent = user.getUserOpponent();
         this.gameRegistry = gameRegistry;

@@ -1,8 +1,8 @@
-package com.seebattleserver.application.gameobjectarrangementcontroller;
+package com.seebattleserver.application.controller.gameobjectarrangementcontroller;
 
 import com.seebattleserver.application.controller.Controller;
-import com.seebattleserver.application.controller.gamestartcontroller.ClassicGameStartController;
-import com.seebattleserver.application.controller.gamestartcontroller.GameStartController;
+import com.seebattleserver.application.controller.gameobjectarrangementcontroller.gamestarthandler.ClassicGameStartHandler;
+import com.seebattleserver.application.controller.gameobjectarrangementcontroller.gamestarthandler.GameStartHandler;
 import com.seebattleserver.application.gameregistry.GameRegistry;
 import com.seebattleserver.application.message.Message;
 import com.seebattleserver.application.message.messagehandler.MessageHandler;
@@ -77,8 +77,8 @@ public class GameObjectArrangementController implements Controller {
     }
 
     private void startGameIfPossible() {
-        GameStartController gameStartController = new ClassicGameStartController(user, gameRegistry, userSender);
-        gameStartController.startGameIfPossible();
+        GameStartHandler gameStartHandler = new ClassicGameStartHandler(user, gameRegistry, userSender);
+        gameStartHandler.startGameIfPossible();
     }
 
     private boolean isUserGameObjectArrangementType(String gameObjectArrangementType) {

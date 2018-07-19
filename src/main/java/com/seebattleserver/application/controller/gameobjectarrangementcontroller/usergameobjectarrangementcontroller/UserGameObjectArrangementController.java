@@ -1,8 +1,8 @@
-package com.seebattleserver.application.controller.usergameobjectarrangementcontroller;
+package com.seebattleserver.application.controller.gameobjectarrangementcontroller.usergameobjectarrangementcontroller;
 
 import com.seebattleserver.application.controller.Controller;
-import com.seebattleserver.application.controller.gamestartcontroller.ClassicGameStartController;
-import com.seebattleserver.application.controller.gamestartcontroller.GameStartController;
+import com.seebattleserver.application.controller.gameobjectarrangementcontroller.gamestarthandler.ClassicGameStartHandler;
+import com.seebattleserver.application.controller.gameobjectarrangementcontroller.gamestarthandler.GameStartHandler;
 import com.seebattleserver.application.gameobjectcoordinates.gameobjectcoordinateshandler.GameObjectCoordinatesHandler;
 import com.seebattleserver.application.gameregistry.GameRegistry;
 import com.seebattleserver.application.message.Message;
@@ -36,7 +36,7 @@ public class UserGameObjectArrangementController implements Controller {
         Player player = user.getPlayer();
         player.setPlayingField(playingField);
         userSender.sendMessage(user, new Message("Игровые объекты успешно установлены"));
-        GameStartController gameStartController = new ClassicGameStartController(user, gameRegistry, userSender);
-        gameStartController.startGameIfPossible();
+        GameStartHandler gameStartHandler = new ClassicGameStartHandler(user, gameRegistry, userSender);
+        gameStartHandler.startGameIfPossible();
     }
 }
