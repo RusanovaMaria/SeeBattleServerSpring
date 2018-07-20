@@ -7,8 +7,8 @@ import com.seebattleserver.application.json.jsongameobjectcoordinates.jsongameob
 import com.seebattleserver.application.gameregistry.GameRegistry;
 import com.seebattleserver.application.json.jsonmessage.JsonMessage;
 import com.seebattleserver.application.user.User;
+import com.seebattleserver.domain.gameobjectarrangement.GameObjectArrangement;
 import com.seebattleserver.domain.gameobjectarrangement.UserGameObjectArrangement;
-import com.seebattleserver.domain.player.Player;
 import com.seebattleserver.domain.playingfield.PlayingField;
 import com.seebattleserver.service.sender.UserSender;
 import org.springframework.web.socket.TextMessage;
@@ -31,11 +31,22 @@ public class UserGameObjectArrangementController implements Controller {
     public void handle(TextMessage textMessage) {
         JsonGameObjectCoordinatesHandler jsonGameObjectCoordinatesHandler = new JsonGameObjectCoordinatesHandler();
         Map<Integer, List<List<String>>> coordinates = jsonGameObjectCoordinatesHandler.handle(textMessage);
-        UserGameObjectArrangement userGameObjectArrangement = new UserGameObjectArrangement(coordinates);
-        PlayingField playingField = userGameObjectArrangement.arrange();
-        Player player = user.getPlayer();
-        player.setPlayingField(playingField);
+        arrangeGameObjects(coordinates);
+        notifyAboutSuccessfulGameObjectArrangement();
+        startGameIfPossible();
+    }
+
+    private void arrangeGameObjects(Map<Integer, List<List<String>>> coordinates) {
+        GameObjectArrangement userGameObjectArrangement = new UserGameObjectArrangement();
+        PlayingField playingField = user.getPlayer().getPlayingField();
+        userGameObjectArrangement.arrangeGameObjects(coordinates,playingField);
+    }
+
+    private void notifyAboutSuccessfulGameObjectArrangement() {
         userSender.sendMessage(user, new JsonMessage("Игровые объекты успешно установлены"));
+    }
+
+    private void startGameIfPossible() {
         GameStartHandler gameStartHandler = new ClassicGameStartHandler(user, gameRegistry, userSender);
         gameStartHandler.startGameIfPossible();
     }

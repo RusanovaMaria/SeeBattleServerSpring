@@ -25,7 +25,7 @@ public class ClassicGameTest {
     public void setUp() {
         initPlayers();
         GameObjectArrangement gameObjectArrangement = new DefaultGameObjectArrangement();
-        PlayingField playingField = gameObjectArrangement.arrange();
+        PlayingField playingField = gameObjectArrangement.arrangeGameObjects();
         firstPlayer.setPlayingField(playingField);
         secondPlayer.setPlayingField(playingField);
         game = new ClassicGame(firstPlayer, secondPlayer);

@@ -11,22 +11,16 @@ import java.util.Map;
 import java.util.Set;
 
 public class UserGameObjectArrangement implements GameObjectArrangement {
-    private PlayingField playingField = new ClassicPlayingField();
-    private Map<Integer, List<List<String>>> coordinates;
-
-    public UserGameObjectArrangement(Map<Integer, List<List<String>>> coordinates) {
-        this.coordinates = coordinates;
-    }
+    PlayingField playingField;
 
     @Override
-    public PlayingField arrange() {
+    public void arrangeGameObjects(Map<Integer, List<List<String>>> coordinates, PlayingField playingField) {
         Set<Integer> gameObjectSizes = coordinates.keySet();
         for (int size : gameObjectSizes) {
             List<GameObject> gameObjectsOfCurrentSize = playingField.getGameObjectsBySize(size);
             List<List<String>> coordinatesForGameObjectOfCurrentSize = coordinates.get(size);
             arrangeGameObjectsOfCurrentSize(gameObjectsOfCurrentSize, coordinatesForGameObjectOfCurrentSize);
         }
-        return playingField;
     }
 
     private void arrangeGameObjectsOfCurrentSize(List<GameObject> gameObjectsOfCurrentSize, List<List<String>> coordinatesForGameObjectOfCurrentSize) {
@@ -49,8 +43,8 @@ public class UserGameObjectArrangement implements GameObjectArrangement {
         gameObject.install();
     }
 
-    private void arrangeGameObjectPart(String coordinate, GameObjectPart gameObjectPart) {
-        Cage cage = identifyCage(coordinate);
+    private void arrangeGameObjectPart(String coordinatesCouple, GameObjectPart gameObjectPart) {
+        Cage cage = identifyCage(coordinatesCouple);
         cage.setGameObjectPart(gameObjectPart);
     }
 

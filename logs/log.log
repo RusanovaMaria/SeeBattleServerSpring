@@ -100,7 +100,7 @@ java.lang.IllegalArgumentException: Клетка с данными коорди�
 	at com.seebattleserver.domain.gameobjectarrangement.UserGameObjectArrangement.arrangeGameObjectPart(UserGameObjectArrangement.java:52)
 	at com.seebattleserver.domain.gameobjectarrangement.UserGameObjectArrangement.arrangeGameObject(UserGameObjectArrangement.java:46)
 	at com.seebattleserver.domain.gameobjectarrangement.UserGameObjectArrangement.arrangeGameObjectsOfCurrentSize(UserGameObjectArrangement.java:37)
-	at com.seebattleserver.domain.gameobjectarrangement.UserGameObjectArrangement.arrange(UserGameObjectArrangement.java:28)
+	at arrangeGameObjects(UserGameObjectArrangement.java:28)
 	at com.seebattleserver.application.controller.gameobjectarrangementcontroller.usergameobjectarrangementcontroller.UserGameObjectArrangementController.handle(UserGameObjectArrangementController.java:34)
 	at com.seebattleserver.application.controllermanager.ControllerManager.handle(ControllerManager.java:23)
 	at com.seebattleserver.service.websocket.SocketHandler.handleUserMessage(SocketHandler.java:69)
@@ -1039,7 +1039,7 @@ java.lang.IllegalStateException: Данный статус клиента не �
 19-07-2018 15:11:55.639 [http-nio-8080-exec-2] ERROR o.s.w.s.h.ExceptionWebSocketHandlerDecorator.tryCloseWithError - Closing session due to exception for StandardWebSocketSession[id=0, uri=/game]
 java.lang.NullPointerException: null
 	at com.seebattleserver.domain.gameobjectarrangement.UserGameObjectArrangement.arrangeGameObjectsOfCurrentSize(UserGameObjectArrangement.java:34)
-	at com.seebattleserver.domain.gameobjectarrangement.UserGameObjectArrangement.arrange(UserGameObjectArrangement.java:27)
+	at arrangeGameObjects(UserGameObjectArrangement.java:27)
 	at com.seebattleserver.application.controller.gameobjectarrangementcontroller.usergameobjectarrangementcontroller.UserGameObjectArrangementController.handle(UserGameObjectArrangementController.java:35)
 	at com.seebattleserver.application.controllermanager.ControllerManager.handle(ControllerManager.java:23)
 	at com.seebattleserver.service.websocket.SocketHandler.handleUserMessage(SocketHandler.java:67)
@@ -1120,7 +1120,7 @@ java.lang.NullPointerException: null
 19-07-2018 15:21:49.409 [http-nio-8080-exec-2] ERROR o.s.w.s.h.ExceptionWebSocketHandlerDecorator.tryCloseWithError - Closing session due to exception for StandardWebSocketSession[id=0, uri=/game]
 java.lang.NullPointerException: null
 	at com.seebattleserver.domain.gameobjectarrangement.UserGameObjectArrangement.arrangeGameObjectsOfCurrentSize(UserGameObjectArrangement.java:34)
-	at com.seebattleserver.domain.gameobjectarrangement.UserGameObjectArrangement.arrange(UserGameObjectArrangement.java:27)
+	at arrangeGameObjects(UserGameObjectArrangement.java:27)
 	at com.seebattleserver.application.controller.gameobjectarrangementcontroller.usergameobjectarrangementcontroller.UserGameObjectArrangementController.handle(UserGameObjectArrangementController.java:35)
 	at com.seebattleserver.application.controllermanager.ControllerManager.handle(ControllerManager.java:23)
 	at com.seebattleserver.service.websocket.SocketHandler.handleUserMessage(SocketHandler.java:67)
@@ -1201,7 +1201,7 @@ java.lang.NullPointerException: null
 19-07-2018 15:23:26.444 [http-nio-8080-exec-3] ERROR o.s.w.s.h.ExceptionWebSocketHandlerDecorator.tryCloseWithError - Closing session due to exception for StandardWebSocketSession[id=0, uri=/game]
 java.lang.NullPointerException: null
 	at com.seebattleserver.domain.gameobjectarrangement.UserGameObjectArrangement.arrangeGameObjectsOfCurrentSize(UserGameObjectArrangement.java:34)
-	at com.seebattleserver.domain.gameobjectarrangement.UserGameObjectArrangement.arrange(UserGameObjectArrangement.java:27)
+	at arrangeGameObjects(UserGameObjectArrangement.java:27)
 	at com.seebattleserver.application.controller.gameobjectarrangementcontroller.usergameobjectarrangementcontroller.UserGameObjectArrangementController.handle(UserGameObjectArrangementController.java:35)
 	at com.seebattleserver.application.controllermanager.ControllerManager.handle(ControllerManager.java:23)
 	at com.seebattleserver.service.websocket.SocketHandler.handleUserMessage(SocketHandler.java:67)

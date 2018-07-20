@@ -4,6 +4,7 @@ import com.seebattleserver.application.gameregistry.GameRegistry;
 import com.seebattleserver.application.json.jsonmessage.JsonMessage;
 import com.seebattleserver.application.user.User;
 import com.seebattleserver.application.user.UserStatus;
+import com.seebattleserver.domain.playingfield.ClassicPlayingField;
 import com.seebattleserver.service.sender.UserSender;
 
 public class AcceptInvitationHandler implements InvitationHandler {
@@ -47,6 +48,12 @@ public class AcceptInvitationHandler implements InvitationHandler {
     private void makeUsersReadyForGame() {
         user.setUserStatus(UserStatus.READY_FOR_GAME);
         userOpponent.setUserStatus(UserStatus.READY_FOR_GAME);
+        assignGameFields();
+    }
+
+    private void assignGameFields() {
+        user.getPlayer().setPlayingField(new ClassicPlayingField());
+        userOpponent.getPlayer().setPlayingField(new ClassicPlayingField());
     }
 
     private void notifyUsersAboutGameObjectTypeChoice() {
