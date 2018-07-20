@@ -1,6 +1,7 @@
 package com.seebattleserver.domain.playingfield;
 
 import com.seebattleserver.domain.cage.Cage;
+import com.seebattleserver.domain.game.Game;
 import com.seebattleserver.domain.gameobject.GameObject;
 import com.seebattleserver.domain.gameobject.Status;
 import com.seebattleserver.domain.gameobjectaddition.GameObjectAddition;
@@ -62,11 +63,26 @@ public class ClassicPlayingField implements PlayingField {
         List<GameObject> gameObjectOfCurrentSize = gameObjects.get(size);
         for (int i = 0; i < gameObjectOfCurrentSize.size(); i++) {
             GameObject gameObject = gameObjectOfCurrentSize.get(i);
-            if (gameObject.getStatus() != Status.KILLED) {
+            if ((gameObject.wasInstalled()) && (gameObjectIsNotKilled(gameObject))) {
                 return true;
             }
         }
         return false;
+    }
+
+    private boolean gameObjectIsNotKilled(GameObject gameObject) {
+        if(!gameObjectIsKilled(gameObject)) {
+            return true;
+        }
+        return false;
+    }
+
+    private boolean gameObjectIsKilled(GameObject gameObject) {
+        if (gameObject.getStatus() == Status.KILLED) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     @Override

@@ -97,6 +97,7 @@ public class DefaultGameObjectArrangement implements GameObjectArrangement {
             Cage cage = playingField.identifyCage(x[i], y);
             cage.setGameObjectPart(objectParts.get(i));
         }
+        gameObject.install();
     }
 
     private void arrangeGameObjectVertically(int x, char[] y, GameObject gameObject) {
@@ -105,5 +106,6 @@ public class DefaultGameObjectArrangement implements GameObjectArrangement {
             Cage cage = playingField.identifyCage(x, y[i]);
             cage.setGameObjectPart(objectParts.get(i));
         }
+        gameObject.install();
     }
 }

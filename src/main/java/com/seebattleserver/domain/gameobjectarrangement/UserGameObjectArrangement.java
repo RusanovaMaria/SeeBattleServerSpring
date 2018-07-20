@@ -46,6 +46,7 @@ public class UserGameObjectArrangement implements GameObjectArrangement {
             arrangeGameObjectPart(coordinatesCouple, gameObjectPart);
             coordinatesCoupleIndex++;
         }
+        gameObject.install();
     }
 
     private void arrangeGameObjectPart(String coordinate, GameObjectPart gameObjectPart) {

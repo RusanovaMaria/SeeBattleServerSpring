@@ -5,11 +5,11 @@ import com.seebattleserver.domain.gameobjectpart.GameObjectPart;
 import java.util.List;
 
 public class Ship implements GameObject {
-
     private int size;
     private Status status;
     private List<GameObjectPart> gameObjectParts;
     private int diedGameObjectParts;
+    private boolean wasInstalled;
 
     public Ship() {
         status = Status.ALIVE;
@@ -53,5 +53,14 @@ public class Ship implements GameObject {
     @Override
     public void setDiedGameObjectParts(int diedGameObjectParts) {
         this.diedGameObjectParts = diedGameObjectParts;
+    }
+
+    @Override
+    public boolean wasInstalled() {
+        return wasInstalled;
+    }
+    @Override
+    public void install () {
+        wasInstalled = true;
     }
 }

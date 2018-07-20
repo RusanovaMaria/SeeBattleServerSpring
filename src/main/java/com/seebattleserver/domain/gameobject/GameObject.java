@@ -22,4 +22,7 @@ public interface GameObject {
 
     void setDiedGameObjectParts(int diedGameObjectParts);
 
+    boolean wasInstalled();
+
+    void install();
 }
