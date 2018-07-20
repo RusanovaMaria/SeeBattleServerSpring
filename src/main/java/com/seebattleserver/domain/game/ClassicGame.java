@@ -36,7 +36,7 @@ public class ClassicGame implements Game {
 
     @Override
     public boolean isEnd() {
-        if ((firstPlayingField.isAllObjectsDied()) || (secondPlayingField.isAllObjectsDied())) {
+        if ((firstPlayingField.isAllGameObjectsDied()) || (secondPlayingField.isAllGameObjectsDied())) {
             return true;
         }
         return false;
@@ -97,9 +97,9 @@ public class ClassicGame implements Game {
 
     @Override
     public Player determineWinner() {
-        if (firstPlayingField.isAllObjectsDied()) {
+        if (firstPlayingField.isAllGameObjectsDied()) {
             return secondPlayer;
-        } else if (secondPlayingField.isAllObjectsDied()) {
+        } else if (secondPlayingField.isAllGameObjectsDied()) {
             return firstPlayer;
         } else {
             throw new IllegalStateException("Игра не окончена");

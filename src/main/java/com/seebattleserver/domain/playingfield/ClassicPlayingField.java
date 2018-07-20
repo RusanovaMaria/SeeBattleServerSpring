@@ -49,27 +49,17 @@ public class ClassicPlayingField implements PlayingField {
     }
 
     @Override
-    public boolean isAllObjectsDied() {
-        Set<Integer> gameObjectSize = gameObjects.keySet();
-        for (int size : gameObjectSize) {
-            if (isNotAllObjectsOfCurrentSizeDied(size)) {
-                return false;
+    public boolean isAllGameObjectsDied() {
+        for (List<GameObject> gameObjectsBySize : gameObjects.values()) {
+            for (GameObject gameObject : gameObjectsBySize) {
+                if (gameObjectIsNotKilled(gameObject)) {
+                    return false;
+                }
             }
         }
         return true;
     }
-
-    private boolean isNotAllObjectsOfCurrentSizeDied(int size) {
-        List<GameObject> gameObjectOfCurrentSize = gameObjects.get(size);
-        for (int i = 0; i < gameObjectOfCurrentSize.size(); i++) {
-            GameObject gameObject = gameObjectOfCurrentSize.get(i);
-            if ((gameObject.wasInstalled()) && (gameObjectIsNotKilled(gameObject))) {
-                return true;
-            }
-        }
-        return false;
-    }
-
+    
     private boolean gameObjectIsNotKilled(GameObject gameObject) {
         if(!gameObjectIsKilled(gameObject)) {
             return true;
@@ -91,8 +81,15 @@ public class ClassicPlayingField implements PlayingField {
     }
 
     @Override
-    public void setGameObjects(Map<Integer, List<GameObject>> gameObjects) {
-        this.gameObjects = gameObjects;
+    public boolean isAllGameObjectsInstalled() {
+        for (List<GameObject> gameObjectsBySize : gameObjects.values()) {
+            for (GameObject gameObject : gameObjectsBySize) {
+                if (!gameObject.wasInstalled()) {
+                    return false;
+                }
+            }
+        }
+        return true;
     }
 
     @Override

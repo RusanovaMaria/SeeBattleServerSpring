@@ -32,14 +32,14 @@ public class ClassicPlayingFieldTest {
 
     @Test
     public void isAllObjectsDied_whenNotAllObjectsDied_returnFalse() {
-        boolean result = playingField.isAllObjectsDied();
+        boolean result = playingField.isAllGameObjectsDied();
         assertFalse(result);
     }
 
     @Test
     public void isAllObjectsDied_whenAllObjectsDied_returnTrue() {
         killAllObjects();
-        boolean result = playingField.isAllObjectsDied();
+        boolean result = playingField.isAllGameObjectsDied();
         assertTrue(result);
     }
 
