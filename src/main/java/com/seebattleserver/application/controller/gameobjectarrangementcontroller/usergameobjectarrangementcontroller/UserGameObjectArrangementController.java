@@ -8,7 +8,7 @@ import com.seebattleserver.application.gameregistry.GameRegistry;
 import com.seebattleserver.application.json.jsonmessage.JsonMessage;
 import com.seebattleserver.application.user.User;
 import com.seebattleserver.domain.gameobjectarrangement.GameObjectArrangement;
-import com.seebattleserver.domain.gameobjectarrangement.UserGameObjectArrangement;
+import com.seebattleserver.domain.gameobjectarrangement.ClassicGameObjectArrangement;
 import com.seebattleserver.domain.playingfield.PlayingField;
 import com.seebattleserver.service.sender.UserSender;
 import org.springframework.web.socket.TextMessage;
@@ -31,15 +31,20 @@ public class UserGameObjectArrangementController implements Controller {
     public void handle(TextMessage textMessage) {
         JsonGameObjectCoordinatesHandler jsonGameObjectCoordinatesHandler = new JsonGameObjectCoordinatesHandler();
         Map<Integer, List<List<String>>> coordinates = jsonGameObjectCoordinatesHandler.handle(textMessage);
-        arrangeGameObjects(coordinates);
-        notifyAboutSuccessfulGameObjectArrangement();
-        startGameIfPossible();
+        PlayingField playingField = arrangeGameObjects(coordinates);
+        if (playingField.isAllGameObjectsInstalled()) {
+            notifyAboutSuccessfulGameObjectArrangement();
+            startGameIfPossible();
+        } else {
+            notifyAboutCoordinateInput();
+        }
     }
 
-    private void arrangeGameObjects(Map<Integer, List<List<String>>> coordinates) {
-        GameObjectArrangement userGameObjectArrangement = new UserGameObjectArrangement();
+    private PlayingField arrangeGameObjects(Map<Integer, List<List<String>>> coordinates) {
+        GameObjectArrangement userGameObjectArrangement = new ClassicGameObjectArrangement();
         PlayingField playingField = user.getPlayer().getPlayingField();
-        userGameObjectArrangement.arrangeGameObjects(coordinates,playingField);
+        userGameObjectArrangement.arrangeGameObjects(coordinates, playingField);
+        return playingField;
     }
 
     private void notifyAboutSuccessfulGameObjectArrangement() {
@@ -49,5 +54,9 @@ public class UserGameObjectArrangementController implements Controller {
     private void startGameIfPossible() {
         GameStartHandler gameStartHandler = new ClassicGameStartHandler(user, gameRegistry, userSender);
         gameStartHandler.startGameIfPossible();
+    }
+
+    private void notifyAboutCoordinateInput() {
+        userSender.sendMessage(user, new JsonMessage("Введите следующий набор координат"));
     }
 }

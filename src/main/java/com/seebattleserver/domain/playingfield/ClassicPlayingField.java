@@ -59,7 +59,7 @@ public class ClassicPlayingField implements PlayingField {
         }
         return true;
     }
-    
+
     private boolean gameObjectIsNotKilled(GameObject gameObject) {
         if(!gameObjectIsKilled(gameObject)) {
             return true;
