@@ -22,7 +22,31 @@ public class ShipPositionController implements GameObjectPositionController {
         }
     }
 
-   /* private boolean isHorizontallyArrangement() {
+    private boolean isHorizontalArrangement(List<String> singleGameObjectCoordinates, int gameObjectSize) {
+        if(gameObjectSize == 1) {
+            return true;
+        }
+        String firstCoordinatesCouple = singleGameObjectCoordinates.get(0);
+        char x = firstCoordinatesCouple.charAt(0);
+        for(String coordinateCouple : singleGameObjectCoordinates) {
+            if(coordinateCouple.charAt(0) != x) {
+                return false;
+            }
+        }
+        return true;
+    }
 
-    } */
+    private boolean VerticalArrangement(List<String> singleGameObjectCoordinates, int gameObjectSize) {
+        if(gameObjectSize == 1) {
+            return true;
+        }
+        String firstCoordinatesCouple = singleGameObjectCoordinates.get(0);
+        char y = firstCoordinatesCouple.charAt(1);
+        for(String coordinateCouple : singleGameObjectCoordinates) {
+            if(coordinateCouple.charAt(1) != y) {
+                return false;
+            }
+        }
+        return true;
+    }
 }

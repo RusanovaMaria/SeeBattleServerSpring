@@ -6,32 +6,33 @@ import com.seebattleserver.domain.gameobject.GameObject;
 import com.seebattleserver.domain.gameobject.Status;
 import com.seebattleserver.domain.gameobjectaddition.GameObjectAddition;
 import com.seebattleserver.domain.gameobjectaddition.StandardGameObjectAddition;
+import com.seebattleserver.domain.rule.ClassicRule;
+import com.seebattleserver.domain.rule.Rule;
 
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
 public class ClassicPlayingField implements PlayingField {
-    private final static char[] CHAR_COORDINATES = {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j'};
     private final int WIDTH = 10;
     private final int HEIGHT = 10;
     private Map<Integer, List<GameObject>> gameObjects;
     private Cage[][] cages;
     private GameObjectAddition gameObjectAddition;
-    private Map<Integer, Map<Boolean, GameObject>> g;
-
+    private Rule rule;
 
     public ClassicPlayingField() {
-        createEmptyField();
+        rule = new ClassicRule();
         gameObjectAddition = new StandardGameObjectAddition();
         gameObjects = gameObjectAddition.add(this);
+        createEmptyField();
     }
 
     private void createEmptyField() {
         cages = new Cage[WIDTH][HEIGHT];
-            for (int i = 0; i < WIDTH; i++) {
-                for (int j = 0; j < HEIGHT; j++) {
-                cages[i][j] = new Cage(i, CHAR_COORDINATES[j], null);
+            for (int i = 0; i < HEIGHT; i++) {
+                for (int j = 0; j < WIDTH; j++) {
+                cages[i][j] = new Cage(i, rule.charCoordinates()[j], null);
             }
         }
     }

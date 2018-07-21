@@ -4,11 +4,15 @@ public interface Rule {
 
     int countQuantityOfObjects(int size);
 
-    int getMinGameObjectSize();
-
     boolean isValidGameObjectSize(int size);
 
     int getMaxGameObjectSize();
 
     int[] getAllowedGameObjectSizes();
+
+    char[] charCoordinates();
+
+    boolean isValidCharCoordinate(char y);
+
+    boolean isValidIntCoordinateValue(int x);
 }

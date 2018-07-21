@@ -10,6 +10,7 @@ import com.seebattleserver.application.user.User;
 import com.seebattleserver.domain.gameobjectarrangement.GameObjectArrangement;
 import com.seebattleserver.domain.gameobjectarrangement.ClassicGameObjectArrangement;
 import com.seebattleserver.domain.playingfield.PlayingField;
+import com.seebattleserver.domain.rule.ClassicRule;
 import com.seebattleserver.service.sender.UserSender;
 import org.springframework.web.socket.TextMessage;
 
@@ -29,15 +30,37 @@ public class UserGameObjectArrangementController implements Controller {
 
     @Override
     public void handle(TextMessage textMessage) {
-        JsonGameObjectCoordinatesHandler jsonGameObjectCoordinatesHandler = new JsonGameObjectCoordinatesHandler();
+        JsonGameObjectCoordinatesHandler jsonGameObjectCoordinatesHandler = new JsonGameObjectCoordinatesHandler(new ClassicRule());
         Map<Integer, List<List<String>>> coordinates = jsonGameObjectCoordinatesHandler.handle(textMessage);
-        PlayingField playingField = arrangeGameObjects(coordinates);
+        if (isNotNull(coordinates)) {
+            PlayingField playingField = arrangeGameObjects(coordinates);
+            selectActionAccordingToPlayingFieldState(playingField);
+        } else {
+            notifyAboutNotValidCoordinatesInput();
+        }
+    }
+
+    private void selectActionAccordingToPlayingFieldState(PlayingField playingField) {
         if (playingField.isAllGameObjectsInstalled()) {
             notifyAboutSuccessfulGameObjectArrangement();
             startGameIfPossible();
         } else {
-            notifyAboutCoordinateInput();
+            notifyAboutNextCoordinatesInput();
         }
+    }
+
+    private boolean isNotNull(Map<Integer, List<List<String>>> coordinates) {
+        if (!isNull(coordinates)) {
+            return true;
+        }
+        return false;
+    }
+
+    private boolean isNull(Map<Integer, List<List<String>>> coordinates) {
+        if (coordinates == null) {
+            return true;
+        }
+        return false;
     }
 
     private PlayingField arrangeGameObjects(Map<Integer, List<List<String>>> coordinates) {
@@ -56,7 +79,11 @@ public class UserGameObjectArrangementController implements Controller {
         gameStartHandler.startGameIfPossible();
     }
 
-    private void notifyAboutCoordinateInput() {
+    private void notifyAboutNextCoordinatesInput() {
         userSender.sendMessage(user, new JsonMessage("Введите следующий набор координат"));
+    }
+
+    private void notifyAboutNotValidCoordinatesInput() {
+        userSender.sendMessage(user, new JsonMessage("Вы ввели не валидные координаты. Попробуйте еще раз"));
     }
 }

@@ -7,6 +7,9 @@ public class ClassicRule implements Rule {
     private static final int MIN_GAME_OBJECT_SIZE = 1;
     private static final int MAX_GAME_OBJECT_SIZE = 4;
     private static final int[] ALLOWED_GAME_OBJECT_SIZES = {1, 2, 3, 4};
+    private static final char[] CHAR_COORDINATES = {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j'};
+    private static final int MIN_INT_COORDINATE_VALUE = 0;
+    private static final int MAX_INT_COORDINATE_VALUE = 9;
     private Map<Integer, Integer> quantityOfGameObjects;
 
 
@@ -41,11 +44,6 @@ public class ClassicRule implements Rule {
     }
 
     @Override
-    public int getMinGameObjectSize() {
-        return MIN_GAME_OBJECT_SIZE;
-    }
-
-    @Override
     public int getMaxGameObjectSize() {
         return MAX_GAME_OBJECT_SIZE;
     }
@@ -53,5 +51,27 @@ public class ClassicRule implements Rule {
     @Override
     public int[] getAllowedGameObjectSizes() {
         return ALLOWED_GAME_OBJECT_SIZES;
+    }
+
+    @Override
+    public char[] charCoordinates() {
+        return CHAR_COORDINATES;
+    }
+
+    @Override
+    public boolean isValidCharCoordinate(char y) {
+        for (char coordinate : CHAR_COORDINATES) {
+            if(coordinate == y) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean isValidIntCoordinateValue(int x) {
+        if((x >= MIN_INT_COORDINATE_VALUE) && (x <= MAX_INT_COORDINATE_VALUE)) {
+            return true;
+        }
+        return false;
     }
 }
