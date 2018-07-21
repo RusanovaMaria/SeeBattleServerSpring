@@ -83,7 +83,7 @@ public class JsonGameObjectCoordinatesHandler {
     }
 
     private boolean isValidCoordinatesQuantityForSingleGameObject(List<String> singleGameObjectCoordinates, int gameObjectSize) {
-        if (singleGameObjectCoordinates.size() != gameObjectSize) {
+        if (singleGameObjectCoordinates.size() == gameObjectSize) {
             return true;
         }
         return false;

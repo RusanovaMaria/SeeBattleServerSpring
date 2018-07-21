@@ -11,10 +11,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class StandardGameObjectAddition implements GameObjectAddition {
+public class ClassicGameObjectAddition implements GameObjectAddition {
     private Rule rule;
 
-    public StandardGameObjectAddition() {
+    public ClassicGameObjectAddition() {
         rule = new ClassicRule();
     }
 

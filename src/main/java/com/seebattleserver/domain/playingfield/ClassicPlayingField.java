@@ -1,17 +1,15 @@
 package com.seebattleserver.domain.playingfield;
 
 import com.seebattleserver.domain.cage.Cage;
-import com.seebattleserver.domain.game.Game;
 import com.seebattleserver.domain.gameobject.GameObject;
 import com.seebattleserver.domain.gameobject.Status;
 import com.seebattleserver.domain.gameobjectaddition.GameObjectAddition;
-import com.seebattleserver.domain.gameobjectaddition.StandardGameObjectAddition;
+import com.seebattleserver.domain.gameobjectaddition.ClassicGameObjectAddition;
 import com.seebattleserver.domain.rule.ClassicRule;
 import com.seebattleserver.domain.rule.Rule;
 
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 public class ClassicPlayingField implements PlayingField {
     private final int WIDTH = 10;
@@ -23,7 +21,7 @@ public class ClassicPlayingField implements PlayingField {
 
     public ClassicPlayingField() {
         rule = new ClassicRule();
-        gameObjectAddition = new StandardGameObjectAddition();
+        gameObjectAddition = new ClassicGameObjectAddition();
         gameObjects = gameObjectAddition.add(this);
         createEmptyField();
     }
