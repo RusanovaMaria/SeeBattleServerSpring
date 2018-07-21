@@ -22,7 +22,7 @@ public class ClassicGameTest {
     @Before
     public void setUp() {
         initPlayers();
-        //DefaultGameObjectArrangement gameObjectArrangement = new DefaultGameObjectArrangement();
+        //DefaultClassicGameObjectArrangement gameObjectArrangement = new DefaultClassicGameObjectArrangement();
         //PlayingField playingField = gameObjectArrangement.arrangeGameObjects();
         PlayingField playingField = new ClassicPlayingField();
         firstPlayer.setPlayingField(playingField);

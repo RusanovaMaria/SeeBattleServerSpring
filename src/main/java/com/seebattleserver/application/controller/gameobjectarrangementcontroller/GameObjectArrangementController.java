@@ -1,7 +1,7 @@
 package com.seebattleserver.application.controller.gameobjectarrangementcontroller;
 
 import com.seebattleserver.application.controller.Controller;
-import com.seebattleserver.application.controller.gameobjectarrangementcontroller.defaultgameobjectarrangementhandler.DefaultGameObjectArrangementHandler;
+import com.seebattleserver.domain.gameobjectarrangement.defaultgameobjectarrangement.DefaultClassicGameObjectArrangement;
 import com.seebattleserver.application.controller.gameobjectarrangementcontroller.gamestarthandler.ClassicGameStartHandler;
 import com.seebattleserver.application.controller.gameobjectarrangementcontroller.gamestarthandler.GameStartHandler;
 import com.seebattleserver.application.gameregistry.GameRegistry;
@@ -9,7 +9,7 @@ import com.seebattleserver.application.json.jsonmessage.JsonMessage;
 import com.seebattleserver.application.json.jsonmessage.jsonmessagehandler.DefaultJsonMessageHandler;
 import com.seebattleserver.application.user.User;
 import com.seebattleserver.application.user.UserStatus;
-import com.seebattleserver.domain.player.Player;
+import com.seebattleserver.domain.gameobjectarrangement.defaultgameobjectarrangement.DefaultGameObjectArrangement;
 import com.seebattleserver.domain.playingfield.PlayingField;
 import com.seebattleserver.service.sender.UserSender;
 import org.slf4j.Logger;
@@ -71,8 +71,8 @@ public class GameObjectArrangementController implements Controller {
 
     private void arrangeGameObjectsByDefault() {
         PlayingField playingField = user.getPlayer().getPlayingField();
-        DefaultGameObjectArrangementHandler defaultGameObjectArrangementHandler = new DefaultGameObjectArrangementHandler();
-        defaultGameObjectArrangementHandler.arrangeGameObjectsByDefault(playingField);
+        DefaultGameObjectArrangement defaultGameObjectArrangement = new DefaultClassicGameObjectArrangement();
+        defaultGameObjectArrangement.arrangeGameObjectsByDefault(playingField);
     }
 
     private void startGameIfPossible() {

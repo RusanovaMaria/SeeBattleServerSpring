@@ -9,10 +9,7 @@ public class ShipPositionController implements GameObjectPositionController {
     private List<String> shipCoordinates;
     private PlayingField playingField;
 
-    public ShipPositionController(int shipSize, List<String> shipCoordinates, PlayingField playingField) {
-        this.shipSize = shipSize;
-        this.shipCoordinates = shipCoordinates;
-        this.playingField = playingField;
+    public ShipPositionController() {
     }
 
     @Override

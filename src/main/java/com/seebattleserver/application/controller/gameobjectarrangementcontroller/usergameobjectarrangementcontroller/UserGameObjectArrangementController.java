@@ -8,7 +8,7 @@ import com.seebattleserver.application.gameregistry.GameRegistry;
 import com.seebattleserver.application.json.jsonmessage.JsonMessage;
 import com.seebattleserver.application.user.User;
 import com.seebattleserver.domain.gameobjectarrangement.GameObjectArrangement;
-import com.seebattleserver.domain.gameobjectarrangement.ClassicGameObjectArrangement;
+import com.seebattleserver.domain.gameobjectpositioncontroller.ShipPositionController;
 import com.seebattleserver.domain.playingfield.PlayingField;
 import com.seebattleserver.domain.rule.ClassicRule;
 import com.seebattleserver.service.sender.UserSender;
@@ -74,7 +74,7 @@ public class UserGameObjectArrangementController implements Controller {
     }
 
     private PlayingField arrangeGameObjects(Map<Integer, List<List<String>>> coordinates) {
-        GameObjectArrangement userGameObjectArrangement = new ClassicGameObjectArrangement();
+        GameObjectArrangement userGameObjectArrangement = new GameObjectArrangement(new ShipPositionController());
         PlayingField playingField = user.getPlayer().getPlayingField();
         userGameObjectArrangement.arrangeGameObjects(coordinates, playingField);
         return playingField;
