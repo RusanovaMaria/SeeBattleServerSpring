@@ -30,14 +30,24 @@ public class UserGameObjectArrangementController implements Controller {
 
     @Override
     public void handle(TextMessage textMessage) {
-        JsonGameObjectCoordinatesHandler jsonGameObjectCoordinatesHandler = new JsonGameObjectCoordinatesHandler(new ClassicRule());
-        Map<Integer, List<List<String>>> coordinates = jsonGameObjectCoordinatesHandler.handle(textMessage);
+        Map<Integer, List<List<String>>> coordinates = getCoordinates(textMessage);
         if (isNotNull(coordinates)) {
             PlayingField playingField = arrangeGameObjects(coordinates);
             selectActionAccordingToPlayingFieldState(playingField);
         } else {
             notifyAboutNotValidCoordinatesInput();
         }
+    }
+
+    private Map<Integer, List<List<String>>> getCoordinates(TextMessage textMessage) {
+        Map<Integer, List<List<String>>> coordinates;
+        try {
+            JsonGameObjectCoordinatesHandler jsonGameObjectCoordinatesHandler = new JsonGameObjectCoordinatesHandler(new ClassicRule());
+            coordinates = jsonGameObjectCoordinatesHandler.handle(textMessage);
+        } catch (Exception ex) {
+            coordinates = null;
+        }
+        return coordinates;
     }
 
     private void selectActionAccordingToPlayingFieldState(PlayingField playingField) {
