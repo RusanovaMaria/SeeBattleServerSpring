@@ -72,6 +72,7 @@ public class ClassicGame implements Game {
             case USED:
                 return Result.REPEATED;
             case FREE:
+            case PROHIBITED_USE:
                 return Result.MISSED;
             case FULL:
                 GameObject gameObject = ejectGameObject(cage);

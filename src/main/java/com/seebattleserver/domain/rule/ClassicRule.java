@@ -74,4 +74,35 @@ public class ClassicRule implements Rule {
         }
         return false;
     }
+
+    @Override
+    public char getNextCharCoordinate(char y) {
+        int yCoordinateIndex;
+        try {
+            yCoordinateIndex = getCharCoordinateIndex(y);
+            return CHAR_COORDINATES[yCoordinateIndex + 1];
+        } catch (Exception ex) {
+            throw new IllegalArgumentException("Следующего значения у не существует");
+        }
+    }
+
+    @Override
+    public char getPreviousCharCoordinate(char y) {
+        int yCoordinateIndex;
+        try {
+            yCoordinateIndex = getCharCoordinateIndex(y);
+            return CHAR_COORDINATES[yCoordinateIndex - 1];
+        } catch (Exception ex) {
+            throw new IllegalArgumentException("Предыдущего значения у не существует");
+        }
+    }
+
+    private int getCharCoordinateIndex(char y) {
+        for(int i = 0; i < CHAR_COORDINATES.length; i++) {
+            if(CHAR_COORDINATES[i] == y) {
+                return y;
+            }
+        }
+        throw new IllegalArgumentException("Данной координаты не существует");
+    }
 }

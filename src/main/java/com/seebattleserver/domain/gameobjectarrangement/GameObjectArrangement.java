@@ -5,10 +5,14 @@ import com.seebattleserver.domain.gameobject.GameObject;
 import com.seebattleserver.domain.gameobjectpart.GameObjectPart;
 import com.seebattleserver.domain.gameobjectpositioncontroller.GameObjectPositionController;
 import com.seebattleserver.domain.playingfield.PlayingField;
+import com.seebattleserver.domain.rule.Rule;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+
+import static com.seebattleserver.domain.cage.State.PROHIBITED_USE;
 
 public class GameObjectArrangement {
     private PlayingField playingField;
@@ -51,6 +55,43 @@ public class GameObjectArrangement {
     private void arrangeGameObjectPart(String coordinatesCouple, GameObjectPart gameObjectPart) {
         Cage cage = identifyCage(coordinatesCouple);
         cage.setGameObjectPart(gameObjectPart);
+        setCagesAroundUseCageProhibitedUse(cage);
+    }
+
+    private void setCagesAroundUseCageProhibitedUse(Cage cage) {
+        Rule rule = gameObjectPositionController.getRule();
+        int x = cage.getX();
+        char y = cage.getY();
+        setCagesAroundUseCageProhibitedUseHorizontally(rule, x, y);
+        setCagesAroundUseCageProhibitedUseVertically(rule, x, y);
+    }
+
+    private void setCagesAroundUseCageProhibitedUseHorizontally(Rule rule, int x, char y) {
+        List<Integer> xCoordinates = new ArrayList<>();
+        if (rule.isValidIntCoordinateValue(x + 1)) {
+            xCoordinates.add(x + 1);
+        }
+        if (rule.isValidIntCoordinateValue(x - 1)) {
+            xCoordinates.add(x - 1);
+        }
+        for (int i = 0; i < xCoordinates.size(); i++) {
+            Cage prohibitedUseCage = playingField.identifyCage(xCoordinates.get(i), y);
+            prohibitedUseCage.setState(PROHIBITED_USE);
+        }
+    }
+
+    private void setCagesAroundUseCageProhibitedUseVertically(Rule rule, int x, char y) {
+        List<Character> yCoordinates = new ArrayList<>();
+        try {
+            yCoordinates.add(rule.getPreviousCharCoordinate(y));
+            yCoordinates.add(rule.getNextCharCoordinate(y));
+        } catch (Exception ex) {
+
+        }
+        for (int i = 0; i < yCoordinates.size(); i++) {
+            Cage prohibitedUseCage = playingField.identifyCage(x, yCoordinates.get(i));
+            prohibitedUseCage.setState(PROHIBITED_USE);
+        }
     }
 
     private Cage identifyCage(String coordinatesCouple) {
