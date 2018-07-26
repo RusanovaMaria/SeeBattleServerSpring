@@ -2,6 +2,7 @@ package com.seebattleserver.application.json.jsongameobjectcoordinates.jsongameo
 
 import com.google.gson.Gson;
 import com.seebattleserver.application.json.jsongameobjectcoordinates.JsonGameObjectCoordinates;
+import com.seebattleserver.domain.coordinatecouple.CoordinatesCouple;
 import com.seebattleserver.domain.rule.Rule;
 import org.springframework.web.socket.TextMessage;
 
@@ -18,8 +19,8 @@ public class JsonGameObjectCoordinatesHandler {
         gson = new Gson();
     }
 
-    public Map<Integer, List<List<String>>> handle(TextMessage textMessage) {
-        Map<Integer, List<List<String>>> coordinates = new HashMap<>();
+    public Map<Integer, List<List<CoordinatesCouple>>> handle(TextMessage textMessage) {
+        Map<Integer, List<List<CoordinatesCouple>>> coordinates = new HashMap<>();
         JsonGameObjectCoordinates jsonGameObjectCoordinates = gson.fromJson(textMessage.getPayload(), JsonGameObjectCoordinates.class);
         coordinates.put(jsonGameObjectCoordinates.getGameObjectSize(), jsonGameObjectCoordinates.getCoordinates());
         if (isValidCoordinates(coordinates)) {
@@ -28,7 +29,7 @@ public class JsonGameObjectCoordinatesHandler {
         throw new IllegalArgumentException("Введены не валидные координаты");
     }
 
-    private boolean isValidCoordinates(Map<Integer, List<List<String>>> coordinates) {
+    private boolean isValidCoordinates(Map<Integer, List<List<CoordinatesCouple>>> coordinates) {
         if ((isValidGameObjectsSizes(coordinates)) && (isValidGameObjectsCoordinatesQuantity(coordinates))
                 && (isValidCoordinatesForEachGameObject(coordinates))) {
             return true;
@@ -36,7 +37,7 @@ public class JsonGameObjectCoordinatesHandler {
         return false;
     }
 
-    private boolean isValidGameObjectsSizes(Map<Integer, List<List<String>>> coordinates) {
+    private boolean isValidGameObjectsSizes(Map<Integer, List<List<CoordinatesCouple>>> coordinates) {
         for (int gameObjectSize : coordinates.keySet()) {
             if (!rule.isValidGameObjectSize(gameObjectSize)) {
                 return false;
@@ -45,7 +46,7 @@ public class JsonGameObjectCoordinatesHandler {
         return true;
     }
 
-    private boolean isValidGameObjectsCoordinatesQuantity(Map<Integer, List<List<String>>> coordinates) {
+    private boolean isValidGameObjectsCoordinatesQuantity(Map<Integer, List<List<CoordinatesCouple>>> coordinates) {
         for (int gameObjectSize : coordinates.keySet()) {
             if (rule.countQuantityOfObjects(gameObjectSize) == coordinates.get(gameObjectSize).size()) {
                 return true;
@@ -54,10 +55,10 @@ public class JsonGameObjectCoordinatesHandler {
         return false;
     }
 
-    private boolean isValidCoordinatesForEachGameObject(Map<Integer, List<List<String>>> coordinates) {
+    private boolean isValidCoordinatesForEachGameObject(Map<Integer, List<List<CoordinatesCouple>>> coordinates) {
         for (int gameObjectSize : coordinates.keySet()) {
-            List<List<String>> gameObjectsCoordinatesByCurrentSize = coordinates.get(gameObjectSize);
-            for (List<String> singleGameObjectCoordinates : gameObjectsCoordinatesByCurrentSize) {
+            List<List<CoordinatesCouple>> gameObjectsCoordinatesByCurrentSize = coordinates.get(gameObjectSize);
+            for (List<CoordinatesCouple> singleGameObjectCoordinates : gameObjectsCoordinatesByCurrentSize) {
                 if (!isValidGameObjectCoordinates(singleGameObjectCoordinates, gameObjectSize)) {
                     return false;
                 }
@@ -66,15 +67,13 @@ public class JsonGameObjectCoordinatesHandler {
         return true;
     }
 
-    private boolean isValidGameObjectCoordinates(List<String> singleGameObjectCoordinates, int gameObjectSize) {
+    private boolean isValidGameObjectCoordinates(List<CoordinatesCouple> singleGameObjectCoordinates, int gameObjectSize) {
         if (!isValidCoordinatesQuantityForSingleGameObject(singleGameObjectCoordinates, gameObjectSize)) {
             return false;
         }
-        for (String coordinateCouple : singleGameObjectCoordinates) {
-            int x;
-            char y;
-                x = getIntCoordinate(coordinateCouple);
-                y = getCharCoordinate(coordinateCouple);
+        for (CoordinatesCouple coordinatesCouple : singleGameObjectCoordinates) {
+            int x = coordinatesCouple.getX();
+            char y = coordinatesCouple.getY();
             if (!isValidCoordinatesCouple(x, y)) {
                 return false;
             }
@@ -82,25 +81,11 @@ public class JsonGameObjectCoordinatesHandler {
         return true;
     }
 
-    private boolean isValidCoordinatesQuantityForSingleGameObject(List<String> singleGameObjectCoordinates, int gameObjectSize) {
+    private boolean isValidCoordinatesQuantityForSingleGameObject(List<CoordinatesCouple> singleGameObjectCoordinates, int gameObjectSize) {
         if (singleGameObjectCoordinates.size() == gameObjectSize) {
             return true;
         }
         return false;
-    }
-
-    private int getIntCoordinate(String coordinateCouple) {
-        int x;
-        try {
-            x = Character.getNumericValue(coordinateCouple.charAt(0));
-        } catch (NumberFormatException ex) {
-            x = -1;
-        }
-        return x;
-    }
-
-    private char getCharCoordinate(String coordinateCouple) {
-        return coordinateCouple.charAt(1);
     }
 
     private boolean isValidCoordinatesCouple(int x, char y) {

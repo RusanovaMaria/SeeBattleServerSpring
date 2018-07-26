@@ -7,8 +7,9 @@ import com.seebattleserver.application.json.jsongameobjectcoordinates.jsongameob
 import com.seebattleserver.application.gameregistry.GameRegistry;
 import com.seebattleserver.application.json.jsonmessage.JsonMessage;
 import com.seebattleserver.application.user.User;
+import com.seebattleserver.domain.coordinatecouple.CoordinatesCouple;
 import com.seebattleserver.domain.gameobjectarrangement.GameObjectArrangement;
-import com.seebattleserver.domain.gameobjectpositioncontroller.ShipPositionController;
+import com.seebattleserver.domain.gameobjectpositioncontroller.ShipInstallationController;
 import com.seebattleserver.domain.playingfield.PlayingField;
 import com.seebattleserver.domain.rule.ClassicRule;
 import com.seebattleserver.service.sender.UserSender;
@@ -30,7 +31,7 @@ public class UserGameObjectArrangementController implements Controller {
 
     @Override
     public void handle(TextMessage textMessage) {
-        Map<Integer, List<List<String>>> coordinates = getCoordinates(textMessage);
+        Map<Integer, List<List<CoordinatesCouple>>> coordinates = getCoordinates(textMessage);
         if (isNotNull(coordinates)) {
             PlayingField playingField = arrangeGameObjects(coordinates);
             selectActionAccordingToPlayingFieldState(playingField);
@@ -39,8 +40,8 @@ public class UserGameObjectArrangementController implements Controller {
         }
     }
 
-    private Map<Integer, List<List<String>>> getCoordinates(TextMessage textMessage) {
-        Map<Integer, List<List<String>>> coordinates;
+    private Map<Integer, List<List<CoordinatesCouple>>> getCoordinates(TextMessage textMessage) {
+        Map<Integer, List<List<CoordinatesCouple>>> coordinates;
         try {
             JsonGameObjectCoordinatesHandler jsonGameObjectCoordinatesHandler = new JsonGameObjectCoordinatesHandler(new ClassicRule());
             coordinates = jsonGameObjectCoordinatesHandler.handle(textMessage);
@@ -59,22 +60,22 @@ public class UserGameObjectArrangementController implements Controller {
         }
     }
 
-    private boolean isNotNull(Map<Integer, List<List<String>>> coordinates) {
-        if (!isNull(coordinates)) {
+    private boolean isNotNull(Object o) {
+        if (!isNull(o)) {
             return true;
         }
         return false;
     }
 
-    private boolean isNull(Map<Integer, List<List<String>>> coordinates) {
-        if (coordinates == null) {
+    private boolean isNull(Object o) {
+        if (o == null) {
             return true;
         }
         return false;
     }
 
-    private PlayingField arrangeGameObjects(Map<Integer, List<List<String>>> coordinates) {
-        GameObjectArrangement userGameObjectArrangement = new GameObjectArrangement(new ShipPositionController());
+    private PlayingField arrangeGameObjects(Map<Integer, List<List<CoordinatesCouple>>> coordinates) {
+        GameObjectArrangement userGameObjectArrangement = new GameObjectArrangement(new ShipInstallationController());
         PlayingField playingField = user.getPlayer().getPlayingField();
         userGameObjectArrangement.arrangeGameObjects(coordinates, playingField);
         return playingField;
