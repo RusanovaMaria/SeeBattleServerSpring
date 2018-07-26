@@ -2,7 +2,7 @@ package com.seebattleserver.application.controllerfactory;
 
 import com.seebattleserver.application.controller.commandcontroller.CommandController;
 import com.seebattleserver.application.controller.commandcontroller.CommandList;
-import com.seebattleserver.application.controller.gameprocesscontroller.GameController;
+import com.seebattleserver.application.controller.gameprocesscontroller.GameProcessController;
 import com.seebattleserver.application.controller.gameobjectarrangementcontroller.GameObjectArrangementController;
 import com.seebattleserver.application.controller.invitationresponsecontroller.InvitationResponseController;
 import com.seebattleserver.application.controller.invitationcontroller.InvitationController;
@@ -41,8 +41,8 @@ public class ControllerFactory {
         return new CommandController(user, commandList, userSender);
     }
 
-    public GameController createGameProcessController(User user) {
-        return new GameController(user, gameRegistry, userSender);
+    public GameProcessController createGameProcessController(User user) {
+        return new GameProcessController(user, gameRegistry, userSender);
     }
 
     public InvitationController createInvitationController(User user) {

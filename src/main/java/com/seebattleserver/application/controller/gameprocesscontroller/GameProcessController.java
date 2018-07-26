@@ -15,8 +15,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.socket.TextMessage;
 
-public class GameController implements Controller {
-    private static final Logger LOGGER = LoggerFactory.getLogger(GameController.class);
+public class GameProcessController implements Controller {
+    private static final Logger LOGGER = LoggerFactory.getLogger(GameProcessController.class);
     private User user;
     private GameRegistry gameRegistry;
     private Game game;
@@ -25,8 +25,8 @@ public class GameController implements Controller {
     int x;
     char y;
 
-    public GameController(User user, GameRegistry gameRegistry,
-                          UserSender userSender) {
+    public GameProcessController(User user, GameRegistry gameRegistry,
+                                 UserSender userSender) {
         this.user = user;
         this.gameRegistry = gameRegistry;
         this.userSender = userSender;
@@ -66,7 +66,7 @@ public class GameController implements Controller {
         userSender.sendMessage(user, new JsonMessage("Введены неверные координаты, попробуйте еще раз"));
     }
 
-    private void initCoordinates(String coordinates)  {
+    private void initCoordinates(String coordinates) throws Exception  {
         char c = coordinates.charAt(0);
         x = Character.getNumericValue(c);
         y = coordinates.charAt(1);
