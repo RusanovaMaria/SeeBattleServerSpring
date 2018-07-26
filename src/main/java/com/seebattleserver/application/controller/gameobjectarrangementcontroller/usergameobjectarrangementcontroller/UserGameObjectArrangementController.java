@@ -51,8 +51,21 @@ public class UserGameObjectArrangementController implements Controller {
         return coordinates;
     }
 
+    private PlayingField arrangeGameObjects(Map<Integer, List<List<CoordinatesCouple>>> coordinates) {
+        GameObjectArrangement userGameObjectArrangement = new GameObjectArrangement(new ShipInstallationController());
+        PlayingField playingField = user.getPlayer().getPlayingField();
+        try {
+            userGameObjectArrangement.arrangeGameObjects(coordinates, playingField);
+            return playingField;
+        } catch (Exception ex) {
+            return null;
+        }
+    }
+
     private void selectActionAccordingToPlayingFieldState(PlayingField playingField) {
-        if (playingField.isAllGameObjectsInstalled()) {
+        if (isNull(playingField)) {
+            notifyAboutGameObjectArrangementException();
+        } else if (playingField.isAllGameObjectsInstalled()) {
             notifyAboutSuccessfulGameObjectArrangement();
             startGameIfPossible();
         } else {
@@ -74,11 +87,8 @@ public class UserGameObjectArrangementController implements Controller {
         return false;
     }
 
-    private PlayingField arrangeGameObjects(Map<Integer, List<List<CoordinatesCouple>>> coordinates) {
-        GameObjectArrangement userGameObjectArrangement = new GameObjectArrangement(new ShipInstallationController());
-        PlayingField playingField = user.getPlayer().getPlayingField();
-        userGameObjectArrangement.arrangeGameObjects(coordinates, playingField);
-        return playingField;
+    private void notifyAboutGameObjectArrangementException() {
+        userSender.sendMessage(user, new JsonMessage("Невозможно установить игровые объекты. Попробуйте еще раз"));
     }
 
     private void notifyAboutSuccessfulGameObjectArrangement() {

@@ -14,13 +14,17 @@ public class DefaultClassicGameObjectArrangement implements DefaultGameObjectArr
     private static final String[] ONE_DECK_SHIP_COORDINATES = {"0a", "9a", "0j", "9j"};
     private static final String[] TWO_DECK_SHIP_COORDINATES = {"2a3a", "2j3j", "0c0d"};
     private static final String[] THREE_DECK_SHIP_COORDINATES = {"5c5d5e", "7c7d7e"};
-    private static final String[] FOUR_DECK_SHIP_COORDINATES = {"5j6j7j8j"};
+    private static final String[] FOUR_DECK_SHIP_COORDINATES = {"5h6h7h8h"};
 
     @Override
     public void arrangeGameObjectsByDefault(PlayingField playingField) {
         Map<Integer, List<List<CoordinatesCouple>>> coordinates = getDefaultCoordinates();
         GameObjectArrangement gameObjectArrangement = new GameObjectArrangement(new ShipInstallationController());
-        gameObjectArrangement.arrangeGameObjects(coordinates, playingField);
+        try {
+            gameObjectArrangement.arrangeGameObjects(coordinates, playingField);
+        } catch (Exception ex) {
+            throw new IllegalArgumentException("По умолчанию игровые объекты установлены неверно");
+        }
     }
 
     private Map<Integer, List<List<CoordinatesCouple>>> getDefaultCoordinates() {

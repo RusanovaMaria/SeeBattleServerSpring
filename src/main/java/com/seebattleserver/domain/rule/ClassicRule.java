@@ -100,7 +100,7 @@ public class ClassicRule implements Rule {
     private int getCharCoordinateIndex(char y) {
         for(int i = 0; i < CHAR_COORDINATES.length; i++) {
             if(CHAR_COORDINATES[i] == y) {
-                return y;
+                return i;
             }
         }
         throw new IllegalArgumentException("Данной координаты не существует");

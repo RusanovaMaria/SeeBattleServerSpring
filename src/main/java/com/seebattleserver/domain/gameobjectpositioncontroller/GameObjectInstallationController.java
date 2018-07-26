@@ -8,7 +8,7 @@ import java.util.List;
 
 public interface GameObjectInstallationController {
 
-    boolean canBeInstalled(List<CoordinatesCouple> shipCoordinates, PlayingField playingField);
+    boolean gameObjectCanBeInstalled(List<CoordinatesCouple> shipCoordinates, PlayingField playingField);
 
     Rule getRule();
 }

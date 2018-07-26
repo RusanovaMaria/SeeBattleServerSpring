@@ -19,7 +19,7 @@ public class ShipInstallationController implements GameObjectInstallationControl
     }
 
     @Override
-    public boolean canBeInstalled(List<CoordinatesCouple> shipCoordinates, PlayingField playingField) {
+    public boolean gameObjectCanBeInstalled(List<CoordinatesCouple> shipCoordinates, PlayingField playingField) {
         int size = shipCoordinates.size();
         if ((isNotAllShipsOfCurrentSizeInstalled(size, playingField)) && (isValidPlace(shipCoordinates, playingField)) &&
                 (isValidSequenceOfCoordinates(shipCoordinates))) {
@@ -88,6 +88,20 @@ public class ShipInstallationController implements GameObjectInstallationControl
         return true;
     }
 
+    private boolean isVerticalArrangement(List<CoordinatesCouple> shipCoordinates) {
+        if (shipCoordinates.size() == 1) {
+            return true;
+        }
+        CoordinatesCouple firstCoordinatesCouple = shipCoordinates.get(0);
+        int x = firstCoordinatesCouple.getX();
+        for (CoordinatesCouple coordinateCouple : shipCoordinates) {
+            if (coordinateCouple.getX() != x) {
+                return false;
+            }
+        }
+        return true;
+    }
+
     private boolean isValidSequenceOfHorizontalCoordinates(List<CoordinatesCouple> shipCoordinates) {
         if (!isHorizontalArrangement(shipCoordinates)) {
             return false;
@@ -109,23 +123,9 @@ public class ShipInstallationController implements GameObjectInstallationControl
             return true;
         }
         CoordinatesCouple firstCoordinatesCouple = shipCoordinates.get(0);
-        int x = firstCoordinatesCouple.getX();
-        for (CoordinatesCouple coordinateCouple : shipCoordinates) {
-            if (coordinateCouple.getX() != x) {
-                return false;
-            }
-        }
-        return true;
-    }
-
-    private boolean isVerticalArrangement(List<CoordinatesCouple> shipCoordinates) {
-        if (shipCoordinates.size() == 1) {
-            return true;
-        }
-        CoordinatesCouple firstCoordinatesCouple = shipCoordinates.get(0);
         char y = firstCoordinatesCouple.getY();
         for (CoordinatesCouple coordinateCouple : shipCoordinates) {
-            if (coordinateCouple.getX() != y) {
+            if (coordinateCouple.getY() != y) {
                 return false;
             }
         }

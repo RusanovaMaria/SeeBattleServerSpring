@@ -23,34 +23,44 @@ public class GameObjectArrangement {
         this.gameObjectInstallationController = gameObjectInstallationController;
     }
 
-    public void arrangeGameObjects(Map<Integer, List<List<CoordinatesCouple>>> coordinates, PlayingField playingField) {
+    public void arrangeGameObjects(Map<Integer, List<List<CoordinatesCouple>>> coordinates, PlayingField playingField)
+    throws Exception{
         this.playingField = playingField;
         Set<Integer> gameObjectSizes = coordinates.keySet();
         for (int size : gameObjectSizes) {
             List<GameObject> gameObjectsOfCurrentSize = playingField.getGameObjectsBySize(size);
-            List<List<CoordinatesCouple>> coordinatesForGameObjectOfCurrentSize = coordinates.get(size);
-            arrangeGameObjectsOfCurrentSize(gameObjectsOfCurrentSize, coordinatesForGameObjectOfCurrentSize);
+            List<List<CoordinatesCouple>> coordinatesForGameObjectsOfCurrentSize = coordinates.get(size);
+            try {
+                arrangeGameObjectsOfCurrentSize(gameObjectsOfCurrentSize, coordinatesForGameObjectsOfCurrentSize);
+            }catch (Exception ex) {
+                throw new IllegalArgumentException("Игровые объекты не могут быть размещены");
+            }
         }
     }
 
-    private void arrangeGameObjectsOfCurrentSize(List<GameObject> gameObjectsOfCurrentSize, List<List<CoordinatesCouple>> coordinatesForGameObjectOfCurrentSize) {
+    private void arrangeGameObjectsOfCurrentSize(List<GameObject> gameObjectsOfCurrentSize, List<List<CoordinatesCouple>> coordinatesForGameObjectsOfCurrentSize)
+    throws Exception{
         int singleGameObjectCoordinatesIndex = 0;
         for (GameObject gameObject : gameObjectsOfCurrentSize) {
-            List<CoordinatesCouple> coordinatesForSingleGameObject = coordinatesForGameObjectOfCurrentSize.get(singleGameObjectCoordinatesIndex);
+            List<CoordinatesCouple> coordinatesForSingleGameObject = coordinatesForGameObjectsOfCurrentSize.get(singleGameObjectCoordinatesIndex);
             arrangeGameObject(gameObject, coordinatesForSingleGameObject);
             singleGameObjectCoordinatesIndex++;
         }
     }
 
-    private void arrangeGameObject(GameObject gameObject, List<CoordinatesCouple> coordinatesForCurrentGameObject) {
-        List<GameObjectPart> gameObjectParts = gameObject.getGameObjectParts();
-        int coordinatesCoupleIndex = 0;
-        for (GameObjectPart gameObjectPart : gameObjectParts) {
-            CoordinatesCouple coordinatesCouple = coordinatesForCurrentGameObject.get(coordinatesCoupleIndex);
-            arrangeGameObjectPart(coordinatesCouple, gameObjectPart);
-            coordinatesCoupleIndex++;
+    private void arrangeGameObject(GameObject gameObject, List<CoordinatesCouple> coordinatesForSingleGameObject) {
+        if (gameObjectInstallationController.gameObjectCanBeInstalled(coordinatesForSingleGameObject, playingField)) {
+            List<GameObjectPart> gameObjectParts = gameObject.getGameObjectParts();
+            int coordinatesCoupleIndex = 0;
+            for (GameObjectPart gameObjectPart : gameObjectParts) {
+                CoordinatesCouple coordinatesCouple = coordinatesForSingleGameObject.get(coordinatesCoupleIndex);
+                arrangeGameObjectPart(coordinatesCouple, gameObjectPart);
+                coordinatesCoupleIndex++;
+            }
+            gameObject.install();
+        } else {
+            throw new IllegalArgumentException("Игровой объект не может быть установлен");
         }
-        gameObject.install();
     }
 
     private void arrangeGameObjectPart(CoordinatesCouple coordinatesCouple, GameObjectPart gameObjectPart) {
