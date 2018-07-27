@@ -25,7 +25,6 @@ public class SocketHandler extends TextWebSocketHandler {
     private SessionRegistry sessionRegistry;
     private Gson gson;
     private ControllerManager controllerManager;
-    private DefaultJsonMessageHandler defaultJsonMessageHandler;
 
     @Autowired
     public SocketHandler(SessionRegistry sessionRegistry, UserRegistry userRegistry, Gson gson, ControllerManager controllerManager) {
@@ -33,11 +32,10 @@ public class SocketHandler extends TextWebSocketHandler {
         this.userRegistry = userRegistry;
         this.gson = gson;
         this.controllerManager = controllerManager;
-        defaultJsonMessageHandler = new DefaultJsonMessageHandler();
     }
 
     @Override
-    public void handleTextMessage(WebSocketSession session, TextMessage textMessage) throws IOException {
+    public void handleTextMessage(WebSocketSession session, TextMessage textMessage) {
         User user = sessionRegistry.getUser(session);
         controllerManager.handle(user, textMessage);
     }
