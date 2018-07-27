@@ -36,7 +36,10 @@ public class ShipInstallationController implements GameObjectInstallationControl
     }
 
     private boolean isAllShipsOfCurrentSizeInstalled(int size, PlayingField playingField) {
-        List<GameObject> gameObjectsOfCurrentSize = playingField.getGameObjectsBySize(size);
+        List<GameObject> gameObjectsOfCurrentSize = getGameObjectsOfCurrentSize(size, playingField);
+        if (isNull(gameObjectsOfCurrentSize)) {
+            return true;
+        }
         for (GameObject gameObject : gameObjectsOfCurrentSize) {
             if (!gameObject.wasInstalled()) {
                 return false;
@@ -45,16 +48,34 @@ public class ShipInstallationController implements GameObjectInstallationControl
         return true;
     }
 
+    private List<GameObject> getGameObjectsOfCurrentSize(int size, PlayingField playingField) {
+        try {
+            List<GameObject> gameObjectsOfCurrentSize = playingField.getGameObjectsBySize(size);
+            return gameObjectsOfCurrentSize;
+        } catch (IllegalArgumentException ex) {
+            return null;
+        }
+    }
+
     private boolean isValidPlace(List<CoordinatesCouple> shipCoordinates, PlayingField playingField) {
         for (CoordinatesCouple coordinatesCouple : shipCoordinates) {
             int x = coordinatesCouple.getX();
             char y = coordinatesCouple.getY();
-            Cage cage = playingField.identifyCage(x, y);
-            if (!canBeUsed(cage)) {
+            Cage cage = identifyCage(x, y, playingField);
+            if ((isNull(cage)) || (!canBeUsed(cage))) {
                 return false;
             }
         }
         return true;
+    }
+
+    private Cage identifyCage(int x, char y, PlayingField playingField) {
+        try {
+            Cage cage = playingField.identifyCage(x, y);
+            return cage;
+        } catch (IllegalArgumentException ex) {
+            return null;
+        }
     }
 
     private boolean canBeUsed(Cage cage) {
@@ -65,14 +86,14 @@ public class ShipInstallationController implements GameObjectInstallationControl
         }
     }
 
-    public boolean isValidSequenceOfCoordinates(List<CoordinatesCouple> shipCoordinates) {
+    private boolean isValidSequenceOfCoordinates(List<CoordinatesCouple> shipCoordinates) {
         if ((isValidSequenceOfHorizontalCoordinates(shipCoordinates)) || (isValidSequenceOfVerticalCoordinates(shipCoordinates))) {
             return true;
         }
         return false;
     }
 
-    public boolean isValidSequenceOfVerticalCoordinates(List<CoordinatesCouple> shipCoordinates) {
+    private boolean isValidSequenceOfVerticalCoordinates(List<CoordinatesCouple> shipCoordinates) {
         if (!isVerticalArrangement(shipCoordinates)) {
             return false;
         }
@@ -130,6 +151,13 @@ public class ShipInstallationController implements GameObjectInstallationControl
             }
         }
         return true;
+    }
+
+    private boolean isNull(Object o) {
+        if (o == null) {
+            return true;
+        }
+        return false;
     }
 
     @Override
