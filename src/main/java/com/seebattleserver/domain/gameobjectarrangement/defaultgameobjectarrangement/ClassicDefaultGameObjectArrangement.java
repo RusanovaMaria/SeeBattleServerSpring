@@ -10,7 +10,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class DefaultClassicGameObjectArrangement implements DefaultGameObjectArrangement {
+public class ClassicDefaultGameObjectArrangement implements DefaultGameObjectArrangement {
     private static final String[] ONE_DECK_SHIP_COORDINATES = {"0a", "9a", "0j", "9j"};
     private static final String[] TWO_DECK_SHIP_COORDINATES = {"2a3a", "2j3j", "0c0d"};
     private static final String[] THREE_DECK_SHIP_COORDINATES = {"5c5d5e", "7c7d7e"};

@@ -2,7 +2,7 @@ package com.seebattleserver.domain.game;
 
 import com.seebattleserver.domain.gameobject.GameObject;
 import com.seebattleserver.domain.gameobject.Status;
-import com.seebattleserver.domain.gameobjectarrangement.defaultgameobjectarrangement.DefaultClassicGameObjectArrangement;
+import com.seebattleserver.domain.gameobjectarrangement.defaultgameobjectarrangement.ClassicDefaultGameObjectArrangement;
 import com.seebattleserver.domain.gameobjectarrangement.defaultgameobjectarrangement.DefaultGameObjectArrangement;
 import com.seebattleserver.domain.player.Player;
 import com.seebattleserver.domain.playingfield.ClassicPlayingField;
@@ -26,7 +26,7 @@ public class ClassicGameTest {
         initPlayers();
         PlayingField firstPlayingField = new ClassicPlayingField();
         PlayingField secondPlayingField = new ClassicPlayingField();
-        DefaultGameObjectArrangement gameObjectArrangement = new DefaultClassicGameObjectArrangement();
+        DefaultGameObjectArrangement gameObjectArrangement = new ClassicDefaultGameObjectArrangement();
         gameObjectArrangement.arrangeGameObjectsByDefault(firstPlayingField);
         gameObjectArrangement.arrangeGameObjectsByDefault(secondPlayingField);
         firstPlayer.setPlayingField(firstPlayingField);

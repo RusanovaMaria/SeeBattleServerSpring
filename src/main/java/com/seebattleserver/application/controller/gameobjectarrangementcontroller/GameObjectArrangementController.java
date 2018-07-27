@@ -1,7 +1,7 @@
 package com.seebattleserver.application.controller.gameobjectarrangementcontroller;
 
 import com.seebattleserver.application.controller.Controller;
-import com.seebattleserver.domain.gameobjectarrangement.defaultgameobjectarrangement.DefaultClassicGameObjectArrangement;
+import com.seebattleserver.domain.gameobjectarrangement.defaultgameobjectarrangement.ClassicDefaultGameObjectArrangement;
 import com.seebattleserver.application.controller.gameobjectarrangementcontroller.gamestarthandler.ClassicGameStartHandler;
 import com.seebattleserver.application.controller.gameobjectarrangementcontroller.gamestarthandler.GameStartHandler;
 import com.seebattleserver.application.gameregistry.GameRegistry;
@@ -71,7 +71,7 @@ public class GameObjectArrangementController implements Controller {
 
     private void arrangeGameObjectsByDefault() {
         PlayingField playingField = user.getPlayer().getPlayingField();
-        DefaultGameObjectArrangement defaultGameObjectArrangement = new DefaultClassicGameObjectArrangement();
+        DefaultGameObjectArrangement defaultGameObjectArrangement = new ClassicDefaultGameObjectArrangement();
         defaultGameObjectArrangement.arrangeGameObjectsByDefault(playingField);
     }
 

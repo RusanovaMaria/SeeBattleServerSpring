@@ -689,9 +689,9 @@ java.lang.OutOfMemoryError: Java heap space
 	at java.base/java.lang.StringLatin1.newString(StringLatin1.java:549)
 	at java.base/java.lang.String.substring(String.java:1878)
 	at getCoordinatesCouplesInString(DefaultGameObjectArrangementHandler.java:51)
-	at com.seebattleserver.domain.gameobjectarrangement.defaultgameobjectarrangement.DefaultClassicGameObjectArrangement.getShipCoordinatesBySize(DefaultGameObjectArrangementHandler.java:41)
-	at com.seebattleserver.domain.gameobjectarrangement.defaultgameobjectarrangement.DefaultClassicGameObjectArrangement.getDefaultCoordinates(DefaultGameObjectArrangementHandler.java:29)
-	at com.seebattleserver.domain.gameobjectarrangement.defaultgameobjectarrangement.DefaultClassicGameObjectArrangement.arrangeGameObjectsByDefault(DefaultGameObjectArrangementHandler.java:20)
+	at com.seebattleserver.domain.gameobjectarrangement.defaultgameobjectarrangement.ClassicDefaultGameObjectArrangement.getShipCoordinatesBySize(DefaultGameObjectArrangementHandler.java:41)
+	at com.seebattleserver.domain.gameobjectarrangement.defaultgameobjectarrangement.ClassicDefaultGameObjectArrangement.getDefaultCoordinates(DefaultGameObjectArrangementHandler.java:29)
+	at com.seebattleserver.domain.gameobjectarrangement.defaultgameobjectarrangement.ClassicDefaultGameObjectArrangement.arrangeGameObjectsByDefault(DefaultGameObjectArrangementHandler.java:20)
 	at com.seebattleserver.application.controller.gameobjectarrangementcontroller.GameObjectArrangementController.arrangeGameObjectsByDefault(GameObjectArrangementController.java:75)
 	at com.seebattleserver.application.controller.gameobjectarrangementcontroller.GameObjectArrangementController.handleGameObjectArrangementType(GameObjectArrangementController.java:57)
 	at com.seebattleserver.application.controller.gameobjectarrangementcontroller.GameObjectArrangementController.handle(GameObjectArrangementController.java:41)
@@ -773,9 +773,9 @@ java.lang.OutOfMemoryError: Java heap space
 	at java.base/java.util.ArrayList.add(ArrayList.java:467)
 	at java.base/java.util.ArrayList.add(ArrayList.java:480)
 	at getCoordinatesCouplesInString(DefaultClassicGameObjectArrangement.java:52)
-	at com.seebattleserver.domain.gameobjectarrangement.defaultgameobjectarrangement.DefaultClassicGameObjectArrangement.getShipCoordinatesBySize(DefaultClassicGameObjectArrangement.java:41)
-	at com.seebattleserver.domain.gameobjectarrangement.defaultgameobjectarrangement.DefaultClassicGameObjectArrangement.getDefaultCoordinates(DefaultClassicGameObjectArrangement.java:29)
-	at com.seebattleserver.domain.gameobjectarrangement.defaultgameobjectarrangement.DefaultClassicGameObjectArrangement.arrangeGameObjectsByDefault(DefaultClassicGameObjectArrangement.java:20)
+	at com.seebattleserver.domain.gameobjectarrangement.defaultgameobjectarrangement.ClassicDefaultGameObjectArrangement.getShipCoordinatesBySize(DefaultClassicGameObjectArrangement.java:41)
+	at com.seebattleserver.domain.gameobjectarrangement.defaultgameobjectarrangement.ClassicDefaultGameObjectArrangement.getDefaultCoordinates(DefaultClassicGameObjectArrangement.java:29)
+	at com.seebattleserver.domain.gameobjectarrangement.defaultgameobjectarrangement.ClassicDefaultGameObjectArrangement.arrangeGameObjectsByDefault(DefaultClassicGameObjectArrangement.java:20)
 	at com.seebattleserver.application.controller.gameobjectarrangementcontroller.GameObjectArrangementController.arrangeGameObjectsByDefault(GameObjectArrangementController.java:75)
 	at com.seebattleserver.application.controller.gameobjectarrangementcontroller.GameObjectArrangementController.handleGameObjectArrangementType(GameObjectArrangementController.java:57)
 	at com.seebattleserver.application.controller.gameobjectarrangementcontroller.GameObjectArrangementController.handle(GameObjectArrangementController.java:41)
@@ -805,9 +805,9 @@ java.lang.OutOfMemoryError: Java heap space
 	at java.base/java.lang.StringLatin1.newString(StringLatin1.java:549)
 	at java.base/java.lang.String.substring(String.java:1878)
 	at getCoordinatesCouplesInString(DefaultClassicGameObjectArrangement.java:51)
-	at com.seebattleserver.domain.gameobjectarrangement.defaultgameobjectarrangement.DefaultClassicGameObjectArrangement.getShipCoordinatesBySize(DefaultClassicGameObjectArrangement.java:41)
-	at com.seebattleserver.domain.gameobjectarrangement.defaultgameobjectarrangement.DefaultClassicGameObjectArrangement.getDefaultCoordinates(DefaultClassicGameObjectArrangement.java:29)
-	at com.seebattleserver.domain.gameobjectarrangement.defaultgameobjectarrangement.DefaultClassicGameObjectArrangement.arrangeGameObjectsByDefault(DefaultClassicGameObjectArrangement.java:20)
+	at com.seebattleserver.domain.gameobjectarrangement.defaultgameobjectarrangement.ClassicDefaultGameObjectArrangement.getShipCoordinatesBySize(DefaultClassicGameObjectArrangement.java:41)
+	at com.seebattleserver.domain.gameobjectarrangement.defaultgameobjectarrangement.ClassicDefaultGameObjectArrangement.getDefaultCoordinates(DefaultClassicGameObjectArrangement.java:29)
+	at com.seebattleserver.domain.gameobjectarrangement.defaultgameobjectarrangement.ClassicDefaultGameObjectArrangement.arrangeGameObjectsByDefault(DefaultClassicGameObjectArrangement.java:20)
 	at com.seebattleserver.application.controller.gameobjectarrangementcontroller.GameObjectArrangementController.arrangeGameObjectsByDefault(GameObjectArrangementController.java:75)
 	at com.seebattleserver.application.controller.gameobjectarrangementcontroller.GameObjectArrangementController.handleGameObjectArrangementType(GameObjectArrangementController.java:57)
 	at com.seebattleserver.application.controller.gameobjectarrangementcontroller.GameObjectArrangementController.handle(GameObjectArrangementController.java:41)
@@ -934,9 +934,9 @@ java.lang.OutOfMemoryError: Java heap space
 	at java.base/java.lang.StringLatin1.newString(StringLatin1.java:549)
 	at java.base/java.lang.String.substring(String.java:1878)
 	at getCoordinatesCouplesInString(DefaultClassicGameObjectArrangement.java:51)
-	at com.seebattleserver.domain.gameobjectarrangement.defaultgameobjectarrangement.DefaultClassicGameObjectArrangement.getShipCoordinatesBySize(DefaultClassicGameObjectArrangement.java:41)
-	at com.seebattleserver.domain.gameobjectarrangement.defaultgameobjectarrangement.DefaultClassicGameObjectArrangement.getDefaultCoordinates(DefaultClassicGameObjectArrangement.java:29)
-	at com.seebattleserver.domain.gameobjectarrangement.defaultgameobjectarrangement.DefaultClassicGameObjectArrangement.arrangeGameObjectsByDefault(DefaultClassicGameObjectArrangement.java:20)
+	at com.seebattleserver.domain.gameobjectarrangement.defaultgameobjectarrangement.ClassicDefaultGameObjectArrangement.getShipCoordinatesBySize(DefaultClassicGameObjectArrangement.java:41)
+	at com.seebattleserver.domain.gameobjectarrangement.defaultgameobjectarrangement.ClassicDefaultGameObjectArrangement.getDefaultCoordinates(DefaultClassicGameObjectArrangement.java:29)
+	at com.seebattleserver.domain.gameobjectarrangement.defaultgameobjectarrangement.ClassicDefaultGameObjectArrangement.arrangeGameObjectsByDefault(DefaultClassicGameObjectArrangement.java:20)
 	at com.seebattleserver.application.controller.gameobjectarrangementcontroller.GameObjectArrangementController.arrangeGameObjectsByDefault(GameObjectArrangementController.java:75)
 	at com.seebattleserver.application.controller.gameobjectarrangementcontroller.GameObjectArrangementController.handleGameObjectArrangementType(GameObjectArrangementController.java:57)
 	at com.seebattleserver.application.controller.gameobjectarrangementcontroller.GameObjectArrangementController.handle(GameObjectArrangementController.java:41)
@@ -1113,9 +1113,9 @@ java.lang.OutOfMemoryError: Java heap space
 	at java.base/java.lang.StringLatin1.newString(StringLatin1.java:549)
 	at java.base/java.lang.String.substring(String.java:1878)
 	at getCoordinatesCouplesInString(DefaultClassicGameObjectArrangement.java:51)
-	at com.seebattleserver.domain.gameobjectarrangement.defaultgameobjectarrangement.DefaultClassicGameObjectArrangement.getShipCoordinatesBySize(DefaultClassicGameObjectArrangement.java:41)
-	at com.seebattleserver.domain.gameobjectarrangement.defaultgameobjectarrangement.DefaultClassicGameObjectArrangement.getDefaultCoordinates(DefaultClassicGameObjectArrangement.java:29)
-	at com.seebattleserver.domain.gameobjectarrangement.defaultgameobjectarrangement.DefaultClassicGameObjectArrangement.arrangeGameObjectsByDefault(DefaultClassicGameObjectArrangement.java:20)
+	at com.seebattleserver.domain.gameobjectarrangement.defaultgameobjectarrangement.ClassicDefaultGameObjectArrangement.getShipCoordinatesBySize(DefaultClassicGameObjectArrangement.java:41)
+	at com.seebattleserver.domain.gameobjectarrangement.defaultgameobjectarrangement.ClassicDefaultGameObjectArrangement.getDefaultCoordinates(DefaultClassicGameObjectArrangement.java:29)
+	at com.seebattleserver.domain.gameobjectarrangement.defaultgameobjectarrangement.ClassicDefaultGameObjectArrangement.arrangeGameObjectsByDefault(DefaultClassicGameObjectArrangement.java:20)
 	at com.seebattleserver.application.controller.gameobjectarrangementcontroller.GameObjectArrangementController.arrangeGameObjectsByDefault(GameObjectArrangementController.java:75)
 	at com.seebattleserver.application.controller.gameobjectarrangementcontroller.GameObjectArrangementController.handleGameObjectArrangementType(GameObjectArrangementController.java:57)
 	at com.seebattleserver.application.controller.gameobjectarrangementcontroller.GameObjectArrangementController.handle(GameObjectArrangementController.java:41)
@@ -1385,7 +1385,7 @@ java.lang.OutOfMemoryError: Java heap space
 26-07-2018 18:58:32.322 [http-nio-8080-exec-6] INFO  c.s.service.websocket.SocketHandler.afterConnectionEstablished - Подключение нового клиента
 26-07-2018 18:58:48.505 [http-nio-8080-exec-1] ERROR o.s.w.s.h.ExceptionWebSocketHandlerDecorator.tryCloseWithError - Closing session due to exception for StandardWebSocketSession[id=1, uri=/game]
 java.lang.IllegalArgumentException: По умолчанию игровые объекты установлены неверно
-	at com.seebattleserver.domain.gameobjectarrangement.defaultgameobjectarrangement.DefaultClassicGameObjectArrangement.arrangeGameObjectsByDefault(DefaultClassicGameObjectArrangement.java:26)
+	at com.seebattleserver.domain.gameobjectarrangement.defaultgameobjectarrangement.ClassicDefaultGameObjectArrangement.arrangeGameObjectsByDefault(DefaultClassicGameObjectArrangement.java:26)
 	at com.seebattleserver.application.controller.gameobjectarrangementcontroller.GameObjectArrangementController.arrangeGameObjectsByDefault(GameObjectArrangementController.java:75)
 	at com.seebattleserver.application.controller.gameobjectarrangementcontroller.GameObjectArrangementController.handleGameObjectArrangementType(GameObjectArrangementController.java:57)
 	at com.seebattleserver.application.controller.gameobjectarrangementcontroller.GameObjectArrangementController.handle(GameObjectArrangementController.java:41)
@@ -1467,7 +1467,7 @@ java.lang.IllegalArgumentException: По умолчанию игровые об�
 26-07-2018 20:06:08.339 [http-nio-8080-exec-2] INFO  c.s.service.websocket.SocketHandler.afterConnectionEstablished - Подключение нового клиента
 26-07-2018 20:06:30.170 [http-nio-8080-exec-8] ERROR o.s.w.s.h.ExceptionWebSocketHandlerDecorator.tryCloseWithError - Closing session due to exception for StandardWebSocketSession[id=0, uri=/game]
 java.lang.IllegalArgumentException: По умолчанию игровые объекты установлены неверно
-	at com.seebattleserver.domain.gameobjectarrangement.defaultgameobjectarrangement.DefaultClassicGameObjectArrangement.arrangeGameObjectsByDefault(DefaultClassicGameObjectArrangement.java:26)
+	at com.seebattleserver.domain.gameobjectarrangement.defaultgameobjectarrangement.ClassicDefaultGameObjectArrangement.arrangeGameObjectsByDefault(DefaultClassicGameObjectArrangement.java:26)
 	at com.seebattleserver.application.controller.gameobjectarrangementcontroller.GameObjectArrangementController.arrangeGameObjectsByDefault(GameObjectArrangementController.java:75)
 	at com.seebattleserver.application.controller.gameobjectarrangementcontroller.GameObjectArrangementController.handleGameObjectArrangementType(GameObjectArrangementController.java:57)
 	at com.seebattleserver.application.controller.gameobjectarrangementcontroller.GameObjectArrangementController.handle(GameObjectArrangementController.java:41)
@@ -1549,7 +1549,7 @@ java.lang.IllegalArgumentException: По умолчанию игровые об�
 26-07-2018 20:14:32.313 [http-nio-8080-exec-3] INFO  c.s.service.websocket.SocketHandler.afterConnectionEstablished - Подключение нового клиента
 26-07-2018 20:14:50.349 [http-nio-8080-exec-9] ERROR o.s.w.s.h.ExceptionWebSocketHandlerDecorator.tryCloseWithError - Closing session due to exception for StandardWebSocketSession[id=0, uri=/game]
 java.lang.IllegalArgumentException: По умолчанию игровые объекты установлены неверно
-	at com.seebattleserver.domain.gameobjectarrangement.defaultgameobjectarrangement.DefaultClassicGameObjectArrangement.arrangeGameObjectsByDefault(DefaultClassicGameObjectArrangement.java:26)
+	at com.seebattleserver.domain.gameobjectarrangement.defaultgameobjectarrangement.ClassicDefaultGameObjectArrangement.arrangeGameObjectsByDefault(DefaultClassicGameObjectArrangement.java:26)
 	at com.seebattleserver.application.controller.gameobjectarrangementcontroller.GameObjectArrangementController.arrangeGameObjectsByDefault(GameObjectArrangementController.java:75)
 	at com.seebattleserver.application.controller.gameobjectarrangementcontroller.GameObjectArrangementController.handleGameObjectArrangementType(GameObjectArrangementController.java:57)
 	at com.seebattleserver.application.controller.gameobjectarrangementcontroller.GameObjectArrangementController.handle(GameObjectArrangementController.java:41)
@@ -1657,7 +1657,7 @@ java.lang.IllegalArgumentException: По умолчанию игровые об�
 26-07-2018 20:18:37.455 [http-nio-8080-exec-3] INFO  c.s.service.websocket.SocketHandler.afterConnectionEstablished - Подключение нового клиента
 26-07-2018 20:18:56.140 [http-nio-8080-exec-8] ERROR o.s.w.s.h.ExceptionWebSocketHandlerDecorator.tryCloseWithError - Closing session due to exception for StandardWebSocketSession[id=0, uri=/game]
 java.lang.IllegalArgumentException: По умолчанию игровые объекты установлены неверно
-	at com.seebattleserver.domain.gameobjectarrangement.defaultgameobjectarrangement.DefaultClassicGameObjectArrangement.arrangeGameObjectsByDefault(DefaultClassicGameObjectArrangement.java:26)
+	at com.seebattleserver.domain.gameobjectarrangement.defaultgameobjectarrangement.ClassicDefaultGameObjectArrangement.arrangeGameObjectsByDefault(DefaultClassicGameObjectArrangement.java:26)
 	at com.seebattleserver.application.controller.gameobjectarrangementcontroller.GameObjectArrangementController.arrangeGameObjectsByDefault(GameObjectArrangementController.java:75)
 	at com.seebattleserver.application.controller.gameobjectarrangementcontroller.GameObjectArrangementController.handleGameObjectArrangementType(GameObjectArrangementController.java:57)
 	at com.seebattleserver.application.controller.gameobjectarrangementcontroller.GameObjectArrangementController.handle(GameObjectArrangementController.java:41)
@@ -1739,7 +1739,7 @@ java.lang.IllegalArgumentException: По умолчанию игровые об�
 26-07-2018 20:21:10.033 [http-nio-8080-exec-3] INFO  c.s.service.websocket.SocketHandler.afterConnectionEstablished - Подключение нового клиента
 26-07-2018 20:21:28.569 [http-nio-8080-exec-8] ERROR o.s.w.s.h.ExceptionWebSocketHandlerDecorator.tryCloseWithError - Closing session due to exception for StandardWebSocketSession[id=0, uri=/game]
 java.lang.IllegalArgumentException: По умолчанию игровые объекты установлены неверно
-	at com.seebattleserver.domain.gameobjectarrangement.defaultgameobjectarrangement.DefaultClassicGameObjectArrangement.arrangeGameObjectsByDefault(DefaultClassicGameObjectArrangement.java:26)
+	at com.seebattleserver.domain.gameobjectarrangement.defaultgameobjectarrangement.ClassicDefaultGameObjectArrangement.arrangeGameObjectsByDefault(DefaultClassicGameObjectArrangement.java:26)
 	at com.seebattleserver.application.controller.gameobjectarrangementcontroller.GameObjectArrangementController.arrangeGameObjectsByDefault(GameObjectArrangementController.java:75)
 	at com.seebattleserver.application.controller.gameobjectarrangementcontroller.GameObjectArrangementController.handleGameObjectArrangementType(GameObjectArrangementController.java:57)
 	at com.seebattleserver.application.controller.gameobjectarrangementcontroller.GameObjectArrangementController.handle(GameObjectArrangementController.java:41)
@@ -1864,7 +1864,7 @@ java.lang.IllegalArgumentException: По умолчанию игровые об�
 26-07-2018 20:41:18.857 [http-nio-8080-exec-3] INFO  c.s.service.websocket.SocketHandler.afterConnectionEstablished - Подключение нового клиента
 26-07-2018 20:41:35.926 [http-nio-8080-exec-8] ERROR o.s.w.s.h.ExceptionWebSocketHandlerDecorator.tryCloseWithError - Closing session due to exception for StandardWebSocketSession[id=0, uri=/game]
 java.lang.IllegalArgumentException: По умолчанию игровые объекты установлены неверно
-	at com.seebattleserver.domain.gameobjectarrangement.defaultgameobjectarrangement.DefaultClassicGameObjectArrangement.arrangeGameObjectsByDefault(DefaultClassicGameObjectArrangement.java:26)
+	at com.seebattleserver.domain.gameobjectarrangement.defaultgameobjectarrangement.ClassicDefaultGameObjectArrangement.arrangeGameObjectsByDefault(DefaultClassicGameObjectArrangement.java:26)
 	at com.seebattleserver.application.controller.gameobjectarrangementcontroller.GameObjectArrangementController.arrangeGameObjectsByDefault(GameObjectArrangementController.java:75)
 	at com.seebattleserver.application.controller.gameobjectarrangementcontroller.GameObjectArrangementController.handleGameObjectArrangementType(GameObjectArrangementController.java:57)
 	at com.seebattleserver.application.controller.gameobjectarrangementcontroller.GameObjectArrangementController.handle(GameObjectArrangementController.java:41)
@@ -1947,7 +1947,7 @@ java.lang.IllegalArgumentException: По умолчанию игровые об�
 26-07-2018 21:00:19.605 [http-nio-8080-exec-6] INFO  c.s.service.websocket.SocketHandler.afterConnectionEstablished - Подключение нового клиента
 26-07-2018 21:00:43.986 [http-nio-8080-exec-1] ERROR o.s.w.s.h.ExceptionWebSocketHandlerDecorator.tryCloseWithError - Closing session due to exception for StandardWebSocketSession[id=0, uri=/game]
 java.lang.IllegalArgumentException: По умолчанию игровые объекты установлены неверно
-	at com.seebattleserver.domain.gameobjectarrangement.defaultgameobjectarrangement.DefaultClassicGameObjectArrangement.arrangeGameObjectsByDefault(DefaultClassicGameObjectArrangement.java:26)
+	at com.seebattleserver.domain.gameobjectarrangement.defaultgameobjectarrangement.ClassicDefaultGameObjectArrangement.arrangeGameObjectsByDefault(DefaultClassicGameObjectArrangement.java:26)
 	at com.seebattleserver.application.controller.gameobjectarrangementcontroller.GameObjectArrangementController.arrangeGameObjectsByDefault(GameObjectArrangementController.java:75)
 	at com.seebattleserver.application.controller.gameobjectarrangementcontroller.GameObjectArrangementController.handleGameObjectArrangementType(GameObjectArrangementController.java:57)
 	at com.seebattleserver.application.controller.gameobjectarrangementcontroller.GameObjectArrangementController.handle(GameObjectArrangementController.java:41)
@@ -2029,7 +2029,7 @@ java.lang.IllegalArgumentException: По умолчанию игровые об�
 26-07-2018 21:37:23.944 [http-nio-8080-exec-3] INFO  c.s.service.websocket.SocketHandler.afterConnectionEstablished - Подключение нового клиента
 26-07-2018 21:37:46.684 [http-nio-8080-exec-8] ERROR o.s.w.s.h.ExceptionWebSocketHandlerDecorator.tryCloseWithError - Closing session due to exception for StandardWebSocketSession[id=0, uri=/game]
 java.lang.IllegalArgumentException: По умолчанию игровые объекты установлены неверно
-	at com.seebattleserver.domain.gameobjectarrangement.defaultgameobjectarrangement.DefaultClassicGameObjectArrangement.arrangeGameObjectsByDefault(DefaultClassicGameObjectArrangement.java:26)
+	at com.seebattleserver.domain.gameobjectarrangement.defaultgameobjectarrangement.ClassicDefaultGameObjectArrangement.arrangeGameObjectsByDefault(DefaultClassicGameObjectArrangement.java:26)
 	at com.seebattleserver.application.controller.gameobjectarrangementcontroller.GameObjectArrangementController.arrangeGameObjectsByDefault(GameObjectArrangementController.java:75)
 	at com.seebattleserver.application.controller.gameobjectarrangementcontroller.GameObjectArrangementController.handleGameObjectArrangementType(GameObjectArrangementController.java:57)
 	at com.seebattleserver.application.controller.gameobjectarrangementcontroller.GameObjectArrangementController.handle(GameObjectArrangementController.java:41)
@@ -2111,7 +2111,7 @@ java.lang.IllegalArgumentException: По умолчанию игровые об�
 26-07-2018 21:41:00.846 [http-nio-8080-exec-3] INFO  c.s.service.websocket.SocketHandler.afterConnectionEstablished - Подключение нового клиента
 26-07-2018 21:41:19.671 [http-nio-8080-exec-8] ERROR o.s.w.s.h.ExceptionWebSocketHandlerDecorator.tryCloseWithError - Closing session due to exception for StandardWebSocketSession[id=0, uri=/game]
 java.lang.IllegalArgumentException: По умолчанию игровые объекты установлены неверно
-	at com.seebattleserver.domain.gameobjectarrangement.defaultgameobjectarrangement.DefaultClassicGameObjectArrangement.arrangeGameObjectsByDefault(DefaultClassicGameObjectArrangement.java:26)
+	at com.seebattleserver.domain.gameobjectarrangement.defaultgameobjectarrangement.ClassicDefaultGameObjectArrangement.arrangeGameObjectsByDefault(DefaultClassicGameObjectArrangement.java:26)
 	at com.seebattleserver.application.controller.gameobjectarrangementcontroller.GameObjectArrangementController.arrangeGameObjectsByDefault(GameObjectArrangementController.java:75)
 	at com.seebattleserver.application.controller.gameobjectarrangementcontroller.GameObjectArrangementController.handleGameObjectArrangementType(GameObjectArrangementController.java:57)
 	at com.seebattleserver.application.controller.gameobjectarrangementcontroller.GameObjectArrangementController.handle(GameObjectArrangementController.java:41)
@@ -2193,7 +2193,7 @@ java.lang.IllegalArgumentException: По умолчанию игровые об�
 26-07-2018 21:47:51.809 [http-nio-8080-exec-3] INFO  c.s.service.websocket.SocketHandler.afterConnectionEstablished - Подключение нового клиента
 26-07-2018 21:48:07.499 [http-nio-8080-exec-8] ERROR o.s.w.s.h.ExceptionWebSocketHandlerDecorator.tryCloseWithError - Closing session due to exception for StandardWebSocketSession[id=0, uri=/game]
 java.lang.IllegalArgumentException: По умолчанию игровые объекты установлены неверно
-	at com.seebattleserver.domain.gameobjectarrangement.defaultgameobjectarrangement.DefaultClassicGameObjectArrangement.arrangeGameObjectsByDefault(DefaultClassicGameObjectArrangement.java:26)
+	at com.seebattleserver.domain.gameobjectarrangement.defaultgameobjectarrangement.ClassicDefaultGameObjectArrangement.arrangeGameObjectsByDefault(DefaultClassicGameObjectArrangement.java:26)
 	at com.seebattleserver.application.controller.gameobjectarrangementcontroller.GameObjectArrangementController.arrangeGameObjectsByDefault(GameObjectArrangementController.java:75)
 	at com.seebattleserver.application.controller.gameobjectarrangementcontroller.GameObjectArrangementController.handleGameObjectArrangementType(GameObjectArrangementController.java:57)
 	at com.seebattleserver.application.controller.gameobjectarrangementcontroller.GameObjectArrangementController.handle(GameObjectArrangementController.java:41)
@@ -2275,7 +2275,7 @@ java.lang.IllegalArgumentException: По умолчанию игровые об�
 26-07-2018 21:50:44.867 [http-nio-8080-exec-3] INFO  c.s.service.websocket.SocketHandler.afterConnectionEstablished - Подключение нового клиента
 26-07-2018 21:50:58.782 [http-nio-8080-exec-8] ERROR o.s.w.s.h.ExceptionWebSocketHandlerDecorator.tryCloseWithError - Closing session due to exception for StandardWebSocketSession[id=0, uri=/game]
 java.lang.IllegalArgumentException: По умолчанию игровые объекты установлены неверно
-	at com.seebattleserver.domain.gameobjectarrangement.defaultgameobjectarrangement.DefaultClassicGameObjectArrangement.arrangeGameObjectsByDefault(DefaultClassicGameObjectArrangement.java:26)
+	at com.seebattleserver.domain.gameobjectarrangement.defaultgameobjectarrangement.ClassicDefaultGameObjectArrangement.arrangeGameObjectsByDefault(DefaultClassicGameObjectArrangement.java:26)
 	at com.seebattleserver.application.controller.gameobjectarrangementcontroller.GameObjectArrangementController.arrangeGameObjectsByDefault(GameObjectArrangementController.java:75)
 	at com.seebattleserver.application.controller.gameobjectarrangementcontroller.GameObjectArrangementController.handleGameObjectArrangementType(GameObjectArrangementController.java:57)
 	at com.seebattleserver.application.controller.gameobjectarrangementcontroller.GameObjectArrangementController.handle(GameObjectArrangementController.java:41)
@@ -2357,7 +2357,7 @@ java.lang.IllegalArgumentException: По умолчанию игровые об�
 26-07-2018 21:55:52.029 [http-nio-8080-exec-3] INFO  c.s.service.websocket.SocketHandler.afterConnectionEstablished - Подключение нового клиента
 26-07-2018 21:56:11.442 [http-nio-8080-exec-8] ERROR o.s.w.s.h.ExceptionWebSocketHandlerDecorator.tryCloseWithError - Closing session due to exception for StandardWebSocketSession[id=0, uri=/game]
 java.lang.IllegalArgumentException: По умолчанию игровые объекты установлены неверно
-	at com.seebattleserver.domain.gameobjectarrangement.defaultgameobjectarrangement.DefaultClassicGameObjectArrangement.arrangeGameObjectsByDefault(DefaultClassicGameObjectArrangement.java:26)
+	at com.seebattleserver.domain.gameobjectarrangement.defaultgameobjectarrangement.ClassicDefaultGameObjectArrangement.arrangeGameObjectsByDefault(DefaultClassicGameObjectArrangement.java:26)
 	at com.seebattleserver.application.controller.gameobjectarrangementcontroller.GameObjectArrangementController.arrangeGameObjectsByDefault(GameObjectArrangementController.java:75)
 	at com.seebattleserver.application.controller.gameobjectarrangementcontroller.GameObjectArrangementController.handleGameObjectArrangementType(GameObjectArrangementController.java:57)
 	at com.seebattleserver.application.controller.gameobjectarrangementcontroller.GameObjectArrangementController.handle(GameObjectArrangementController.java:41)
@@ -2439,7 +2439,7 @@ java.lang.IllegalArgumentException: По умолчанию игровые об�
 26-07-2018 21:59:03.867 [http-nio-8080-exec-3] INFO  c.s.service.websocket.SocketHandler.afterConnectionEstablished - Подключение нового клиента
 26-07-2018 21:59:24.859 [http-nio-8080-exec-8] ERROR o.s.w.s.h.ExceptionWebSocketHandlerDecorator.tryCloseWithError - Closing session due to exception for StandardWebSocketSession[id=0, uri=/game]
 java.lang.IllegalArgumentException: По умолчанию игровые объекты установлены неверно
-	at com.seebattleserver.domain.gameobjectarrangement.defaultgameobjectarrangement.DefaultClassicGameObjectArrangement.arrangeGameObjectsByDefault(DefaultClassicGameObjectArrangement.java:26)
+	at com.seebattleserver.domain.gameobjectarrangement.defaultgameobjectarrangement.ClassicDefaultGameObjectArrangement.arrangeGameObjectsByDefault(DefaultClassicGameObjectArrangement.java:26)
 	at com.seebattleserver.application.controller.gameobjectarrangementcontroller.GameObjectArrangementController.arrangeGameObjectsByDefault(GameObjectArrangementController.java:75)
 	at com.seebattleserver.application.controller.gameobjectarrangementcontroller.GameObjectArrangementController.handleGameObjectArrangementType(GameObjectArrangementController.java:57)
 	at com.seebattleserver.application.controller.gameobjectarrangementcontroller.GameObjectArrangementController.handle(GameObjectArrangementController.java:41)
@@ -2521,7 +2521,7 @@ java.lang.IllegalArgumentException: По умолчанию игровые об�
 26-07-2018 22:01:11.203 [http-nio-8080-exec-4] INFO  c.s.service.websocket.SocketHandler.afterConnectionEstablished - Подключение нового клиента
 26-07-2018 22:01:28.444 [http-nio-8080-exec-8] ERROR o.s.w.s.h.ExceptionWebSocketHandlerDecorator.tryCloseWithError - Closing session due to exception for StandardWebSocketSession[id=0, uri=/game]
 java.lang.IllegalArgumentException: По умолчанию игровые объекты установлены неверно
-	at com.seebattleserver.domain.gameobjectarrangement.defaultgameobjectarrangement.DefaultClassicGameObjectArrangement.arrangeGameObjectsByDefault(DefaultClassicGameObjectArrangement.java:26)
+	at com.seebattleserver.domain.gameobjectarrangement.defaultgameobjectarrangement.ClassicDefaultGameObjectArrangement.arrangeGameObjectsByDefault(DefaultClassicGameObjectArrangement.java:26)
 	at com.seebattleserver.application.controller.gameobjectarrangementcontroller.GameObjectArrangementController.arrangeGameObjectsByDefault(GameObjectArrangementController.java:75)
 	at com.seebattleserver.application.controller.gameobjectarrangementcontroller.GameObjectArrangementController.handleGameObjectArrangementType(GameObjectArrangementController.java:57)
 	at com.seebattleserver.application.controller.gameobjectarrangementcontroller.GameObjectArrangementController.handle(GameObjectArrangementController.java:41)
@@ -2603,7 +2603,7 @@ java.lang.IllegalArgumentException: По умолчанию игровые об�
 26-07-2018 22:02:49.733 [http-nio-8080-exec-3] INFO  c.s.service.websocket.SocketHandler.afterConnectionEstablished - Подключение нового клиента
 26-07-2018 22:03:07.418 [http-nio-8080-exec-8] ERROR o.s.w.s.h.ExceptionWebSocketHandlerDecorator.tryCloseWithError - Closing session due to exception for StandardWebSocketSession[id=0, uri=/game]
 java.lang.IllegalArgumentException: По умолчанию игровые объекты установлены неверно
-	at com.seebattleserver.domain.gameobjectarrangement.defaultgameobjectarrangement.DefaultClassicGameObjectArrangement.arrangeGameObjectsByDefault(DefaultClassicGameObjectArrangement.java:26)
+	at com.seebattleserver.domain.gameobjectarrangement.defaultgameobjectarrangement.ClassicDefaultGameObjectArrangement.arrangeGameObjectsByDefault(DefaultClassicGameObjectArrangement.java:26)
 	at com.seebattleserver.application.controller.gameobjectarrangementcontroller.GameObjectArrangementController.arrangeGameObjectsByDefault(GameObjectArrangementController.java:75)
 	at com.seebattleserver.application.controller.gameobjectarrangementcontroller.GameObjectArrangementController.handleGameObjectArrangementType(GameObjectArrangementController.java:57)
 	at com.seebattleserver.application.controller.gameobjectarrangementcontroller.GameObjectArrangementController.handle(GameObjectArrangementController.java:41)
@@ -2685,7 +2685,7 @@ java.lang.IllegalArgumentException: По умолчанию игровые об�
 26-07-2018 22:05:13.770 [http-nio-8080-exec-3] INFO  c.s.service.websocket.SocketHandler.afterConnectionEstablished - Подключение нового клиента
 26-07-2018 22:05:31.076 [http-nio-8080-exec-8] ERROR o.s.w.s.h.ExceptionWebSocketHandlerDecorator.tryCloseWithError - Closing session due to exception for StandardWebSocketSession[id=0, uri=/game]
 java.lang.IllegalArgumentException: По умолчанию игровые объекты установлены неверно
-	at com.seebattleserver.domain.gameobjectarrangement.defaultgameobjectarrangement.DefaultClassicGameObjectArrangement.arrangeGameObjectsByDefault(DefaultClassicGameObjectArrangement.java:26)
+	at com.seebattleserver.domain.gameobjectarrangement.defaultgameobjectarrangement.ClassicDefaultGameObjectArrangement.arrangeGameObjectsByDefault(DefaultClassicGameObjectArrangement.java:26)
 	at com.seebattleserver.application.controller.gameobjectarrangementcontroller.GameObjectArrangementController.arrangeGameObjectsByDefault(GameObjectArrangementController.java:75)
 	at com.seebattleserver.application.controller.gameobjectarrangementcontroller.GameObjectArrangementController.handleGameObjectArrangementType(GameObjectArrangementController.java:57)
 	at com.seebattleserver.application.controller.gameobjectarrangementcontroller.GameObjectArrangementController.handle(GameObjectArrangementController.java:41)
@@ -2767,7 +2767,7 @@ java.lang.IllegalArgumentException: По умолчанию игровые об�
 26-07-2018 22:07:37.192 [http-nio-8080-exec-3] INFO  c.s.service.websocket.SocketHandler.afterConnectionEstablished - Подключение нового клиента
 26-07-2018 22:07:50.737 [http-nio-8080-exec-8] ERROR o.s.w.s.h.ExceptionWebSocketHandlerDecorator.tryCloseWithError - Closing session due to exception for StandardWebSocketSession[id=0, uri=/game]
 java.lang.IllegalArgumentException: По умолчанию игровые объекты установлены неверно
-	at com.seebattleserver.domain.gameobjectarrangement.defaultgameobjectarrangement.DefaultClassicGameObjectArrangement.arrangeGameObjectsByDefault(DefaultClassicGameObjectArrangement.java:26)
+	at com.seebattleserver.domain.gameobjectarrangement.defaultgameobjectarrangement.ClassicDefaultGameObjectArrangement.arrangeGameObjectsByDefault(DefaultClassicGameObjectArrangement.java:26)
 	at com.seebattleserver.application.controller.gameobjectarrangementcontroller.GameObjectArrangementController.arrangeGameObjectsByDefault(GameObjectArrangementController.java:75)
 	at com.seebattleserver.application.controller.gameobjectarrangementcontroller.GameObjectArrangementController.handleGameObjectArrangementType(GameObjectArrangementController.java:57)
 	at com.seebattleserver.application.controller.gameobjectarrangementcontroller.GameObjectArrangementController.handle(GameObjectArrangementController.java:41)
