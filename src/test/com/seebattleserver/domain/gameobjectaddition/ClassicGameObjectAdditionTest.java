@@ -12,16 +12,13 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 public class ClassicGameObjectAdditionTest {
-    private static GameObjectAddition gameObjectAddition;
     private static PlayingField playingField;
     private static Rule rule;
 
     @BeforeClass
     public static void setUp() {
-        gameObjectAddition = new ClassicGameObjectAddition();
-        playingField = new ClassicPlayingField();
-        gameObjectAddition.addGameObjects(playingField);
-        rule = new ClassicRule();
+        playingField = new ClassicPlayingField();// метод addGameObjects класса ClassicGameObjectAddition вызывается в
+        rule = new ClassicRule();                // конструкторе класса ClassicPlayingField
     }
 
     @Test

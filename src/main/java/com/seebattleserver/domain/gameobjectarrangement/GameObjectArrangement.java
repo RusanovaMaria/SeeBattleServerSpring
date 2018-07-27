@@ -49,7 +49,7 @@ public class GameObjectArrangement {
         }
     }
 
-    private void arrangeGameObject(GameObject gameObject, List<CoordinatesCouple> coordinatesForSingleGameObject) {
+    private void arrangeGameObject(GameObject gameObject, List<CoordinatesCouple> coordinatesForSingleGameObject) throws Exception {
         if (gameObjectInstallationController.gameObjectCanBeInstalled(coordinatesForSingleGameObject, playingField)) {
             List<GameObjectPart> gameObjectParts = gameObject.getGameObjectParts();
             int coordinatesCoupleIndex = 0;

@@ -11,12 +11,11 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 public class ClassicDefaultGameObjectArrangementTest {
-    private static DefaultGameObjectArrangement defaultGameObjectArrangement;
     private static PlayingField playingField;
 
     @BeforeClass
     public static void setUp() {
-       defaultGameObjectArrangement = new ClassicDefaultGameObjectArrangement();
+       DefaultGameObjectArrangement defaultGameObjectArrangement = new ClassicDefaultGameObjectArrangement();
        playingField = new ClassicPlayingField();
        defaultGameObjectArrangement.arrangeGameObjectsByDefault(playingField);
     }
