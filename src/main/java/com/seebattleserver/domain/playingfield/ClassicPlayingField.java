@@ -48,7 +48,7 @@ public class ClassicPlayingField implements PlayingField {
     }
 
     @Override
-    public boolean isAllGameObjectsDied() {
+    public boolean allGameObjectsDied() {
         for (List<GameObject> gameObjectsBySize : gameObjects.values()) {
             for (GameObject gameObject : gameObjectsBySize) {
                 if (gameObjectIsNotKilled(gameObject)) {
@@ -84,7 +84,7 @@ public class ClassicPlayingField implements PlayingField {
     }
 
     @Override
-    public boolean isAllGameObjectsInstalled() {
+    public boolean allGameObjectsInstalled() {
         for (List<GameObject> gameObjectsBySize : gameObjects.values()) {
             for (GameObject gameObject : gameObjectsBySize) {
                 if (!gameObject.wasInstalled()) {

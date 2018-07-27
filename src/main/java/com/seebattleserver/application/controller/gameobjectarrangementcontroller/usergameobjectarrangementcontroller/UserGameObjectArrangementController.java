@@ -65,7 +65,7 @@ public class UserGameObjectArrangementController implements Controller {
     private void selectActionAccordingToPlayingFieldState(PlayingField playingField) {
         if (isNull(playingField)) {
             notifyAboutGameObjectArrangementException();
-        } else if (playingField.isAllGameObjectsInstalled()) {
+        } else if (playingField.allGameObjectsInstalled()) {
             notifyAboutSuccessfulGameObjectArrangement();
             startGameIfPossible();
         } else {

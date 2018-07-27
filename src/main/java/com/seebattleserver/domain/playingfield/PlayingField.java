@@ -10,11 +10,11 @@ public interface PlayingField {
 
     Cage identifyCage(int x, char y);
 
-    boolean isAllGameObjectsDied();
+    boolean allGameObjectsDied();
 
     List<GameObject> getGameObjectsBySize(int size);
 
-    boolean isAllGameObjectsInstalled();
+    boolean allGameObjectsInstalled();
 
     int getWidth();
 

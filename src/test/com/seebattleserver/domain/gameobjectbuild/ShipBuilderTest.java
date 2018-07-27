@@ -9,7 +9,7 @@ import java.util.List;
 
 import static org.junit.Assert.*;
 
-public class ShipBuildTest {
+public class ShipBuilderTest {
 
     @Test
     public void build_whenGameObjectSizeIsValid_returnGameObjectPArtsIsNotNull() {

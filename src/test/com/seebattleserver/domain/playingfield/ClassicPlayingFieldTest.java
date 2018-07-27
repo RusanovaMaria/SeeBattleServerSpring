@@ -3,6 +3,8 @@ package com.seebattleserver.domain.playingfield;
 import com.seebattleserver.domain.cage.Cage;
 import com.seebattleserver.domain.gameobject.GameObject;
 import com.seebattleserver.domain.gameobject.Status;
+import com.seebattleserver.domain.gameobjectarrangement.defaultgameobjectarrangement.ClassicDefaultGameObjectArrangement;
+import com.seebattleserver.domain.gameobjectarrangement.defaultgameobjectarrangement.DefaultGameObjectArrangement;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -32,14 +34,14 @@ public class ClassicPlayingFieldTest {
 
     @Test
     public void isAllObjectsDied_whenNotAllObjectsDied_returnFalse() {
-        boolean result = playingField.isAllGameObjectsDied();
+        boolean result = playingField.allGameObjectsDied();
         assertFalse(result);
     }
 
     @Test
     public void isAllObjectsDied_whenAllObjectsDied_returnTrue() {
         killAllObjects();
-        boolean result = playingField.isAllGameObjectsDied();
+        boolean result = playingField.allGameObjectsDied();
         assertTrue(result);
     }
 
@@ -58,5 +60,34 @@ public class ClassicPlayingFieldTest {
         List<GameObject> gameObjects = playingField.getGameObjectsBySize(3);
         int result = gameObjects.size();
         assertEquals(2, result);
+    }
+
+    @Test
+    public void allGameObjectsInstalled_whenGameObjectsAreNotInstalled_returnFalse() {
+        assertFalse(playingField.allGameObjectsInstalled());
+    }
+
+    @Test
+    public void allGameObjectsInstalled_whenNotAllGameObjectsAreInstalled_returnFalse() {
+        installSomeGameObjects();
+        assertFalse(playingField.allGameObjectsInstalled());
+    }
+
+    private void installSomeGameObjects() {
+        List<GameObject> gameObjectsOfCurrentSize = playingField.getGameObjectsBySize(1);
+        for(GameObject gameObject : gameObjectsOfCurrentSize) {
+            gameObject.install();
+        }
+    }
+
+    @Test
+    public void allGameObjectsInstalled_whenAllGameObjectsAreInstalled_returnTrue() {
+        installAllGameObjects();
+        assertTrue(playingField.allGameObjectsInstalled());
+    }
+
+    private void installAllGameObjects() {
+        DefaultGameObjectArrangement defaultGameObjectArrangement = new ClassicDefaultGameObjectArrangement();
+        defaultGameObjectArrangement.arrangeGameObjectsByDefault(playingField);
     }
 }
