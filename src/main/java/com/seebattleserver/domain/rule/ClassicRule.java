@@ -68,7 +68,7 @@ public class ClassicRule implements Rule {
         return false;
     }
 
-    public boolean isValidIntCoordinateValue(int x) {
+    public boolean isValidIntCoordinate(int x) {
         if((x >= MIN_INT_COORDINATE_VALUE) && (x <= MAX_INT_COORDINATE_VALUE)) {
             return true;
         }

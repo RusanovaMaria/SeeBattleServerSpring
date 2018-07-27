@@ -14,7 +14,7 @@ public interface Rule {
 
     boolean isValidCharCoordinate(char y);
 
-    boolean isValidIntCoordinateValue(int x);
+    boolean isValidIntCoordinate(int x);
 
     char getNextCharCoordinate(char y);
 

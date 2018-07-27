@@ -89,7 +89,7 @@ public class JsonGameObjectCoordinatesHandler {
     }
 
     private boolean isValidCoordinatesCouple(int x, char y) {
-        if ((rule.isValidIntCoordinateValue(x)) && (rule.isValidCharCoordinate(y))) {
+        if ((rule.isValidIntCoordinate(x)) && (rule.isValidCharCoordinate(y))) {
             return true;
         }
         return false;

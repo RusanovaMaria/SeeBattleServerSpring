@@ -80,10 +80,10 @@ public class GameObjectArrangement {
 
     private void setCagesAroundUseCageProhibitedUseHorizontally(Rule rule, int x, char y) {
         List<Integer> xCoordinates = new ArrayList<>();
-        if (rule.isValidIntCoordinateValue(x + 1)) {
+        if (rule.isValidIntCoordinate(x + 1)) {
             xCoordinates.add(x + 1);
         }
-        if (rule.isValidIntCoordinateValue(x - 1)) {
+        if (rule.isValidIntCoordinate(x - 1)) {
             xCoordinates.add(x - 1);
         }
         for (int i = 0; i < xCoordinates.size(); i++) {

@@ -41,4 +41,86 @@ public class ClassicRuleTest {
     public void countQuantityOfObjects_whenSizeIsNotValid_returnException() {
         int result = rule.countQuantityOfObjects(5);
     }
+
+    @Test
+    public void isValidGameObjectSize_whenGameObjectSizeIsNotValid_returnFalse() {
+        int notValidGameObjectSize = 7;
+        boolean result = rule.isValidGameObjectSize(notValidGameObjectSize);
+        assertFalse(result);
+    }
+
+    @Test
+    public void isValidGameObjectSize_whenGameObjectSizeIsValid_returnTrue() {
+        int validGameObjectSize = 3;
+        boolean result = rule.isValidGameObjectSize(validGameObjectSize);
+        assertTrue(result);
+    }
+
+    @Test
+    public void isValidCharCoordinate_whenCharCoordinateIsNotValid_returnFalse() {
+        char notValidCharCoordinate = 'z';
+        boolean result = rule.isValidCharCoordinate(notValidCharCoordinate);
+        assertFalse(result);
+    }
+
+    @Test
+    public void isValidCharCoordinate_whenCharCoordinateIsValid_returnTrue() {
+        char validCharCoordinate = 'a';
+        boolean result = rule.isValidCharCoordinate(validCharCoordinate);
+        assertTrue(result);
+    }
+
+    @Test
+    public void isValidIntCoordinate_whenIntCoordinateIsNotValid_returnFalse() {
+        int notValidIntCoordinate = 30;
+        boolean result = rule.isValidIntCoordinate(notValidIntCoordinate);
+        assertFalse(result);
+    }
+
+    @Test
+    public void isValidIntCoordinate_whenIntCoordinateIsValid_returnTrue() {
+        int validIntCoordinate = 5;
+        boolean result = rule.isValidIntCoordinate(validIntCoordinate);
+        assertTrue(result);
+    }
+
+    @Test
+    public void getNextCharCoordinate_whenCharCoordinateAreValidAndNotLastValid_returnNextCharCoordinate() {
+        char charCoordinate = 'a';
+        char nextCharCoordinate = 'b';
+        char result = rule.getNextCharCoordinate(charCoordinate);
+        assertEquals(nextCharCoordinate, result);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void getNextCharCoordinate_whenCharCoordinateAreValidButLastValid_returnException() {
+        char lastValidCharCoordinate = 'j';
+        char result = rule.getNextCharCoordinate(lastValidCharCoordinate);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void getNextCharCoordinate_whenCharCoordinateAreNotValid_returnException() {
+        char notValidCharCoordinate = 'z';
+        char result = rule.getNextCharCoordinate(notValidCharCoordinate);
+    }
+
+    @Test
+    public void getPreviousCharCoordinate_whenCharCoordinateIsValidAndNotFirstValid_returnPreviousCHarCoordinate() {
+        char charCoordinate = 'b';
+        char previousCharCoordinate = 'a';
+        char result = rule.getPreviousCharCoordinate(charCoordinate);
+        assertEquals(previousCharCoordinate, result);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void getPreviousCharCoordinate_whenCharCoordinateIsValidButFirstValid_returnException() {
+        char firstValidCharCoordinate = 'a';
+        char result = rule.getPreviousCharCoordinate(firstValidCharCoordinate);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void getPreviousCharCoordinate_whenCharCoordinateIsNotValid_returnException() {
+        char notValidCharCoordinate = 'z';
+        char result = rule.getPreviousCharCoordinate(notValidCharCoordinate);
+    }
 }
