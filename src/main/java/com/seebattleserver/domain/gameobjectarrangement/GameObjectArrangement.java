@@ -13,6 +13,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import static com.seebattleserver.domain.cage.State.FULL;
 import static com.seebattleserver.domain.cage.State.PROHIBITED_USE;
 
 public class GameObjectArrangement {
@@ -86,8 +87,10 @@ public class GameObjectArrangement {
             xCoordinates.add(x - 1);
         }
         for (int i = 0; i < xCoordinates.size(); i++) {
-            Cage prohibitedUseCage = playingField.identifyCage(xCoordinates.get(i), y);
-            prohibitedUseCage.setState(PROHIBITED_USE);
+            Cage cage = playingField.identifyCage(xCoordinates.get(i), y);
+            if (cage.getState() != FULL) {
+                cage.setState(PROHIBITED_USE);
+            }
         }
     }
 
@@ -100,8 +103,10 @@ public class GameObjectArrangement {
 
         }
         for (int i = 0; i < yCoordinates.size(); i++) {
-            Cage prohibitedUseCage = playingField.identifyCage(x, yCoordinates.get(i));
-            prohibitedUseCage.setState(PROHIBITED_USE);
+            Cage cage = playingField.identifyCage(x, yCoordinates.get(i));
+            if (cage.getState() != FULL) {
+                cage.setState(PROHIBITED_USE);
+            }
         }
     }
 

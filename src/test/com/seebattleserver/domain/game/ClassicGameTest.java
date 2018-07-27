@@ -2,6 +2,8 @@ package com.seebattleserver.domain.game;
 
 import com.seebattleserver.domain.gameobject.GameObject;
 import com.seebattleserver.domain.gameobject.Status;
+import com.seebattleserver.domain.gameobjectarrangement.defaultgameobjectarrangement.DefaultClassicGameObjectArrangement;
+import com.seebattleserver.domain.gameobjectarrangement.defaultgameobjectarrangement.DefaultGameObjectArrangement;
 import com.seebattleserver.domain.player.Player;
 import com.seebattleserver.domain.playingfield.ClassicPlayingField;
 import com.seebattleserver.domain.playingfield.PlayingField;
@@ -22,11 +24,13 @@ public class ClassicGameTest {
     @Before
     public void setUp() {
         initPlayers();
-        //DefaultClassicGameObjectArrangement gameObjectArrangement = new DefaultClassicGameObjectArrangement();
-        //PlayingField playingField = gameObjectArrangement.arrangeGameObjects();
-        PlayingField playingField = new ClassicPlayingField();
-        firstPlayer.setPlayingField(playingField);
-        secondPlayer.setPlayingField(playingField);
+        PlayingField firstPlayingField = new ClassicPlayingField();
+        PlayingField secondPlayingField = new ClassicPlayingField();
+        DefaultGameObjectArrangement gameObjectArrangement = new DefaultClassicGameObjectArrangement();
+        gameObjectArrangement.arrangeGameObjectsByDefault(firstPlayingField);
+        gameObjectArrangement.arrangeGameObjectsByDefault(secondPlayingField);
+        firstPlayer.setPlayingField(firstPlayingField);
+        secondPlayer.setPlayingField(secondPlayingField);
         game = new ClassicGame(firstPlayer, secondPlayer);
     }
 
@@ -59,7 +63,7 @@ public class ClassicGameTest {
     }
     @Test
     public void testFire_whenGetHit_returnGotResult() {
-        Result result = game.fire(firstPlayer, 5, 'a');
+        Result result = game.fire(firstPlayer, 5, 'h');
         assertEquals(Result.GOT, result);
     }
     @Test

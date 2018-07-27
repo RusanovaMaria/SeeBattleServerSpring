@@ -19,7 +19,7 @@ public class ClassicGameObjectAddition implements GameObjectAddition {
     }
 
     @Override
-    public Map<Integer, List<GameObject>> add(PlayingField playingField) {
+    public Map<Integer, List<GameObject>> addGameObjects(PlayingField playingField) {
         Map<Integer, List<GameObject>> gameObjects = new HashMap<>();
         for (int i = 0; i < rule.getMaxGameObjectSize(); i++) {
             int size = rule.getAllowedGameObjectSizes()[i];

@@ -62,7 +62,7 @@ public class SocketHandlerTests {
         String json = gson.toJson(jsonmessage);
         WebSocketSession session = mock(WebSocketSession.class);
         socketHandler.handleTextMessage(session, new TextMessage(json));
-        verify(userRegistry).add(any(User.class));
+        verify(userRegistry).addGameObjects(any(User.class));
         verify(sessionRegistry).put(eq(session), any(User.class));
     } */
 }

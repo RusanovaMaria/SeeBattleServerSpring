@@ -8,5 +8,5 @@ import java.util.Map;
 
 public interface GameObjectAddition {
 
-    Map<Integer, List<GameObject>> add(PlayingField playingField);
+    Map<Integer, List<GameObject>> addGameObjects(PlayingField playingField);
 }

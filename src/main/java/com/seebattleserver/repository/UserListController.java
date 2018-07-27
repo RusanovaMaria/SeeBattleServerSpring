@@ -15,7 +15,7 @@ public class UserListController {
     @Autowired
     private UserEntityRepository userEntityRepository;
 
-    @GetMapping(path = "/add")
+    @GetMapping(path = "/addGameObjects")
     public @ResponseBody String addNewUserEntity(@RequestParam String name, @RequestParam UserStatus status) {
 
         UserEntity user = new UserEntity();

@@ -22,7 +22,7 @@ public class ClassicPlayingField implements PlayingField {
     public ClassicPlayingField() {
         rule = new ClassicRule();
         gameObjectAddition = new ClassicGameObjectAddition();
-        gameObjects = gameObjectAddition.add(this);
+        gameObjects = gameObjectAddition.addGameObjects(this);
         createEmptyField();
     }
 
@@ -76,7 +76,11 @@ public class ClassicPlayingField implements PlayingField {
 
     @Override
     public List<GameObject> getGameObjectsBySize(int size) {
-        return gameObjects.get(size);
+        if (gameObjects.containsKey(size)) {
+            return gameObjects.get(size);
+        } else {
+            throw new IllegalArgumentException("Игровых объектов заданного размера на данном игровом поле не существует");
+        }
     }
 
     @Override
