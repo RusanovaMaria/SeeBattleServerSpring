@@ -62,26 +62,11 @@ public class SocketHandlerTest {
     }
 
     @Test
-    public void afterConnectionEstablished_whenWebSocketSessionIsNotNull_verifySessionRegistryPutUserAndSessionAndSessionSendMessage() {
+    public void afterConnectionEstablished_whenWebSocketSessionIsNotNull_verifySessionRegistryPutUserAndSessionAndSessionSendMessage()
+            throws Exception {
         WebSocketSession session = mock(WebSocketSession.class);
-        try {
-            socketHandler.afterConnectionEstablished(session);
-            verify(sessionRegistry).put(session, any(User.class));
-            verify(session).sendMessage(any(TextMessage.class));
-        } catch (Exception ex) {
-
-        }
-    }
-
-    @Test
-    public void afterConnectionEstablished_whenWebSocketSessionIsNull_verifyThrowException() {
-        WebSocketSession session = null;
-        try {
-            socketHandler.afterConnectionEstablished(session);
-            verify(sessionRegistry).put(session, any(User.class));
-            verify(session).sendMessage(any(TextMessage.class));
-        }catch (Exception ex) {
-
-        }
+        socketHandler.afterConnectionEstablished(session);
+        verify(sessionRegistry).put(eq(session), any(User.class));
+        verify(session).sendMessage(any(TextMessage.class));
     }
 }
