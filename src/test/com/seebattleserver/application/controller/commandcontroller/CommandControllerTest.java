@@ -1,25 +1,22 @@
 package com.seebattleserver.application.controller.commandcontroller;
 
 import com.google.gson.Gson;
-import com.seebattleserver.application.controller.Controller;
 import com.seebattleserver.application.json.jsonmessage.JsonMessage;
 import com.seebattleserver.application.user.User;
 import com.seebattleserver.application.user.UserRegistry;
-import com.seebattleserver.service.sender.UserSender;
 import com.seebattleserver.service.sender.WebSocketUserSender;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mock;
 import org.springframework.web.socket.TextMessage;
 
-import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
 import static org.mockito.MockitoAnnotations.initMocks;
 
 public class CommandControllerTest {
     private CommandController controller;
     private User user;
-    private CommandList commandList;
+    private CommandList spyCommandList;
     private Gson gson;
 
     @Mock
@@ -32,10 +29,10 @@ public class CommandControllerTest {
     public void setUp() {
         initMocks(this);
         user = mock(User.class);
-        CommandList list = new CommandList(userRegistry);
-        commandList = spy(list);
+        CommandList commandList = new CommandList(userRegistry);
+        spyCommandList = spy(commandList);
         gson = new Gson();
-        controller = new CommandController(user, commandList, userSender);
+        controller = new CommandController(user, spyCommandList, userSender);
     }
 
     @Test
@@ -44,7 +41,7 @@ public class CommandControllerTest {
         String jsonString = gson.toJson(jsonMessage);
         TextMessage textMessage = new TextMessage(jsonString);
         controller.handle(textMessage);
-        verify(commandList).getCommand(jsonMessage.getContent());
+        verify(spyCommandList).getCommand(jsonMessage.getContent());
         verify(userSender).sendMessage(eq(user), any(JsonMessage.class));
     }
 
@@ -54,7 +51,7 @@ public class CommandControllerTest {
         String jsonString = gson.toJson(jsonMessage);
         TextMessage textMessage = new TextMessage(jsonString);
         controller.handle(textMessage);
-        verify(commandList).getDefaultCommand();
+        verify(spyCommandList).getDefaultCommand();
         verify(userSender).sendMessage(eq(user), any(JsonMessage.class));
     }
 
@@ -64,7 +61,7 @@ public class CommandControllerTest {
         String jsonString = gson.toJson(jsonMessage);
         TextMessage textMessage = new TextMessage(jsonString);
         controller.handle(textMessage);
-        verify(commandList).getDefaultCommand();
+        verify(spyCommandList).getDefaultCommand();
         verify(userSender).sendMessage(eq(user), any(JsonMessage.class));
     }
 }
