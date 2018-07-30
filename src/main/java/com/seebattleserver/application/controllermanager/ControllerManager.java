@@ -8,8 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.socket.TextMessage;
 
-import static com.seebattleserver.application.user.UserStatus.*;
-
 @Component
 public class ControllerManager {
     private ControllerFactory controllerFactory;
@@ -36,7 +34,7 @@ public class ControllerManager {
             case INVITING:
                 return controllerFactory.createInvitationController(user);
             case READY_FOR_GAME:
-                return controllerFactory.createGameStartController(user);
+                return controllerFactory.createGameObjectArrangementController(user);
             case SET_UP_GAME_OBJECTS:
                 return controllerFactory.createUserGameObjectArrangementController(user);
             case IN_GAME:

@@ -53,7 +53,7 @@ public class ControllerFactory {
         return new InvitationResponseController(user, gameRegistry, userSender);
     }
 
-    public GameObjectArrangementController createGameStartController(User user) {
+    public GameObjectArrangementController createGameObjectArrangementController(User user) {
         return new GameObjectArrangementController(user, userSender, gameRegistry);
     }
 
