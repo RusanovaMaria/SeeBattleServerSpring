@@ -2,12 +2,10 @@ package com.seebattleserver.repository;
 
 import com.seebattleserver.application.user.UserStatus;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
+@Table(name="user")
 public class UserEntity {
 
     @Id
@@ -16,11 +14,17 @@ public class UserEntity {
 
     private String name;
 
-    private int victory_col;
+    @OneToOne
+    @JoinColumn(name="id")
+    private int userOpponentId;
 
-    private int loss_col;
+    @Column(name="victory_num")
+    private int numberOgVictories;
 
-    private UserStatus status;
+    @Column(name="loss_num")
+    private int numberOfLosses;
+
+    private String status;
 
     public int getId() {
         return id;
@@ -38,27 +42,36 @@ public class UserEntity {
         this.name = name;
     }
 
-    public int getVictory_col() {
-        return victory_col;
+    public int getNumberOgVictories() {
+        return numberOgVictories;
     }
 
-    public void setVictory_col(int victory_col) {
-        this.victory_col = victory_col;
+    public void setNumberOgVictories(int numberOgVictories) {
+        this.numberOgVictories = numberOgVictories;
     }
 
-    public int getLoss_col() {
-        return loss_col;
+    public int getNumberOfLosses() {
+        return numberOfLosses;
     }
 
-    public void setLoss_col(int loss_col) {
-        this.loss_col = loss_col;
+    public void setNumberOfLosses(int numberOfLosses) {
+        this.numberOfLosses = numberOfLosses;
     }
 
-    public UserStatus getStatus() {
+    public String getStatus() {
         return status;
     }
 
-    public void setStatus(UserStatus status) {
+    public void setStatus(String status) {
         this.status = status;
     }
+
+    public int getUserOpponent() {
+        return userOpponentId;
+    }
+
+    public void setUserOpponent(int userOpponentId) {
+        this.userOpponentId = userOpponentId;
+    }
+
 }
