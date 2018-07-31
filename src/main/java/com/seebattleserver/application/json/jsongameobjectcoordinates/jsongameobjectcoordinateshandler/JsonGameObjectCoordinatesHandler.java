@@ -30,8 +30,7 @@ public class JsonGameObjectCoordinatesHandler {
     }
 
     private boolean isValidCoordinates(Map<Integer, List<List<CoordinatesCouple>>> coordinates) {
-        if ((isValidGameObjectsSizes(coordinates)) && (isValidGameObjectsCoordinatesQuantity(coordinates))
-                && (isValidCoordinatesForEachGameObject(coordinates))) {
+        if ((isValidGameObjectsSizes(coordinates)) && (isValidCoordinatesForEachGameObject(coordinates))) {
             return true;
         }
         return false;
@@ -44,15 +43,6 @@ public class JsonGameObjectCoordinatesHandler {
             }
         }
         return true;
-    }
-
-    private boolean isValidGameObjectsCoordinatesQuantity(Map<Integer, List<List<CoordinatesCouple>>> coordinates) {
-        for (int gameObjectSize : coordinates.keySet()) {
-            if (rule.countQuantityOfObjects(gameObjectSize) == coordinates.get(gameObjectSize).size()) {
-                return true;
-            }
-        }
-        return false;
     }
 
     private boolean isValidCoordinatesForEachGameObject(Map<Integer, List<List<CoordinatesCouple>>> coordinates) {

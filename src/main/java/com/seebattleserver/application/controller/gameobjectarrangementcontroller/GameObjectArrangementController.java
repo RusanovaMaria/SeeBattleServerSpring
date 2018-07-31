@@ -41,7 +41,7 @@ public class GameObjectArrangementController implements Controller {
             handleGameObjectArrangementType(gameObjectArrangementType);
         } else {
             notifyAboutNotCorrectArrangementType();
-            LOGGER.warn("Пользователь" + user.getUsername() + "ввел неверный тип расположения игровых объектов.");
+            LOGGER.warn("Пользователь " + user.getUsername() + " ввел неверный тип расположения игровых объектов.");
         }
     }
 
