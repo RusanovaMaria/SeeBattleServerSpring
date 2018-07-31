@@ -52,7 +52,7 @@ public class InvitationResponseController implements Controller {
     private InvitationHandler createInvitation(String answer) {
         switch (answer) {
             case YES:
-                return new AcceptInvitationHandler(user, gameRegistry, userSender);
+                return new AcceptInvitationHandler(user, userSender);
             case NO:
                 return new NotAcceptInvitationHandler(user, userSender);
             default:
