@@ -18,8 +18,8 @@ import org.mockito.Mock;
 import org.springframework.web.socket.TextMessage;
 
 import static org.junit.Assert.*;
-import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Matchers.any;
+import static org.mockito.Matchers.eq;
 import static org.mockito.Mockito.spy;
 import static org.mockito.Mockito.verify;
 import static org.mockito.MockitoAnnotations.initMocks;
@@ -68,7 +68,7 @@ public class GameObjectArrangementControllerTest {
         TextMessage textMessage = new TextMessage(jsonString);
         gameObjectArrangementController.handle(textMessage);
         assertEquals(UserStatus.SET_UP_GAME_OBJECTS, spyUser.getUserStatus());
-        verify(userSender).sendMessage(Matchers.eq(spyUser), any(JsonMessage.class));
+        verify(userSender).sendMessage(eq(spyUser), any(JsonMessage.class));
     }
 
     @Test
@@ -80,6 +80,6 @@ public class GameObjectArrangementControllerTest {
         assertNotEquals(UserStatus.READY_FOR_GAME, spyUser.getUserStatus());
         assertNotEquals(UserStatus.IN_GAME_MOVE, spyUser.getUserStatus());
         assertNotEquals(UserStatus.IN_GAME, spyUser.getUserStatus());
-        verify(userSender).sendMessage(Matchers.eq(spyUser), any(JsonMessage.class));
+        verify(userSender).sendMessage(eq(spyUser), any(JsonMessage.class));
     }
 }
