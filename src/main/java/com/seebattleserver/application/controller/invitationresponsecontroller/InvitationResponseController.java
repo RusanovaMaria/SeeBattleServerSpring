@@ -20,13 +20,10 @@ public class InvitationResponseController implements Controller {
     private static final String YES = "yes";
     private static final String NO = "no";
     private User user;
-    private GameRegistry gameRegistry;
     private UserSender userSender;
 
-    public InvitationResponseController(User user, GameRegistry gameRegistry,
-                                        UserSender userSender) {
+    public InvitationResponseController(User user, UserSender userSender) {
         this.user = user;
-        this.gameRegistry = gameRegistry;
         this.userSender = userSender;
     }
 
