@@ -5,6 +5,6 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface UserEntityRepository extends JpaRepository<UserEntity, Long> {
-       // UserEntity getUserEntityByName(String name);
+public interface UserEntityRepository extends CrudRepository<UserEntity, Long> {
+
 }

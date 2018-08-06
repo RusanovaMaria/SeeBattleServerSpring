@@ -1,11 +1,9 @@
 package com.seebattleserver.repository;
 
-import com.seebattleserver.application.user.UserStatus;
-
 import javax.persistence.*;
 
 @Entity
-@Table(name="user")
+//@Table(name="user_entity")
 public class UserEntity {
 
     @Id
@@ -14,12 +12,12 @@ public class UserEntity {
 
     private String name;
 
-    @OneToOne
-    @JoinColumn(name="id")
+    //@OneToOne
+    //@JoinColumn(name="id")
     private int userOpponentId;
 
     @Column(name="victory_num")
-    private int numberOgVictories;
+    private int numberOfVictories;
 
     @Column(name="loss_num")
     private int numberOfLosses;
@@ -42,12 +40,12 @@ public class UserEntity {
         this.name = name;
     }
 
-    public int getNumberOgVictories() {
-        return numberOgVictories;
+    public int getNumberOfVictories() {
+        return numberOfVictories;
     }
 
-    public void setNumberOgVictories(int numberOgVictories) {
-        this.numberOgVictories = numberOgVictories;
+    public void setNumberOfVictories(int numberOfVictories) {
+        this.numberOfVictories = numberOfVictories;
     }
 
     public int getNumberOfLosses() {
