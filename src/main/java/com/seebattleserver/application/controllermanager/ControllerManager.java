@@ -34,7 +34,7 @@ public class ControllerManager {
             case INVITING:
                 return controllerFactory.createInvitationController(user);
             case READY_FOR_GAME:
-                return controllerFactory.createGameStartController(user);
+                return controllerFactory.createGameObjectArrangementController(user);
             case SET_UP_GAME_OBJECTS:
                 return controllerFactory.createUserGameObjectArrangementController(user);
             case IN_GAME:

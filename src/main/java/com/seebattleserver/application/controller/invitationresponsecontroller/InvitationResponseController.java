@@ -20,13 +20,10 @@ public class InvitationResponseController implements Controller {
     private static final String YES = "yes";
     private static final String NO = "no";
     private User user;
-    private GameRegistry gameRegistry;
     private UserSender userSender;
 
-    public InvitationResponseController(User user, GameRegistry gameRegistry,
-                                        UserSender userSender) {
+    public InvitationResponseController(User user, UserSender userSender) {
         this.user = user;
-        this.gameRegistry = gameRegistry;
         this.userSender = userSender;
     }
 
@@ -52,7 +49,7 @@ public class InvitationResponseController implements Controller {
     private InvitationHandler createInvitation(String answer) {
         switch (answer) {
             case YES:
-                return new AcceptInvitationHandler(user, gameRegistry, userSender);
+                return new AcceptInvitationHandler(user, userSender);
             case NO:
                 return new NotAcceptInvitationHandler(user, userSender);
             default:

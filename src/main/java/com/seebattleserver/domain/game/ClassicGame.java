@@ -18,7 +18,7 @@ public class ClassicGame implements Game {
     private Player secondPlayer;
     private PlayingField firstPlayingField;
     private PlayingField secondPlayingField;
-    private Map<Player, PlayingField> playerPlayingFiels;
+    private Map<Player, PlayingField> playerPlayingFields;
 
     public ClassicGame(Player firstPlayer, Player secondPlayer) {
         this.firstPlayer = firstPlayer;
@@ -29,9 +29,9 @@ public class ClassicGame implements Game {
     }
 
     private void initPlayingFields() {
-        playerPlayingFiels = new HashMap<>();
-        playerPlayingFiels.put(secondPlayer, firstPlayingField);
-        playerPlayingFiels.put(firstPlayer, secondPlayingField);
+        playerPlayingFields = new HashMap<>();
+        playerPlayingFields.put(secondPlayer, firstPlayingField);
+        playerPlayingFields.put(firstPlayer, secondPlayingField);
     }
 
     @Override
@@ -44,7 +44,7 @@ public class ClassicGame implements Game {
 
     @Override
     public Result fire(Player player, int x, char y) {
-        PlayingField playingField = playerPlayingFiels.get(player);
+        PlayingField playingField = playerPlayingFields.get(player);
         Cage affectedCage = playingField.identifyCage(x, y);
         shoot(affectedCage);
         Result result = getResult(affectedCage);

@@ -1,6 +1,5 @@
 package com.seebattleserver.application.controller.invitationresponsecontroller.invitationhandler;
 
-import com.seebattleserver.application.gameregistry.GameRegistry;
 import com.seebattleserver.application.json.jsonmessage.JsonMessage;
 import com.seebattleserver.application.user.User;
 import com.seebattleserver.application.user.UserStatus;
@@ -9,14 +8,11 @@ import com.seebattleserver.service.sender.UserSender;
 
 public class AcceptInvitationHandler implements InvitationHandler {
     private User user;
-    private GameRegistry gameRegistry;
     private UserSender userSender;
     private User userOpponent;
 
-    public AcceptInvitationHandler(User user, GameRegistry gameRegistry,
-                                   UserSender userSender) {
+    public AcceptInvitationHandler(User user, UserSender userSender) {
         this.user = user;
-        this.gameRegistry = gameRegistry;
         this.userSender = userSender;
         userOpponent = user.getUserOpponent();
     }

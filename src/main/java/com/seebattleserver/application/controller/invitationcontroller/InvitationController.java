@@ -36,7 +36,7 @@ public class InvitationController implements Controller {
     }
 
     private boolean isInvitationPossible(User userOpponent) {
-        if (isFree(userOpponent) && (isNotNull(userOpponent))) {
+        if ((isNotNull(userOpponent) && (isFree(userOpponent)))) {
             return true;
         }
         return false;

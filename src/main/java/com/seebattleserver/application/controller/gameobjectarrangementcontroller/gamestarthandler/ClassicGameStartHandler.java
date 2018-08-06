@@ -46,7 +46,7 @@ public class ClassicGameStartHandler implements GameStartHandler {
         user.setUserStatus(UserStatus.IN_GAME_MOVE);
     }
 
-    public void startGame() {
+    private void startGame() {
         Game game = new ClassicGame(user.getPlayer(), userOpponent.getPlayer());
         gameRegistry.put(user, game);
         gameRegistry.put(userOpponent, game);

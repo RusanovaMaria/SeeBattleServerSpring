@@ -50,10 +50,10 @@ public class ControllerFactory {
     }
 
     public InvitationResponseController createInvitationResponseController(User user) {
-        return new InvitationResponseController(user, gameRegistry, userSender);
+        return new InvitationResponseController(user, userSender);
     }
 
-    public GameObjectArrangementController createGameStartController(User user) {
+    public GameObjectArrangementController createGameObjectArrangementController(User user) {
         return new GameObjectArrangementController(user, userSender, gameRegistry);
     }
 

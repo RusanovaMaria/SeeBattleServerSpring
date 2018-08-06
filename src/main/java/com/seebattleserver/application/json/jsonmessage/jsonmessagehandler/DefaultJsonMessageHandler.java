@@ -14,7 +14,10 @@ public class DefaultJsonMessageHandler implements JsonMessageHandler {
     @Override
     public String handle(TextMessage textMessage) {
         JsonMessage jsonMessage = gson.fromJson(textMessage.getPayload(), JsonMessage.class);
-        String messageStr = jsonMessage.getContent().trim();
+        String messageStr = jsonMessage.getContent();
+        if(messageStr != null) {
+            messageStr = messageStr.trim();
+        }
         return messageStr;
     }
 }
