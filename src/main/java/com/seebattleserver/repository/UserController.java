@@ -12,8 +12,12 @@ import java.util.List;
 @RequestMapping(path = "/users")
 public class UserController {
 
-    @Autowired
     private UserEntityRepository userEntityRepository;
+
+    @Autowired
+    public UserController(UserEntityRepository userEntityRepository) {
+        this.userEntityRepository = userEntityRepository;
+    }
 
     @PostMapping(path = "/new")
     public @ResponseBody String addNewUserEntity(@RequestParam String name) {
@@ -29,29 +33,35 @@ public class UserController {
     }
 
     @PutMapping(path = "/newName")
-    public @ResponseBody String changeUserEntityName(@RequestParam String oldName, @RequestParam String newName) {
+    public @ResponseBody
+    String changeUserEntityName(@RequestParam String oldName, @RequestParam String newName) {
         Iterable<UserEntity> allUserEntity = userEntityRepository.findAll();
-        Iterator<UserEntity> iterator = allUserEntity.iterator();
-        while (iterator.hasNext()) {
-            UserEntity userEntity = iterator.next();
-            if(userEntity.getName().equals(oldName)) {
-                userEntity.setName(newName);
-                userEntityRepository.save(userEntity);
-                return "200";
+        if (allUserEntity != null) {
+            Iterator<UserEntity> iterator = allUserEntity.iterator();
+            while (iterator.hasNext()) {
+                UserEntity userEntity = iterator.next();
+                if (userEntity.getName().equals(oldName)) {
+                    userEntity.setName(newName);
+                    userEntityRepository.save(userEntity);
+                    return "200";
+                }
             }
         }
         return "404";
     }
 
     @DeleteMapping(path = "/remove")
-    public @ResponseBody String deleteUserEntetity(@RequestParam String name) {
+    public @ResponseBody
+    String deleteUserEntity(@RequestParam String name) {
         Iterable<UserEntity> allUserEntity = userEntityRepository.findAll();
-        Iterator<UserEntity> iterator = allUserEntity.iterator();
-        while (iterator.hasNext()) {
-            UserEntity userEntity = iterator.next();
-            if (userEntity.getName().equals(name)) {
-                userEntityRepository.delete(userEntity);
-                return "204";
+        if (allUserEntity != null) {
+            Iterator<UserEntity> iterator = allUserEntity.iterator();
+            while (iterator.hasNext()) {
+                UserEntity userEntity = iterator.next();
+                if (userEntity.getName().equals(name)) {
+                    userEntityRepository.delete(userEntity);
+                    return "204";
+                }
             }
         }
         return "404";
@@ -64,11 +74,13 @@ public class UserController {
         for (int i = 0; i < names.length; i++) {
             String name = names[i];
             Iterable<UserEntity> allUserEntity = userEntityRepository.findAll();
-            Iterator<UserEntity> iterator = allUserEntity.iterator();
-            while (iterator.hasNext()) {
-                UserEntity userEntity = iterator.next();
-                if (userEntity.getName().equals(name)) {
-                    userEntities.add(userEntity);
+            if(allUserEntity != null) {
+                Iterator<UserEntity> iterator = allUserEntity.iterator();
+                while (iterator.hasNext()) {
+                    UserEntity userEntity = iterator.next();
+                    if (userEntity.getName().equals(name)) {
+                        userEntities.add(userEntity);
+                    }
                 }
             }
         }

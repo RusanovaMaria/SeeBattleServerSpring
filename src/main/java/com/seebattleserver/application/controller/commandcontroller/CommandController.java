@@ -44,6 +44,6 @@ public class CommandController implements Controller {
     }
 
     private void sendCommandExecution(Command command) {
-        userSender.sendMessage(user, new JsonMessage(command.execute()));
+            userSender.sendMessage(user, new JsonMessage(command.execute()));
     }
 }

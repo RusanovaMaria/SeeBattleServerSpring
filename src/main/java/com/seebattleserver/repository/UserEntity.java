@@ -3,7 +3,6 @@ package com.seebattleserver.repository;
 import javax.persistence.*;
 
 @Entity
-//@Table(name="user_entity")
 public class UserEntity {
 
     @Id
@@ -12,8 +11,6 @@ public class UserEntity {
 
     private String name;
 
-    //@OneToOne
-    //@JoinColumn(name="id")
     private int userOpponentId;
 
     @Column(name="victory_num")
